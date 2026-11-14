@@ -93,22 +93,33 @@ Scoring all 18 folded designs with `af2ig` costs about **$0.09** (p90 $0.40), fr
 
 ### Setting the key
 
-The team key is in `japanfold-oslo-hackathon-codes 4.txt` in the Slack folder.
-`docs/SETUP.md` §6 says not to copy it into any file in this repo and not to paste it in a
-chat, so **point at it where it already is**:
+Keep it in `.env` at the repo root, which is gitignored:
 
 ```bash
-export JAPANFOLD_KEY_FILE="$HOME/Downloads/japanfold-oslo-hackathon-codes 4.txt"
+cp .env.example .env
+# then fill in JAPANFOLD_API_KEY=...
 ```
 
-The client pulls the key out of that file without echoing it, and handles the file being
-prose with the key somewhere inside rather than a bare token. Alternatives, in precedence
-order: `$JAPANFOLD_API_KEY` in your own shell; a `japanfold` field in
-`credentials.private.json`; `viz/japanfold.key` as a last resort (gitignored, but SETUP.md
-would rather you did not create it).
+`viz/japanfold.py` reads `.env` by itself, so a fresh terminal needs nothing exported and
+the secret lives in exactly one place. A real shell variable still overrides the file.
 
-Without the Slack file, a personal key comes from
-<https://japanfold.aiand.com/account/token> — a new account carries $100 of credit.
+Sources, in precedence order:
+
+1. `$JAPANFOLD_API_KEY` exported in your shell
+2. `.env` at the repo root ← **the recommended one**
+3. `$JAPANFOLD_KEY_FILE` — a path to the Slack `japanfold-oslo-hackathon-codes 4.txt`, read
+   in place. The client extracts the key without echoing the file, and copes with the file
+   being prose with the key somewhere inside rather than a bare token
+4. `viz/japanfold.key`
+5. a `japanfold` field in `credentials.private.json`
+
+`python3 viz/japanfold.py --check` prints which source it used — the source, never the value.
+
+The team key is in `japanfold-oslo-hackathon-codes 4.txt` in the Slack folder; a personal key
+(with $100 of credit) comes from <https://japanfold.aiand.com/account/token>. `docs/SETUP.md`
+§6 is the standing rule: never commit it, never paste it into a chat. If a key does reach a
+chat, a log or a commit, treat it as burned and reissue it — `POST /v1/keys` issues a new one
+and `DELETE /v1/keys/{hash_prefix}` switches the old one off.
 
 `.mcp.json` registers the same service as an MCP server for Claude Code, reading
 `${JAPANFOLD_API_KEY}` from the environment so the key stays out of the commit. A new session

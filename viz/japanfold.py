@@ -45,7 +45,56 @@ import urllib.request
 
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent
-BASE = os.environ.get("JAPANFOLD_BASE", "https://api.japanfold.aiand.com/v1")
+def load_dotenv(path: pathlib.Path | None = None) -> list[str]:
+    """Read .env into the environment, without a dependency and without overwriting.
+
+    Keeps the secret in one gitignored file instead of scattered across shells, so
+    `python3 viz/japanfold.py --check` works in a fresh terminal with nothing exported.
+    A real environment variable always wins, so a shell export still overrides the file.
+
+    Returns the names it set, never the values.
+    """
+    p = path or (REPO / ".env")
+    if not p.is_file():
+        return []
+    set_names = []
+    for line in p.read_text(errors="replace").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        if line.startswith("export "):
+            line = line[len("export "):]
+        name, _, value = line.partition("=")
+        name, value = name.strip(), value.strip()
+        # Strip one layer of matching quotes, and drop a trailing inline comment on an
+        # unquoted value -- otherwise '# never commit' becomes part of the key.
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+            value = value[1:-1]
+        elif " #" in value:
+            value = value.split(" #", 1)[0].strip()
+        if name and value and not os.environ.get(name):
+            os.environ[name] = value
+            set_names.append(name)
+    return set_names
+
+
+DOTENV_LOADED = load_dotenv()
+
+
+def _base_url() -> str:
+    """The REST root, ending in /v1.
+
+    Accepts either env name, and accepts a bare host without the version suffix --
+    JAPANFOLD_BASE_URL=https://api.japanfold.aiand.com is the natural thing to export, and
+    silently requesting /models instead of /v1/models would 404 for no visible reason.
+    """
+    raw = (os.environ.get("JAPANFOLD_BASE")
+           or os.environ.get("JAPANFOLD_BASE_URL")
+           or "https://api.japanfold.aiand.com/v1").strip().rstrip("/")
+    return raw if raw.endswith("/v1") else raw + "/v1"
+
+
+BASE = _base_url()
 MCP_URL = "https://api.japanfold.aiand.com/mcp"
 TOKEN_URL = "https://japanfold.aiand.com/account/token"
 
@@ -104,6 +153,25 @@ def _key_from_file(p: pathlib.Path) -> str:
     if cands:
         return max(cands, key=len)
     raise NoKey(f"{p} has no key-shaped string in it. Check you have the right file.")
+
+
+def _key_source() -> str | None:
+    """Where the key is coming from. Names the source, never the value."""
+    if "JAPANFOLD_API_KEY" in DOTENV_LOADED:
+        return f"{REPO / '.env'} (JAPANFOLD_API_KEY)"
+    if os.environ.get("JAPANFOLD_API_KEY"):
+        return "$JAPANFOLD_API_KEY (shell)"
+    if key_path().is_file():
+        return str(key_path())
+    cred = REPO.parent / "credentials.private.json"
+    if cred.is_file():
+        try:
+            if any(k in json.loads(cred.read_text())
+                   for k in ("japanfold", "japanfold_api_key", "JAPANFOLD_API_KEY")):
+                return f"{cred} (japanfold field)"
+        except (json.JSONDecodeError, OSError):
+            pass
+    return None
 
 
 def api_key(required: bool = True) -> str | None:
@@ -196,7 +264,9 @@ def account() -> dict:
 def check() -> dict:
     """Is the lane usable, and what would it spend against?"""
     out = {"base": BASE, "mcp": MCP_URL, "key_present": bool(api_key(required=False)),
-           "key_file": str(key_path()), "key_file_exists": key_path().is_file()}
+           "key_source": _key_source(),
+           "dotenv": str(REPO / ".env") if (REPO / ".env").is_file() else None,
+           "dotenv_set": DOTENV_LOADED}
     try:
         models = list_models()
         out["reachable"] = True

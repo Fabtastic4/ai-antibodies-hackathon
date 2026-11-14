@@ -1,7 +1,9 @@
 # Nebius Scientific AI — cheat sheet
 
 Queue time is today's binding constraint. Sixteen teams share the platform and the **first call to a
-model includes the model load**: 40 s for the cheapest, 22 min for the worst. Start the slow jobs
+model includes the model load**: for the tested models that actually return something the range is
+**10 s (`mdprecheck`) to 22 min (`mosaic`, `esmfold2`)** — see the tables below. `openfold2` is worse
+than any of them and returns nothing: 55 min per failed attempt, do not call it. Start the slow jobs
 before the fast ones.
 
 Sources: `Files from slack/extracted/participant-05/START-HERE.md`, `agent/nebius-scientific-ai/SKILL.md`,
@@ -88,7 +90,7 @@ have a tested input format; the account hosts ~60.
 | `msa-search-pdb70` | run | 40 s | real alignment; better than a one-line A3M |
 | `boltz2` | run | 80 s | fold or co-fold chains. Needs an A3M per chain |
 | `openfold3` | run | 3 min | second opinion on a sequence or complex |
-| `bioemu2` | submit | 4 min | equilibrium conformations of one protein |
+| `bioemu2` | submit | 4 min (**disputed**) | equilibrium conformations of one protein |
 | `chai1` | submit | 5 min | complex from a Chai FASTA inside a tar |
 | `esmfold2-fast` | submit | **11 min** | structure from sequence, long queue |
 | `protenix-v2` | submit | **20 min** | complex structure, long queue |
@@ -131,8 +133,13 @@ have a tested input format; the account hosts ~60.
 | `gromacs` | submit | 5 min | `--wrap-request`, gzipped tar |
 | `lammps` | submit | 5 min | `--wrap-request`, gzipped tar |
 
+**Sources disagree on `bioemu2`.** The resource map and `forge.py` both say **4 min**; `SKILL.md`
+(line 134) puts it in the same **"13 to 26 min"** bucket as `esmfold2-fast`, `protenix-v2`, `esmfold2`
+and `mosaic`. Unresolved — plan for the worse number if anything depends on it. We have no reason to
+call it today anyway: it emits conformations, not ΔG/ΔΔG/Tm ([probe-findings.md §4](probe-findings.md)).
+
 **Start early (≥11 min of pure load):** `mosaic`, `esmfold2`, `protenix-v2`, `esmc-6b`, `stab-ddg`,
-`esmfold2-fast`. Then fill the wait with the 40 s–3 min models.
+`esmfold2-fast`. Then fill the wait with the 10 s–3 min models.
 
 ## Recipes
 
@@ -284,18 +291,21 @@ is where the parallelism is.
 | Our need | On Nebius | Note |
 |---|---|---|
 | HER2 alignment + reference fold | `msa-search-pdb70` → `boltz2`/`openfold3` | 40 s + 80 s–3 min. Do this first, everything reuses the A3M |
-| De novo VHH candidates | `antifold` on a known VHH framework (antibody-aware) · `rfd4-proteina` or `mosaic` for a general backbone, then `proteinmpnn` | start `mosaic` (22 min) and `rfd4-proteina` (6 min) **now**, they are the long poles |
+| De novo VHH candidates | `antifold` on a known VHH framework (antibody-aware). **Not `rfd4-proteina`/`mosaic` for submission candidates** | hosted `rfd4-proteina` is the *general* checkpoint and `mosaic` has no antibody prior either: a general mini-binder is not VHH/scFv/Fab and fails the format gate ([probe-findings.md §2](probe-findings.md)). The HER2/antibody RFD4 checkpoints are Foundry Docker images **on the VM**. Running them here is a backbone exercise, not a submission route |
 | Optimisation: point mutants of trastuzumab | `stab-ddg` — binding ddG for named point mutations across two partner chains | 12 min first call, start early. Design the mutant list on the VM with the Apheris HER2 weights |
 | Candidate structures | `nanobodybuilder2` (VHH) · `abodybuilder3` (Fab/scFv, headers `H`+`L`) | ~2 min each, no alignment needed |
 | Affinity screen | `boltz2` co-fold candidate + HER2, 75 s each | confidence + pTM, **no ipTM** |
 | Confirmation of the shortlist | `openfold3`, and `protenix-v2` if we can afford 20 min | two dissimilar models agreeing is worth more than one high score |
 | Ranking signal on sequences | `esm2-650m` / `esmc-300m`/`600m` scores, `saprot-650m` structure-aware embeddings, `igbert` for H/L | cheap, 3–5 min, useful as a second axis |
-| Thermostability axis | no direct predictor exists — pick a proxy and name it | **TODO resolved (14 Nov):** nothing hosted predicts thermostability. `stab-ddg` is **binding** ddG. ThermoMPNN is not in the 34 and not in the install list. `OpenDDE` is in the install list (~1 h, VM-side) and is the only candidate direct predictor. Judges measure thermostability *experimentally* (`task.md` p335–341, Adaptyv), so `predicted_ddg` is a **selection prior, not a deliverable** — any defensible proxy is legitimate provided `thermostability_basis` states which one. Cheapest hosted proxy: `esm2-650m` pseudo-likelihood, 4 min |
+| Thermostability axis | no direct predictor exists — pick a proxy and name it | **TODO resolved (14 Nov):** nothing hosted predicts thermostability. `stab-ddg` is **binding** ddG. ThermoMPNN is not in the 34 and not in the install list. `OpenDDE` is in the install list (~1 h, VM-side) and is the only candidate direct predictor. Judges measure thermostability *experimentally* (`task.md` p335–341, Adaptyv), so `predicted_ddg` is a **selection prior, not a deliverable** — any defensible proxy is legitimate provided `thermostability_basis` states which one. Cheapest hosted proxy: `esm2-650m` pseudo-likelihood, 4 min  Catalog evidence: of 59 models exactly one matches `thermo\|stabil\|ddg\|solub\|aggreg\|foldx\|camsol\|rosetta\|flex\|melt` ([probe-findings.md §4](probe-findings.md)) |
 
 Epitope preservation is judged by competitive binding against trastuzumab, so the trastuzumab–HER2
 interface has to be an input to design, not an afterthought. The task PDF notes a known complex of
 trastuzumab bound to HER2 can be used as a **template** by the Predict Structure models that support
-one. TODO: confirm which PDB entry we standardise on, and pull it with the RCSB MCP on the VM.
+one (task PDF p4). **Settled: we standardise on 1N8Z** — chain A Fab light, B Fab heavy, C HER2, and
+the 19-residue epitope is already computed from it ([probe-findings.md §5](probe-findings.md)). Pull
+it with the RCSB MCP on the VM. Watch the offset: chain C residue *n* = UniProt P04626 residue
+*n+22*, so state the convention in every spec.
 
 ### H100 VM vs hosted
 

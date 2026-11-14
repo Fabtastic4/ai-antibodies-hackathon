@@ -1,0 +1,2502 @@
+{
+ "generated": "2026-11-14T15:15:16+0100",
+ "inputs": {
+  "designs": "designs/submission_b1_all20.csv",
+  "facs": "data/bucket/extracted/hackathon-data/her2-trastuzumab/tz_her2_facs_3classes_524346.csv.zip",
+  "spr": "data/bucket/extracted/hackathon-data/her2-trastuzumab/trastuzumab_her2_spr_all_768.csv",
+  "refold": "reports/b1_refold_metrics.csv"
+ },
+ "method": {
+  "metric": "Levenshtein distance on IMGT CDRH3",
+  "cutoff": 5,
+  "mutations_required": 3,
+  "trastuzumab_cdrh3": "SRWGGDGFYAMDY",
+  "references_unique": 525027,
+  "note": "reference CDRH3s re-extracted from vh_sequence, not read from the cdrh3 column, which holds the 10-mer core"
+ },
+ "summary": {
+  "designs": 20,
+  "pass": 14,
+  "reject": 6,
+  "review": 0
+ },
+ "designs": [
+  {
+   "sequence_id": "her2_cdrh3_26",
+   "kind": "paired",
+   "cdrh3": "SRSTAATSYAFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 2,
+   "distance_display": "2",
+   "n_at_that_distance": 8,
+   "nearest": [
+    {
+     "cdrh3": "SRWTAVTSYAFDY",
+     "core": "WTAVTSYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRYTAATFYAFDY",
+     "core": "YTAATFYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWTAATFYAFDY",
+     "core": "WTAATFYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRFTAATFYAFDY",
+     "core": "FTAATFYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRLTAATFYAFDY",
+     "core": "LTAATFYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    }
+   ],
+   "eligible": false,
+   "verdict": "reject",
+   "reason": "2 edit(s) from SRWTAVTSYAFDY (measured high), needs 3",
+   "refold": {
+    "iptm": 0.916,
+    "ptm": 0.943,
+    "min_ipae": 0.3281,
+    "binder_plddt": 98.4096,
+    "plddt": 97.38
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_74",
+   "kind": "paired",
+   "cdrh3": "SRDLSLSNYAHDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 4,
+   "distance_display": "4",
+   "n_at_that_distance": 51,
+   "nearest": [
+    {
+     "cdrh3": "SRDLVCSLYAFDY",
+     "core": "DLVCSLYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWLQGSMYAHDY",
+     "core": "WLQGSMYAHD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRYLSCSLYAFDY",
+     "core": "YLSCSLYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWLSLSFYMLDY",
+     "core": "WLSLSFYMLD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWLQCSLYAHDY",
+     "core": "WLQCSLYAHD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.912,
+    "ptm": 0.937,
+    "min_ipae": 0.3542,
+    "binder_plddt": 98.4441,
+    "plddt": 97.75
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_40",
+   "kind": "paired",
+   "cdrh3": "SRWHSTSYYYFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 2,
+   "distance_display": "2",
+   "n_at_that_distance": 2,
+   "nearest": [
+    {
+     "cdrh3": "SRYHSHSYYYFDY",
+     "core": "YHSHSYYYFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 8,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWHSTSHYEFDY",
+     "core": "WHSTSHYEFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": false,
+   "verdict": "reject",
+   "reason": "2 edit(s) from SRYHSHSYYYFDY (measured medium), needs 3",
+   "refold": {
+    "iptm": 0.911,
+    "ptm": 0.937,
+    "min_ipae": 0.3587,
+    "binder_plddt": 97.1107,
+    "plddt": 95.791
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_14",
+   "kind": "paired",
+   "cdrh3": "SRWHSLHEYYFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 10,
+   "nearest": [
+    {
+     "cdrh3": "SRWHSLSHYVFDY",
+     "core": "WHSLSHYVFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWHSLSLYEFDY",
+     "core": "WHSLSLYEFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWHSHSEYEFDY",
+     "core": "WHSHSEYEFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWHSLSHYKFDY",
+     "core": "WHSLSHYKFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWHSLSQYEFDY",
+     "core": "WHSLSQYEFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.903,
+    "ptm": 0.931,
+    "min_ipae": 0.3544,
+    "binder_plddt": 97.9453,
+    "plddt": 96.539
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_82",
+   "kind": "paired",
+   "cdrh3": "SRWSSLYYYYFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 2,
+   "distance_display": "2",
+   "n_at_that_distance": 3,
+   "nearest": [
+    {
+     "cdrh3": "SRWSSLRYYTFDY",
+     "core": "WSSLRYYTFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWSSLGYYSFDY",
+     "core": "WSSLGYYSFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWSSLRYYSFDY",
+     "core": "WSSLRYYSFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": false,
+   "verdict": "reject",
+   "reason": "2 edit(s) from SRWSSLRYYTFDY (measured high), needs 3",
+   "refold": {
+    "iptm": 0.901,
+    "ptm": 0.93,
+    "min_ipae": 0.3735,
+    "binder_plddt": 96.8278,
+    "plddt": 95.725
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_88",
+   "kind": "paired",
+   "cdrh3": "SRSLSLGNYAFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 6,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 19,
+   "nearest": [
+    {
+     "cdrh3": "SRWSSLGAYAFDY",
+     "core": "WSSLGAYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWASLGFYAFDY",
+     "core": "WASLGFYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 4,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRYLNLGLYAFDY",
+     "core": "YLNLGLYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWSSLGPYAFDY",
+     "core": "WSSLGPYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWLSDGFYAFDY",
+     "core": "WLSDGFYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 3,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.9,
+    "ptm": 0.93,
+    "min_ipae": 0.3362,
+    "binder_plddt": 98.1048,
+    "plddt": 97.02
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_52",
+   "kind": "paired",
+   "cdrh3": "SRDLYLYNYSFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 8,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 2,
+   "nearest": [
+    {
+     "cdrh3": "SRWSYLGNYSFDY",
+     "core": "WSYLGNYSFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWSYLRNYSFDY",
+     "core": "WSYLRNYSFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.893,
+    "ptm": 0.927,
+    "min_ipae": 0.3568,
+    "binder_plddt": 98.4214,
+    "plddt": 97.443
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_28",
+   "kind": "paired",
+   "cdrh3": "SRSLTPLSDVFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 9,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 2,
+   "nearest": [
+    {
+     "cdrh3": "SRWLMPHSDVFDY",
+     "core": "WLMPHSDVFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 8,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWLMPLSYVFDY",
+     "core": "WLMPLSYVFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.888,
+    "ptm": 0.922,
+    "min_ipae": 0.3437,
+    "binder_plddt": 97.7556,
+    "plddt": 96.32
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_91",
+   "kind": "paired",
+   "cdrh3": "SRDRTPTDYSFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 8,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 1,
+   "nearest": [
+    {
+     "cdrh3": "SRWRTPGFYSFDY",
+     "core": "WRTPGFYSFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.888,
+    "ptm": 0.919,
+    "min_ipae": 0.3492,
+    "binder_plddt": 96.8455,
+    "plddt": 95.844
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_31",
+   "kind": "paired",
+   "cdrh3": "SRWHSSYDYYFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 27,
+   "nearest": [
+    {
+     "cdrh3": "SRWMSSGFYYFDY",
+     "core": "WMSSGFYYFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWHSQYNYEFDY",
+     "core": "WHSQYNYEFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWGSSLLYYFDY",
+     "core": "WGSSLLYYFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWHSQYHYEFDY",
+     "core": "WHSQYHYEFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWHSHYHYVFDY",
+     "core": "WHSHYHYVFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.888,
+    "ptm": 0.921,
+    "min_ipae": 0.3791,
+    "binder_plddt": 97.5046,
+    "plddt": 95.54
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_3",
+   "kind": "paired",
+   "cdrh3": "SRWASSSEYYFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 100,
+   "nearest": [
+    {
+     "cdrh3": "SRWASCSFYSFDY",
+     "core": "WASCSFYSFD",
+     "class": "high",
+     "kd_nM": 9.242493,
+     "core_edit_distance": 6,
+     "rows": 2
+    },
+    {
+     "cdrh3": "SRWASGSIYTFDY",
+     "core": "WASGSIYTFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWASCRFYYFDY",
+     "core": "WASCRFYYFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWMSSGFYYFDY",
+     "core": "WMSSGFYYFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWAAGSFYYFDY",
+     "core": "WAAGSFYYFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.886,
+    "ptm": 0.92,
+    "min_ipae": 0.3637,
+    "binder_plddt": 98.0417,
+    "plddt": 96.81
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_39",
+   "kind": "paired",
+   "cdrh3": "SRDMAGSSHAFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 8,
+   "distance_to_nearest_measured": 2,
+   "distance_display": "2",
+   "n_at_that_distance": 1,
+   "nearest": [
+    {
+     "cdrh3": "SRWMAGSSYAFDY",
+     "core": "WMAGSSYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    }
+   ],
+   "eligible": false,
+   "verdict": "reject",
+   "reason": "2 edit(s) from SRWMAGSSYAFDY (measured high), needs 3",
+   "refold": {
+    "iptm": 0.885,
+    "ptm": 0.919,
+    "min_ipae": 0.3481,
+    "binder_plddt": 98.046,
+    "plddt": 96.975
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_17",
+   "kind": "paired",
+   "cdrh3": "SRSLDGYYNYFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 4,
+   "distance_display": "4",
+   "n_at_that_distance": 14,
+   "nearest": [
+    {
+     "cdrh3": "SRHSGDGYYAYDY",
+     "core": "HSGDGYYAYD",
+     "class": null,
+     "kd_nM": 139.0,
+     "core_edit_distance": null,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRSSGDGIYYFDY",
+     "core": "SSGDGIYYFD",
+     "class": null,
+     "kd_nM": 393.8745,
+     "core_edit_distance": null,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWLDVGYYAFDY",
+     "core": "WLDVGYYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWLDPGYYAFDY",
+     "core": "WLDPGYYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWSLDGMYAFDY",
+     "core": "WSLDGMYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 4,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.878,
+    "ptm": 0.914,
+    "min_ipae": 0.3844,
+    "binder_plddt": 98.0991,
+    "plddt": 97.172
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_63",
+   "kind": "paired",
+   "cdrh3": "SRSRGSLDAAFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 4,
+   "distance_display": "4",
+   "n_at_that_distance": 13,
+   "nearest": [
+    {
+     "cdrh3": "SRWGGSGDWAFDY",
+     "core": "WGGSGDWAFD",
+     "class": null,
+     "kd_nM": 256.8663,
+     "core_edit_distance": null,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRFLGCSLDAFDY",
+     "core": "FLGCSLDAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWLLGSLDAFDY",
+     "core": "WLLGSLDAFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWRGCSLYAFDY",
+     "core": "WRGCSLYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRYSQGGLDAFDY",
+     "core": "YSQGGLDAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.868,
+    "ptm": 0.906,
+    "min_ipae": 0.3573,
+    "binder_plddt": 97.1271,
+    "plddt": 95.795
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_21",
+   "kind": "paired",
+   "cdrh3": "SRWKSSYYYYFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 15,
+   "nearest": [
+    {
+     "cdrh3": "SRWMSSGFYYFDY",
+     "core": "WMSSGFYYFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWGSSLLYYFDY",
+     "core": "WGSSLLYYFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWSSSGYYKFDY",
+     "core": "WSSSGYYKFD",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWQSSRYYFFDY",
+     "core": "WQSSRYYFFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRWDSSGYYYFLY",
+     "core": "WDSSGYYYFL",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.864,
+    "ptm": 0.904,
+    "min_ipae": 0.3835,
+    "binder_plddt": 97.2046,
+    "plddt": 95.659
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_4",
+   "kind": "paired",
+   "cdrh3": "SRYWSLHYYAMDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 6,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 1,
+   "nearest": [
+    {
+     "cdrh3": "SRYTSLHFYAFDY",
+     "core": "YTSLHFYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.861,
+    "ptm": 0.902,
+    "min_ipae": 0.3875,
+    "binder_plddt": 97.8532,
+    "plddt": 96.785
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_10",
+   "kind": "paired",
+   "cdrh3": "SRTTPAVAYAHDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 1,
+   "nearest": [
+    {
+     "cdrh3": "SRWTPAVMYAHTY",
+     "core": "WTPAVMYAHT",
+     "class": "low",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.858,
+    "ptm": 0.901,
+    "min_ipae": 0.3788,
+    "binder_plddt": 98.3519,
+    "plddt": 97.221
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_12",
+   "kind": "paired",
+   "cdrh3": "SRDLSLSVYAFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 7,
+   "distance_to_nearest_measured": 3,
+   "distance_display": "3",
+   "n_at_that_distance": 14,
+   "nearest": [
+    {
+     "cdrh3": "SRYLVCSVYAFDY",
+     "core": "YLVCSVYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRDLVCSLYAFDY",
+     "core": "DLVCSLYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRFLVCSVYAFDY",
+     "core": "FLVCSVYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRYLSCSLYAFDY",
+     "core": "YLSCSLYAFD",
+     "class": "medium",
+     "kd_nM": null,
+     "core_edit_distance": 7,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRYDLSGVYAFDY",
+     "core": "YDLSGVYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 6,
+     "rows": 1
+    }
+   ],
+   "eligible": true,
+   "verdict": "pass",
+   "reason": null,
+   "refold": {
+    "iptm": 0.848,
+    "ptm": 0.894,
+    "min_ipae": 0.3798,
+    "binder_plddt": 97.708,
+    "plddt": 96.393
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_53",
+   "kind": "paired",
+   "cdrh3": "SRWGSSTFYAFDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 4,
+   "distance_to_nearest_measured": 1,
+   "distance_display": "1",
+   "n_at_that_distance": 1,
+   "nearest": [
+    {
+     "cdrh3": "SRWGSSDFYAFDY",
+     "core": "WGSSDFYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 4,
+     "rows": 1
+    }
+   ],
+   "eligible": false,
+   "verdict": "reject",
+   "reason": "1 edit(s) from SRWGSSDFYAFDY (measured high), needs 3",
+   "refold": {
+    "iptm": 0.837,
+    "ptm": 0.887,
+    "min_ipae": 0.4017,
+    "binder_plddt": 97.3323,
+    "plddt": 95.838
+   }
+  },
+  {
+   "sequence_id": "her2_cdrh3_47",
+   "kind": "paired",
+   "cdrh3": "SRYGSLTFYAMDY",
+   "heavy_len": 120,
+   "light_len": 107,
+   "distance_to_trastuzumab": 4,
+   "distance_to_nearest_measured": 2,
+   "distance_display": "2",
+   "n_at_that_distance": 3,
+   "nearest": [
+    {
+     "cdrh3": "SRYGSIGFYAMDY",
+     "core": "YGSIGFYAMD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 3,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRYGDLTFYAFDY",
+     "core": "YGDLTFYAFD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 5,
+     "rows": 1
+    },
+    {
+     "cdrh3": "SRYGDLSFYAMDY",
+     "core": "YGDLSFYAMD",
+     "class": "high",
+     "kd_nM": null,
+     "core_edit_distance": 4,
+     "rows": 1
+    }
+   ],
+   "eligible": false,
+   "verdict": "reject",
+   "reason": "2 edit(s) from SRYGSIGFYAMDY (measured high), needs 3",
+   "refold": {
+    "iptm": 0.71,
+    "ptm": 0.798,
+    "min_ipae": 0.5241,
+    "binder_plddt": 97.7214,
+    "plddt": 96.201
+   }
+  }
+ ],
+ "landscape": {
+  "1": {
+   "high": 48,
+   "medium": 2
+  },
+  "2": {
+   "high": 585,
+   "medium": 7,
+   "low": 8
+  },
+  "3": {
+   "high": 1341,
+   "medium": 105,
+   "low": 44
+  },
+  "4": {
+   "high": 4760,
+   "medium": 1064,
+   "low": 560
+  },
+  "5": {
+   "low": 4148,
+   "high": 16912,
+   "medium": 7433
+  },
+  "6": {
+   "medium": 29942,
+   "high": 37939,
+   "low": 18550
+  },
+  "7": {
+   "medium": 63411,
+   "low": 42967,
+   "high": 53750
+  },
+  "8": {
+   "medium": 58310,
+   "high": 40429,
+   "low": 52098
+  },
+  "9": {
+   "low": 32691,
+   "medium": 24233,
+   "high": 13237
+  },
+  "10": {
+   "high": 3117,
+   "low": 11120,
+   "medium": 5502
+  }
+ },
+ "affinity": [
+  {
+   "cdrh3": "SRWGSQGFYAYDY",
+   "core": "WGSQGFYAYD",
+   "kd_nM": 0.02343889,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFYAMDY",
+   "core": "WGGDGFYAMD",
+   "kd_nM": 0.02851802,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGSDGWYAMDY",
+   "core": "WGSDGWYAMD",
+   "kd_nM": 0.06076519,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGQGFYAMDY",
+   "core": "WGGQGFYAMD",
+   "kd_nM": 0.09,
+   "core_edit_distance": 1
+  },
+  {
+   "cdrh3": "SRWGGSGPYLFDY",
+   "core": "WGGSGPYLFD",
+   "kd_nM": 0.095,
+   "core_edit_distance": 4
+  },
+  {
+   "cdrh3": "SRWGGEGFYAMDY",
+   "core": "WGGEGFYAMD",
+   "kd_nM": 0.117,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFYLMDY",
+   "core": "WGGDGFYLMD",
+   "kd_nM": 0.128,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFYEMDY",
+   "core": "WGGDGFYEMD",
+   "kd_nM": 0.142,
+   "core_edit_distance": 1
+  },
+  {
+   "cdrh3": "SRWYRSGWYELDY",
+   "core": "WYRSGWYELD",
+   "kd_nM": 0.185,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGYAFYSYDY",
+   "core": "WGGYAFYSYD",
+   "kd_nM": 0.2239666,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGNGFYAMDY",
+   "core": "WGGNGFYAMD",
+   "kd_nM": 0.282,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRFGGEGFYAMDY",
+   "core": "FGGEGFYAMD",
+   "kd_nM": 0.284,
+   "core_edit_distance": 2
+  },
+  {
+   "cdrh3": "SRWGAEGFYYWDY",
+   "core": "WGAEGFYYWD",
+   "kd_nM": 0.368,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGSGFYVYIY",
+   "core": "WGGSGFYVYI",
+   "kd_nM": 0.443,
+   "core_edit_distance": 4
+  },
+  {
+   "cdrh3": "SRFGSRGFYAYAY",
+   "core": "FGSRGFYAYA",
+   "kd_nM": 0.471,
+   "core_edit_distance": 5
+  },
+  {
+   "cdrh3": "SRWTYNSFYAMDY",
+   "core": "WTYNSFYAMD",
+   "kd_nM": 0.7183314,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWKGYGSYVHDY",
+   "core": "WKGYGSYVHD",
+   "kd_nM": 0.723,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGAGFYAHIY",
+   "core": "WGGAGFYAHI",
+   "kd_nM": 1.067372,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGGGFYAMDY",
+   "core": "WGGGGFYAMD",
+   "kd_nM": 1.200885,
+   "core_edit_distance": 1
+  },
+  {
+   "cdrh3": "SRYRVDGFYAFTY",
+   "core": "YRVDGFYAFT",
+   "kd_nM": 1.6,
+   "core_edit_distance": 5
+  },
+  {
+   "cdrh3": "SRWGECAFYEFVY",
+   "core": "WGECAFYEFV",
+   "kd_nM": 1.682884,
+   "core_edit_distance": 6
+  },
+  {
+   "cdrh3": "SRWGGDAFYAMSY",
+   "core": "WGGDAFYAMS",
+   "kd_nM": 2.2,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWDVFGMYAFEY",
+   "core": "WDVFGMYAFE",
+   "kd_nM": 2.6,
+   "core_edit_distance": 6
+  },
+  {
+   "cdrh3": "SRWGGDYFYAFEY",
+   "core": "WGGDYFYAFE",
+   "kd_nM": 2.6,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYLGSSFYVFGY",
+   "core": "YLGSSFYVFG",
+   "kd_nM": 2.9,
+   "core_edit_distance": 7
+  },
+  {
+   "cdrh3": "SRYGSTGYYYMAY",
+   "core": "YGSTGYYYMA",
+   "kd_nM": 3.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFHAMDY",
+   "core": "WGGDGFHAMD",
+   "kd_nM": 3.3,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGNDGFYMLDY",
+   "core": "WGNDGFYMLD",
+   "kd_nM": 3.8,
+   "core_edit_distance": 3
+  },
+  {
+   "cdrh3": "SRWGGDNFYAMDY",
+   "core": "WGGDNFYAMD",
+   "kd_nM": 4.5,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYYAQGNYVYDY",
+   "core": "YYAQGNYVYD",
+   "kd_nM": 4.5,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGECDFYVHDY",
+   "core": "WGECDFYVHD",
+   "kd_nM": 4.6,
+   "core_edit_distance": 5
+  },
+  {
+   "cdrh3": "SRYSGSGPYAFDY",
+   "core": "YSGSGPYAFD",
+   "kd_nM": 4.6,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGTYHFDY",
+   "core": "WGGDGTYHFD",
+   "kd_nM": 4.693452,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGDNGFYALDY",
+   "core": "WGDNGFYALD",
+   "kd_nM": 5.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFYAKDY",
+   "core": "WGGDGFYAKD",
+   "kd_nM": 5.308159,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYYGDGFYAMDY",
+   "core": "YYGDGFYAMD",
+   "kd_nM": 5.4,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGLYDMVY",
+   "core": "WGGDGLYDMV",
+   "kd_nM": 6.4,
+   "core_edit_distance": 3
+  },
+  {
+   "cdrh3": "SRWGGDGFHAYDY",
+   "core": "WGGDGFHAYD",
+   "kd_nM": 6.4,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGTGFYTVDY",
+   "core": "WGGTGFYTVD",
+   "kd_nM": 7.138996,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFHHYDY",
+   "core": "WGGDGFHHYD",
+   "kd_nM": 7.6,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFYATDY",
+   "core": "WGGDGFYATD",
+   "kd_nM": 8.0,
+   "core_edit_distance": 1
+  },
+  {
+   "cdrh3": "SRWDVGGWYYFDY",
+   "core": "WDVGGWYYFD",
+   "kd_nM": 9.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDNFYAFDY",
+   "core": "WGGDNFYAFD",
+   "kd_nM": 9.1,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWASCSFYSFDY",
+   "core": "WASCSFYSFD",
+   "kd_nM": 9.242493,
+   "core_edit_distance": 6
+  },
+  {
+   "cdrh3": "SRWGGDGFYAADY",
+   "core": "WGGDGFYAAD",
+   "kd_nM": 9.657828,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYYLGGFYFYDY",
+   "core": "YYLGGFYFYD",
+   "kd_nM": 11.59788,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGNVSFYAFIY",
+   "core": "WGNVSFYAFI",
+   "kd_nM": 12.0,
+   "core_edit_distance": 5
+  },
+  {
+   "cdrh3": "SRWGGYGFNYLDY",
+   "core": "WGGYGFNYLD",
+   "kd_nM": 12.07826,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGRYAMDY",
+   "core": "WGGDGRYAMD",
+   "kd_nM": 12.26078,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRHDGFGFYNMDY",
+   "core": "HDGFGFYNMD",
+   "kd_nM": 13.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDWYYAMDY",
+   "core": "WGGDWYYAMD",
+   "kd_nM": 13.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGHFGFYYSDY",
+   "core": "WGHFGFYYSD",
+   "kd_nM": 13.79218,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWVGVGNYANDY",
+   "core": "WVGVGNYAND",
+   "kd_nM": 14.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYADDGFWALFY",
+   "core": "YADDGFWALF",
+   "kd_nM": 14.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGWYGFDY",
+   "core": "WGGDGWYGFD",
+   "kd_nM": 15.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWDEKGFYTMGY",
+   "core": "WDEKGFYTMG",
+   "kd_nM": 15.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWDAGGFYAKVY",
+   "core": "WDAGGFYAKV",
+   "kd_nM": 15.3658,
+   "core_edit_distance": 5
+  },
+  {
+   "cdrh3": "SRNGFVGFYSWDY",
+   "core": "NGFVGFYSWD",
+   "kd_nM": 15.9806,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYFGDNFYAMGY",
+   "core": "YFGDNFYAMG",
+   "kd_nM": 17.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGSAWSYYLDY",
+   "core": "WGSAWSYYLD",
+   "kd_nM": 17.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWSAQNWDFDY",
+   "core": "WSAQNWDFD",
+   "kd_nM": 17.08467,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGSGGVGAFDY",
+   "core": "WGSGGVGAFD",
+   "kd_nM": 17.71115,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGVGWYAVDY",
+   "core": "WGGVGWYAVD",
+   "kd_nM": 19.94157,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWTRPGLYVFAY",
+   "core": "WTRPGLYVFA",
+   "kd_nM": 21.0,
+   "core_edit_distance": 7
+  },
+  {
+   "cdrh3": "SRWGMCGSYMFAY",
+   "core": "WGMCGSYMFA",
+   "kd_nM": 23.0,
+   "core_edit_distance": 6
+  },
+  {
+   "cdrh3": "SRGGYGGLYAFDY",
+   "core": "GGYGGLYAFD",
+   "kd_nM": 27.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGGGVNWFDY",
+   "core": "WGGGGVNWFD",
+   "kd_nM": 27.48097,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFYPMDY",
+   "core": "WGGDGFYPMD",
+   "kd_nM": 28.0,
+   "core_edit_distance": 1
+  },
+  {
+   "cdrh3": "SRMGGDGFYAIDY",
+   "core": "MGGDGFYAID",
+   "kd_nM": 28.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWSGDGDYYNDY",
+   "core": "WSGDGDYYND",
+   "kd_nM": 29.48333,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRFGDHASYMLRY",
+   "core": "FGDHASYMLR",
+   "kd_nM": 30.0,
+   "core_edit_distance": 8
+  },
+  {
+   "cdrh3": "SRYLGDGWWAMTY",
+   "core": "YLGDGWWAMT",
+   "kd_nM": 32.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWTGDGDYSFEY",
+   "core": "WTGDGDYSFE",
+   "kd_nM": 38.20448,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWVGDGTYALYY",
+   "core": "WVGDGTYALY",
+   "kd_nM": 39.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDNFYAIDY",
+   "core": "WGGDNFYAID",
+   "kd_nM": 39.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWVGDGFYATDY",
+   "core": "WVGDGFYATD",
+   "kd_nM": 42.9518,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRFGKCGMYALNY",
+   "core": "FGKCGMYALN",
+   "kd_nM": 44.23442,
+   "core_edit_distance": 6
+  },
+  {
+   "cdrh3": "SRWGLDGWYGFDY",
+   "core": "WGLDGWYGFD",
+   "kd_nM": 46.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGGGMHAFDY",
+   "core": "WGGGGMHAFD",
+   "kd_nM": 47.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWLGSGFQHLDY",
+   "core": "WLGSGFQHLD",
+   "kd_nM": 47.55897,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGSSGFYYTDY",
+   "core": "WGSSGFYYTD",
+   "kd_nM": 48.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGTGDYRYDY",
+   "core": "WGGTGDYRYD",
+   "kd_nM": 48.41218,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYAARTFYAMTY",
+   "core": "YAARTFYAMT",
+   "kd_nM": 54.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYDAYGFYAANY",
+   "core": "YDAYGFYAAN",
+   "kd_nM": 56.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGGYAMDY",
+   "core": "WGGDGGYAMD",
+   "kd_nM": 60.87694,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGFGFSALDY",
+   "core": "WGGFGFSALD",
+   "kd_nM": 61.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRMADPDAYSFYY",
+   "core": "MADPDAYSFY",
+   "kd_nM": 66.02709,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYFGLSFGFDY",
+   "core": "YFGLSFGFD",
+   "kd_nM": 66.0312,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRNGGSGFPMFDY",
+   "core": "NGGSGFPMFD",
+   "kd_nM": 73.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDGGPGAYAIDY",
+   "core": "DGGPGAYAID",
+   "kd_nM": 73.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGSYGSNSFEY",
+   "core": "WGSYGSNSFE",
+   "kd_nM": 86.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYGSYGYLGRDY",
+   "core": "YGSYGYLGRD",
+   "kd_nM": 86.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGDGFYAMDY",
+   "core": "VGGDGFYAMD",
+   "kd_nM": 87.65136,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDDLYAMDY",
+   "core": "WGGDDLYAMD",
+   "kd_nM": 89.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYASNFYSDMLY",
+   "core": "YASNFYSDML",
+   "kd_nM": 90.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGTGGFTAYDY",
+   "core": "WGTGGFTAYD",
+   "kd_nM": 90.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWPNLWMYVFAY",
+   "core": "WPNLWMYVFA",
+   "kd_nM": 91.0,
+   "core_edit_distance": 8
+  },
+  {
+   "cdrh3": "SRYGAAGWWAFDY",
+   "core": "YGAAGWWAFD",
+   "kd_nM": 93.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWSMFGFYTHVY",
+   "core": "WSMFGFYTHV",
+   "kd_nM": 94.0,
+   "core_edit_distance": 6
+  },
+  {
+   "cdrh3": "SRWGGHGEFAYDY",
+   "core": "WGGHGEFAYD",
+   "kd_nM": 96.94537,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYGSYGYYVGRY",
+   "core": "YGSYGYYVGR",
+   "kd_nM": 99.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWWGDGKYLNDY",
+   "core": "WWGDGKYLND",
+   "kd_nM": 106.2237,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDVSYAFDY",
+   "core": "WGGDVSYAFD",
+   "kd_nM": 110.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYGYPGGYSADY",
+   "core": "YGYPGGYSAD",
+   "kd_nM": 112.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGTSGHGAFDY",
+   "core": "WGTSGHGAFD",
+   "kd_nM": 112.3355,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGGNTYDY",
+   "core": "WGGDGGNTYD",
+   "kd_nM": 116.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYNAGMYVYTGY",
+   "core": "YNAGMYVYTG",
+   "kd_nM": 124.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWAERYGWTFDY",
+   "core": "WAERYGWTFD",
+   "kd_nM": 125.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SREGGPSFHALAY",
+   "core": "EGGPSFHALA",
+   "kd_nM": 127.5206,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYGLRGGFGYYY",
+   "core": "YGLRGGFGYY",
+   "kd_nM": 130.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDGGIGYYDYDY",
+   "core": "DGGIGYYDYD",
+   "kd_nM": 131.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRSGGTGYYALAY",
+   "core": "SGGTGYYALA",
+   "kd_nM": 138.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWKPAGMYFLSY",
+   "core": "WKPAGMYFLS",
+   "kd_nM": 139.0,
+   "core_edit_distance": 7
+  },
+  {
+   "cdrh3": "SRHSGDGYYAYDY",
+   "core": "HSGDGYYAYD",
+   "kd_nM": 139.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYSSGSYGFFHY",
+   "core": "YSSGSYGFFH",
+   "kd_nM": 142.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWFENGGNVLDY",
+   "core": "WFENGGNVLD",
+   "kd_nM": 144.8012,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRLWGVSRVPMDY",
+   "core": "LWGVSRVPMD",
+   "kd_nM": 145.9558,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGSGYHGPDY",
+   "core": "WGGSGYHGPD",
+   "kd_nM": 146.2843,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGPSHYALAY",
+   "core": "VGGPSHYALA",
+   "kd_nM": 147.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGAYATEY",
+   "core": "WGGDGAYATE",
+   "kd_nM": 152.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYGGPTQHALTY",
+   "core": "YGGPTQHALT",
+   "kd_nM": 153.1813,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVTGSGFNYYDY",
+   "core": "VTGSGFNYYD",
+   "kd_nM": 157.127,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYGGDAVYSPDY",
+   "core": "YGGDAVYSPD",
+   "kd_nM": 159.9028,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRQYGSGFYYYDY",
+   "core": "QYGSGFYYYD",
+   "kd_nM": 160.4971,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWSARAAYGADY",
+   "core": "WSARAAYGAD",
+   "kd_nM": 165.8307,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGAVRLYTLEY",
+   "core": "WGAVRLYTLE",
+   "kd_nM": 174.1312,
+   "core_edit_distance": 7
+  },
+  {
+   "cdrh3": "SRWGGSGRYADDY",
+   "core": "WGGSGRYADD",
+   "kd_nM": 177.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGSTNFDY",
+   "core": "WGGDGSTNFD",
+   "kd_nM": 178.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGLALFHAWDY",
+   "core": "WGLALFHAWD",
+   "kd_nM": 186.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGSGVYGFDY",
+   "core": "WGGSGVYGFD",
+   "kd_nM": 187.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRTGGPSFNALAY",
+   "core": "TGGPSFNALA",
+   "kd_nM": 188.8573,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGPGQYGLEY",
+   "core": "VGGPGQYGLE",
+   "kd_nM": 193.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWSEAGFFDLTY",
+   "core": "WSEAGFFDLT",
+   "kd_nM": 193.5185,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFTQHDY",
+   "core": "WGGDGFTQHD",
+   "kd_nM": 195.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGWYAPDY",
+   "core": "WGGDGWYAPD",
+   "kd_nM": 196.0795,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDTKYVMDY",
+   "core": "WGGDTKYVMD",
+   "kd_nM": 204.8738,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRSGGAGWYAPDY",
+   "core": "SGGAGWYAPD",
+   "kd_nM": 207.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGMRAAYFYNY",
+   "core": "WGMRAAYFYN",
+   "kd_nM": 216.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRFPAVGAYIIQY",
+   "core": "FPAVGAYIIQ",
+   "kd_nM": 217.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWPGAGFNGLDY",
+   "core": "WPGAGFNGLD",
+   "kd_nM": 230.0446,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGPSFNALQY",
+   "core": "VGGPSFNALQ",
+   "kd_nM": 243.3268,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGDGWYDFDY",
+   "core": "VGGDGWYDFD",
+   "kd_nM": 247.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDGGAGTYAIDY",
+   "core": "DGGAGTYAID",
+   "kd_nM": 254.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGSGDWAFDY",
+   "core": "WGGSGDWAFD",
+   "kd_nM": 256.8663,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYSSPDGFGLSY",
+   "core": "YSSPDGFGLS",
+   "kd_nM": 264.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGSRGDYYTDY",
+   "core": "WGSRGDYYTD",
+   "kd_nM": 270.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDGSLGSPRLGY",
+   "core": "DGSLGSPRLG",
+   "kd_nM": 280.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGKYASDY",
+   "core": "WGGDGKYASD",
+   "kd_nM": 285.8078,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRHGGPGGYLMDY",
+   "core": "HGGPGGYLMD",
+   "kd_nM": 286.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYESVGWIDFDY",
+   "core": "YESVGWIDFD",
+   "kd_nM": 288.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRNGQVYVGAYDY",
+   "core": "NGQVYVGAYD",
+   "kd_nM": 291.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDGLANWGSFEY",
+   "core": "DGLANWGSFE",
+   "kd_nM": 291.3309,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGPGHNALDY",
+   "core": "VGGPGHNALD",
+   "kd_nM": 302.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGGGWYPIDY",
+   "core": "VGGGGWYPID",
+   "kd_nM": 305.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRHGGTGYLYFDY",
+   "core": "HGGTGYLYFD",
+   "kd_nM": 317.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYYPAWGATDDY",
+   "core": "YYPAWGATDD",
+   "kd_nM": 321.6063,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWENFGKWYFDY",
+   "core": "WENFGKWYFD",
+   "kd_nM": 324.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRNGGWIFYYIDY",
+   "core": "NGGWIFYYID",
+   "kd_nM": 326.2113,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGFNAGDY",
+   "core": "WGGDGFNAGD",
+   "kd_nM": 330.3502,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGAGSTGYDY",
+   "core": "WGGAGSTGYD",
+   "kd_nM": 337.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGPSFNALEY",
+   "core": "VGGPSFNALE",
+   "kd_nM": 338.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SREDGPWNYALAY",
+   "core": "EDGPWNYALA",
+   "kd_nM": 370.4371,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGDGHVAFDY",
+   "core": "WGGDGHVAFD",
+   "kd_nM": 370.7463,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGGPSFNALQY",
+   "core": "WGGPSFNALQ",
+   "kd_nM": 373.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRLYYSTGPYFNY",
+   "core": "LYYSTGPYFN",
+   "kd_nM": 391.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRSSGDGIYYFDY",
+   "core": "SSGDGIYYFD",
+   "kd_nM": 393.8745,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGRGVFLFYRY",
+   "core": "WGRGVFLFYR",
+   "kd_nM": 407.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGQSFNALAY",
+   "core": "VGGQSFNALA",
+   "kd_nM": 409.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDWPGRYPVNY",
+   "core": "DWPGRYPVN",
+   "kd_nM": 430.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWDGGGFYADDY",
+   "core": "WDGGGFYADD",
+   "kd_nM": 439.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRAGYDGLYAIDY",
+   "core": "AGYDGLYAID",
+   "kd_nM": 445.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGEGFNGLQY",
+   "core": "VGGEGFNGLQ",
+   "kd_nM": 446.6596,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDGGDGWYSSDY",
+   "core": "DGGDGWYSSD",
+   "kd_nM": 481.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRNANGNGYYLDY",
+   "core": "NANGNGYYLD",
+   "kd_nM": 481.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRAGDYARYGFGY",
+   "core": "AGDYARYGFG",
+   "kd_nM": 482.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDGGSGFRASDY",
+   "core": "DGGSGFRASD",
+   "kd_nM": 548.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRWGNLGYSSADY",
+   "core": "WGNLGYSSAD",
+   "kd_nM": 705.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRVGGPGRNALDY",
+   "core": "VGGPGRNALD",
+   "kd_nM": 777.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRNDGDGRYAYDY",
+   "core": "NDGDGRYAYD",
+   "kd_nM": 780.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRDGGPSFNALAY",
+   "core": "DGGPSFNALA",
+   "kd_nM": 886.0,
+   "core_edit_distance": null
+  },
+  {
+   "cdrh3": "SRYLLNGVFVFDY",
+   "core": "YLLNGVFVFD",
+   "kd_nM": 13863.16,
+   "core_edit_distance": null
+  }
+ ],
+ "loop_positions": [
+  {
+   "position": 1,
+   "wild_type": "S",
+   "kept": 20,
+   "of": 20,
+   "letters": [
+    [
+     "S",
+     20
+    ]
+   ]
+  },
+  {
+   "position": 2,
+   "wild_type": "R",
+   "kept": 20,
+   "of": 20,
+   "letters": [
+    [
+     "R",
+     20
+    ]
+   ]
+  },
+  {
+   "position": 3,
+   "wild_type": "W",
+   "kept": 7,
+   "of": 20,
+   "letters": [
+    [
+     "W",
+     7
+    ],
+    [
+     "S",
+     5
+    ],
+    [
+     "D",
+     5
+    ],
+    [
+     "Y",
+     2
+    ],
+    [
+     "T",
+     1
+    ]
+   ]
+  },
+  {
+   "position": 4,
+   "wild_type": "G",
+   "kept": 2,
+   "of": 20,
+   "letters": [
+    [
+     "L",
+     6
+    ],
+    [
+     "H",
+     3
+    ],
+    [
+     "T",
+     2
+    ],
+    [
+     "R",
+     2
+    ],
+    [
+     "G",
+     2
+    ],
+    [
+     "S",
+     1
+    ],
+    [
+     "A",
+     1
+    ],
+    [
+     "M",
+     1
+    ],
+    [
+     "K",
+     1
+    ],
+    [
+     "W",
+     1
+    ]
+   ]
+  },
+  {
+   "position": 5,
+   "wild_type": "G",
+   "kept": 1,
+   "of": 20,
+   "letters": [
+    [
+     "S",
+     12
+    ],
+    [
+     "A",
+     2
+    ],
+    [
+     "T",
+     2
+    ],
+    [
+     "Y",
+     1
+    ],
+    [
+     "D",
+     1
+    ],
+    [
+     "G",
+     1
+    ],
+    [
+     "P",
+     1
+    ]
+   ]
+  },
+  {
+   "position": 6,
+   "wild_type": "D",
+   "kept": 0,
+   "of": 20,
+   "letters": [
+    [
+     "L",
+     8
+    ],
+    [
+     "S",
+     5
+    ],
+    [
+     "A",
+     2
+    ],
+    [
+     "P",
+     2
+    ],
+    [
+     "G",
+     2
+    ],
+    [
+     "T",
+     1
+    ]
+   ]
+  },
+  {
+   "position": 7,
+   "wild_type": "G",
+   "kept": 1,
+   "of": 20,
+   "letters": [
+    [
+     "S",
+     5
+    ],
+    [
+     "Y",
+     5
+    ],
+    [
+     "T",
+     4
+    ],
+    [
+     "H",
+     2
+    ],
+    [
+     "L",
+     2
+    ],
+    [
+     "G",
+     1
+    ],
+    [
+     "V",
+     1
+    ]
+   ]
+  },
+  {
+   "position": 8,
+   "wild_type": "F",
+   "kept": 2,
+   "of": 20,
+   "letters": [
+    [
+     "Y",
+     5
+    ],
+    [
+     "S",
+     3
+    ],
+    [
+     "N",
+     3
+    ],
+    [
+     "D",
+     3
+    ],
+    [
+     "E",
+     2
+    ],
+    [
+     "F",
+     2
+    ],
+    [
+     "A",
+     1
+    ],
+    [
+     "V",
+     1
+    ]
+   ]
+  },
+  {
+   "position": 9,
+   "wild_type": "Y",
+   "kept": 16,
+   "of": 20,
+   "letters": [
+    [
+     "Y",
+     16
+    ],
+    [
+     "D",
+     1
+    ],
+    [
+     "H",
+     1
+    ],
+    [
+     "N",
+     1
+    ],
+    [
+     "A",
+     1
+    ]
+   ]
+  },
+  {
+   "position": 10,
+   "wild_type": "A",
+   "kept": 10,
+   "of": 20,
+   "letters": [
+    [
+     "A",
+     10
+    ],
+    [
+     "Y",
+     7
+    ],
+    [
+     "S",
+     2
+    ],
+    [
+     "V",
+     1
+    ]
+   ]
+  },
+  {
+   "position": 11,
+   "wild_type": "M",
+   "kept": 2,
+   "of": 20,
+   "letters": [
+    [
+     "F",
+     16
+    ],
+    [
+     "H",
+     2
+    ],
+    [
+     "M",
+     2
+    ]
+   ]
+  },
+  {
+   "position": 12,
+   "wild_type": "D",
+   "kept": 20,
+   "of": 20,
+   "letters": [
+    [
+     "D",
+     20
+    ]
+   ]
+  },
+  {
+   "position": 13,
+   "wild_type": "Y",
+   "kept": 20,
+   "of": 20,
+   "letters": [
+    [
+     "Y",
+     20
+    ]
+   ]
+  }
+ ]
+}

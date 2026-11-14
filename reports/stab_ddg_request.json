@@ -1,0 +1,10401 @@
+{
+ "model": "stab-ddg",
+ "operation": "predict-binding-ddg",
+ "what_this_is": "VH-VL interface ddG, used as the axis-3 thermostability proxy. NOT a folding ddG and NOT a Tm.",
+ "sign_convention": "positive = weaker binding (mutant minus wild type), per protein-scoring/references/binding.md. For the VH-VL interface, positive = less stable Fv, so lower is better. CONFIRM on the returned values before ranking.",
+ "structure": "reports/stab_ddg_fv.cif",
+ "partners": [
+  [
+   "B"
+  ],
+  [
+   "A"
+  ]
+ ],
+ "reference_vh": "EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAYLQMNSLRAEDTAVYYCSRWGGDGFYAMDYWGQGTLVTVSS",
+ "reference_vl": "DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSRSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK",
+ "n_designs": 211,
+ "designs": [
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_0",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_1",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_10",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_100",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_101",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_102",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_103",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_104",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_105",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_106",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_107",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_108",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_11",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_111",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_112",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_115",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_116",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_120",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_121",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_124",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_125",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_126",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_128",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_129",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_130",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_134",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_136",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_138",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_14",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_140",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_142",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_145",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_146",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_147",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_148",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_149",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_15",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_151",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_152",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_155",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_156",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_158",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_159",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_160",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_161",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_163",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_164",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_165",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_166",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_167",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_170",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_171",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_175",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_176",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_177",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_178",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_179",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_18",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_180",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_181",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_182",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_183",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_184",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_186",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_187",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_189",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_19",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_190",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "I"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_191",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_192",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_193",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_194",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_196",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_197",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_198",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_199",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_21",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_22",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_24",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_25",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_28",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_29",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_3",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_30",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_31",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_32",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_33",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_34",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_35",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_37",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_38",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_4",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_42",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_43",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_44",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_45",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_46",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_48",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_49",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_5",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_51",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_52",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_54",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_55",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_58",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_59",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_6",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_60",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_61",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_62",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_63",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_64",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_65",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_66",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_67",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_68",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_69",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_7",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_70",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_73",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_74",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_75",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_76",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_77",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_8",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_80",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_81",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_83",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_84",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_85",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_86",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_87",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_88",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_9",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_91",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_92",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_93",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_94",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_96",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_97",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b1-novel-s1-her2_cdrh3_98",
+   "batch": "b1-novel-s1",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_0",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_106",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "N"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_107",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_115",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_116",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_126",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_127",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "P"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_128",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_129",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_130",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_131",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_133",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "E"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_134",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_136",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "P"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_139",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_141",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_144",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "E"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_146",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_155",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_156",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_157",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_167",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "L"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_170",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "T"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_172",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_173",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_174",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "T"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_175",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "H"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_18",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_184",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "T"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_185",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "V"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_187",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_188",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "E"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_189",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "L"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_190",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "R"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_192",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_195",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "K"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_197",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_199",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "S"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_2",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_20",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_25",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "R"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_26",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "R"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_31",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_32",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "G"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_33",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "N"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_40",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_41",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "M"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "T"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_45",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_50",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "S"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_51",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_52",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "L"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_55",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_57",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_59",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "L"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_6",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "P"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_64",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "S"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_67",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "W"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "P"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_69",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "E"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_71",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "V"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "W"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_73",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "K"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_8",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "I"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "N"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_80",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_83",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_84",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "R"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_85",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "Q"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "E"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_89",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "C"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "H"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "L"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_90",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "E"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "D"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_93",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "N"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "S"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_98",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 101,
+     "wild_type": "G",
+     "mutant": "R"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 106,
+     "wild_type": "A",
+     "mutant": "G"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "Q"
+    }
+   ]
+  },
+  {
+   "design_id": "b2-explor-s2-fixed-her2_cdrh3_99",
+   "batch": "b2-explor-s2-fixed",
+   "mutations": [
+    {
+     "chain": "B",
+     "position": 99,
+     "wild_type": "W",
+     "mutant": "Y"
+    },
+    {
+     "chain": "B",
+     "position": 100,
+     "wild_type": "G",
+     "mutant": "P"
+    },
+    {
+     "chain": "B",
+     "position": 102,
+     "wild_type": "D",
+     "mutant": "T"
+    },
+    {
+     "chain": "B",
+     "position": 103,
+     "wild_type": "G",
+     "mutant": "A"
+    },
+    {
+     "chain": "B",
+     "position": 104,
+     "wild_type": "F",
+     "mutant": "L"
+    },
+    {
+     "chain": "B",
+     "position": 105,
+     "wild_type": "Y",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 107,
+     "wild_type": "M",
+     "mutant": "F"
+    },
+    {
+     "chain": "B",
+     "position": 108,
+     "wild_type": "D",
+     "mutant": "A"
+    }
+   ]
+  }
+ ],
+ "skipped": []
+}

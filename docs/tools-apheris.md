@@ -13,11 +13,28 @@ Foundry runs **inside our own VM**: every model is a Docker image, already downl
 
 **Why this doc matters twice over.** Foundry is the only place that ships **HER2-specific
 fine-tuned RFD4-Proteina weights** — nobody else at the hackathon has a model that has seen the
-trastuzumab FACS screen. And per `README.md` / the organizers' participant guide, the monetary
-prize (Apheris + OpenFold) requires **Apheris' OpenFold in our pipeline**; in Foundry that is
-`OpenFold3`, under Predict Structure. The task PDF itself does not repeat that condition —
-`TODO: confirm` with the Apheris team on site. Cheapest way to satisfy it either way: use
-OpenFold3 as the refolding model in the check loop below.
+trastuzumab FACS screen. And the organisers' participant guide on the event website says, verbatim:
+
+> Apheris and Openfold are the monetary prize sponsors; to qualify for that prize, include
+> Apheris' version of Openfold in your pipeline.
+
+(participant guide, website, Chapter 2 "Tools and tutorials" → Prizes.)
+
+Three things to keep straight about that sentence:
+
+- In Foundry, "Apheris' version of Openfold" is `OpenFold3` (OpenBind, preview 2) under Predict
+  Structure — that is the only OpenFold build Foundry ships (`TASK p5` model table). The guide
+  does not name the image, so this identification is ours, not the organisers'.
+- **The task PDF does not repeat the condition.** Its prize section (`TASK p9`) says only: €3000
+  total, split equally between the two tracks, €800 / €500 / €200 per track, plus an extra $500
+  Best Pitch prize on the day. No pipeline requirement attached. So this is a **guide-only
+  claim** — `TODO: confirm with an organiser on site` (whoever gets to the Apheris desk first).
+  Do not state it to judges as a rule.
+- Cheapest way to satisfy it either way, confirmed or not: use OpenFold3 as the refolding model
+  in the check loop below. We want a template-taking refold regardless, so this costs nothing.
+
+(Noted for drift: the website front page calls the fund "3,000 USD"; `TASK p9` says €3000. The
+task PDF wins.)
 
 ## Predict Structure (`predict`)
 
@@ -88,7 +105,12 @@ Read it in this order:
    **rejected by abguard**. They never reach Adaptyv. 21% of nothing.
 2. **Balanced barely fixes it** — 21% known binders, **6%** pass. Still a rejection machine.
 3. **Exploratory inverts the problem**: 74% pass, but 0.3% known binders. It gets through the
-   gate and tells us almost nothing about whether the loop binds.
+   gate and tells us almost nothing about whether the loop binds. Note though that the "known
+   binders" column is **not** a benefit for designs we intend to submit — it counts designs
+   abguard will reject — and exploratory has the **same** interface error as balanced, 9.1 Å. So
+   between the two `her2-2026-11-07` settings exploratory loses nothing we can use and yields
+   ~74 eligible designs per 100 against balanced's ~6. That is why exploratory is our diversity
+   arm; reasoning in full in `docs/decision-log.md` [10:55].
 4. **`her2-novel-2026-11-09` is the only row that is good at both ends**: 86% pass *and* the best
    interface error in the table, **6.8 Å** (vs 9.1–9.4 for every `her2-2026-11-07` row and 8.2 for
    the un-fine-tuned antibody model).
@@ -101,9 +123,13 @@ Read it in this order:
 | **De novo** (<70% identity to any known antibody; >=2 CDRH3 mutations) | `her2-novel-2026-11-09`, or `antibody-2026-10-30` if we need CDRs other than H3 | Novelty is the binding constraint on this track; `antibody-2026-10-30` passes 100% but has found 0% known binders |
 | Anything touching CDRH1/H2/L | `antibody-2026-10-30` | HER2 weights physically cannot |
 
-Do **not** spend H100 hours on `her2-2026-11-07` conservative. Its designs cannot be submitted.
-If someone wants the conservative output, it is useful as a *reference set* (what the model thinks
-a binder looks like), not as candidates.
+The weight/setting choices in that table are the decisions recorded in `docs/decision-log.md`
+[10:55]. **If these two files ever disagree on a weight, a setting or a flag, `decision-log.md`
+wins** and this file gets edited to match.
+
+Do **not** spend H100 hours on `her2-2026-11-07` conservative or balanced. Their designs are mostly or entirely unsubmittable.
+If someone wants the conservative or balanced output, it is useful as a *reference set* (what the
+model thinks a binder looks like), not as candidates.
 
 The PDF says it plainly: *filter designs before ranking them.* Run `abguard` on a batch **before**
 you score it, not after.

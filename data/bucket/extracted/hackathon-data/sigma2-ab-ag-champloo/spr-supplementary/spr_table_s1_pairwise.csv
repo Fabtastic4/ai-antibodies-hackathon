@@ -1,0 +1,30 @@
+antigen_name,antigen_pdb,vhh_design,vhh_pdb,pair_type,spr_outcome,kd_nM,kd_method,outcome_class,af3_iptm,notes
+CD8a,8EW6,Anti-human CD8 VHH,8EW6,cognate,KD 0.401 nM,0.401,kinetic,KD reported,,internal positive control for CD8a
+CD8a,8EW6,7vnb_a,7VNB,non-cognate,N/A,,,no reportable fit,,
+CD8a,8EW6,8k4q_d,8K4Q,non-cognate,N/A,,,no reportable fit,,also tested vs CD4; cognate target IL-4Ra
+CD8a,8EW6,8fsl_c,8FSL,non-cognate,N/A,,,no reportable fit,,expressed very poorly; flagged for discard
+CD8a,8EW6,8w90_a,8W90,non-cognate,N/A,,,no reportable fit,,added by provider to fill the CD8a group; not among the 28 selected
+CD4,8W90,8w90_a,8W90,cognate,KD 7.41 nM,7.41,kinetic,KD reported,0.12,specificity inversion: binds at 7.41 nM with AF3 ipTM 0.12
+CD4,8W90,8k4q_d,8K4Q,non-cognate,N/A,,,no reportable fit,,
+CD4,8W90,LaG16 Nanobody,6LR7,non-cognate,not reported,,,not expressed,,ordered but did not express
+CD4,8W90,8e0e_b,8E0E,non-cognate,N/A,,,no reportable fit,,
+CD4,8W90,7zkz_b,7ZKZ,non-cognate,N/A,,,no reportable fit,,
+CD4,8W90,7zk1_b,7ZK1,non-cognate,not reported,,,not expressed,,ordered but did not express
+CNPase,9ETJ,9etj_h,9ETJ,cognate,KD 4.03 nM,4.03,kinetic,KD reported,0.46,cognate 0.46 vs 0.90 for a norovirus-VP1 VHH
+CNPase,9ETJ,8en2_c,8EN2,non-cognate,N/A,,,no reportable fit,,
+CNPase,9ETJ,hC3Nb1 Nanobody,6XZU,non-cognate,N/A,,,no reportable fit,,cognate target is C3b
+CNPase,9ETJ,8ukv_c,8UKV,non-cognate,N/A,,,no reportable fit,,
+C3b,6XZU,hC3Nb1 Nanobody,6XZU,cognate,KD 767 nM (steady state),767,steady state,KD reported,,murine complement C3b
+C3b,6XZU,44 synthetic-Nanobody,6LZ2,non-cognate,not reported,,,not expressed,,ordered but did not express
+C3b,6XZU,8evd_f,8EVD,non-cognate,N/A,,,no reportable fit,,
+C3b,6XZU,484 Nanobody,6HER,non-cognate,not reported,,,not expressed,,ordered but did not express
+C3b,6XZU,36Z Nanobody,7O3B,non-cognate,not reported,,,not expressed,,ordered but did not express
+Leptin receptor,8AV2,8av2_d,8AV2,cognate,"Response, no KD",,,response without fitted KD,0.15,clear concentration-dependent response; cognate ipTM 0.15 vs 0.82/0.74/0.86 for three unrelated VHHs
+Leptin receptor,8AV2,36Z Nanobody,7O3B,non-cognate,not reported,,,not expressed,,ordered but did not express
+Leptin receptor,8AV2,Nano-25 Nanobody,4X7F,non-cognate,not reported,,,not expressed,,ordered but did not express
+Leptin receptor,8AV2,8tw3_a,8TW3,non-cognate,N/A,,,no reportable fit,,
+CDK7,8PYR,8pyr_d,8PYR,cognate,antigen not produced,,,antigen not produced,,CDK7 never produced; all five CDK7 pairs cancelled
+CDK7,8PYR,7upm_b,7UPM,non-cognate,antigen not produced,,,antigen not produced,,
+CDK7,8PYR,B39 VHH,4NC2,non-cognate,antigen not produced,,,antigen not produced,,
+CDK7,8PYR,S43 VHH,8J5J,non-cognate,antigen not produced,,,antigen not produced,,
+CDK7,8PYR,A9 VHH,6CWG,non-cognate,antigen not produced,,,antigen not produced,,

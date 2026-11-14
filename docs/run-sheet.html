@@ -1,0 +1,502 @@
+<title>Optimisation Run Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: single column of banded sections; instrument-panel register — condensed labels, mono for every sequence and identifier */
+:root{
+  --bg:#eceff3; --surface:#fcfcfb; --surface-2:#e3e8ee; --ink:#0d1520; --ink-2:#4d5a69; --ink-3:#77838f;
+  --line:#ccd4dd; --line-2:#b4bfcb;
+  --accent:#0d6e78; --accent-ink:#0a575f; --accent-soft:#d8e9eb;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  --mag-1:#86b6ef; --mag-2:#4a90e2; --mag-3:#2a78d6; --mag-4:#1a5fb0;
+  --f-disp:"Barlow Condensed",Impact,sans-serif;
+  --f-body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1118; --surface:#151c25; --surface-2:#1d2631; --ink:#e7ecf2; --ink-2:#aab6c3; --ink-3:#7f8b98;
+  --line:#2a3542; --line-2:#3a4756;
+  --accent:#49b3bd; --accent-ink:#7fcdd4; --accent-soft:#16333a;
+  --mag-1:#184f95; --mag-2:#2a78d6; --mag-3:#3987e5; --mag-4:#86b6ef;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0c1118; --surface:#151c25; --surface-2:#1d2631; --ink:#e7ecf2; --ink-2:#aab6c3; --ink-3:#7f8b98;
+  --line:#2a3542; --line-2:#3a4756;
+  --accent:#49b3bd; --accent-ink:#7fcdd4; --accent-soft:#16333a;
+  --mag-1:#184f95; --mag-2:#2a78d6; --mag-3:#3987e5; --mag-4:#86b6ef;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:15px; line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 56px; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px; margin:0 auto}
+h1,h2,h3{text-wrap:balance; margin:0}
+.eyebrow{font-family:var(--f-disp); font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink)}
+section{margin-top:34px}
+section>h2{font-family:var(--f-disp); font-size:25px; font-weight:700; letter-spacing:.015em; margin-bottom:3px}
+section>.sub{color:var(--ink-2); font-size:13.5px; margin:0 0 16px}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:16px}
+
+/* masthead */
+header{padding-block:30px 6px; border-bottom:2px solid var(--ink); margin-bottom:4px}
+header h1{font-family:var(--f-disp); font-size:clamp(34px,8vw,54px); font-weight:700; line-height:.96; letter-spacing:.005em}
+.mast{display:flex; flex-wrap:wrap; gap:18px 26px; align-items:flex-end; justify-content:space-between}
+.clock{display:flex; gap:22px; flex-wrap:wrap}
+.clock div{min-width:0}
+.clock .k{font-family:var(--f-disp); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+.clock .v{font-family:var(--f-mono); font-size:21px; font-weight:600; letter-spacing:-.02em}
+.clock .v.hi{color:var(--good)}
+.lede{margin:16px 0 0; font-size:16.5px; color:var(--ink-2); max-width:66ch}
+.lede b{color:var(--ink); font-weight:600}
+
+/* status chips: colour never carries meaning alone — glyph + word always present */
+.chip{display:inline-flex; align-items:center; gap:5px; font-family:var(--f-disp); font-size:11.5px; font-weight:600;
+  letter-spacing:.07em; text-transform:uppercase; padding:2px 8px 2px 6px; border-radius:4px; white-space:nowrap;
+  border:1px solid var(--line-2); background:var(--surface-2); color:var(--ink)}
+.chip .g{font-family:var(--f-body); font-size:12px; line-height:1}
+.chip.done{border-color:var(--good)} .chip.done .g{color:var(--good)}
+.chip.run{border-color:var(--warning)} .chip.run .g{color:var(--warning)}
+.chip.wait{border-color:var(--serious)} .chip.wait .g{color:var(--serious)}
+.chip.block{border-color:var(--critical)} .chip.block .g{color:var(--critical)}
+
+/* progress rail */
+.rail{display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr)); gap:2px; margin:0 0 14px}
+.rail div{min-width:0; padding:9px 10px 11px; background:var(--surface-2); border-top:4px solid var(--line-2)}
+.rail div.ok{border-top-color:var(--good)}
+.rail div.now{border-top-color:var(--warning); background:var(--surface)}
+.rail div.todo{border-top-color:var(--line-2); opacity:.72}
+.rail .n{font-family:var(--f-mono); font-size:11px; color:var(--ink-3)}
+.rail .t{font-family:var(--f-disp); font-size:14.5px; font-weight:600; line-height:1.15; margin-top:1px}
+.rail .s{font-size:11.5px; color:var(--ink-2); margin-top:3px}
+.tally{display:flex; flex-wrap:wrap; gap:10px 20px; align-items:baseline; font-size:13.5px; color:var(--ink-2)}
+.tally b{font-family:var(--f-mono); font-size:19px; color:var(--ink); font-weight:600}
+
+/* route */
+.route{display:grid; gap:10px}
+.stage{display:grid; grid-template-columns:34px 1fr auto; gap:14px; align-items:start;
+  background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--line-2); border-radius:7px; padding:13px 15px}
+.stage.ok{border-left-color:var(--good)} .stage.now{border-left-color:var(--warning)} .stage.next{border-left-color:var(--line-2)}
+.stage .num{font-family:var(--f-disp); font-size:25px; font-weight:700; color:var(--ink-3); line-height:1}
+.stage h3{font-family:var(--f-disp); font-size:19px; font-weight:600; letter-spacing:.01em}
+.stage p{margin:4px 0 0; font-size:13.5px; color:var(--ink-2)}
+.stage .who{font-size:12px; color:var(--ink-3); margin-top:6px; font-family:var(--f-mono)}
+.stage .rt{text-align:right; display:grid; gap:5px; justify-items:end}
+@media (max-width:560px){.stage{grid-template-columns:28px 1fr} .stage .rt{grid-column:1/-1; justify-items:start; text-align:left}}
+
+/* eligibility window */
+.gate{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:10px}
+.gate .g{background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:13px 14px; min-width:0}
+.gate .g .k{font-family:var(--f-disp); font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+.gate .g .v{font-family:var(--f-mono); font-size:17px; font-weight:600; margin-top:3px}
+.gate .g .n{font-size:12.5px; color:var(--ink-2); margin-top:5px}
+.window{margin-top:12px; background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:15px 16px}
+.bar{display:flex; height:30px; border-radius:4px; overflow:hidden; margin:12px 0 7px; border:1px solid var(--line-2)}
+.bar span{display:flex; align-items:center; justify-content:center; font-family:var(--f-disp); font-size:12px;
+  font-weight:600; letter-spacing:.06em; text-transform:uppercase; min-width:0; overflow:hidden; white-space:nowrap}
+.bar .rej{flex:3; background:var(--surface-2); color:var(--ink-3); border-right:2px solid var(--surface)}
+.bar .okz{flex:7; background:var(--accent-soft); color:var(--accent-ink)}
+.scale{display:flex; justify-content:space-between; font-family:var(--f-mono); font-size:11px; color:var(--ink-3)}
+
+/* axes + evidence meters */
+.axes{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:10px}
+.axis{background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:14px 15px; min-width:0}
+.axis h3{font-family:var(--f-disp); font-size:18px; font-weight:600}
+.axis .as{font-size:12px; color:var(--ink-3); font-family:var(--f-mono); margin-top:1px}
+.meter{display:flex; gap:2px; margin:11px 0 6px}
+.meter i{height:9px; flex:1; background:var(--surface-2); border-radius:1px}
+.meter.s3 i:nth-child(-n+3),.meter.s2 i:nth-child(-n+2),.meter.s1 i:nth-child(1){background:var(--mag-3)}
+.axis .lab{font-family:var(--f-disp); font-size:12.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2)}
+.axis p{margin:7px 0 0; font-size:13px; color:var(--ink-2)}
+.tiers{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.tier{display:flex; gap:9px; align-items:baseline; background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:8px 12px}
+.tier b{font-family:var(--f-disp); font-size:19px; font-weight:700}
+.tier span{font-size:12.5px; color:var(--ink-2)}
+
+/* team */
+table{width:100%; border-collapse:collapse; font-size:13.5px}
+.tscroll{overflow-x:auto; border:1px solid var(--line); border-radius:8px; background:var(--surface)}
+th,td{text-align:left; padding:11px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--f-disp); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); background:var(--surface-2); white-space:nowrap}
+td.nm{font-weight:600; white-space:nowrap}
+td.nm small{display:block; font-weight:400; color:var(--ink-3); font-family:var(--f-mono); font-size:11.5px}
+td.iss{white-space:nowrap; font-family:var(--f-mono); font-size:13px}
+td.num{font-family:var(--f-mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+.bg{color:var(--ink-2); font-size:12.5px}
+
+/* timeline */
+.tl{display:grid; gap:0}
+.tl div{display:grid; grid-template-columns:74px 1fr; gap:16px; padding:11px 0; border-top:1px solid var(--line)}
+.tl div:first-child{border-top:0}
+.tl .t{font-family:var(--f-mono); font-size:14px; font-weight:600; color:var(--accent-ink)}
+.tl .d{min-width:0; font-size:13.5px}
+.tl .d b{font-weight:600}
+.tl .d span{color:var(--ink-2)}
+.tl div.hard{background:var(--surface-2)}
+.tl div.hard .t{color:var(--critical)}
+
+code{font-family:var(--f-mono); font-size:12.5px; background:var(--surface-2); border:1px solid var(--line);
+  border-radius:4px; padding:1px 5px; word-break:break-word}
+.cmd{display:block; background:var(--surface-2); border:1px solid var(--line); border-radius:6px;
+  padding:10px 12px; margin-top:9px; overflow-x:auto; white-space:pre; font-size:12.5px}
+a{color:var(--accent-ink)}
+footer{margin-top:38px; padding-top:16px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3)}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="mast">
+    <div>
+      <div class="eyebrow">fab-tastic-four · team-4 · optimisation route</div>
+      <h1>Optimisation<br>Run Sheet</h1>
+    </div>
+    <div class="clock">
+      <div><div class="k">Target</div><div class="v">Trastuzumab → HER2</div></div>
+      <div><div class="k">Submit by</div><div class="v">18:00</div></div>
+      <div><div class="k">Eligible pool</div><div class="v hi">211 / 400</div></div>
+      <div><div class="k">Scored</div><div class="v" style="color:var(--serious)">0</div></div>
+    </div>
+  </div>
+  <p class="lede">As of 16:15 we have <b>211 eligible designs — 192 unique CDRH3 loops — for 20
+  submission slots</b>, two generation batches complete, the novelty gate reproducible offline, and
+  the two divergent branches merged into one tree. <b>Eligibility stopped being the constraint this
+  afternoon.</b> The blocker is now scoring: <span class="mono">min_ipae</span> and
+  <span class="mono">predicted_ddg</span> are absent for every candidate, so
+  <span class="mono">rank.py</span> refuses to emit a submission — correctly, because two of the
+  three judged axes would be empty.</p>
+</header>
+
+<section>
+  <h2>How far we have come</h2>
+  <p class="sub">Generation and eligibility are closed. The work is now entirely downstream of them —
+  scoring, then ranking and the pitch.</p>
+  <div class="rail">
+    <div class="ok"><div class="n">01</div><div class="t">Task decoded</div><div class="s">PDF + slides, conflicts flagged</div></div>
+    <div class="ok"><div class="n">02</div><div class="t">Repo &amp; access</div><div class="s">6 people, 16 issues, 2 PRs open</div></div>
+    <div class="ok"><div class="n">03</div><div class="t">Unknowns settled</div><div class="s">5 probes, no compute spent</div></div>
+    <div class="ok"><div class="n">04</div><div class="t">Reference epitope</div><div class="s">19 residues, cross-checked</div></div>
+    <div class="ok"><div class="n">05</div><div class="t">Eligibility tool</div><div class="s">abguard read from code, gate reproduced offline</div></div>
+    <div class="ok"><div class="n">06</div><div class="t">Generate</div><div class="s">400 designs, both batches complete</div></div>
+    <div class="ok"><div class="n">07</div><div class="t">Filter</div><div class="s">211 eligible · 192 unique loops</div></div>
+    <div class="now"><div class="n">08</div><div class="t">Score</div><div class="s">0 score cards — the blocker</div></div>
+    <div class="todo"><div class="n">09</div><div class="t">Rank &amp; pitch</div><div class="s">the remaining 80% of the score</div></div>
+  </div>
+  <div class="tally">
+    <span><b>211</b> eligible of 400</span>
+    <span><b>192</b> unique CDRH3 loops</span>
+    <span><b>0</b> complete score cards</span>
+    <span><b>0.912</b> best eligible ipTM</span>
+    <span><b>0</b> hard liability errors</span>
+    <span><b>0</b> secrets committed</span>
+  </div>
+  <p style="margin-top:12px;font-size:13.5px;color:var(--ink-2)">The two counts come from two sources
+  and differ by one: <span class="mono">scripts/novelty_distance.py</span> over all 400 designs says
+  211 eligible / 192 unique, while <span class="mono">pipeline/status.py</span> counting the committed
+  eligible lists says 210 / 191. Batch 1's committed 140 rows are a strict subset of our 141; batch 2
+  agrees at 70 with one design differing each way. Neither number changes any decision at 20 slots.</p>
+</section>
+
+<section>
+  <h2>The blocker: nothing is scored</h2>
+  <p class="sub">One sentence, from <span class="mono">reports/rank.stdout</span>: the ranker refuses to
+  write a submission.</p>
+  <div class="card" style="border-left:4px solid var(--critical)">
+    <p style="margin:0;font-size:13.5px;color:var(--ink-2)"><span class="mono">score/rank.py</span> exits
+    3 and writes nothing. It has <b>191</b> candidates with a paratope score, <b>0</b> with a refold
+    score and <b>0</b> with a ddG — so <span class="mono">min_ipae</span> (axis 1, binding) and
+    <span class="mono">predicted_ddg</span> (axis 3, thermostability) are empty for every row.
+    <b>That refusal is correct and worth keeping:</b> a ranking on the paratope proxy alone would be a
+    proxy wearing a score table's clothes. The escape hatch exists
+    (<span class="mono">--allow-partial</span> emits <span class="mono">n/a</span> in every unmeasured
+    column) and should be the last resort, not the plan.
+    <br><br><b>What clears it:</b> stage 5 refold on a shortlist. Measured at 15–17 s/design, so a
+    40–60 design shortlist is roughly fifteen to twenty minutes of compute, and it can run on Nebius
+    off the shared H100. <b>This is the single highest-value thing anyone can do before 17:00.</b></p>
+    <code class="cmd">./pipeline/score/refold.sh   # prunes to eligible ids first, then refolds
+python3 pipeline/status.py    # funnel, re-read from the repo</code>
+  </div>
+</section>
+
+<section>
+  <h2>The designs</h2>
+  <p class="sub">Two batches of 200 from <span class="mono">her2-novel-2026-11-09</span>:
+  <span class="mono">b1-novel-s1</span> (141 eligible) and <span class="mono">b2-explor-s2-fixed</span>
+  (70 eligible), no CDRH3 shared between them. Only batch 1's top 20 have been refolded with Boltz-2;
+  the table below is that set, ranked on ipTM then <span class="mono">min_ipae</span>, within one
+  folding model only. <b>The other 191 eligible loops have no refold score at all.</b></p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Design</th><th>ipTM</th><th>min_ipae</th><th>binder pLDDT</th><th>CDRH3</th><th>Mutations from trastuzumab</th></tr></thead>
+      <tbody>
+        <tr><td class="num">her2_cdrh3_74</td><td class="num">0.912</td><td class="num">0.3542</td><td class="num">98.44</td><td class="num">SRDLSLSNYAHDY</td><td class="num">7</td></tr>
+        <tr><td class="num">her2_cdrh3_14</td><td class="num">0.903</td><td class="num">0.3544</td><td class="num">97.95</td><td class="num">SRWHSLHEYYFDY</td><td class="num">7</td></tr>
+        <tr><td class="num">her2_cdrh3_88</td><td class="num">0.900</td><td class="num">0.3362</td><td class="num">98.10</td><td class="num">SRSLSLGNYAFDY</td><td class="num">6</td></tr>
+        <tr><td class="num">her2_cdrh3_52</td><td class="num">0.893</td><td class="num">0.3568</td><td class="num">98.42</td><td class="num">SRDLYLYNYSFDY</td><td class="num">8</td></tr>
+        <tr><td class="num">her2_cdrh3_28</td><td class="num">0.888</td><td class="num">0.3437</td><td class="num">97.76</td><td class="num">SRSLTPLSDVFDY</td><td class="num">9</td></tr>
+        <tr><td class="num">her2_cdrh3_91</td><td class="num">0.888</td><td class="num">0.3492</td><td class="num">96.85</td><td class="num">SRDRTPTDYSFDY</td><td class="num">8</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:11px;font-size:13.5px;color:var(--ink-2)">Design-stage quality across the batch:
+  hotspot obedience <b>0.9375</b>, sequence adherence <b>1.0</b> with zero violations, atoms clashing
+  below 1.5 Å <b>0.02%</b>, bond lengths 0% unreasonable. The framework and the other five CDRs are
+  preserved exactly, which is what keeps every design the same format as trastuzumab.
+  <br><span class="mono">pass</span> is empty on every row by design: the spec fixes HER2 and the
+  framework relative to each other rather than in absolute coordinates, so target-aligned RMSDs are
+  undefined and <span class="mono">pass_note</span> says so. That is expected for this example.</p>
+</section>
+
+<section>
+  <h2>The gate — and what the rejections taught us</h2>
+  <p class="sub">Read from <span class="mono">abguard</span>'s source rather than inferred from the
+  brief. Three of our earlier assumptions were wrong, all in the direction of over-constraining.</p>
+  <div class="gate">
+    <div class="g" style="border-color:var(--good)"><div class="k">Novelty — corrected</div><div class="v">≥ 3 mutations</div><div class="n">CDRH3 <b>Levenshtein</b> distance from trastuzumab <b>and</b> from every reference CDRH3. There is <b>no 70% CDRH3 identity test</b> — identity over the whole Fv only selects which bar applies (≥0.70 → variant, needs 3; &lt;0.70 → de novo, needs 2).</div></div>
+    <div class="g" style="border-color:var(--good)"><div class="k">CDRH3 — corrected</div><div class="v">SRWGGDGFYAMDY</div><div class="n">The IMGT <b>13-mer</b>, not the 11-mer from the structure or the FACS tables' 10-mer core. abguard's own code warns that comparing against the core "would hand every design three free mutations from the flanks alone".</div></div>
+    <div class="g" style="border-color:var(--good)"><div class="k">Length — corrected</div><div class="v">≤ 250 per chain</div><div class="n">Not combined. A paired Fab may be 250 + 250, so the cap only ever binds on scFv. Both the task PDF and the slides describe it as combined.</div></div>
+    <div class="g"><div class="k">Reference DB</div><div class="v">610,109 CDRH3s</div><div class="n">Ships inside the wheel, IMGT-numbered, novelty gate on by default. We do not build one from the HER2 tables.</div></div>
+  </div>
+  <div class="window">
+    <div class="eyebrow">Where the six rejections actually failed</div>
+    <p style="margin:10px 0 0;font-size:13.5px;color:var(--ink-2)"><b>Not one failed against
+    trastuzumab</b> — every rejected design was 6–9 mutations away from it. All six failed against the
+    <b>FACS screen</b>: 1–2 mutations from a sequence already measured among the 525,027 unique
+    reference loops.
+    <span class="mono">her2_cdrh3_53</span> was one mutation from
+    <span class="mono">SRWGSSDFYAFDY</span>.
+    <br><br><b>That reframes the gate as a map rather than a hurdle.</b> The rule forces us exactly
+    three mutations off half a million measured sequences. A design sitting three mutations from a
+    measured <b>high</b> binder is close enough to plausibly inherit binding and far enough to be
+    eligible. That is a target to aim at, and it is the one place where holding that dataset is an
+    advantage over teams treating novelty as an obstacle.
+    <br><br>Immediate consequence: 70% of refold compute landed on eligible designs, 30% did not.
+    A local Levenshtein pre-filter against the 525k table is cheap and recovers that — and now exists.</p>
+  </div>
+  <div class="window" style="border-left:4px solid var(--good)">
+    <div class="eyebrow">The gate is checkable without the VM — and both batches needed it</div>
+    <p style="margin:10px 0 0;font-size:13.5px;color:var(--ink-2)"><span class="mono">scripts/novelty_distance.py</span>
+    reproduces the novelty arithmetic offline, standard library only: 20 designs against 525,027
+    reference loops in 38 s, <b>20/20 agreement</b> with <span class="mono">abguard team-validate</span>.
+    Correctness hinges on one detail — reference CDRH3s are re-extracted from each table's
+    <span class="mono">vh_sequence</span>, not read from the <span class="mono">cdrh3</span> column,
+    which holds the 10-mer core.
+    <br><br><b>Why it mattered immediately:</b> both committed gate runs record
+    <span class="mono">abguard not found</span> in their stdout, so neither batch's eligible list came
+    from abguard itself — the fallback compared against trastuzumab alone. Re-checked locally:
+    <b>141 of 200</b> eligible in batch 1, <b>70 of 200</b> in batch 2, six of batch 2's designs at
+    distance <b>0</b> — exact duplicates of a measured CDRH3. <b>48 of 59</b> batch-1 rejections and
+    <b>103 of 129</b> batch-2 rejections are blocked by a <b>high</b>-class measured binder, not by a
+    bad design: the generator is rediscovering the motifs the FACS screen already explored.
+    <br><br>Standing caveat: our reference set is 525,027 rows and abguard's bundle is 610,109, so the
+    offline check can only ever be optimistic. Every eligible design sits at exactly 3 or 4 edits —
+    <b>zero novelty margin</b> — so an 85k-row blind spot over a population with no margin is a real
+    submission risk. If abguard on the VM rejects anything this check passes, that gap is the first
+    place to look.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What we are judged on, and how strong our evidence is</h2>
+  <p class="sub">Three measured properties against the measured trastuzumab baseline. Teams are ranked
+  on S-tier count first, so the goal is designs that move all three at once.</p>
+  <div class="axes">
+    <div class="axis">
+      <h3>Binding affinity</h3>
+      <div class="as">measured by SPR</div>
+      <div class="meter s2"><i></i><i></i><i></i><i></i></div>
+      <div class="lab">Evidence: moderate</div>
+      <p><span class="mono">min_ipae</span> came back — Foundry's <span class="mono">refold-score</span>
+      on the VM produces it, so our ranking is PAE-derived after all, not the contact-counting fallback.
+      But <b>trastuzumab's own KD is 0.03–0.18 nM</b> across 8 SPR replicates, and the HER2 weights were
+      never trained to improve affinity — only to propose binders.</p>
+    </div>
+    <div class="axis">
+      <h3>Epitope preservation</h3>
+      <div class="as">competitive binding vs trastuzumab</div>
+      <div class="meter s3"><i></i><i></i><i></i><i></i></div>
+      <div class="lab">Evidence: good</div>
+      <p>Our strongest axis. The organisers' own spec names four hotspot atoms — K593, F573, I591,
+      P572 — and <b>all four sit inside the 19-residue epitope we computed independently</b>. Hotspot
+      obedience is 0.9375 across the batch.</p>
+    </div>
+    <div class="axis">
+      <h3>Thermostability</h3>
+      <div class="as">directly measured</div>
+      <div class="meter s2"><i></i><i></i><i></i><i></i></div>
+      <div class="lab">Evidence: thin, but real now</div>
+      <p>No model in the 59-model catalog predicts it. What we gained: abguard implements the
+      <b>LAP Antibody Liability Reference</b> — 13 motif rules, organiser-sanctioned, free per design —
+      plus framework germline-likeness. <span class="mono">stab-ddg</span> remains a <i>binding</i> ddG,
+      usable only as a VH–VL interface proxy.</p>
+    </div>
+  </div>
+  <div class="tiers">
+    <div class="tier"><b>S</b><span>all three improved — the only tier that really counts</span></div>
+    <div class="tier"><b>A</b><span>two of three</span></div>
+    <div class="tier"><b>B</b><span>one of three</span></div>
+    <div class="tier"><b>—</b><span>ties and regressions count as nothing</span></div>
+  </div>
+  <p style="margin-top:12px;font-size:13.5px;color:var(--ink-2)"><b>The honest problem, worth saying in
+  the pitch before a judge asks:</b> beating 0.03 nM is hard, and nothing we ran was trained to improve
+  affinity. Our credible S-tier route is not "tighter binding by luck" — it is picking designs that hold
+  the epitope and carry no design-specific liability, and saying plainly which axis is a proxy. Judgment
+  is 40%, and it rewards knowing that.</p>
+</section>
+
+<section>
+  <h2>Liabilities — reading them correctly</h2>
+  <p class="sub">0 hard errors across 20 designs, 116 liability occurrences. The counts matter less than
+  which ones discriminate.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Tag</th><th>Severity</th><th>Designs affected</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td class="num">Isom · DeAmdH</td><td>high</td><td class="num">20 / 20</td><td class="bg"><b>Inherited from trastuzumab.</b> Sequence adherence is 1.0, so the framework is identical across designs — a motif in all 20 is the parent's, not ours. An approved drug carries it.</td></tr>
+        <tr><td class="num">TrpOx · DeAmdM · DeAmdL</td><td>medium / low</td><td class="num">20 / 20</td><td class="bg">Same reasoning. Cannot separate our designs.</td></tr>
+        <tr><td class="num">Ngly</td><td>high</td><td class="num">1 / 20</td><td class="bg"><b>Discriminating — penalise.</b> Sits in the designed loop.</td></tr>
+        <tr><td class="num">MetOx</td><td>medium</td><td class="num">3 / 20</td><td class="bg"><b>Discriminating — penalise.</b></td></tr>
+        <tr><td class="num">FragM</td><td>medium</td><td class="num">2 / 20</td><td class="bg"><b>Discriminating — penalise.</b></td></tr>
+        <tr><td class="num">mCys · xCys · FragH · Hydro · IntBind</td><td>—</td><td class="num">0 / 20</td><td class="bg">Clean.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:11px;font-size:13.5px;color:var(--ink-2)">So the usable rule is narrow and
+  defensible: among designs that pass the gate, prefer the ones free of <span class="mono">Ngly</span>,
+  <span class="mono">MetOx</span> and <span class="mono">FragM</span>. Six of twenty carry at least one.</p>
+</section>
+
+<section>
+  <h2>Who runs what</h2>
+  <p class="sub">Matched to backgrounds as stated in Slack. Every issue carries a prompt you can paste
+  straight into Claude; one branch per issue.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Person</th><th>Owns</th><th>State</th><th>Issues</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="nm">Josef<small>@josmodev</small></td>
+          <td><b>Generation + eligibility — done.</b> Both batches generated, offline novelty gate built and cross-validated, branches merged into one tree. Now on the refold.</td>
+          <td><span class="chip done"><span class="g">●</span>211 eligible</span></td>
+          <td class="iss">#7 #4</td>
+        </tr>
+        <tr>
+          <td class="nm">Mark<small>@markowusu</small></td>
+          <td><b>Scoring harness, provenance, pitch rubrics.</b> PR #18 merged: optimisation plan, answers to all four rubrics, data inventory. The harness is what now needs scores poured into it.</td>
+          <td><span class="chip done"><span class="g">●</span>PR #18 merged</span></td>
+          <td class="iss">#9 #14 #18</td>
+        </tr>
+        <tr>
+          <td class="nm">Danielius<small>@Doonse</small></td>
+          <td><b>Thermostability + measured data.</b> PR #17 still open and <b>not in main</b>: the axis, plus a guard that refuses to rank on any score whose sign convention is undocumented. It is on the critical path — axis 3 is one of the two empty columns.</td>
+          <td><span class="chip block"><span class="g">■</span>PR #17 open</span></td>
+          <td class="iss">#10 #5 #17</td>
+        </tr>
+        <tr>
+          <td class="nm">Lluis<small>@LluisArtusSuarez</small></td>
+          <td><b>Scientific judgement, no coding.</b> The mentor question is answered — #12 closed. The sanity gate is the live job, and the pool is now 192 unique loops rather than 14: a human read on the shortlist, not on all of them.</td>
+          <td><span class="chip wait"><span class="g">◆</span>Gate open</span></td>
+          <td class="iss">#16</td>
+        </tr>
+        <tr>
+          <td class="nm">Abdelrahman<small>@Mannypython1</small></td>
+          <td><b>The patient argument.</b> Trastuzumab is a real HER2-positive breast cancer drug, so the story is concrete, not hypothetical.</td>
+          <td><span class="chip wait"><span class="g">◆</span>Not started</span></td>
+          <td class="iss">#13</td>
+        </tr>
+        <tr>
+          <td class="nm">Kevin<small>@kevinsinghjay-python</small></td>
+          <td><b>Pitch delivery + the final ranked list.</b> 192 eligible loops exist; the ranked list cannot be written until the refold lands, so the pitch narrative is the thing to build now.</td>
+          <td><span class="chip wait"><span class="g">◆</span>Not started</span></td>
+          <td class="iss">#15 #13</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <code class="cmd">git clone https://github.com/Fabtastic4/ai-antibodies-hackathon.git
+cd ai-antibodies-hackathon &amp;&amp; git checkout -b issue-&lt;n&gt;-&lt;short-name&gt;
+claude     # then paste the prompt from your issue</code>
+</section>
+
+<section>
+  <h2>Clock</h2>
+  <p class="sub">One hour forty-five minutes left. Pitch prep is 17:00–18:00 and presentations begin
+  18:05, so the afternoon is narrower than it looks.</p>
+  <div class="tl">
+    <div><div class="t">15:05</div><div class="d"><b>Done — offline novelty check over all 400.</b> <span>211 eligible, 192 unique. Both committed gate runs had never reached abguard.</span></div></div>
+    <div><div class="t">15:30</div><div class="d"><b>Done — generation cutoff held.</b> <span>Nothing generated since. The pool is 9.6× the 20 slots, so more designs would buy nothing.</span></div></div>
+    <div><div class="t">15:40</div><div class="d"><b>Done — one tree again.</b> <span>ws1-pipeline and ws5-plan both merged to main; all six conflicts were prose and both sides' findings kept. <span class="mono">selftest.sh</span>: 5 passed, 0 failed, 2 skipped (both want a VM fetch).</span></div></div>
+    <div class="hard"><div class="t">now</div><div class="d"><b>Refold a shortlist. Nothing else unblocks the submission.</b> <span>Two of three judged axes are empty and <span class="mono">rank.py</span> is right to refuse. ~15–17 s/design, runnable on Nebius off the shared H100. Merge PR #17 alongside it for axis 3.</span></div></div>
+    <div><div class="t">16:30</div><div class="d"><b>Ranked 20 frozen.</b> <span>Every row with a one-line defence and a score table naming the model, weights, seed and run id behind each number. If the refold has not landed by then, freeze on <span class="mono">--allow-partial</span> and say in the pitch exactly which columns are <span class="mono">n/a</span> and why.</span></div></div>
+    <div><div class="t">17:00</div><div class="d"><b>Rehearsal.</b> <span>80% of the pitch score is argument, not molecules: Judgment 40, user fit 20, path to value 20.</span></div></div>
+    <div class="hard"><div class="t">18:00</div><div class="d"><b>Submission closes.</b> <span>Winning the pitch is worth 12 extra tested designs — 16 against a base of 4 — so it compounds into the experimental prize.</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Open questions</h2>
+  <div class="route">
+    <div class="stage next" style="border-left-color:var(--critical)">
+      <div class="num">!</div>
+      <div><h3>How is ranking expressed?</h3>
+      <p>The submission schema has <b>no rank column</b> — only <span class="mono">sequence_id</span>,
+      <span class="mono">kind</span>, <span class="mono">heavy_sequence</span>,
+      <span class="mono">light_sequence</span>, <span class="mono">design_description</span>. Row order
+      is our assumption. Design #1 is tested in every scenario and #17 almost never, so this is not a
+      detail to guess at. <b>Nobody has asked an organiser yet.</b></p>
+      <div class="who">issue #15 · needs an organiser</div></div>
+      <div class="rt"><span class="chip block"><span class="g">■</span>Unanswered</span></div>
+    </div>
+    <div class="stage next" style="border-left-color:var(--warning)">
+      <div class="num">!</div>
+      <div><h3>Where is the submission sent?</h3>
+      <p>No document on the VM states the channel. <span class="mono">08-adaptyv.md</span> turned out to
+      be a miniprotein campaign playbook, not a submission guide.</p>
+      <div class="who">issue #15</div></div>
+      <div class="rt"><span class="chip wait"><span class="g">◆</span>Ask on site</span></div>
+    </div>
+    <div class="stage ok">
+      <div class="num">✓</div>
+      <div><h3>Two stale facts were circulating in team docs</h3>
+      <p>PR #18 stated that <span class="mono">abguard</span> is missing from the VM (it is present),
+      and derived "≥4 mutations always" from a 70% identity test that abguard does not perform. Both
+      were true when written. <b>Fixed on merge</b> — <span class="mono">docs/abguard.md</span> now
+      combines the VM-verified operational reading with the wheel-sourced rules, and reconciles them:
+      "≥6 mutations from trastuzumab" and "≥3 from every measured loop" are the same rule measured
+      from opposite ends, because the FACS screen is dense around the parent.</p>
+      <div class="who">closed at 15:40</div></div>
+      <div class="rt"><span class="chip done"><span class="g">●</span>Resolved</span></div>
+    </div>
+    <div class="stage next" style="border-left-color:var(--warning)">
+      <div class="num">!</div>
+      <div><h3>The de novo track is empty</h3>
+      <p>All 400 designs are CDRH3 redesigns of the parent, so
+      <span class="mono">status.py</span> reports 0 candidates on the separate de novo podium. If we
+      are not entering it, that should be recorded as a decision rather than left looking overlooked.</p>
+      <div class="who">decision, not work</div></div>
+      <div class="rt"><span class="chip wait"><span class="g">◆</span>Undecided</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Sources: the organisers' task PDF, the Apheris challenge slides, the 18 Foundry/RFD4 docs on the VM,
+  the hackathon resource map, the participant field guide, Leonardo Castorina's Slack message of 10:17,
+  <span class="mono">abguard</span>'s own source, and our own runs. Every number traces to one of those
+  or to a committed artifact — see <span class="mono">docs/abguard.md</span>,
+  <span class="mono">docs/probe-findings.md</span>, <span class="mono">docs/decision-log.md</span>,
+  <span class="mono">reports/b1_refold_metrics.csv</span>,
+  <span class="mono">reports/b1_full_novelty_distance.csv</span>,
+  <span class="mono">reports/b2_novelty_distance.csv</span> and
+  <span class="mono">reports/rank.stdout</span>. The figures behind the campaign are in
+  <span class="mono">docs/status-report.html</span>. Where two organiser sources disagree — and on
+  the prize figures they flatly do — this page says so rather than picking quietly.
+</footer>
+
+</div>

@@ -1,6 +1,23 @@
 # Fab4 — AI × Antibodies Hackathon (Oslo, 14 Nov 2026)
 
-Team **fab-tastic-four** / `team-4`, 6 people. Task dropped 09:30. **Design list + pitch due 18:00.**
+Team **fab-tastic-four** / `team-4`, 6 people.
+
+> **Campaign status report: [`docs/status-report.html`](docs/status-report.html)** — open it in a
+> browser. The funnel from 400 designs to 20 slots, the novelty/affinity trade-off that shapes the
+> whole task, the measured SPR ceiling, and what is actually blocking the submission. Figures are
+> computed from [`reports/`](reports/) by [`scripts/novelty_distance.py`](scripts/novelty_distance.py).
+
+Two different events — do not blur them:
+
+- **09:30 — "Opening: welcome, task & mentor intro"** (event-site schedule; the participant guide says
+  "Brief at 09:30" and "the task is released at 09:30 on the day"). The schedule is marked
+  "preliminary and subject to slight changes".
+- **09:56 — the task PDF actually landed in Slack**, posted by Aygul Minnegalieva, organizer
+  (`docs/task.md`). The brief and the document are 26 min apart; dates and deadlines come from the
+  document.
+
+**Pitch submission deadline 18:00** (event-site schedule and participant guide "Submit by 18:00").
+Then presentations 18:05–19:00, jury deliberates, awards 19:30 (event-site schedule).
 
 Source of truth: the organisers' task PDF (`ai-antibodies-hackathon-apheris.pdf`, in the Slack folder).
 This README is the 60-second version. Deeper docs are linked, not duplicated.
@@ -30,7 +47,9 @@ are split into paired chains and compared as paired antibodies. Tags and linkers
 
 ## How we are scored
 
-Adaptyv measures every design and compares it to the **measured** trastuzumab baseline:
+Adaptyv measures every design **that gets tested** (see the submission cap below) and compares it to
+the **measured** trastuzumab baseline — "we'll measure these values also for the reference antibody,
+trastuzumab. That is the baseline every design is compared against" (task PDF p8):
 
 | Judged property | Measurement |
 |---|---|
@@ -66,7 +85,9 @@ bash pipeline/filter/gate.sh            # on the VM; exit 0 = eligible, non-zero
 
 `abguard` is pre-installed on the team VM at `~/.local/bin/abguard` — **login shell only**, so
 scripts need `bash -lc`. It is not a Foundry Docker module. Its novelty reference is bundled and on
-by default; nothing to build. Full write-up: **[`docs/abguard.md`](docs/abguard.md)**.
+by default; nothing to build. Full write-up: **[`docs/abguard.md`](docs/abguard.md)**. The constraints above are
+the task PDF's own list, and it labels them "the constraints known so far" (p7) — the tool
+enforces more than the PDF states, and `docs/abguard.md` is the record of what it actually does.
 
 ## Submission shape
 
@@ -95,18 +116,25 @@ Rank order matters more than list length: design #1 is tested in every scenario,
 
 ## Prizes
 
+All from task PDF p9 unless noted. The event site says "3,000 USD" instead — the PDF wins, see the
+contradictions list below.
+
 - **€3000 total, split equally between the two tracks.** Per track: **€800 / €500 / €200** for 1st / 2nd / 3rd.
   So a track can be diversified across or bet on.
-- **Best Pitch: extra $500** on the day.
+- **Best Pitch: extra $500** on the day (the PDF writes this one in dollars, not euros).
 - **AMASS** picks the team with the best use of their platform → one month free. Each team also gets
-  $100 in AMASS API credits; one person per team claims them at platform.amass.tech.
+  $100 in AMASS API credits; one person per team claims them at platform.amass.tech (task PDF p6).
 
 ## Start here
 
 1. **[`docs/SETUP.md`](docs/SETUP.md)** — VM access, Nebius, JapanFold, credentials. Do this first.
-2. **[`docs/workplan.md`](docs/workplan.md)** — who is doing what, and the run order.
-3. Long jobs queue (first call to a model can wait 15 min; `mosaic` and `esmfold2` ~22 min). Start those
-   before the short folds. 16 teams share the platform.
+2. **[`docs/run-sheet.html`](docs/run-sheet.html)** — the optimisation-route plan on one page: progress,
+   the eligibility window, the three judged axes, owners and the clock. Open it in a browser.
+3. **[`docs/workplan.md`](docs/workplan.md)** — who is doing what, and the run order.
+4. Long jobs queue: a model's **first call can wait 15 min**, and `mosaic` and `esmfold2` are ~22 min
+   (resource map). Start those before the short folds — the resource map says so directly.
+   **Sixteen teams share the platform** (`START-HERE.md`, in the Slack folder: "Sixteen teams share
+   this, so start long jobs early"), which is why queue position is the binding constraint today.
 
 Credentials live only in the Slack folder (`credentials.private.json`, JapanFold codes txt). `*.private.json`
 is gitignored. **Never commit a key or paste one into a chat** — point tools at `$NEBIUS_CREDS`.
@@ -141,5 +169,18 @@ Files from slack/   organiser handouts + credentials. Not for committing secrets
   correctly. Cosmetic bug, or a second code path?
 - The pre-read guide's numbers (≤10 designs, ~5 tested, team max 5, 3000 USD tied to Apheris OpenFold)
   are superseded by the task PDF everywhere they disagree. Use the PDF.
+- **Still live, and worth money:** the participant guide says "Apheris and Openfold are the
+  monetary prize sponsors; to qualify for that prize, include Apheris' version of Openfold in your
+  pipeline". The task PDF's prize section (p9) neither repeats nor contradicts this, so it is
+  **unrepeated, not superseded**. If we want the €3000, assume Apheris OpenFold must appear in the
+  pipeline. **TODO: confirm with an organiser or the Apheris team on site.**
+- **Team size:** the event-site FAQ says "Maximum team size is 5 people"; we are 6. The task PDF is
+  silent, so the FAQ is not superseded. The schedule does list "team adjustments (if necessary)" at
+  09:00, which is presumably how we got here. **TODO: confirm a 6-person team is eligible.** Do not
+  assume it is fine because nobody stopped us.
+- **IP**, from the same FAQ: tested designs are **published on Proteinbase under the open ODC-BY
+  licence** — sequence, predicted structure, design method, measurements, our name and team name.
+  Submitting gives Anthropic and Adaptyv permission to use and publish the design; they do not
+  become its owners. Relevant to the 20% "path to value" criterion: nothing we submit stays private.
 - Links: event site https://oslo-ai-antibodies-hackathon.vercel.app/ ·
   terms https://proteinbase.com/competitions/anthropic-adaptyv-2026/terms

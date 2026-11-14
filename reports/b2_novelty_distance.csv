@@ -1,0 +1,201 @@
+sequence_id,cdrh3,distance_to_trastuzumab,distance_to_nearest_measured,n_at_that_distance,nearest_cdrh3,nearest_class,nearest_kd_nM,iptm,min_ipae,binder_plddt,verdict,reason
+b2-explor-s2-fixed-her2_cdrh3_0,SRWAPMGGYAMYY,5,3,6,SRWPMGGFYAMDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_1,SRWDRGSYYAFSY,7,2,2,SRWDQGSLYAFSY,high,,,,,reject,"2 edit(s) from SRWDQGSLYAFSY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_10,SRYPGRYFYTYDY,6,2,3,SRYDPGRFYTYDY,high,,,,,reject,"2 edit(s) from SRYDPGRFYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_100,SRYSASGFYTFSY,7,1,2,SRYSAIGFYTFSY,medium,,,,,reject,"1 edit(s) from SRYSAIGFYTFSY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_101,SRWGAMSGYPFPY,7,2,1,SRWGADSHYPFPY,high,,,,,reject,"2 edit(s) from SRWGADSHYPFPY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_102,SRYGRDGYYTFDY,5,1,6,SRYGRDGIYTFDY,high,,,,,reject,"1 edit(s) from SRYGRDGIYTFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_103,SRYTRLGNYAFDY,6,2,5,SRWTRLGMYAFDY,high,,,,,reject,"2 edit(s) from SRWTRLGMYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_104,SRWSALGQYTFDY,6,2,63,SRWSALRTYTFDY,high,,,,,reject,"2 edit(s) from SRWSALRTYTFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_105,SRTAGDRFYAFAY,5,2,3,SRWAGDSFYAFAY,high,,,,,reject,"2 edit(s) from SRWAGDSFYAFAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_106,SRWRREGVLALNY,7,3,4,SRWRRVGMYALNY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_107,SRRLFEANVYYGY,10,5,6,SRWLHENFYYIGY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_108,SRWGRSGTYMYDY,5,1,2,SRWGRSGFYMYDY,high,,,,,reject,"1 edit(s) from SRWGRSGFYMYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_109,SRSGGDGFYVYDY,3,1,1,SRWGGDGFYVYDY,high,,,,,reject,"1 edit(s) from SRWGGDGFYVYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_11,SRWGGYGFRMYGY,5,2,2,SRWGGYGFYMYDY,high,,,,,reject,"2 edit(s) from SRWGGYGFYMYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_110,SRWGRGGAYSFSY,6,2,5,SRWGGGGHYSFSY,medium,,,,,reject,"2 edit(s) from SRWGGGGHYSFSY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_111,SRYSLSGVYTVSY,8,2,1,SRYSLSGVYVYSY,medium,,,,,reject,"2 edit(s) from SRYSLSGVYVYSY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_112,SRWGGDGFYAWAY,2,1,5,SRWGGDGFYAKAY,high,,,,,reject,"2 edit(s) from trastuzumab, needs 3"
+b2-explor-s2-fixed-her2_cdrh3_113,SRWGKIGNYVFTY,6,2,3,SRWTKIGMYVFTY,medium,,,,,reject,"2 edit(s) from SRWTKIGMYVFTY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_114,SRWSGYGYYAYDY,4,2,15,SRHSGDGYYAYDY,,139.0,,,,reject,"2 edit(s) from SRHSGDGYYAYDY (measured n/a, KD 139 nM), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_115,SRWRYTNMRYFDY,8,4,12,SRWRHNSRYDFDY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_116,SRYAQKQWYDYDY,8,4,17,SRYAVAAPYDYDY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_117,SRWDQYGYYAYVY,6,2,1,SRWGQCGYYAYVY,high,,,,,reject,"2 edit(s) from SRWGQCGYYAYVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_118,SRWAGGGVYDYDY,5,1,1,SRWAGGGVYTYDY,high,,,,,reject,"1 edit(s) from SRWAGGGVYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_119,SRWESRGFYEYVY,6,1,1,SRWDSRGFYEYVY,high,,,,,reject,"1 edit(s) from SRWDSRGFYEYVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_12,SRWPRMGFYVFDY,5,2,32,SRWPVDGFYVFDY,medium,,,,,reject,"2 edit(s) from SRWPVDGFYVFDY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_120,SRWAGGSAYQFDY,6,2,7,SRWAGGSIYTFDY,high,,,,,reject,"2 edit(s) from SRWAGGSIYTFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_121,SRYFNPGFYAIDY,5,2,2,SRYHAPGFYAIDY,high,,,,,reject,"2 edit(s) from SRYHAPGFYAIDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_122,SRWGNGGIYYFNY,6,2,3,SRWGAGGIYYFDY,high,,,,,reject,"2 edit(s) from SRWGAGGIYYFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_123,SRWSGTHMYTLAY,7,2,3,SRWSGTRMYTLVY,high,,,,,reject,"2 edit(s) from SRWSGTRMYTLVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_124,SRWGRKGFYAYDY,3,1,2,SRWGRVGFYAYDY,high,,,,,reject,"1 edit(s) from SRWGRVGFYAYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_125,SRWPGIGDYTFDY,5,2,14,SRWPGVGLYTFDY,medium,,,,,reject,"2 edit(s) from SRWPGVGLYTFDY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_126,SRYKASAVYALAY,8,3,16,SRYTASSFYALAY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_127,SRWGGNALFTAPY,6,3,2,SRWGGNHLFTLLY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_128,SRWYYNNFGVYAY,8,3,1,SRWYYSCFYVYAY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_129,SRWNVGGQYYMDY,5,3,12,SRWDVGGWYYFDY,,9.0,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_13,SRWGGYGFYGYDY,3,1,1,SRWGGYGFYMYDY,high,,,,,reject,"1 edit(s) from SRWGGYGFYMYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_130,SRWVYNGMAVQAY,8,3,1,SRWVNNGMYVFAY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_131,SRWGMWASYVYHY,7,3,10,SRWVMDASYVYDY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_132,SRWGPSSNYAFDY,5,2,5,SRWGHSSMYAFDY,high,,,,,reject,"2 edit(s) from SRWGHSSMYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_133,SRLYRGSLSTYEY,10,4,18,SRLYRDGLYKYEY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_134,SRWFWHGTYSYDY,6,3,9,SRWFRHGLYMYDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_135,SRWAYRGLYSFRY,7,2,16,SRWAGRGLYSFVY,high,,,,,reject,"2 edit(s) from SRWAGRGLYSFVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_136,SRYLRAPLYDYPY,9,3,2,SRYLAPSLYTYPY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_137,SRWGYGGFYVYSY,5,1,1,SRWGVGGFYVYSY,medium,,,,,reject,"1 edit(s) from SRWGVGGFYVYSY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_138,SRWSGMGLDSYAY,7,2,1,SRWSGAGLYSYAY,high,,,,,reject,"2 edit(s) from SRWSGAGLYSYAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_139,SRWYNRGEYQFDY,6,3,48,SRWAGRGMYQFDY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_14,SRWRGASPYAYDY,5,2,5,SRWGGASFYAYDY,high,,,,,reject,"2 edit(s) from SRWGGASFYAYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_140,SRWGGSGFYSYDY,3,1,8,SRWGGSGFYKYDY,high,,,,,reject,"1 edit(s) from SRWGGSGFYKYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_141,SRWVNRGGTYYAY,8,3,3,SRWVRGGLYLYAY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_142,SRWGQLGFYAFDY,3,1,3,SRWGRLGFYAFDY,high,,,,,reject,"1 edit(s) from SRWGRLGFYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_143,SRFGEPGFYSYDY,5,2,11,SRFQEPGFYSYPY,low,,,,,reject,"2 edit(s) from SRFQEPGFYSYPY (measured low), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_144,SRWAASAFFGFEY,8,3,39,SRWAAGRFFKFEY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_145,SRWLESGLYAFPY,6,1,1,SRWLASGLYAFPY,high,,,,,reject,"1 edit(s) from SRWLASGLYAFPY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_146,SRWKGDHFRSYAY,6,3,21,SRWSGDCFYSYAY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_147,SRWQLSGMYALLY,6,0,1,SRWQLSGMYALLY,high,,,,,reject,"0 edit(s) from SRWQLSGMYALLY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_148,SRWRLPGFYAMDY,3,1,2,SRWRTPGFYAMDY,high,,,,,reject,"1 edit(s) from SRWRTPGFYAMDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_149,SRYSGGYFYCFDY,6,2,4,SRYSGGRFYTFDY,high,,,,,reject,"2 edit(s) from SRYSGGRFYTFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_15,SRWGGAGMYYFDY,4,1,1,SRWGGAGLYYFDY,high,,,,,reject,"1 edit(s) from SRWGGAGLYYFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_150,SRWPGYGFYAYSY,4,2,42,SRWTGYSFYAYSY,high,,,,,reject,"2 edit(s) from SRWTGYSFYAYSY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_151,SRYDGVGLYSFDY,6,0,1,SRYDGVGLYSFDY,high,,,,,reject,"0 edit(s) from SRYDGVGLYSFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_152,SRWGGPAVYTYDY,5,2,4,SRWGGGRVYTYDY,high,,,,,reject,"2 edit(s) from SRWGGGRVYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_153,SRWAWKGFYAYGY,5,2,16,SRWCNKGFYAYGY,high,,,,,reject,"2 edit(s) from SRWCNKGFYAYGY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_154,SRWAADGVYAFDY,4,1,3,SRWAADGFYAFDY,high,,,,,reject,"1 edit(s) from SRWAADGFYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_155,SRYTGFSFYSYDY,6,3,99,SRYHATSFYSYDY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_156,SRWHGIGFWEFDY,5,3,10,SRWPHGGFYEFDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_157,SRYEGLGFYDYGY,6,3,26,SRYSGLGFYAYTY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_158,SRWSYSGFYTYTY,6,1,1,SRWSYSGFYAYTY,low,,,,,reject,"1 edit(s) from SRWSYSGFYAYTY (measured low), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_159,SRWGGAGMYEFSY,5,2,24,SRWGRAHMYEFSY,medium,,,,,reject,"2 edit(s) from SRWGRAHMYEFSY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_16,SRWAGVRLYPFDY,6,1,10,SRWATVRLYPFDY,high,,,,,reject,"1 edit(s) from SRWATVRLYPFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_160,SRWTGGGFYPYDY,4,1,6,SRWCGGGFYPYDY,high,,,,,reject,"1 edit(s) from SRWCGGGFYPYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_161,SRWSGTGIYAFDY,4,1,1,SRWSGTGLYAFDY,high,,,,,reject,"1 edit(s) from SRWSGTGLYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_162,SRWPGSGVYAFVY,5,2,41,SRWGGSGMYAFVY,high,,,,,reject,"2 edit(s) from SRWGGSGMYAFVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_163,SRWGRTSGYAYAY,6,2,7,SRWGRSGFYAYAY,high,,,,,reject,"2 edit(s) from SRWGRSGFYAYAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_164,SRWHGVGFYSFDY,4,1,3,SRWHGHGFYSFDY,high,,,,,reject,"1 edit(s) from SRWHGHGFYSFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_165,SRWSLPGLYPMQY,6,2,2,SRYSLPGLYPMRY,high,,,,,reject,"2 edit(s) from SRYSLPGLYPMRY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_166,SRWGSRGFYAYDY,3,0,1,SRWGSRGFYAYDY,high,,,,,reject,"0 edit(s) from SRWGSRGFYAYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_167,SRSLLGIYSNPLY,9,4,12,SRLLGIYGSYALY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_168,SRWGGGGSYPFDY,4,2,22,SRWGGGGMYTFDY,high,,,,,reject,"2 edit(s) from SRWGGGGMYTFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_169,SRWGNHYLYVFNY,7,2,3,SRWGHHGLYVFNY,high,,,,,reject,"2 edit(s) from SRWGHHGLYVFNY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_17,SRWDRTGFYAFPY,5,0,1,SRWDRTGFYAFPY,high,,,,,reject,"0 edit(s) from SRWDRTGFYAFPY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_170,SRAGYAGFYTTDY,5,3,18,SRFGVAGFYTYDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_171,SRWVSYGFWTFYY,7,2,1,SRWVSCGFYTFYY,high,,,,,reject,"2 edit(s) from SRWVSCGFYTFYY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_172,SRFSRRRYYPFGY,9,3,4,SRFARPRMYPFGY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_173,SRYEGGEANGYGY,9,5,14,SRYMGGEASTNMY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_174,SRWGHPGGASFTY,7,3,5,SRWGLPGLYSFTY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_175,SRWGGNYDYSHDY,5,3,15,SRWGGNGFYVHDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_176,SRWVDAGYYAYDY,5,2,2,SRWPVDGYYAYDY,medium,,,,,reject,"2 edit(s) from SRWPVDGYYAYDY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_177,SRWREDSFYCYAY,6,2,2,SRWSGDSFYCYAY,high,,,,,reject,"2 edit(s) from SRWSGDSFYCYAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_178,SRYAVFGRYSFSY,8,2,1,SRYAVTGFYSFSY,high,,,,,reject,"2 edit(s) from SRYAVTGFYSFSY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_179,SRWGMSAFYTYDY,5,2,16,SRWGLAAFYTYDY,high,,,,,reject,"2 edit(s) from SRWGLAAFYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_18,SRWRSYLLFVFDY,8,3,13,SRWRPYLLYVFAY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_180,SRFGSSALYAFVY,7,2,8,SRFGGSGLYAFVY,high,,,,,reject,"2 edit(s) from SRFGGSGLYAFVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_181,SRWPAEGFFALTY,6,2,1,SRWPAGGFFALDY,high,,,,,reject,"2 edit(s) from SRWPAGGFFALDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_182,SRWGAVGSYVFDY,5,1,1,SRWGAVGLYVFDY,high,,,,,reject,"1 edit(s) from SRWGAVGLYVFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_183,SRWGENSFYAFDY,4,1,2,SRWGLNSFYAFDY,high,,,,,reject,"1 edit(s) from SRWGLNSFYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_184,SRWGEASTYVFTY,7,3,56,SRWGLAAMYVFTY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_185,SRWYQRGVYAVDY,5,3,17,SRWAGGGVYAVDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_186,SRWGYSGLYAYDY,4,2,48,SRWGDSGLYALDY,high,,,,,reject,"2 edit(s) from SRWGDSGLYALDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_187,SRWDAPGSYSVAY,7,3,31,SRWYAPGSYSLMY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_188,SRYGDDVYYSYEY,7,4,38,SRYGDVTFYSFEY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_189,SRYVLVSFYYLDY,7,3,34,SRYVLFGFYALDY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_19,SRW,,n/a,,,,,,,,review,extracted CDRH3 is only 3 residues ('SRW') -- the heavy chain is probably frameshifted or truncated. Not scored; check this one by hand.
+b2-explor-s2-fixed-her2_cdrh3_190,SRYRGSGFWSYRY,7,3,6,SRYRGSGFYVYSY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_191,SRYYGYGFYGFDY,5,2,2,SRYAGYGFYTFDY,high,,,,,reject,"2 edit(s) from SRYAGYGFYTFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_192,SRWFAPGFFALAY,6,3,51,SRWSDPGFYALAY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_193,SRWGNRGFYAMDY,2,1,3,SRWGNCGFYAMDY,high,,,,,reject,"2 edit(s) from trastuzumab, needs 3"
+b2-explor-s2-fixed-her2_cdrh3_194,SRYDLSGFHAYAY,7,2,2,SRYDLSGMYAYAY,high,,,,,reject,"2 edit(s) from SRYDLSGMYAYAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_195,SRWGEWGTYTAKY,6,4,118,SRWGMVGLYTFKY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_196,SRWSQVGGYAYGY,6,2,6,SRWGQVGSYAYGY,high,,,,,reject,"2 edit(s) from SRWGQVGSYAYGY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_197,SRWYKEGEHNYDY,7,4,35,SRWDREGMYNYDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_198,SRWGGPGMYVFDY,4,1,9,SRWGGFGMYVFDY,high,,,,,reject,"1 edit(s) from SRWGGFGMYVFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_199,SRWGIGATYSMSY,6,3,4,SRWGIGAFYAYSY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_2,SRWHPMGTYVFDY,6,3,75,SRWHPGRMYVFDY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_20,SRYTVHGFLGMAY,7,4,24,SRYTVSGFFPFAY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_21,SRYAWVAFYAFDY,6,2,4,SRYAQVALYAFDY,medium,,,,,reject,"2 edit(s) from SRYAQVALYAFDY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_22,SRWYAMGFYTHDY,5,2,6,SRWYACGFYTFDY,high,,,,,reject,"2 edit(s) from SRWYACGFYTFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_23,SRYGEVGFYSDDY,5,2,1,SRYGEVGFYQFDY,high,,,,,reject,"2 edit(s) from SRYGEVGFYQFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_24,SRWAAVGVYEYDY,6,1,1,SRWAAVGVYNYDY,high,,,,,reject,"1 edit(s) from SRWAAVGVYNYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_25,SRYISKNSYQFRY,9,4,66,SRYGISNSYVFMY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_26,SRWDDYGNYYYRY,7,3,7,SRWDDTGLYYYNY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_27,SRWGQTGAYVFAY,6,1,1,SRWGQTGLYVFAY,high,,,,,reject,"1 edit(s) from SRWGQTGLYVFAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_28,SRWGYRGTYEYDY,5,2,1,SRWGSRGFYEYDY,high,,,,,reject,"2 edit(s) from SRWGSRGFYEYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_29,SRWRGGGLYVYGY,6,1,1,SRWLGGGLYVYGY,high,,,,,reject,"1 edit(s) from SRWLGGGLYVYGY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_3,SRWDDVGFRVYAY,7,2,1,SRWDGVGFYVYAY,high,,,,,reject,"2 edit(s) from SRWDGVGFYVYAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_30,SRWGRGGFYALDY,3,1,16,SRWGRGGFYELDY,high,,,,,reject,"1 edit(s) from SRWGRGGFYELDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_31,SRWDIGGGKWYYY,8,5,261,SRWDVGGWYYFDY,,9.0,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_32,SRYLGPNNFYFGY,8,3,1,SRYLPNGFYAFGY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_33,SRFNELGWLLQNY,9,5,40,SRWAELGFLLLIY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_34,SRWSGGAFYALDY,4,1,1,SRWSGIAFYALDY,low,,,,,reject,"1 edit(s) from SRWSGIAFYALDY (measured low), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_35,SRWSDERMYAYGY,7,2,4,SRWADERIYAYGY,high,,,,,reject,"2 edit(s) from SRWADERIYAYGY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_36,SRWHRDYLYTYDY,6,2,10,SRWGRDGLYTYDY,high,,,,,reject,"2 edit(s) from SRWGRDGLYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_37,SRWAAAGFYTYDY,5,0,1,SRWAAAGFYTYDY,high,,,,,reject,"0 edit(s) from SRWAAAGFYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_38,SRWPAAAFYAFDY,5,1,2,SRWPAASFYAFDY,high,,,,,reject,"1 edit(s) from SRWPAASFYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_39,SRYIGASFYSYAY,7,2,14,SRYIGDSFYAYAY,high,,,,,reject,"2 edit(s) from SRYIGDSFYAYAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_4,SRWGNFGFYDFTY,5,2,21,SRWGNDGFYQFTY,medium,,,,,reject,"2 edit(s) from SRWGNDGFYQFTY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_40,SRYPYGSLYSMAY,8,3,18,SRYPLGSLYVFAY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_41,SRYEQPGVMAMTY,7,4,13,SRYELPGMYAYTY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_42,SRWSARAFYTYDY,6,1,3,SRWSAVAFYTYDY,high,,,,,reject,"1 edit(s) from SRWSAVAFYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_43,SRWGGPGFYAYPY,3,1,4,SRWGGDGFYAYPY,high,,,,,reject,"1 edit(s) from SRWGGDGFYAYPY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_44,SRWPGLAYYAMDY,4,2,1,SRWPGYAFYAMDY,high,,,,,reject,"2 edit(s) from SRWPGYAFYAMDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_45,SRDYYRGDYRYDY,7,3,1,SRDYGGGDYYYDY,,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_46,SRWTGRGFYSFDY,4,1,3,SRWDGRGFYSFDY,high,,,,,reject,"1 edit(s) from SRWDGRGFYSFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_47,SRWGYSGFYTYDY,4,1,2,SRWGNSGFYTYDY,high,,,,,reject,"1 edit(s) from SRWGNSGFYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_48,SRWAGGYFYGFDY,5,2,26,SRWAGGRFYKFDY,high,,,,,reject,"2 edit(s) from SRWAGGRFYKFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_49,SRWHGLGTYAFDY,4,2,18,SRWHGDGMYAFDY,high,,,,,reject,"2 edit(s) from SRWHGDGMYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_5,SRWSEGGLYGNAY,7,2,4,SRWNEGGLYHNAY,medium,,,,,reject,"2 edit(s) from SRWNEGGLYHNAY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_50,SRWYGVSFFQFSY,7,3,7,SRWIEVSFFMFSY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_51,SRYPGGRFHVYAY,8,3,6,SRYPGGAFYAYAY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_52,SRWYLGYFYEYLY,7,3,50,SRWYLSGFYEYRY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_53,SRFDGLGFYSFVY,6,1,1,SRFDGLGFYYFVY,high,,,,,reject,"1 edit(s) from SRFDGLGFYYFVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_54,SRWGAGGTYGYDY,5,2,6,SRWIAGGTYAYDY,high,,,,,reject,"2 edit(s) from SRWIAGGTYAYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_55,SRYGSRGLHEYDY,7,3,17,SRWGSRGLYDYDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_56,SRWSGAAFYVYDY,5,1,1,SRWSGIAFYVYDY,low,,,,,reject,"1 edit(s) from SRWSGIAFYVYDY (measured low), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_57,SRYGYKHFYDYDY,6,3,6,SRYGAGHFYAYDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_58,SRWFNVGNYTFDY,6,2,5,SRWANVGFYTFDY,high,,,,,reject,"2 edit(s) from SRWANVGFYTFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_59,SRFGAFGQYSYLY,7,3,12,SRFGKFGLYLYLY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_6,SRWSDGYFYAMPY,4,3,23,SRWLSDGFYAMDY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_60,SRWWMNGSYAYNY,6,2,3,SRWAMNGSYAYKY,low,,,,,reject,"2 edit(s) from SRWAMNGSYAYKY (measured low), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_61,SRWGGSGIYALNY,4,1,2,SRWSGSGIYALNY,medium,,,,,reject,"1 edit(s) from SRWSGSGIYALNY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_62,SRWWDGSFYSYDY,5,2,16,SRWADGSFYSIDY,high,,,,,reject,"2 edit(s) from SRWADGSFYSIDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_63,SRWGVFGFYPYDY,4,2,29,SRWGPFGFYDYDY,high,,,,,reject,"2 edit(s) from SRWGPFGFYDYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_64,SRWRNGSYGTFSY,8,3,1,SRWRNGGSYTFMY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_65,SRWGAAGLYTFSY,6,2,51,SRWGASGLYTFGY,medium,,,,,reject,"2 edit(s) from SRWGASGLYTFGY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_66,SRWDGTGTYSFVY,6,1,2,SRWDGTGLYSFVY,high,,,,,reject,"1 edit(s) from SRWDGTGLYSFVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_67,SRWNAHGGYWYPY,7,3,8,SRWAHGGFYLYPY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_68,SRWPMGGFHAFVY,6,0,1,SRWPMGGFHAFVY,high,,,,,reject,"0 edit(s) from SRWPMGGFHAFVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_69,SRWIEENSYSFEY,8,3,2,SRWSEESSYVFEY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_7,SRWGNRGSYRYDY,5,2,1,SRWGNDGSYAYDY,medium,,,,,reject,"2 edit(s) from SRWGNDGSYAYDY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_70,SRWGGGGIYVYDY,4,2,37,SRWGGGGLYMYDY,high,,,,,reject,"2 edit(s) from SRWGGGGLYMYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_71,SRWGSVAVYAWDY,5,3,15,SRWGSGAMYAMDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_72,SRWAGQGVYGYDY,5,2,3,SRWAGVGVYTYDY,high,,,,,reject,"2 edit(s) from SRWAGVGVYTYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_73,SRYHKLAIDAYDY,8,4,37,SRYHKSGMYAYDY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_74,SRWGGGGFYAFTY,3,1,10,SRWLGGGFYAFTY,high,,,,,reject,"1 edit(s) from SRWLGGGFYAFTY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_75,SRWARPGFYGYDY,5,2,8,SRWARDGFYQYDY,high,,,,,reject,"2 edit(s) from SRWARDGFYQYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_76,SRWTVMGFYAYDY,4,2,15,SRWRVHGFYAYDY,high,,,,,reject,"2 edit(s) from SRWRVHGFYAYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_77,SRWQDGLLYAYDY,5,1,1,SRWQDGGLYAYDY,high,,,,,reject,"1 edit(s) from SRWQDGGLYAYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_78,SRWPQGGFFYFPY,7,2,11,SRWPQGGFFAFVY,high,,,,,reject,"2 edit(s) from SRWPQGGFFAFVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_79,SRYGGPGLYVFPY,6,1,2,SRYGGPGLYVFKY,high,,,,,reject,"1 edit(s) from SRYGGPGLYVFKY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_8,SRDDLYNIYQLNY,9,4,13,SRWVLYGFYQLNY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_80,SRWGFTALYYYDY,6,3,38,SRWGGTALYMYAY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_81,SRWRGRGNYAYAY,5,2,8,SRWRGAGLYAYAY,high,,,,,reject,"2 edit(s) from SRWRGAGLYAYAY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_82,SRWGTGYFYYYDY,5,2,5,SRWGSGRFYYYDY,high,,,,,reject,"2 edit(s) from SRWGSGRFYYYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_83,SRYGFGHFLAFAY,7,3,12,SRYGDGHFYAFVY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_84,SRFHLYGNLPFRY,9,3,3,SRFDLYGLYPFRY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_85,SRWYQYGYYAYEY,6,3,85,SRWHTPGYYAYEY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_86,SRYGGTYFYAFVY,5,2,12,SRWGGTGFYAFVY,high,,,,,reject,"2 edit(s) from SRWGGTGFYAFVY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_87,SRWGANGLGRFDY,6,2,7,SRWGANGLYAFDY,high,,,,,reject,"2 edit(s) from SRWGANGLYAFDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_88,SRWSSEGMYGLAY,7,2,4,SRWSVRGMYGLAY,medium,,,,,reject,"2 edit(s) from SRWSVRGMYGLAY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_89,SRSCSHGLHHLDY,8,4,5,SRCSMHGLYVLDY,medium,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_9,SRWGAGATYSFAY,7,2,11,SRWGAGALYSHAY,low,,,,,reject,"2 edit(s) from SRWGAGALYSHAY (measured low), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_90,SRYEDGANYAAAY,7,3,2,SRYIDGAFYALAY,low,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_91,SRYGFGGFYVYDY,5,2,15,SRFGGGGFYVYDY,high,,,,,reject,"2 edit(s) from SRFGGGGFYVYDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_92,SRFTGLGFYTYSY,6,1,1,SRFTGLGFYVYSY,medium,,,,,reject,"1 edit(s) from SRFTGLGFYVYSY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_93,SRWPNRGLYSPAY,7,3,22,SRWPGEGLYSNAY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_94,SRWGSIGFYAYRY,4,1,4,SRWGSIGSYAYRY,medium,,,,,reject,"1 edit(s) from SRWGSIGSYAYRY (measured medium), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_95,SRWADNGFYTYSY,6,1,1,SRWAMNGFYTYSY,low,,,,,reject,"1 edit(s) from SRWAMNGFYTYSY (measured low), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_96,SRYGLSGFYSYAY,6,1,4,SRYGLSGFYSYFY,high,,,,,reject,"1 edit(s) from SRYGLSGFYSYFY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_97,SRWSSGRTYALDY,6,1,2,SRWSSGRTYSLDY,high,,,,,reject,"1 edit(s) from SRWSSGRTYSLDY (measured high), needs 3"
+b2-explor-s2-fixed-her2_cdrh3_98,SRYGRGGAYGFQY,7,3,8,SRYGRGGLYTFAY,high,,,,,pass,
+b2-explor-s2-fixed-her2_cdrh3_99,SRYPGTALFAFAY,8,3,12,SRYAGTGSFAFAY,high,,,,,pass,

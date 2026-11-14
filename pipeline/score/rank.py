@@ -38,6 +38,67 @@ REQUIRED = {
 TZ_LIGHT = ("DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSRSG"
             "TDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK")
 
+# Score tables and candidate tables disagree about identifiers, in two ways, and a
+# mismatch here is silent: the join misses, every score reads as absent, and the script
+# refuses while the numbers sit on disk. So normalise before joining.
+#   column:    paratope tables say design_id, refold tables say query_id
+#   namespace: candidates are b1-novel-s1-her2_cdrh3_14, refold rows are her2_cdrh3_14
+BATCH_PREFIXES = ("b1-novel-s1-", "b2-explor-s2-fixed-", "batch1-", "batch2-")
+ID_COLUMNS = ("design_id", "query_id", "sequence_id", "id")
+
+
+def design_key(row_or_id):
+    """A join key that survives both disagreements above."""
+    if isinstance(row_or_id, dict):
+        val = ""
+        for c in ID_COLUMNS:
+            if row_or_id.get(c):
+                val = row_or_id[c]
+                break
+    else:
+        val = row_or_id or ""
+    for p in BATCH_PREFIXES:
+        if val.startswith(p):
+            return val[len(p):]
+    return val
+
+
+# A score table usually carries bare ids (her2_cdrh3_26) while candidates carry batch-
+# qualified ones (b1-novel-s1-her2_cdrh3_26). Stripping the prefix to make them meet would
+# merge the two batches' namespaces: b1 and b2 both number designs from 0, so b2's design 26
+# would silently inherit b1's scores. So instead we qualify the score row UP, using the batch
+# its file belongs to, and candidates are then matched on the full id only.
+FILE_BATCH = (("b1", "b1-novel-s1-"), ("b2", "b2-explor-s2-fixed-"))
+
+
+def batch_of_file(path):
+    name = os.path.basename(path)
+    for token, prefix in FILE_BATCH:
+        if name.startswith(token) or f"-{token}-" in name or f"_{token}_" in name:
+            return prefix
+    return None
+
+
+def score_table(paths):
+    """Pool score tables, keyed on the full batch-qualified design id."""
+    out = {}
+    for path in paths or []:
+        prefix = batch_of_file(path)
+        for r in read_csv(path):
+            raw = design_key(r)          # bare id, whatever column it came from
+            if not raw:
+                continue
+            for c in ID_COLUMNS:         # if the row was already qualified, keep that
+                if r.get(c, "").startswith(BATCH_PREFIXES):
+                    out[r[c]] = r
+                    break
+            else:
+                if prefix:
+                    out[prefix + raw] = r
+                else:
+                    out[raw] = r
+    return out
+
 
 def read_csv(path):
     if not path or not os.path.exists(path):
@@ -50,8 +111,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--paratope", action="append", default=None,
                     help="per-batch paratope table; repeatable, batches are pooled")
-    ap.add_argument("--refold", default="reports/batch1-refold.csv")
-    ap.add_argument("--ddg", default="reports/batch1-ddg.csv")
+    ap.add_argument("--refold", action="append", default=None,
+                    help="per-batch refold metrics; repeatable, batches are pooled")
+    ap.add_argument("--ddg", action="append", default=None,
+                    help="per-batch stab-ddg output; repeatable")
     # Developability tables are keyed on sequence_id, not design_id, and live in their own
     # files. Without these the netsolp/liability columns silently fell through to 'n/a' even
     # though reports/*-solubility.csv held a score for every design. Repeatable, like --paratope.
@@ -79,8 +142,9 @@ def main():
             r["_source"] = os.path.basename(t)
             para.append(r)
 
-    refold = {r.get("design_id"): r for r in read_csv(a.refold)}
-    ddg = {r.get("design_id"): r for r in read_csv(a.ddg)}
+    refold = score_table(a.refold or ["reports/b1_refold_metrics.csv",
+                                      "reports/b2_refold_metrics.csv"])
+    ddg = score_table(a.ddg or ["reports/b1_ddg.csv", "reports/b2_ddg.csv"])
 
     # sequence_id in the developability tables == design_id in the paratope table.
     solub = {}
@@ -107,20 +171,31 @@ def main():
             cols = hdr
             print(f"  schema: {len(cols)} columns read from existing {a.out}")
 
-    have = {"contacts_kept": True, "min_ipae": bool(refold), "predicted_ddg": bool(ddg)}
+    # Count coverage over the candidate pool, not rows in the score table: a score table
+    # full of ids that join to nothing is the failure mode this script was blind to.
+    n_refold = sum(1 for r in para if r["design_id"] in refold)
+    n_ddg = sum(1 for r in para if r["design_id"] in ddg)
+
+    have = {"contacts_kept": True, "min_ipae": n_refold > 0, "predicted_ddg": n_ddg > 0}
     missing = [k for k, v in have.items() if not v]
 
     print(f"candidates with a paratope score : {len(para)}")
-    print(f"candidates with a refold score   : {len(refold)}")
-    print(f"candidates with a ddG score      : {len(ddg)}")
+    print(f"candidates with a refold score   : {n_refold}"
+          + (f"  ({len(refold)} rows loaded)" if refold and not n_refold else ""))
+    print(f"candidates with a ddG score      : {n_ddg}"
+          + (f"  ({len(ddg)} rows loaded)" if ddg and not n_ddg else ""))
     print(f"slots                            : {a.slots}")
+    if n_refold and n_refold < a.slots:
+        print(f"  NOTE only {n_refold} of {a.slots} slots can carry a measured min_ipae; "
+              f"the rest would rank on the paratope proxy alone.")
 
     if missing and not a.allow_partial:
         print("\nREFUSING to write a submission. Missing required evidence:")
         for m in missing:
             print(f"  - {m:<16} {REQUIRED[m]}")
-        print("\nTwo of the three judged axes would be empty, so a rank order here would be")
-        print("the paratope proxy wearing a scores table's clothes. Run stage 5 (refold),")
+        n = len(missing)
+        print(f"\n{n} of the three judged axes would be empty, so a rank order here would be")
+        print("the remaining proxies wearing a scores table's clothes. Fill the axis above,")
         print("or pass --allow-partial to emit with 'n/a' in every unmeasured column.")
         return 3
 

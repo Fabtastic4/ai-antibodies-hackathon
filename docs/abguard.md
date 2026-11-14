@@ -20,6 +20,11 @@ So it works when you SSH in and type `abguard`, and it does not work from:
 - scripts run with `#!/bin/bash` without `-l`
 - anything spawned by a non-login harness
 
+A second, older copy exists in a teammate-built uv venv (`abguard 0.1.0` + `immunum 2.0.0`,
+built 11 Nov): `/home/hackathon/.cache/uv/archive-v0/LQ7GYqqqANyUP63G/bin`. Confirm the two
+agree (`abguard --version`) before trusting either; its `direct_url.json` points at a repo that
+no longer exists, so treat that cached venv as fragile.
+
 If a script needs it, use `bash -lc "abguard ..."` or the absolute path. **Do not reinstall it**
 and do not go looking for a Docker module — it is not a Foundry image, and it is not in
 `foundry-toolkit module list`. (`foundry-toolkit` itself needs `foundry-toolkit login`; that is a
@@ -166,6 +171,82 @@ CDRH3 identity to trastuzumab". Nothing requires us to rewrite 30% of the loop. 
 the mutation count in §1–2. Both docs should be corrected before anyone designs to the wrong
 target. (`README.md` open TODO 2 — "a large change for a point-mutation track" — dissolves: it was
 never the requirement.)
+
+### 4. Trastuzumab's CDRH3 is the 13-mer `SRWGGDGFYAMDY` — and this one bites any local check
+
+Confirmed live: `novelty-report` returns `cdrh3 = SRWGGDGFYAMDY`, `cdrh3_confidence = 0.875`. We
+had the 11-mer `WGGDGFYAMDY` from the structure, and **the HER2 assay tables use the 10-mer core
+`WGGDGFYAMD`**. The code warns about exactly the mistake that invites:
+
+> *the HER2 assay tables name its 10-mer core `WGGDGFYAMD`; comparing a design's IMGT CDR3 against
+> those cores would hand every design three free mutations from the flanks alone.*
+
+**Any local novelty pre-check must compare IMGT 13-mers**, which means re-extracting the reference
+CDRH3 from each table's `vh_sequence` rather than reading its `cdrh3` column. Read the column and
+every design looks three mutations newer than it is, so the check passes designs abguard rejects.
+
+### 5. Two traps that reject silently
+
+- **Cysteines are checked twice**: the whole column count must be even *and* each domain's count
+  must be even independently. An scFv with one spare Cys in VH and one in VL is even overall and
+  still fails.
+- **Swapped heavy/light columns are rejected.** `paired` needs heavy to number `H` and light `K`/`L`.
+
+Full error vocabulary: `invalid_amino_acids`, `sequence_too_long`, `unpaired_cysteine`,
+`numbering_failed`, `wrong_domain_count`, `missing_sequence`, `unexpected_sequence`,
+`duplicate_sequence_id`, `unknown_kind`, `insufficient_cdrh3_novelty`.
+
+## immunum — numbering confidence is computable
+
+`immunum 2.0.0`, a Rust CLI beside abguard. Trastuzumab VH numbers at **0.8754**, far above the
+0.1 floor, so that hard check is satisfied and no longer indeterminate in our pipeline.
+
+```bash
+immunum number  "<SEQ>" --min-confidence 0.1 -f tsv
+immunum segment "<SEQ>" --min-confidence 0.1 -f json   # prefix fr1 cdr1 fr2 cdr2 fr3 cdr3 fr4 postfix
+```
+
+**Pass `--min-confidence 0.1` explicitly — the CLI default is 0.5.** At 0.5, abguard's own comment
+notes 343 of 2,306 real nanobodies get rejected as `low_confidence`. Numbering is IMGT and not
+configurable, because the cysteine rules are defined on IMGT positions 23 and 104.
+
+## A developability axis we did not know we had
+
+`abguard` implements the **LAP Antibody Liability Reference** (Satława et al., PLOS Comput Biol
+2024; 20(3):e1011881) — 13 motif rules, computed per design for free by `liability-report`:
+
+| Severity | Tags |
+|---|---|
+| high | `DeAmdH` N[GS] · `FragH` DP · `Isom` D[DGHST] · `mCys` no C at IMGT 23/104 · `xCys` C outside 23/104 · `Ngly` N[^P][ST] |
+| medium | `DeAmdM` N[AHNT] · `Hydro` NP · `FragM` TS · `TrpOx` W · `MetOx` M |
+| low | `DeAmdL` [STK]N · `IntBind` GPR\|RGD\|RYD\|LDV\|DGE\|KGD\|NGR |
+
+CDR-scoped motifs include one residue of framework flank each side, per LAP's convention. These are
+**advisory, not gating** — only `mCys`/`xCys` overlap the hard checks. Measured on batch 1: 0 hard
+errors, and the motifs shared by all 20 designs are inherited from trastuzumab's own framework, so
+they cannot discriminate. Only `Ngly`, `MetOx` and `FragM` are design-specific and worth ranking on.
+
+## Checking novelty without the VM — `scripts/novelty_distance.py`
+
+abguard is the verdict, but it is on the VM and answers in batches. The same novelty arithmetic
+runs offline on any laptop, standard library only:
+
+```bash
+python3 -I scripts/novelty_distance.py                      # batch 1, default paths
+python3 -I scripts/novelty_distance.py --designs <file.csv>  # any batch
+```
+
+20 designs against all 525,027 measured references in 38 s, and it agrees with
+`abguard team-validate` on all 20 rows of batch 1 — same 14 pass, same 6 reject. It is a
+pre-filter, not a replacement: it covers the novelty gate only, against the references we were
+shipped, while abguard's bundle is 610,109 rows and it also runs the schema, cysteine and numbering
+checks. Use it to throw away doomed designs before spending GPU time, then let abguard decide.
+
+**The two measurements agree from opposite ends.** The table above says to generate at ≥ 6
+mutations *from trastuzumab*; the pre-check measures distance *to the nearest of all 525k measured
+loops* and needs ≥ 3. Same rule: the FACS screen is dense around trastuzumab, so a design close to
+the parent is almost certainly within 2 of something already measured. Batch 1 bears it out — both
+designs at 4 mutations from trastuzumab were rejected, and 14 of the 18 at 6–9 passed.
 
 ## Control run, for the record
 

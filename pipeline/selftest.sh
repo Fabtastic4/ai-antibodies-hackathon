@@ -157,12 +157,20 @@ PARA=()
 while read -r P; do [[ -n "$P" ]] && PARA+=(--paratope "$P"); done \
   < <(find reports -maxdepth 1 -name '*-paratope.csv' 2>/dev/null | sort)
 cp designs/submission.csv "$TMP/sub.csv" 2>/dev/null || true
+# Compare the target against its own before-state. The old form asserted "<= 1 line",
+# which quietly stopped asserting anything the moment submission.csv held a real
+# submission -- exactly when leaving it untouched started to matter.
+cp "$TMP/sub.csv" "$TMP/sub.before.csv" 2>/dev/null || true
 "${PY[@]}" pipeline/score/rank.py "${PARA[@]}" \
     --refold /nonexistent --ddg /nonexistent --out "$TMP/sub.csv" >"$TMP/rank.log" 2>&1
 RC=$?
 # Refusal must leave the target untouched, not half-written.
-if [[ $RC == 3 ]] && [[ $(grep -c . "$TMP/sub.csv" 2>/dev/null || echo 0) -le 1 ]]; then
-  pass "refusal left designs/submission.csv unmodified (header only)"
+if [[ $RC == 3 ]]; then
+  if cmp -s "$TMP/sub.csv" "$TMP/sub.before.csv"; then
+    pass "refusal left designs/submission.csv byte-identical ($(grep -c . "$TMP/sub.before.csv" 2>/dev/null || echo 0) lines)"
+  else
+    fail "refusal MODIFIED designs/submission.csv"
+  fi
 fi
 if [[ $RC == 3 ]]; then
   pass "rank.py exits 3 and writes nothing when binding/ddG scores are absent"

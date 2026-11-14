@@ -1,0 +1,13 @@
+vhh_design,vhh_pdb,target,pair_type,response_RU,surface_load_RU,call,notes
+8k4q_d,8K4Q,IL-4Ra,cognate,113,697,confirmed binder,only surface in the panel that confirmed a binder outright
+8k4q_d,8K4Q,Properdin,non-cognate,248,,off-target binder,responded more strongly on properdin than on its own target
+8c5h_n,8C5H,Properdin,non-cognate,199,,off-target binder,bound 11 of 14 targets; best-expressing design; polyreactive rather than specific
+8c5h_n,8C5H,Synaptotagmin-1,cognate,,,not quantified in text,cognate target of 8c5h_n
+Anti-human CD8 VHH,8EW6,CD8a,cognate,53,,weak (under-loaded),promising but low surface loading
+S43,8J5J,SARS-CoV-2 RBD,cognate,68,,weak (under-loaded),"binds only RBD within the panel; kinetic 88-104 nM vs equilibrium 3.7-4.7 uM (~40-fold disagreement), no firm value"
+DL4,,SARS-CoV-2 RBD,cognate,<20,,silent,the one genuinely silent cognate pair
+unspecified cognate VHH,,EGFR,cognate,,,weak (low loading background),weak rather than negative
+unspecified cognate VHH,,CD1d,cognate,,,weak (low loading background),weak rather than negative
+unspecified cognate VHH,,CD38,cognate,,,weak (low loading background),weak rather than negative
+unspecified cognate VHH,,CD4,cognate,,,weak (low loading background),weak rather than negative
+unspecified cognate VHH,,hMPV F,cognate,,,weak (low loading background),weak rather than negative

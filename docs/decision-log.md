@@ -17,6 +17,9 @@ Source labels used below:
 `TASK p<n>` = the official task description PDF, page n.
 `MAP` = the hackathon resource map PDF (first-call timings, 12 Nov).
 `RECIPES` / `SKILL` = the Nebius job client docs in the Slack folder.
+`GUIDE` = the organisers' participant field guide on the event website (printable view). Older
+than the task PDF: where they disagree, `TASK` wins and we say so.
+`SITE` = the event website front page (schedule, FAQ, prizes, judging).
 
 First measured result of ours: the **13:20** entry (abguard pass rate by CDRH3 mutation count).
 Everything above it is reasoning from the sources, labelled as such.
@@ -57,6 +60,8 @@ Chose: **both tracks, with optimisation first and de novo running in parallel on
 owner**, because:
 - The prize fund (€3000) is split **equally** between the two tracks, €800 / €500 / €200 per
   track, so a track with fewer strong teams is worth the same as the crowded one (`TASK p9`).
+  (The event website front page says "3,000 USD" instead; `TASK p9` is the later and higher
+  authority, so we use €3000. The currency does not change the split or this decision.)
 - Submissions in the two tracks are **evaluated independently**, and we may submit any
   proportion of each (`TASK p8`).
 - We do not choose the track. `abguard` classifies each design by identity to the nearest known
@@ -77,7 +82,11 @@ move Abdelrahman onto it.
 
 ---
 
-## [10:55] Primary generation weight is `her2-novel-2026-11-09`, with `her2-2026-11-07` balanced as the diversity arm
+## [10:55] Primary generation weight is `her2-novel-2026-11-09`, with `her2-2026-11-07` **exploratory** (`--sequence-tsr-k 1`) as the diversity arm
+
+Revised in the pre-pitch fact-check pass: this entry previously named `her2-2026-11-07`
+**balanced** as the diversity arm, contradicting `docs/tools-apheris.md` and its own closing
+paragraph. The decision is now exploratory, in both docs, for the reason given below.
 
 The tension: on the trastuzumab CDRH3 task, the weights that hit known binders are the weights
 that fail the novelty filter. The organisers' own table (`TASK p5–6`):
@@ -93,28 +102,62 @@ that fail the novelty filter. The organisers' own table (`TASK p5–6`):
 Options considered:
 1. `her2-2026-11-07` conservative — best shot at real binders, **0% pass novelty**: every design
    is rejected before it is measured. Unusable as a submission source.
-2. `antibody-2026-10-30` — everything passes novelty, 0% known binders, worst interface error of
-   the HER2-relevant rows at 8.2 Å.
+2. `antibody-2026-10-30` — everything passes novelty, 0% known binders, and **8.2 Å, the second
+   best interface error in the table**: better than all three `her2-2026-11-07` rows (9.1–9.4),
+   worse only than `her2-novel-2026-11-09` (6.8 Å).
 3. `her2-novel-2026-11-09` — 86% pass novelty and the **best interface error in the table,
    6.8 Å**, while still recovering 4% known binders.
 
-Chose: **`her2-novel-2026-11-09` as the primary**, because it is the only row that is good on both
-axes at once, and **`her2-2026-11-07` balanced (`--sequence-tsr-k 2`) as a second, smaller arm**
-for loop diversity, accepting that ~94% of that arm is discarded. `antibody-2026-10-30` is held in
-reserve for anything that needs a CDR other than CDRH3 — the HER2 weights redesign CDRH3 only
-(`TASK p6`).
+Chose: **`her2-novel-2026-11-09` as the primary**, and **`her2-2026-11-07` exploratory
+(`--sequence-tsr-k 1`) as a second, smaller arm** for loop diversity. `antibody-2026-10-30` is
+held in reserve for anything that needs a CDR other than CDRH3 — the HER2 weights redesign CDRH3
+only (`TASK p6`) — and as the de novo fallback, since it is the only row at 100% pass.
+
+Why `her2-novel-2026-11-09` over `antibody-2026-10-30`, now that 8.2 Å is read correctly: the
+conclusion survives, but not on interface error alone. `her2-novel-2026-11-09` beats
+`antibody-2026-10-30` on interface error (6.8 vs 8.2 Å) **and** on known-binder recovery (4% vs
+0%), and the only axis it loses is pass rate (86% vs 100%) — a 14-point tax on a filter we can run
+locally before spending anything. `antibody-2026-10-30` has never recovered a measured binder on
+this task, i.e. it carries no HER2-specific signal; it is a generic antibody model that happens to
+be novel by construction. So it is the fallback, not the primary. 8.2 Å being second best is the
+reason it is a *credible* fallback rather than a bad one.
+
+Why **exploratory**, not balanced, for the diversity arm — the actual decision:
+
+| `her2-2026-11-07` setting | Known binders | Pass novelty | Interface error |
+|---|---|---|---|
+| balanced (`--sequence-tsr-k 2`) | 21% | 6% | 9.1 Å |
+| exploratory (`--sequence-tsr-k 1`) | 0.3% | 74% | 9.1 Å |
+
+- **Interface error is identical** at 9.1 Å. The structural-quality axis does not separate them.
+- **The "known binders" column is not a benefit for anything we submit.** A known binder fails
+  the novelty filter by definition (`TASK p6`), so that column counts designs `abguard` will
+  reject. Balanced's 21% is a measure of how much of its output is ineligible, not of how good it
+  is. It is useful only as a reference set — what the model thinks a binder looks like.
+- **Pass rate is the only axis that decides eligible yield.** Per 100 designs: balanced ~6
+  eligible, exploratory ~74. Same GPU batch, 12× the submittable output.
+
+Exploratory therefore dominates balanced on every axis that maps to a submission. Decided:
+diversity arm is `her2-2026-11-07` **exploratory**, `--sequence-tsr-k 1` (`TASK p5`: k=2 balanced,
+k=1 exploratory). Do not run balanced or conservative for candidates.
 
 Operational consequence, and the reason this is a decision and not a note: **a known binder fails
 the novelty filter, so we filter before we rank** (`TASK p6`). Novelty check is step one of the
 scoring pipeline, not a final sanity check. Ranking a pool that still contains known binders
 wastes the compute we do not have.
 
-Evidence: `TASK p5–6` weight table and the two sentences after it.
+**If this doc and `docs/tools-apheris.md` ever disagree on a weight, a setting or a flag, this
+file wins** — it is the decision record the Judgment score is read from; `tools-apheris.md` is the
+how-to and must be edited to match it.
+
+Evidence: `TASK p5–6` weight table and the two sentences after it; `TASK p5` for the
+`--sequence-tsr-k` values.
 
 Confidence: high on the ordering (it is the organisers' own measurement), low on the absolute
 rates for our settings — the table is their run, not ours. What would change our mind: our own
 abguard pass rate on batch 1. If `her2-novel-2026-11-09` passes well below 86% for us, we shift
-volume to the exploratory setting (74% pass).
+volume to the exploratory arm (74% in their run) and, failing that, to `antibody-2026-10-30`
+(100%, 8.2 Å, no HER2 signal).
 
 ---
 
@@ -151,6 +194,115 @@ score names), `RECIPES` §2 (no ipTM from Boltz2).
 Confidence: high — this is the organisers' stated ranking basis for this exercise. What would
 change our mind: a pass column appearing in an actual `refold-score` output, or an organiser
 saying otherwise on the day.
+
+---
+
+## [11:15] ipSAE is out as the ranking metric; openfold3 ipTM + local contact counting is in
+
+Options considered:
+1. ipSAE, as originally planned — **not computable**. ipSAE needs the per-residue PAE matrix; no
+   reachable Nebius model documents returning one, and the gateway contract affirmatively excludes
+   "full-PAE" for boltz2. boltz2 also returns no ipTM.
+2. AlphaFold3 / openfold3-openbind on the batch lane — graph deadlines of 12.5 h and 25 h. **Not
+   reachable before 18:00.**
+3. `openfold3` ipTM (native, ~3 min) plus locally computed cross-chain heavy-atom contacts, pTM and
+   interface ΔSASA.
+
+Chose: option 3, with the local contact count as the primary and ipTM as the confirmation, because the
+contact count depends on no undocumented adapter field and costs no platform budget. True PAE-derived
+`min_ipae` is available only through Apheris Foundry `refold-score` on the VM, so if the pitch needs an
+ipSAE-like number it comes from there.
+
+Evidence: `forge.py schema` for boltz2/openfold3/chai1/alphafold3/openfold3-openbind/protenix-v2 (five
+of six publish no output schema at all); `scientific-gateway/references/client-contract.md` on
+"full-PAE"; `RECIPES.md` "The output has no ipTM, so do not report one"; `openfold3/SKILL.md` naming
+`iptm` "as rendered by the adapter". See `docs/probe-findings.md` §1.
+
+Confidence: high that ipSAE is unavailable. **Low that openfold3 returns ipTM** — that rests on skill-doc
+prose, not a machine-readable contract. What would change our mind: the first real openfold3 co-fold.
+Whoever runs it must read `result.json` and confirm the key as a deliverable of that run.
+
+---
+
+## [11:15] De novo generation runs on the VM, not through forge.py
+
+`forge.py` exposes no checkpoint selector for `rfd4-proteina` and cannot be made to. The antibody and
+HER2 weights exist only as Apheris Foundry Docker images on the team VM, selected by choosing the image.
+Nebius's hosted endpoint is the general checkpoint, which emits "a general protein binder, not a VHH" —
+not one of the three accepted formats, so it fails the format gate before anything else.
+
+Consequence: whoever owns the de novo track needs SSH to the VM working before they can start. This was
+previously recorded as an open unknown about forge.py; it is now closed in the other direction.
+
+Evidence: `forge.py schema rfd4-proteina --full`; resource map "Not a VHH"; `TASK p5` weights table.
+Confidence: high.
+
+---
+
+## [11:15] Correction: antifold does not win the epitope axis for free
+
+Earlier reasoning for prioritising optimisation assumed that keeping the trastuzumab framework preserves
+the epitope essentially by construction. **That is wrong as stated.** Eligibility forces a ≥4-residue
+rewrite of CDRH3, and CDRH3 carries most of trastuzumab's HER2 contact — the heavy chain dominates
+epitope residues 557–593. Rewriting it is precisely the change most likely to move the epitope.
+
+Revised: epitope preservation must be screened by co-folding and epitope-overlap scoring on **both**
+tracks. Optimisation is still the better expected value — sharper position control than the HER2 weights
+and a ~110 s model versus 6 min plus queue — but one of the three axes is not free.
+
+Also corrected: the RECIPES `sampling_temp` of 0.20 is too conservative to clear the identity window and
+must be raised; a temperature ladder in one job yields a few hundred candidates.
+
+Evidence: `forge.py schema antifold`; `RECIPES.md` antifold recipe; epitope computation below.
+Confidence: high on the mechanism, medium on the mutation count — it depends on how abguard computes
+CDRH3 identity, which is unspecified (open question for the organisers).
+
+---
+
+## [11:15] Thermostability is our weakest axis, and we will say so in the pitch
+
+Nothing on the platform predicts thermostability. Of 59 catalog models, only `stab-ddg` matches any
+stability-related name, and its single operation is `predict-binding-ddg` over two **disjoint** partner
+sets — its own reference says it is "not a generic folding-stability calculation". FoldX, CamSol, Flex
+ddG, PyRosetta, ThermoMPNN, Aggrescan, SoluProt and NetSolP are all absent from the catalog.
+
+Chose, per track and format:
+- Optimisation + Fab/scFv: `stab-ddg` repurposed to the **VH–VL interface**, labelled as a VH–VL
+  interface ΔΔG and never as a folding ΔΔG.
+- Optimisation + VHH: `esm2-650m score-variants` only — a single domain has no second partner.
+- De novo: `esm2-650m score-sequences` (PLL, per-residue mean because lengths differ). Every ddG is
+  **undefined** here, not merely noisy; there is no parent to subtract.
+- All candidates, free and local: **framework germline-likeness** — count mutations outside the CDRs and
+  drive it to zero. Antibody Tm is dominated by framework and VH–VL pairing, not loops.
+
+Rejected: `bioemu2` — emits conformations, no ΔG/ΔΔG/Tm, needs an MSA per chain, and any number from 8
+samples would be a metric we invented. Also noted: disulfide presence is useless as a discriminator,
+because abguard already hard-rejects unpaired cysteines, so every ranked candidate has passed it.
+
+Evidence: `forge.py schema stab-ddg` (`operations: ["predict-binding-ddg"]`, disjoint partner sets);
+`protein-scoring/references/binding.md`; `models --all` (59 ids, one match); `esm2.md` on what PLL is
+not. See `docs/probe-findings.md` §4.
+
+Confidence: high on availability, low on every proxy's correlation with measured Tm — which is the
+point, and is what we report.
+
+---
+
+## [11:15] Reference epitope fixed at the 4.5 Å contact set from 1N8Z
+
+19 HER2 residues: P557 E558 D560 Q561 K569 D570 P571 P572 F573 P579 I591 K593 D596 E598 A600 Q602 P603
+C604 P605. **Identical at 5.0 Å**, verified against an independent brute-force all-pairs cross-check, so
+the set is not an artifact of the cutoff. Hotspots by ΔSASA: E558, P571, F573, P603, P572, D560.
+
+This set is now (a) the hotspot spec for generation and (b) the reference for the epitope-overlap axis.
+
+Two traps recorded so nobody loses a day to them: chain C residue *n* = UniProt P04626 residue *n+22*,
+so the epitope is 579–627 in UniProt numbering and specs must state their convention; and C604 sits in
+the epitope with no SSBOND record only because its partner lies past the construct end.
+
+Evidence: `scripts/epitope.py` over RCSB 1N8Z, Biopython NeighborSearch + ShrakeRupley; artifacts in
+`data/reference/epitope/`. Chain identities concluded from sequence motifs and contact counts, not from
+the COMPND record. Confidence: high.
 
 ---
 
@@ -270,6 +422,71 @@ Two smaller things from the same run:
 
 Our 70.5% sits below the PDF's 86% for this weight. Not alarming at n=129 on one seed, but it means
 the 20-design list needs ~29 generated candidates minimum, and more if we also dedupe.
+
+---
+
+## [13:55] Batch 1 result: 14 of 20 eligible, and the failures tell us how to generate
+
+First real designs of the day. `her2-novel-2026-11-09`, 100 designs (seed 1,
+`--recycle-strategy high/front_loaded`), top 20 refolded with Boltz-2 and scored.
+
+Design-stage quality (`b1_design_aggregated_metrics.csv`, mean over the batch): hotspot obedience
+0.9375, sequence adherence 1.0 with 0 violations, `frac_atoms_clashing_1p5A` 0.0002, bond lengths 0%
+unreasonable. Interface: 11.0 H-bond atoms, 1.75 salt bridges, 17.25 hydrophobic atoms.
+
+Refold scores for the 14 eligible (`reports/b1_refold_metrics.csv`), best six:
+
+| id | iptm | min_ipae | binder_plddt | CDRH3 |
+|---|---|---|---|---|
+| her2_cdrh3_74 | 0.912 | 0.3542 | 98.44 | SRDLSLSNYAHDY |
+| her2_cdrh3_14 | 0.903 | 0.3544 | 97.95 | SRWHSLHEYYFDY |
+| her2_cdrh3_88 | 0.900 | 0.3362 | 98.10 | SRSLSLGNYAFDY |
+| her2_cdrh3_52 | 0.893 | 0.3568 | 98.42 | SRDLYLYNYSFDY |
+| her2_cdrh3_28 | 0.888 | 0.3437 | 97.76 | SRSLTPLSDVFDY |
+| her2_cdrh3_91 | 0.888 | 0.3492 | 96.85 | SRDRTPTDYSFDY |
+
+`pass` is empty for every row, with `pass_note` "fewer than 3 target atoms fixed in absolute
+coordinates, so target-aligned RMSDs are undefined" — exactly as `18-vm.md` predicts for this example,
+so we rank on `min_ipae`, `iptm` and `binder_plddt`, and only within one folding model.
+
+**The six rejections are the useful part.** None failed against trastuzumab — all were 6–9 mutations
+away. Every one failed against the **FACS screen**: 1–2 mutations from a sequence already measured in
+`tz_her2_facs_3classes_524346`. For example `her2_cdrh3_53` was 1 mutation from `SRWGSSDFYAFDY`.
+
+Two consequences, and the second is a strategy rather than a fix:
+
+1. **Pre-filter locally before spending refold compute.** CDRH3 Levenshtein against the 524k table is a
+   cheap local computation; refolding a design that abguard will reject wastes GPU minutes we do not
+   have. Our observed pass rate of 70% (14/20) is close to the organisers' claimed 86% for this weight,
+   so the loss is real but not catastrophic.
+2. **The screen is a map of what binds, and the gate forces us exactly 3 mutations off it.** A design
+   sitting 3 mutations from a measured **high** binder is close enough to plausibly inherit binding and
+   far enough to be eligible. That is a deliberate target, not a filter — and it is the one place where
+   having 524,346 labelled sequences is an advantage over teams treating novelty as a hurdle.
+
+Evidence: `abguard team-validate` output quoted in full in the issue #11 thread;
+`designs/submission_b1_valid.csv` (14 rows) and `designs/submission_b1_all20.csv` (all 20, for the
+record). Confidence: high on the measurements, medium on the strategy — untested.
+
+---
+
+## [13:58] Liability reading: the shared motifs are trastuzumab's own, not ours
+
+`abguard liability-report` on the 20: **0 hard errors**, 116 liability occurrences.
+
+All 20 designs carry `Isom`, `DeAmdH`, `TrpOx`, `DeAmdM` and `DeAmdL`. Because the framework and the
+other five CDRs are held fixed by the design spec (sequence adherence 1.0), a motif present in all 20
+is **inherited from trastuzumab itself** and cannot discriminate between our designs. Trastuzumab is an
+approved drug carrying these liabilities, so they are not disqualifying.
+
+The discriminating tags are the rare ones: `Ngly` (1 design), `MetOx` (3), `FragM` (2). Those sit in the
+designed CDRH3 and are the ones worth penalising in the ranking, because a design without them is
+strictly better on an axis the organisers' own tool measures.
+
+`mCys`, `xCys`, `FragH`, `Hydro` and `IntBind`: zero occurrences.
+
+Evidence: `abguard liability-report designs/submission_b1_all20.csv`. Confidence: high on the counts,
+high on the framework-inheritance inference (it follows from sequence adherence 1.0).
 
 ---
 
@@ -560,6 +777,43 @@ passed.
 
 ---
 
+## [15:05] The novelty gate is now checkable offline, and batch 2 is mostly ineligible
+
+Options considered:
+1. Keep sending every batch to `abguard` on the VM and wait for the verdict.
+2. Reproduce the novelty arithmetic locally so a batch can be filtered before it costs GPU time.
+
+Chose: **both** — `scripts/novelty_distance.py` as a pre-filter, `abguard team-validate` as the
+verdict. The local check agrees with abguard on all 20 rows of batch 1 (same 14 pass, same 6
+reject) in 38 s, standard library only, so any teammate can run it on a laptop.
+
+What it found when pointed at batch 2 (`designs/raw/b2-explor-s2-fixed.csv`, 200 designs):
+**70 pass, 129 reject, 1 unparseable.** Six designs are at distance 0 — exact duplicates of a
+measured CDRH3. 103 of the 129 rejections are blocked by a HIGH-class measured binder, the same
+pattern as batch 1 at more than double the rate. Batch 2's own novelty report had not caught this:
+`filter/gate.sh` could not find `abguard` off the VM (`reports/b2-explor-s2-fixed-gate.stdout`),
+so its `cdrh3_nearest_source` is `trastuzumab` on every row and `is_novel_enough` is empty.
+
+Evidence: `reports/b2_novelty_distance.csv`, `reports/b1_novelty_distance.csv`. 525,027 unique
+reference CDRH3s, re-extracted from `vh_sequence` in both organiser tables rather than read from
+the `cdrh3` column, which holds the 10-mer core — see `docs/abguard.md` §4.
+
+This corroborates the 13:25 and 14:15 entries from the other direction. "≥ 6 mutations from
+trastuzumab" and "≥ 3 from every measured loop" are the same constraint measured from opposite
+ends: the FACS screen is dense around the parent, so proximity to trastuzumab implies proximity
+to something already measured. Both batch-1 designs at 4 mutations from trastuzumab were
+rejected; 14 of the 18 at 6–9 passed.
+
+Confidence: high on the arithmetic (20/20 agreement with abguard, and a batch-1 regression after
+two bug fixes). Medium on completeness — our reference set is 525,027 rows and abguard's bundle is
+610,109, so the local check can only ever be optimistic. It covers novelty alone; schema, cysteine
+and numbering checks still belong to abguard.
+
+Confidence: what would change our mind — if abguard on the VM rejects any design this check passes,
+the 85k-row gap is the first place to look.
+
+---
+
 ## [16:05] Submission built: co-fold evidence breaks the 18-way tie the proxy could not
 
 `designs/submission.csv` and the hand-in file `designs/fab-tastic-four.csv` now exist.
@@ -612,3 +866,95 @@ The evidence they pass novelty is that all 20 appear in the 14:25 `team-validate
 output. `novelty-report` cannot corroborate it — `is_novel_enough` is empty and
 `cdrh3_nearest_source` reads `trastuzumab` for all 20, the cosmetic bug `abguard.md` records. Run
 `bash pipeline/filter/gate.sh designs/submission.csv` on the VM before posting if it is still up.
+
+---
+
+## [16:10] The trastuzumab affinity baseline is eight replicates spanning 6.2x, not one number
+
+A design is tiered on whether it **improves on trastuzumab**, measured. We had been treating
+trastuzumab's affinity as a single value. In the organisers' own SPR table it is eight rows:
+
+  0.0285, 0.0379, 0.0792, 0.123, 0.146, 0.152, 0.165, 0.178 nM
+
+Which replicate the comparison uses changes the answer by nearly an order of magnitude in hit
+rate, over the 182 measured non-WT variants:
+
+| Baseline used | Variants that beat it |
+|---|---|
+| best replicate, 0.0285 nM | 1 of 182 (0.5%) |
+| mean, 0.1137 nM | 4 of 182 (2.2%) |
+| worst replicate, 0.178 nM | 7 of 182 (3.8%) |
+
+Two consequences. First, for the pitch: "improves affinity" is not a well-defined claim until the
+baseline is named, and saying so demonstrates we understood what the tier actually measures --
+judgment axis, and cheap. Second, for expectations: even at the most generous baseline the prior
+on a CDRH3 substitution beating the parent is under 4%, among sequences already selected for
+measurement. With 4 designs tested at base, the expected count of affinity improvements is well
+below one. The epitope axis is where our evidence actually is.
+
+Evidence: `trastuzumab_her2_spr_all_768.csv`, rows with `cdrh3 = WGGDGFYAMD`.
+
+Confidence: high on the arithmetic. Unknown which baseline the judges use -- **TODO: ask an
+organiser**, it is a 30-second question and it affects every tier claim any team makes today.
+
+## [16:15] rank.py was refusing on an axis it already had
+
+`score/rank.py` reported `candidates with a refold score : 0` while 20 designs carried a measured
+`min_ipae` on disk. Three independent faults in the join, each silent:
+
+1. `--refold` defaulted to `reports/batch1-refold.csv`, which does not exist. A missing file reads
+   as an empty table, not as an error.
+2. The score table names its key `query_id`; the candidate pool uses `design_id`.
+3. The two live in different namespaces -- `her2_cdrh3_14` against
+   `b1-novel-s1-her2_cdrh3_14`.
+
+Fixed by normalising ids before the join (`design_key`), pooling score tables per batch the way
+paratope tables already were, and counting coverage **over the candidate pool** rather than
+counting rows in the score table -- a table whose ids join to nothing was the failure mode the
+script could not see. Coverage is now printed, and a short count against the slots is called out.
+
+Result: 16 of 191 candidates now carry a measured `min_ipae`, and the refusal is down from two
+axes to one. `predicted_ddg` is genuinely absent -- `stab-ddg` has never run, and nothing in
+`reports/` has ever held that column.
+
+Confidence: high. `selftest.sh` still passes 5/0/2 and rank.py still exits 3, now for the right
+reason.
+
+---
+
+## [16:45] Correction: 12 candidates carry a measured min_ipae, not 16. And the shortlist is G103
+
+Two things, one of which is me correcting myself.
+
+**The correction.** The 16:15 entry said 16 candidates carried a measured `min_ipae` after the
+join fix. It is **12**. Normalising ids by stripping the batch prefix made them meet, but it also
+merged the two batches' namespaces -- b1 and b2 both number designs from 0, so
+`b2-explor-s2-fixed-her2_cdrh3_26` silently inherited `b1-novel-s1-her2_cdrh3_26`'s ipTM of 0.916
+and min_ipae of 0.3281. Four candidates were matched that way. Exactly the failure the join fix
+was meant to end, reintroduced one layer up.
+
+Fixed by qualifying score rows **up** into the batch their file belongs to, rather than stripping
+candidates down: `reports/b1_refold_metrics.csv` is batch 1, so its bare `her2_cdrh3_26` is
+registered as `b1-novel-s1-her2_cdrh3_26`, and candidates match on the full id only. Caught
+because a b2 design appeared in the shortlist carrying b1's best-in-batch ipTM, which was too
+good to be true and was.
+
+**The shortlist.** Hard-filter the eligible pool on retaining **G103** -- the closest paratope
+contact to HER2 at 2.42 A -- then rank on contacts kept, novelty margin and the NetSolP floor.
+175 of 211 eligible designs mutate G103 away, so this cuts 211 to **35**, which is ~9 minutes of
+refold instead of ~50 and leaves 20 slots a 1.75x selection.
+
+The striking part: **batch 2 supplies 31 of the 35, batch 1 only 4.** Batch 1 has 141 eligible
+designs to batch 2's 70, and 117 of its 121 scored designs drop G103. So the arm that looked
+worse on eligibility is carrying almost the whole epitope-preservation case. This vindicates the
+14:20 decision to keep both arms, and on a ground nobody had stated: `her2-exploratory` is not
+just buying diversity, it is the only arm producing designs that still touch the hotspot.
+
+Evidence: `designs/shortlist_g103.csv`, `reports/shortlist-*-eligible.csv`, derived by
+`scripts/shortlist.py`. G103 retention cross-checks against the paratope tables' own
+`g103_kept` column on 190 of 190 rows.
+
+Confidence: high on the arithmetic. Medium on the choice of G103 as the hard filter -- it is one
+contact, chosen because it is the closest and because the paratope stage already tracks it. A
+design that loses G103 but keeps several others is not necessarily worse, and if the refold comes
+back cheap we should score the other 176 too rather than trust this cut.

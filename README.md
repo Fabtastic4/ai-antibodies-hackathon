@@ -2,6 +2,12 @@
 
 Team **fab-tastic-four** / `team-4`, 6 people.
 
+> **Status report, in plain language: [`docs/status-eli5.html`](docs/status-eli5.html)** — open it in a
+> browser. Where we are, why our best-gripping designs were rejected, and what the 525k measured
+> CDRH3s say about where to look next. Every chart is drawn from
+> [`reports/b1_novelty_distance.json`](reports/b1_novelty_distance.json); each one has a
+> "grown-up version" line under it with the actual metrics.
+
 Two different events — do not blur them:
 
 - **09:30 — "Opening: welcome, task & mentor intro"** (event-site schedule; the participant guide says

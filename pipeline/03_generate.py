@@ -413,7 +413,8 @@ def main(argv=None) -> int:
 
     if not args.weights:
         args.weights = pick_weights(args.track)
-    if args.weights in WEIGHTS and WEIGHTS[args.weights].get("redesigns_cdrh3_only") and args.sequence_tsr_k is None:
+    if (not args.from_sequences and args.weights in WEIGHTS
+            and WEIGHTS[args.weights].get("redesigns_cdrh3_only") and args.sequence_tsr_k is None):
         print("note: {0} redesigns CDRH3 only. Without --sequence-tsr-k the task PDF's measured "
               "'conservative' setting applies, where 0% of designs passed the novelty filter."
               .format(args.weights), file=sys.stderr)

@@ -38,3 +38,10 @@ data/**/*.gz
 data/bucket/committable.tar.gz
 data/bucket/extracted/**/*.csv.gz
 nebius-runs/
+
+# A local full copy of the bucket, ~5 GB, if one is made outside data/bucket/
+# (scripts/vm_inventory_data.sh syncs to $HOME/hackathon-data on the VM; issue #5).
+# The tables are regenerable from s3://apheris-oslo-hackathon, so only the fetch
+# manifest - the record of which copy a number came from - is worth versioning.
+hackathon-data/*
+!hackathon-data/fetch_manifest.json

@@ -66,12 +66,36 @@ PASS, FAIL, UNKNOWN = "pass", "fail", "indeterminate"
 # --weight and the choice is recorded in the output.
 DEFAULT_WEIGHTS = {"min_ipae": 1.0, "iptm": 1.0, "binder_plddt": 1.0}
 
-# Direction per score. Must agree with 04_score.py.
+# Direction per score. Must agree with 04_score.py and thermostability.py.
 HIGHER_IS_BETTER = {
     "min_ipae": False, "iptm": True, "binder_plddt": True, "ipsae": True,
     "aggrescan3d": False, "soluprot": True, "netsolp": True, "mpnn_soluble": True,
+    # thermostability axis (pipeline/thermostability.py, GitHub issue #10). Only
+    # the two terms we compute ourselves have a direction our sources settle:
+    # both are distances from a stated reference sequence, so the direction is
+    # true by construction rather than by assumption.
+    "framework_mutations": False, "framework_identity": True,
+    "esm2_pll_per_residue": True,
 }
 DEV_COLUMNS = ("aggrescan3d", "soluprot", "netsolp", "mpnn_soluble")
+STABILITY_COLUMNS = ("framework_mutations", "framework_identity",
+                     "vh_vl_interface_ddg", "esm2_pll_per_residue", "esm2_variant_score")
+
+# Scores we can RECORD but must not RANK on, because our sources do not state
+# which direction is better. Ranking on a guessed sign silently inverts the
+# list, and only the top few designs are ever tested, so this is the most
+# expensive kind of mistake available here. Move a score into HIGHER_IS_BETTER
+# once someone confirms its convention - and say where they confirmed it.
+DIRECTION_UNCONFIRMED = {
+    "vh_vl_interface_ddg":
+        "stab-ddg's reference does not state whether a stabilising mutation is "
+        "negative or positive. Confirm with `python3 forge.py schema stab-ddg` or a "
+        "known-stabilising control, then add it to HIGHER_IS_BETTER.",
+    "esm2_variant_score":
+        "the sign convention of esm2-650m `score-variants` is not documented in our "
+        "sources. Confirm with `python3 forge.py schema esm2-650m`, then add it to "
+        "HIGHER_IS_BETTER.",
+}
 
 
 def check(status: str, detail: str, *, source: str) -> dict:
@@ -433,6 +457,21 @@ def rank_candidates(recs: list, weights: dict) -> list:
         tiebreak, because the task PDF gives no threshold for any of them.
     """
     used = {k: w for k, w in weights.items() if w}
+    # Defence in depth: the CLI already refuses these, but rank_candidates is
+    # importable and HIGHER_IS_BETTER.get(name, True) would silently treat an
+    # unknown direction as "higher is better" and order the list backwards.
+    guessed = sorted(k for k in used if k in DIRECTION_UNCONFIRMED)
+    if guessed:
+        raise ValueError(
+            "cannot rank on {0}: direction unconfirmed, so the ordering would be a "
+            "guess. See DIRECTION_UNCONFIRMED in this file.".format(", ".join(guessed)))
+    bad_w = sorted(k for k, w in used.items()
+                   if w != w or w in (float("inf"), float("-inf")) or w < 0)
+    if bad_w:
+        raise ValueError(
+            "weights must be finite and >= 0; got {0}. sum(w) is the divisor in this "
+            "function, so a negative weight inverts every other term.".format(
+                ", ".join("{0}={1}".format(k, used[k]) for k in bad_w)))
     ranges = {}
     for name in used:
         vals = [v for v in (score_value(r, name) for r in recs) if v is not None]
@@ -473,6 +512,8 @@ COLUMNS = [
     "rank", "candidate_id", "format", "track_intent", "abguard_track", "verdict",
     "filter_source", "rank_score", "min_ipae", "iptm", "binder_plddt",
     "aggrescan3d", "soluprot", "netsolp", "mpnn_soluble",
+    "framework_mutations", "framework_identity", "vh_vl_interface_ddg",
+    "esm2_pll_per_residue", "esm2_variant_score",
     "total_length_aa", "n_cysteines", "missing_scores",
     "generator", "model_image", "weights", "seed", "pipeline_version", "generated_at",
 ]
@@ -500,7 +541,7 @@ def row_for(rec: dict, verdict: str, filter_source: str, abguard_track, reasons)
         "generated_at": prov.get("timestamp"),
         "reasons": "; ".join(reasons or []),
     }
-    for name in ("min_ipae", "iptm", "binder_plddt") + DEV_COLUMNS:
+    for name in ("min_ipae", "iptm", "binder_plddt") + DEV_COLUMNS + STABILITY_COLUMNS:
         row[name] = score_value(rec, name)
     return row
 
@@ -551,9 +592,28 @@ def main(argv=None) -> int:
         if "=" not in item:
             raise SystemExit("--weight takes NAME=VALUE, got {0!r}".format(item))
         k, v = item.split("=", 1)
-        if k.strip() not in HIGHER_IS_BETTER:
+        k = k.strip()
+        if k in DIRECTION_UNCONFIRMED:
+            raise SystemExit(
+                "refusing to rank on {0!r}: its direction is unconfirmed.\n  {1}\n"
+                "  It is still recorded as a column in the output.".format(
+                    k, DIRECTION_UNCONFIRMED[k]))
+        if k not in HIGHER_IS_BETTER:
             raise SystemExit("unknown score {0!r}; known: {1}".format(k, ", ".join(sorted(HIGHER_IS_BETTER))))
-        weights[k.strip()] = float(v)
+        try:
+            w = float(v)
+        except ValueError:
+            raise SystemExit("--weight {0}: {1!r} is not a number".format(k, v)) from None
+        # A negative weight is not "deprioritise": rank_candidates divides by
+        # sum(w), so one large enough to turn that denominator negative flips the
+        # sign of every other term and inverts the submission order silently.
+        # Direction belongs in HIGHER_IS_BETTER, never in a weight's sign.
+        if w != w or w in (float("inf"), float("-inf")) or w < 0:
+            raise SystemExit(
+                "--weight {0}={1}: weights must be finite and >= 0. To flip a score's "
+                "direction, change HIGHER_IS_BETTER; a negative weight would invert the "
+                "whole ranking, not just this term.".format(k, v))
+        weights[k] = w
 
     out_dir = os.path.dirname(os.path.abspath(args.out)) or "."
     work_dir = os.path.join(out_dir, "filter_work")
@@ -675,10 +735,38 @@ def main(argv=None) -> int:
                   "immunum, which we do not have. So eligible=0 is the normal result here and "
                   "ranked.csv is header-only. A non-empty ranked.csv needs either the real abguard "
                   "(--abguard-cmd) or --include-unverified.")
-        incomplete = sum(1 for r in rows if r["rank_score"] is None)
+        # Count over the POOL, not the truncated table: a design whose score was
+        # missing sorts last, so it is the first to fall past --top and would
+        # never be counted here. Silence then looks like "everything scored".
+        incomplete = sum(1 for r in pool if r.get("_rank_score") is None)
         if incomplete:
-            print("{0} row(s) have no rank_score because a ranking score is missing; they sort "
-                  "last and are not imputed.".format(incomplete))
+            which = sorted({s for r in pool if r.get("_rank_score") is None
+                            for s in (r.get("_missing_scores") or [])})
+            dropped = sum(1 for r in pool[args.top:] if r.get("_rank_score") is None)
+            print("{0} candidate(s) have no rank_score because a weighted score is missing"
+                  "{1}; they sort last and are not imputed.{2}".format(
+                      incomplete,
+                      " (" + ", ".join(which) + ")" if which else "",
+                      " {0} of them fell past --top {1} and are NOT in the table.".format(
+                          dropped, args.top) if dropped else ""))
+            # A weighted term that is structurally null for one whole track
+            # removes that track from the submission without failing anything.
+            by_track: dict = {}
+            for r in pool:
+                by_track.setdefault(r.get("track_intent") or "unknown", []).append(r)
+            for track, recs_t in sorted(by_track.items()):
+                if not recs_t or any(r.get("_rank_score") is not None for r in recs_t):
+                    continue
+                # Only worth saying when the nullness is TRACK-SPECIFIC. If no
+                # candidate anywhere scored, the count above already said so and
+                # a per-track line is noise.
+                others_scored = any(r.get("_rank_score") is not None
+                                    for t, rs in by_track.items() if t != track for r in rs)
+                if others_scored:
+                    print("  WARNING: every {0} candidate ({1}) lacks a weighted score while "
+                          "other tracks have one, so this whole track sorts last - possibly "
+                          "because a weighted term only the other track can produce. Rank "
+                          "within track instead.".format(track, len(recs_t)))
         print("wrote " + ranked_path)
         print("wrote " + os.path.abspath(rej_path))
         print("wrote " + man_path)

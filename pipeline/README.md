@@ -156,9 +156,12 @@ not scores.
 
 **`ranked.csv`** — the submission table, up to 20 rows: rank, id, format,
 abguard track and verdict, `filter_source`, `rank_score`, the three interface
-scores, the four developability scores, length, cysteine count, missing scores,
-and generator / model_image / weights / seed / pipeline_version / timestamp on
-every row. `submission_manifest.json` records the hard limits applied, the
+scores, the four developability scores, **the five thermostability columns**
+(`framework_mutations`, `framework_identity`, `vh_vl_interface_ddg`,
+`esm2_pll_per_residue`, `esm2_variant_score` — see
+[`thermostability.py`](thermostability.py)), length, cysteine count, missing
+scores, and generator / model_image / weights / seed / pipeline_version /
+timestamp on every row. `submission_manifest.json` records the hard limits applied, the
 ranking weights and the bucket counts.
 
 ## Hard filters — stage 05, before any ranking
@@ -235,6 +238,18 @@ min-max normalised across the candidate set and averaged with equal weights.
   `--weight min_ipae=2`; the weights used are written into the manifest.
 - `rank_score` orders designs within one run. It is not a quantity and is not
   comparable between runs.
+- **Thermostability terms (stage 04b).** Three are weightable:
+  `framework_mutations` (lower better), `framework_identity` and
+  `esm2_pll_per_residue`. Two are **recorded as columns but refused as ranking
+  terms** — `vh_vl_interface_ddg` and `esm2_variant_score` — because our sources
+  do not state which sign is stabilising; see `DIRECTION_UNCONFIRMED` in
+  `05_filter_rank.py`. Weights must be finite and `>= 0`: direction belongs in
+  `HIGHER_IS_BETTER`, not in a weight's sign.
+- **`framework_mutations` is null for de novo** (no parent to measure drift
+  from), so weighting it in a mixed-track run sends every de novo design to the
+  bottom — not because they are worse, but because the term does not exist for
+  them. The stage now warns when a weighted score is null for a whole track.
+  Rank within track, or weight it only in an optimisation-only run.
 - A candidate missing any weighted score gets `rank_score` null and sorts last,
   flagged in `missing_scores`. Nothing is imputed — an imputed score is a
   fabricated score.

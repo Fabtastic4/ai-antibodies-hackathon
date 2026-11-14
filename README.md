@@ -2,11 +2,10 @@
 
 Team **fab-tastic-four** / `team-4`, 6 people.
 
-> **Status report, in plain language: [`docs/status-eli5.html`](docs/status-eli5.html)** — open it in a
-> browser. Where we are, why our best-gripping designs were rejected, and what the 525k measured
-> CDRH3s say about where to look next. Every chart is drawn from
-> [`reports/b1_novelty_distance.json`](reports/b1_novelty_distance.json); each one has a
-> "grown-up version" line under it with the actual metrics.
+> **Campaign status report: [`docs/status-report.html`](docs/status-report.html)** — open it in a
+> browser. The funnel from 400 designs to 20 slots, the novelty/affinity trade-off that shapes the
+> whole task, the measured SPR ceiling, and what is actually blocking the submission. Figures are
+> computed from [`reports/`](reports/) by [`scripts/novelty_distance.py`](scripts/novelty_distance.py).
 
 Two different events — do not blur them:
 

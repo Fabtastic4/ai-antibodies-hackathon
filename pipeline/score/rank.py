@@ -30,7 +30,9 @@ SUBMISSION_COLS = [
 REQUIRED = {
     "min_ipae": "axis 1 (binding) - boltz2 co-fold interface error, stage 5 refold",
     "contacts_kept": "axis 2 (epitope) - paratope proxy, stage 2",
-    "predicted_ddg": "axis 3 (thermostability) - stab-ddg, not yet run",
+    "predicted_ddg": "axis 3 (thermostability) - NO hosted thermostability predictor exists; "
+                     "stab-ddg is BINDING ddG. Whatever fills this column is a proxy and must "
+                     "name itself in thermostability_basis. Not yet run",
 }
 
 TZ_LIGHT = ("DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSRSG"
@@ -50,6 +52,11 @@ def main():
                     help="per-batch paratope table; repeatable, batches are pooled")
     ap.add_argument("--refold", default="reports/batch1-refold.csv")
     ap.add_argument("--ddg", default="reports/batch1-ddg.csv")
+    # Developability tables are keyed on sequence_id, not design_id, and live in their own
+    # files. Without these the netsolp/liability columns silently fell through to 'n/a' even
+    # though reports/*-solubility.csv held a score for every design. Repeatable, like --paratope.
+    ap.add_argument("--solubility", action="append", default=None)
+    ap.add_argument("--liability", action="append", default=None)
     ap.add_argument("--out", default="designs/submission.csv")
     ap.add_argument("--slots", type=int, default=20)
     ap.add_argument("--seed", default="20261114")
@@ -74,6 +81,18 @@ def main():
 
     refold = {r.get("design_id"): r for r in read_csv(a.refold)}
     ddg = {r.get("design_id"): r for r in read_csv(a.ddg)}
+
+    # sequence_id in the developability tables == design_id in the paratope table.
+    solub = {}
+    for t in (a.solubility or []):
+        for r in read_csv(t):
+            solub[r.get("sequence_id")] = r
+    liab = {}
+    for t in (a.liability or []):
+        for r in read_csv(t):
+            liab[r.get("sequence_id")] = r
+    if solub:
+        print(f"candidates with a solubility score: {len(solub)}")
 
     if not para:
         print(f"no paratope rows from {tables} - run stage 2 first", file=sys.stderr)
@@ -123,6 +142,8 @@ def main():
         for i, r in enumerate(ranked, 1):
             rf = refold.get(r["design_id"], {})
             dg = ddg.get(r["design_id"], {})
+            sb = solub.get(r["design_id"], {})
+            lb = liab.get(r["design_id"], {})
             kept = r.get("contacts_kept", "0")
             w.writerow({
                 "track": "optimisation",
@@ -133,7 +154,8 @@ def main():
                 # contacts retained. Not the competitive binding assay.
                 "epitope_overlap_frac": f"{int(kept)/4:.2f}",
                 "thermostability_basis": dg.get("thermostability_basis", "not yet measured"),
-                "netsolp_solubility_min": r.get("netsolp_solubility_min", "n/a"),
+                "netsolp_solubility_min": sb.get("netsolp_solubility_min",
+                                                 r.get("netsolp_solubility_min", "n/a")),
                 "design_id": r["design_id"],
                 "format": "fab",
                 "sequence": r.get("heavy_sequence", ""),
@@ -147,7 +169,9 @@ def main():
                 "iptm": rf.get("iptm", "n/a"),
                 "ipsae": rf.get("min_ipae", "n/a"),
                 "predicted_ddg": dg.get("predicted_ddg", "n/a"),
-                "liability_flags": r.get("liability_flags", "n/a"),
+                "liability_flags": lb.get("liability_flags",
+                                          sb.get("solubility_flag",
+                                                 r.get("liability_flags", "n/a"))),
                 "cysteine_count": r.get("heavy_sequence", "").count("C"),
                 "rank": i,
                 "reason_for_selection": (

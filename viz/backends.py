@@ -665,8 +665,9 @@ def predict_japanfold(heavy: str, light: str = "", design_id: str | None = None,
                          epitope_guidance=epitope_guidance)
             if out.get("status") != "succeeded":
                 raise RuntimeError(out.get("error") or out.get("status") or "fold failed")
-            res = out.get("results") or {}
-            sc = res.get("scores") or res.get("metrics") or {}
+            # japanfold.fold() reads the per-target row itself and hands back a flat
+            # `scores` dict; the raw results stay under out["results"] for provenance.
+            sc = out.get("scores") or {}
             lane_model = f"japanfold:{model}" + (" +epitope-guidance" if epitope_guidance else "")
             basis = (f"MEASURED: JapanFold {model} co-fold of VH+VL with HER2"
                      + (", sampling steered onto the 19 epitope residues" if epitope_guidance else ""))
@@ -690,6 +691,12 @@ def predict_japanfold(heavy: str, light: str = "", design_id: str | None = None,
             if out.get("plddt") is not None:
                 base["scores"]["af2ig_plddt"] = score(out["plddt"], measured=True,
                                                       basis=out["basis"], unit="pLDDT")
+            if out.get("ipsae") is not None:
+                # Ours, from the job's PAE matrix -- so it carries its own basis, not the
+                # service's. The service returns the matrix and no ipSAE of its own.
+                base["scores"]["ipsae"] = score(
+                    out["ipsae"], measured=True,
+                    basis=out.get("ipsae_basis") or "locally computed from the PAE matrix")
             base["japanfold"] = {k: v for k, v in out.items() if k != "scores_raw"}
     except Exception as exc:                                   # noqa: BLE001
         base["lane_error"] = f"{type(exc).__name__}: {exc}"
@@ -744,9 +751,16 @@ def lane_status() -> list[dict]:
                             f"(get it at {J.TOKEN_URL})")
         else:
             jf["ready"] = True
-            bal = (st.get("account") or {})
-            jf["detail"] = ("af2ig gives the ipTM + interface pAE the hosted lane cannot; "
-                            "~$0.005/design. " + (f"balance {bal}" if bal else ""))
+            acct = st.get("account") or {}
+            bal = acct.get("balance", acct.get("balance_usd"))
+            jf["balance_usd"] = bal
+            jf["key_source"] = st.get("key_source")
+            jf["detail"] = (
+                "af2ig gives the ipTM + interface pAE the hosted lane cannot, ~$0.0004 a "
+                "design in one batched job"
+                + (f"; balance ${bal}" if bal is not None else "")
+                + (f"; {st['fleet']['busy']}/{st['fleet']['chips']} chips busy"
+                   if (st.get("fleet") or {}).get("chips") is not None else ""))
     except Exception as exc:                                   # noqa: BLE001
         jf["detail"] = f"client error: {exc}"
 

@@ -25,8 +25,47 @@ every number works without it, only the 3D panel needs the network.
 | Provenance | which file every number came from |
 
 In the viewer: HER2 epitope residues the binder reaches are **green**, the ones it misses are
-**amber**, CDRH3 is **orange**, substituted side chains are **red** sticks labelled e.g. `G100D`.
-Toggles for the antigen surface, the light chain, contact lines, and colour-by-pLDDT.
+**amber**, CDRH3 is **orange**, substituted side chains are **red** sticks labelled e.g. `G100D`,
+the redesigned heavy chain is **blue** and the unchanged light chain is **violet**. Toggles for
+the antigen surface, the light chain, contact lines, and colour-by-pLDDT.
+
+The palette is defined once, in `static/style.css` `:root`, and `app.js` reads it back from
+there — so a colour is changed in one place and the 3D view, the legend and the CSS swatches
+cannot drift apart. The light chain used to be `#7d8da0`, a hair from the antigen's own pale
+grey, which on a projector made the light chain and HER2 read as one object.
+
+## Two views
+
+A tab in the header switches between them:
+
+* **design review** — the three-column screen above: one design at a time, in 3D.
+* **what we built** — the whole project on one page: the three judged axes with their real
+  coverage, which designs are *not* folded and why, the pipeline stage by stage, every table
+  with its row count, and the JapanFold lane with its live job list. It is a read-only pass
+  over the repo (`viz/overview.py`, also runnable as `python3 viz/overview.py`), so it costs
+  nothing and every path on it can be opened while it is on screen.
+
+Coverage there is counted by **joining against the candidate pool**, never by counting rows in
+a score table — a table full of ids that join to nothing would otherwise read as full
+coverage, which is the blindness `pipeline/score/rank.py` was written to fix.
+
+## Two designs have no structure, and the viewer says so
+
+`designs/submission.csv` has 20 rows; `results/cofold/` holds 18 complexes. The missing two,
+`b2-explor-s2-fixed-her2_cdrh3_26` and `…_67`, had their hosted Boltz-2 co-folds **fail** on
+the platform (`EXECUTION_FAILED`, "inference outcome unknown (HTTP 000, no response
+captured)") — the platform states its own failure does not implicate the inputs. Nobody
+noticed because every `nebius-runs/*.json` record is written at submit time saying `queued`
+and was never re-polled; `scripts/reconcile_runs.py` now corrects that (21 succeeded, 2
+failed).
+
+This matters to the af2ig lane specifically: **af2ig scores a complex you already have**, so
+on those two it can only fail. The lane picker disables it for a design with no structure,
+says why, and pre-selects the OpenFold3 co-fold that would fix it:
+
+```bash
+python3 viz/japanfold.py --fold b2-explor-s2-fixed-her2_cdrh3_67 --model openfold3 --yes
+```
 
 ## The improvement number, and what it is honestly comparing
 
@@ -89,7 +128,17 @@ Also available and relevant: **`openfold3`** (the OpenFold Consortium model —
 independent way to satisfy it) and **`opendde-abag`**, an antibody–antigen checkpoint that
 accepts `site` constraints, so a refold can be steered onto the 19 HER2 epitope residues.
 
-Scoring all 18 folded designs with `af2ig` costs about **$0.09** (p90 $0.40), from 990 past jobs.
+### One job, eighteen designs
+
+A prediction runs **each target on its own chip** and is billed per chip-second, so the whole
+submission goes in a single job as a `targets` list: one queue wait instead of eighteen.
+
+That also fixes a price this file used to quote. `GET /v1/models` publishes both per-job and
+per-target figures and warns against the former: af2ig's per-**job** median is $0.0049 across
+a typical batch of 12 targets, i.e. about **$0.0004 a target**. Multiplying the per-job median
+by 18 gave "$0.09", roughly 13x the real figure. Scoring all 18 folded designs is about
+**$0.007** (p90 $0.018), from 990 past jobs. `--estimate` now prices it this way and says
+which basis it used.
 
 ### Setting the key
 
@@ -130,8 +179,46 @@ python3 viz/japanfold.py --check                   # key, reachability, balance
 python3 viz/japanfold.py --models                  # catalogue and prices, free
 python3 viz/japanfold.py --estimate af2ig --all    # price the batch, start nothing
 python3 viz/japanfold.py --score-af2ig b2-explor-s2-fixed-her2_cdrh3_187 --yes
-python3 viz/japanfold.py --score-af2ig --all --yes # the whole submission
+python3 viz/japanfold.py --score-af2ig --all --yes # the whole submission, one job
+python3 viz/japanfold.py --watch JOB_ID            # re-attach to a job already running
+python3 viz/japanfold.py --jobs                    # recent jobs on this key
+python3 viz/japanfold.py --key-help                # every way to set the key
 ```
+
+### What it writes, and what then reads it
+
+A finished run writes `reports/japanfold-af2ig-metrics.csv` **in the same schema as
+`reports/b*_refold_metrics.csv`**, because that is the schema the rest of the pipeline
+already reads. Nothing new has to learn about this lane:
+
+```bash
+python3 pipeline/score/rank.py --refold reports/japanfold-af2ig-metrics.csv --allow-partial
+```
+
+ranks on a measured `min_ipae` instead of refusing, and `viz/catalog.py` picks the same rows
+up on the next page load. Per design it also keeps
+`../results/japanfold/af2ig/<design_id>/` — the exact `input.yaml` sent, `score.json`, the
+PAE matrix, and the job id, so any number on screen can be traced back to the run that
+produced it.
+
+`ipsae` is **computed here, by us**, from the `*_pae.npz` the service returns — JapanFold
+returns the matrix and no ipSAE of its own. Every report of it says so, and the chain split
+is verified against the input before it is computed: if the token axis is not exactly
+`target + binder`, no ipSAE is written rather than a wrong one.
+
+### Live, and resumable
+
+`--score-af2ig` prints a status line that rewrites in place: queue position, chips busy,
+targets done, elapsed. It follows the job with `GET /jobs/{id}?wait=60`, which the service
+holds open until the job ends, so a finished job is seen the moment it finishes and the loop
+never sleeps on a timer. Two of the service's rules are honoured rather than discovered the
+hard way: one account is held on two jobs at a time (another reason for one batched job), and
+a refused hold is the only thing that triggers a sleep, for exactly its `Retry-After`.
+
+Every submit carries an **`Idempotency-Key`**, written to disk *before* the request goes out.
+If a submit times out, re-running it returns the first job instead of starting a second one to
+pay for. And a job is never lost by closing the laptop: `--watch JOB_ID` re-attaches from any
+machine with the same key, downloads the artifacts and writes the same CSV.
 
 ### Spending is gated
 
@@ -149,6 +236,9 @@ median cost. The CLI requires `--yes`. `--estimate`, `--models` and `--check` st
 | `GET /api/structure/<id>` | its co-fold mmCIF |
 | `GET /api/baseline/structure` | 1N8Z, the trastuzumab–HER2 crystal |
 | `GET /api/lanes` | which lanes can run |
+| `GET /api/overview` | what the project produced: axes, gaps, stages, every artifact |
+| `GET /api/jobs` | recent JapanFold jobs on this key (read-only, bills nothing) |
+| `GET /api/job/<id>` | one job's live status, for the progress line |
 | `GET /api/price?model=&n=` | what a run would cost; starts nothing |
 | `POST /api/predict` | `{design_id, lane, mode, model, confirm}` |
 
@@ -160,8 +250,12 @@ viz/
   catalog.py    one record per design, assembled from submission.csv + reports/ + mmCIFs
   backends.py   the prediction contract, the four lanes, mmCIF/PDB readers, the WT baseline
   japanfold.py  JapanFold REST client: af2ig scoring, co-folding, pricing, artifacts
+  overview.py   "what we built": axes, coverage, gaps, artifacts, read off disk
   static/       index.html, app.js (3Dmol), style.css
 ```
+
+`scripts/reconcile_runs.py` belongs to the same honesty: it re-polls every `nebius-runs/*.json`
+and writes the platform's real answer back, keeping `state_at_submit` beside it.
 
 `backends.py` holds the reference constants — `TZ_VH`, the CDRH3 window, the four paratope
 positions, the 19 epitope residues — copied from the scorers with a comment naming the

@@ -94,6 +94,19 @@ def load_catalog(submission: str | pathlib.Path | None = None) -> dict:
             seq = (r.get("binder_sequence") or "").strip()
             if seq:
                 refold_by_seq.setdefault(seq, r)
+
+    # Axis 1 from the JapanFold af2ig lane, written by viz/japanfold.py in the same
+    # refold-metrics schema. This table is the one case where an id join is exact rather
+    # than dangerous: its rows are produced FROM results/cofold/<design_id>/model.cif, so
+    # the id is the submission's own and cannot be a bare number from another batch. Its
+    # `binder_sequence` is read off that same structure, so the sequence join below finds
+    # it too; keying both ways means a row is used only if the id and the sequence agree.
+    af2ig_by_id = _by_key(_read(REPORTS / "japanfold-af2ig-metrics.csv"), "query_id",
+                          "design_id")
+    for r in af2ig_by_id.values():
+        seq = (r.get("binder_sequence") or "").strip()
+        if seq:
+            refold_by_seq.setdefault(seq, r)
     contacts = _by_key(_read(REPORTS / "cofold-contacts.csv"), "design_id")
     novelty = _by_key([r for p in sorted(REPORTS.glob("*-novelty.csv")) for r in _read(p)],
                       "design_id")
@@ -148,23 +161,39 @@ def load_catalog(submission: str | pathlib.Path | None = None) -> dict:
                 "cdrh3_plddt": None,
             }
 
-        # Axis 1: measured on the VM, or honestly absent.
-        rf = refold_by_seq.get(heavy, {})
+        # Axis 1: measured by the af2ig lane, measured on the VM, or honestly absent.
+        # The af2ig row wins when both exist: it was computed on THIS design's own
+        # co-fold, deterministically, and the id and the sequence both agree.
+        jf = af2ig_by_id.get(did, {})
+        if jf and (jf.get("binder_sequence") or "").strip() not in ("", heavy):
+            jf = {}          # id says one design, sequence says another: trust neither
+        rf = jf or refold_by_seq.get(heavy, {})
         axis1 = {
             "min_ipae": _num(rf.get("min_ipae")) if rf else _num(row.get("min_ipae")),
             "iptm": _num(rf.get("iptm")) if rf else _num(row.get("iptm")),
+            "ipsae": _num(rf.get("ipsae")) if rf else _num(row.get("ipsae")),
             "binder_plddt": _num(rf.get("binder_plddt")) if rf else None,
             "binder_ptm": _num(rf.get("binder_ptm")) if rf else None,
             "measured": bool(rf),
-            "basis": (f"MEASURED on the VM: RFD4-Proteina refold-score, model "
-                      f"{rf.get('model', '?')}, binder chain {rf.get('binder_chain', '?')} "
-                      f"vs target {rf.get('target_chains', '?')}; matched to this design by "
-                      f"heavy sequence, not by id"
-                      if rf else
-                      "NOT MEASURED for this design. reports/b1_refold_metrics.csv holds real "
-                      "min_ipae/iptm, but for a different candidate set -- the trailing ids "
-                      "collide across runs, so it is not joined. Run the JapanFold af2ig lane "
-                      "or a VM refold on these exact sequences to fill it."),
+            "lane": ("japanfold:af2ig" if jf else ("vm:refold-score" if rf else None)),
+            "job_id": rf.get("job_id") or None,
+            "basis": (
+                f"MEASURED: JapanFold af2ig (AlphaFold2 initial-guess) on this design's own "
+                f"Boltz-2 co-fold, {rf.get('binder_chain', '?')} vs {rf.get('target_chains', '?')}, "
+                f"job {rf.get('job_id', '?')}. Deterministic: no MSA, no sampling, so the "
+                f"same complex gives the same ipTM and interface pAE. "
+                + (f"ipSAE {rf.get('ipsae')} was computed locally from the job's PAE matrix."
+                   if rf.get("ipsae") else "")
+                if jf else
+                f"MEASURED on the VM: RFD4-Proteina refold-score, model "
+                f"{rf.get('model', '?')}, binder chain {rf.get('binder_chain', '?')} "
+                f"vs target {rf.get('target_chains', '?')}; matched to this design by "
+                f"heavy sequence, not by id"
+                if rf else
+                "NOT MEASURED for this design. reports/b1_refold_metrics.csv holds real "
+                "min_ipae/iptm, but for a different candidate set -- the trailing ids "
+                "collide across runs, so it is not joined. Fill it with:\n"
+                "  python3 viz/japanfold.py --score-af2ig --all --yes"),
         }
 
         p_row = paratope.get(did, {})

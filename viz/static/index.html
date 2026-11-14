@@ -15,7 +15,16 @@
     <span class="sub" id="hdr-sub">loading…</span>
     <span class="spacer"></span>
     <span class="sub" id="hdr-base"></span>
+    <nav class="views" id="view-tabs">
+      <button class="viewtab on" data-view="review">design review</button>
+      <button class="viewtab" data-view="overview">what we built</button>
+    </nav>
   </header>
+
+  <!-- ───────────── overview: the whole project, read off disk ───────────── -->
+  <section id="overview-view" hidden>
+    <div id="ov-body">reading the repo…</div>
+  </section>
 
   <!-- ───────────── designs ───────────── -->
   <nav class="col" id="left">
@@ -71,6 +80,7 @@
       <h3>Run inference</h3>
       <div class="body">
         <div id="lanes"></div>
+        <div id="lane-note"></div>
         <select class="lane-pick" id="lane-pick"></select>
         <button class="run" id="run-btn">run</button>
         <button class="run ghost" id="run-all-btn">price this for all designs</button>

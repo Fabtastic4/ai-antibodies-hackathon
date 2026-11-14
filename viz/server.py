@@ -12,7 +12,10 @@ Routes
     GET  /api/structure/<id>       its co-fold mmCIF (text/plain, for 3Dmol)
     GET  /api/baseline/structure   1N8Z, the trastuzumab-HER2 crystal
     GET  /api/lanes                which inference lanes can run right now
+    GET  /api/overview             what the project produced: axes, stages, every artifact
     GET  /api/price?model&n        what a run would cost, starts nothing
+    GET  /api/jobs                 recent JapanFold jobs on this key, live (reads, no spend)
+    GET  /api/job/<id>             one job's live status, for the progress panel
     POST /api/predict              {heavy, light, lane, design_id, mode, model}
 
 Only POST /api/predict can spend money, only on lane=japanfold or lane=vm, and only when
@@ -89,6 +92,31 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
             if path == "/api/lanes":
                 return self._send(200, B.lane_status())
+
+            if path == "/api/overview":
+                # Read-only pass over the repo: no network, nothing billed, so it is safe
+                # to leave open on a projector and refresh whenever.
+                import overview as O
+                return self._send(200, O.build())
+
+            if path == "/api/jobs":
+                # Live, but read-only: listing jobs starts nothing and bills nothing.
+                import japanfold as J
+                try:
+                    return self._send(200, {"jobs": J.jobs(
+                        int((q.get("limit") or ["10"])[0]))})
+                except J.JapanFoldError as exc:
+                    return self._fail(502, str(exc))
+
+            if path.startswith("/api/job/"):
+                import japanfold as J
+                jid = urllib.parse.unquote(path.split("/api/job/", 1)[1])
+                try:
+                    # wait=0: answer now. The browser polls; it must never hold a socket
+                    # open for a minute, which is what the CLI's ?wait=60 is for.
+                    return self._send(200, J.job(jid))
+                except J.JapanFoldError as exc:
+                    return self._fail(502, str(exc))
 
             if path == "/api/price":
                 model = (q.get("model") or ["af2ig"])[0]

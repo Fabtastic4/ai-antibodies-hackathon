@@ -10,9 +10,27 @@
  * arrives with the basis string that says whether it was measured or stood in for.
  */
 
+/* The palette is defined once, in style.css :root, and read back from there. Keeping the
+ * literals here as well is how the 3D view and the legend drift apart from the CSS
+ * swatches, so each colour has exactly one home and the fallbacks below only matter if
+ * the stylesheet failed to load at all. */
+const cssVar = (name, fallback) => {
+  try {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  } catch (e) {
+    return fallback;
+  }
+};
+
 const COL = {
-  heavy: '#58a6ff', light: '#7d8da0', antigen: '#d8dee6',
-  loop: '#ff9f40', mut: '#ff5d5d', hit: '#3fd17a', miss: '#f0c04a',
+  heavy: cssVar('--heavy', '#58a6ff'),
+  light: cssVar('--light', '#a78bfa'),
+  antigen: cssVar('--antigen', '#d8dee6'),
+  loop: cssVar('--loop', '#ff9f40'),
+  mut: cssVar('--mut', '#ff5d5d'),
+  hit: cssVar('--hit', '#3fd17a'),
+  miss: cssVar('--miss', '#f0c04a'),
 };
 
 const state = {
@@ -114,7 +132,40 @@ function select(id) {
   renderMutations();
   renderImprovement();
   renderScores();
+  refreshLaneChoices();
   loadStructure();
+}
+
+/* af2ig scores a complex you ALREADY have, so on a design whose co-fold failed it can only
+ * fail too -- with an error that arrives after a round trip and reads like a bug in the
+ * lane. Two of the twenty designs are in exactly that state (their hosted Boltz-2 jobs
+ * failed), so the picker says so up front and points at the fold that would fix it, rather
+ * than offering a run that cannot work. */
+function refreshLaneChoices() {
+  const d = state.design;
+  const pick = $('#lane-pick');
+  const note = $('#lane-note');
+  if (!d || !pick) return;
+  const folded = !!(d.structure && d.structure.available);
+
+  for (const opt of pick.options) {
+    const needsComplex = opt.value === 'japanfold:af2ig';
+    opt.disabled = needsComplex && !folded;
+    opt.textContent = opt.textContent.replace(/ — needs a co-fold first$/, '');
+    if (opt.disabled) opt.textContent += ' — needs a co-fold first';
+  }
+  if (!folded && pick.selectedOptions[0] && pick.selectedOptions[0].disabled) {
+    pick.value = 'japanfold:fold:openfold3';      // the one that would fix it
+  }
+  if (note) {
+    note.innerHTML = '';
+    if (!folded) {
+      note.append(el('div', 'basis synthetic',
+        'This design has no co-folded complex, so there is nothing for af2ig to score: '
+        + 'its hosted Boltz-2 co-fold failed on the platform, not on its sequence. '
+        + 'Co-fold it first (OpenFold3 below, or see "what we built" for the run id).'));
+    }
+  }
 }
 
 /* ───────────────────────── mutations ───────────────────────── */
@@ -295,11 +346,14 @@ function renderScores() {
       t1.append(tr);
     };
     const head = el('tr', 'sep');
-    head.append(el('th', null, d.axis1.measured ? 'axis 1 — measured' : 'axis 1 — not measured'));
+    head.append(el('th', null, d.axis1.measured
+      ? `axis 1 — measured${d.axis1.lane ? ' · ' + d.axis1.lane : ''}`
+      : 'axis 1 — not measured'));
     head.append(el('td', null, ''));
     t1.append(head);
     row('min interface pAE', d.axis1.min_ipae, ' Å');
     row('ipTM', d.axis1.iptm);
+    row('ipSAE', d.axis1.ipsae);
     row('binder pLDDT (refold)', d.axis1.binder_plddt);
     box.append(t1);
     box.append(Object.assign(
@@ -438,7 +492,7 @@ function paint() {
 
   /* light chain */
   if (s.light) {
-    v.setStyle({ chain: 'L' }, { cartoon: { color: COL.light, opacity: 0.45 } });
+    v.setStyle({ chain: 'L' }, { cartoon: { color: COL.light, opacity: 0.55 } });
   }
 
   /* antigen */
@@ -651,7 +705,7 @@ async function runLane() {
     // Fold the returned scores into the panel.
     d.lane_scores = {};
     for (const [k, s] of Object.entries(res.scores || {})) {
-      if (s.measured && ['iptm', 'interface_pae', 'af2ig_plddt'].includes(k)) {
+      if (s.measured && ['iptm', 'interface_pae', 'ipsae', 'af2ig_plddt'].includes(k)) {
         d.lane_scores[k] = s;
       }
     }
@@ -722,6 +776,250 @@ function renderProvenance() {
     'Co-fold contact counts are not ipTM and not interface pAE. The hosted lane reports ' +
     'neither; the JapanFold af2ig lane does, and labels them as measured when it runs.';
   box.append(n);
+}
+
+/* ───────────────────────── "what we built" ─────────────────────────
+ *
+ * The design panels answer "is this candidate any good". This answers what a demo and an
+ * evaluator both ask first: what exists, what was really measured, and where is the
+ * evidence. /api/overview reads it off disk at request time -- no network, no cost -- so
+ * every path on this screen can be opened and checked while it is on screen.
+ */
+
+let ovLoaded = false;
+let jobTimer = null;
+
+function switchView(which) {
+  const review = which !== 'overview';
+  $('#overview-view').hidden = review;
+  document.getElementById('app').classList.toggle('ov', !review);
+  for (const b of document.querySelectorAll('.viewtab')) {
+    b.classList.toggle('on', b.dataset.view === (review ? 'review' : 'overview'));
+  }
+  if (!review) {
+    if (!ovLoaded) renderOverview();
+    pollJobs();
+    if (!jobTimer) jobTimer = setInterval(pollJobs, 15000);
+  } else if (jobTimer) {
+    clearInterval(jobTimer);          // stop polling the moment it is off screen
+    jobTimer = null;
+  }
+  // 3Dmol sized itself against a container that was display:none while hidden.
+  if (review && state.viewer) setTimeout(() => state.viewer.resize(), 30);
+}
+
+function head(text) {
+  return el('div', 'ov-h', text);
+}
+
+function lede(text, tight) {
+  return el('div', `ov-lede${tight ? ' tight' : ''}`, text);
+}
+
+/** One line of figures. A grid of big-number boxes would say the same thing with more ink. */
+function figures(pairs) {
+  const row = el('div', 'figures');
+  for (const [n, k] of pairs) {
+    if (n === null || n === undefined) continue;
+    const d = el('div');
+    d.append(el('b', null, String(n)));
+    d.append(document.createTextNode(k));
+    row.append(d);
+  }
+  return row;
+}
+
+function ovTable(headers, rows) {
+  const t = el('table', 'ov');
+  const hr = el('tr');
+  for (const h of headers) hr.append(el('th', null, h));
+  t.append(hr);
+  for (const r of rows) {
+    const tr = el('tr');
+    for (const c of r) {
+      const cell = (c && typeof c === 'object') ? c : { v: c };
+      tr.append(el('td', cell.cls || null, String(cell.v ?? '')));
+    }
+    t.append(tr);
+  }
+  return t;
+}
+
+function cmd(text) {
+  const d = el('div', 'cmd', text);
+  d.onclick = () => navigator.clipboard && navigator.clipboard.writeText(text);
+  return d;
+}
+
+async function renderOverview() {
+  const box = $('#ov-body');
+  box.textContent = 'reading the repo…';
+  let o;
+  try {
+    const r = await fetch('/api/overview');
+    if (!r.ok) throw new Error(`/api/overview -> ${r.status}`);
+    o = await r.json();
+  } catch (e) {
+    box.innerHTML = '';
+    box.append(el('div', 'note bad', `could not build the overview: ${e.message}`));
+    return;
+  }
+  ovLoaded = true;
+  box.innerHTML = '';
+  const p = o.project;
+  const a = o.artifacts;
+
+  /* ---- what this is, in figures ---- */
+  box.append(head('The project'));
+  box.append(lede(
+    `${p.title}. Target ${p.target}; parent ${p.parent}. The epitope is ${p.epitope_residues} `
+    + `HER2 residues, defined at ${p.contact_cutoff_A} Å from the crystal.`, true));
+  box.append(figures([
+    [p.n_designs, 'designs submitted'],
+    [p.n_cofolded, 'with a co-folded complex'],
+    [o.baseline.available ? `${o.baseline.n_epitope_hit}/${o.baseline.of}` : null,
+      'wild-type VH epitope reach'],
+    [a.totals.csv_tables, 'score tables'],
+    [a.totals.report_rows.toLocaleString(), 'rows of evidence'],
+    [a.totals.run_records, 'hosted run records'],
+    [a.totals.docs, 'docs'],
+  ]));
+
+  /* ---- the three judged axes ---- */
+  box.append(head('The three judged axes'));
+  box.append(lede(
+    'Coverage is counted by joining against the candidate pool, not by counting rows in a '
+    + 'score table — a table full of ids that join to nothing would otherwise read as full '
+    + 'coverage. Measured, proxy and absent never share a column.'));
+  const ag = el('div', 'axis-grid');
+  for (const ax of o.axes) {
+    const card = el('div', `axis ${ax.state}`);
+    card.append(el('div', 'nm', `${ax.axis}. ${ax.name}`));
+    card.append(el('div', 'unit', ax.unit));
+    const bar = el('div', 'bar');
+    const fill = el('i');
+    fill.style.width = `${Math.round((ax.coverage || 0) * 100)}%`;
+    bar.append(fill);
+    card.append(bar);
+    const cov = el('div', 'cov');
+    cov.append(document.createTextNode(`${ax.n_designs}/${ax.n_total} designs `));
+    cov.append(el('em', null, ax.measured_by.length
+      ? `${ax.state} · ${ax.measured_by.join(', ')}` : ax.state));
+    card.append(cov);
+    if (ax.note) card.append(el('div', 'why', ax.note));
+    for (const e of ax.evidence) card.append(el('div', 'src', e));
+    ag.append(card);
+  }
+  box.append(ag);
+
+  /* ---- the gap, named ---- */
+  if (o.gaps && o.gaps.n_unfolded) {
+    box.append(head(`Not folded — ${o.gaps.n_unfolded} of ${p.n_designs}`));
+    box.append(lede(o.gaps.consequence));
+    box.append(ovTable(['design', 'hosted run', 'why'],
+      o.gaps.unfolded.map((u) => [
+        { v: u.design_id, cls: 'm' },
+        { v: `${u.state}${u.operation_id ? ' · ' + u.operation_id : ''}`, cls: 'm' },
+        { v: u.why, cls: 'what' }])));
+    const fix = o.gaps.unfolded.find((u) => u.fix);
+    if (fix) {
+      box.append(lede('The platform states its own failure does not implicate the inputs, '
+        + 'so these are re-folded on another lane rather than resubmitted into the same '
+        + 'failure:', true));
+      for (const u of o.gaps.unfolded) if (u.fix) box.append(cmd(u.fix));
+    }
+  }
+
+  /* ---- the pipeline ---- */
+  box.append(head('The pipeline'));
+  box.append(ovTable(['stage', 'script', 'what it does'],
+    o.stages.map((s) => [s.stage, { v: s.script, cls: 'm' }, { v: s.what, cls: 'what' }])));
+
+  /* ---- axis 1, live ---- */
+  const j = o.japanfold;
+  box.append(head('Axis 1 — the JapanFold lane'));
+  const st = el('div', 'ov-state');
+  st.innerHTML =
+    `key <span class="${j.key_present ? '' : 'bad'}">`
+    + `${j.key_present ? 'loaded' : 'missing'}</span> · `
+    + `<span>${j.base}</span> · `
+    + `<span class="${j.n_measured ? '' : 'none'}">${j.n_measured}</span> design(s) measured`
+    + (j.with_ipsae ? ` · <span>${j.with_ipsae}</span> with a local ipSAE` : '')
+    + ` · <span id="ov-jobs" class="none">jobs …</span>`;
+  box.append(st);
+  if (j.key_source) {
+    box.append(lede(`Key read from ${j.key_source}. The value is never printed, logged or `
+      + 'committed.', true));
+  }
+  box.append(lede(j.n_measured
+    ? `Measured numbers land in ${j.metrics_csv}, in the same schema the ranker already `
+      + 'reads, so axis 1 flows into the submission without another join.'
+    : 'Nothing measured yet. One batched job scores every co-folded design: each target '
+      + 'runs on its own chip, so it is a single queue wait at about $0.0004 a design.'));
+  box.append(cmd(`${j.commands.estimate}     # free, starts nothing`));
+  box.append(cmd(j.commands.score_all));
+  box.append(cmd(j.commands.rank));
+  const jt = el('div');
+  jt.id = 'ov-jobtable';
+  box.append(jt);
+
+  /* ---- everything on disk ---- */
+  box.append(head('Every table, with its rows'));
+  const tables = [...a.design_tables, ...a.report_tables]
+    .filter((t) => t.rows > 0).sort((x, y) => y.rows - x.rows);
+  box.append(ovTable(['table', 'rows', 'cols'],
+    tables.map((t) => [{ v: t.path, cls: 'm' }, { v: t.rows, cls: 'num' },
+      { v: t.columns, cls: 'num' }])));
+
+  box.append(head('Structures and runs'));
+  box.append(ovTable(['what', 'n', 'where'], [
+    ['co-folded complexes', { v: a.cofold_structures.n, cls: 'num' },
+      { v: a.cofold_structures.path, cls: 'm' }],
+    ['af2ig scores', { v: a.japanfold_scored.n, cls: 'num' },
+      { v: a.japanfold_scored.path, cls: 'm' }],
+    ['JapanFold folds', { v: a.japanfold_folds.n, cls: 'num' },
+      { v: '../results/japanfold/', cls: 'm' }],
+    ['hosted run records', { v: a.nebius_runs.n, cls: 'num' },
+      { v: a.nebius_runs.path, cls: 'm' }],
+  ]));
+
+  box.append(head('What is written down'));
+  box.append(ovTable(['doc', 'first line'],
+    a.docs.map((d) => [{ v: d.path, cls: 'm' }, { v: d.title, cls: 'what' }])));
+
+  box.append(head('Inference lanes'));
+  box.append(ovTable(['lane', 'ready', 'detail'],
+    o.lanes.map((ln) => [ln.lane, { v: ln.ready ? 'yes' : 'no', cls: ln.ready ? '' : 'no' },
+      { v: ln.detail, cls: 'what' }])));
+}
+
+/** Recent jobs on this key. Listing is read-only: it starts nothing and bills nothing. */
+async function pollJobs() {
+  const slot = $('#ov-jobs');
+  if (!slot) return;
+  try {
+    const r = await fetch('/api/jobs?limit=8');
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const { jobs } = await r.json();
+    const active = jobs.filter((x) => ['queued', 'running'].includes(x.status));
+    slot.textContent = `${active.length} job(s) running, ${jobs.length} recent`;
+    slot.className = active.length ? 'live' : 'none';
+    const box = $('#ov-jobtable');
+    if (!box) return;
+    box.innerHTML = '';
+    if (!jobs.length) return;
+    box.append(ovTable(['job', 'status', 'model', 'targets', 'name'],
+      jobs.map((x) => [{ v: x.id, cls: 'm' }, x.status, x.model || '—',
+        { v: x.total ? `${x.done ?? 0}/${x.total}` : '—', cls: 'num' },
+        { v: x.name || '', cls: 'what' }])));
+  } catch (e) {
+    slot.textContent = `jobs: ${e.message}`;
+    slot.className = 'bad';
+  }
+}
+
+for (const b of document.querySelectorAll('.viewtab')) {
+  b.onclick = () => switchView(b.dataset.view);
 }
 
 boot();

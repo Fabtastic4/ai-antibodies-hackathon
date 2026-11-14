@@ -17,6 +17,9 @@ Source labels used below:
 `TASK p<n>` = the official task description PDF, page n.
 `MAP` = the hackathon resource map PDF (first-call timings, 12 Nov).
 `RECIPES` / `SKILL` = the Nebius job client docs in the Slack folder.
+`GUIDE` = the organisers' participant field guide on the event website (printable view). Older
+than the task PDF: where they disagree, `TASK` wins and we say so.
+`SITE` = the event website front page (schedule, FAQ, prizes, judging).
 
 No experimental or model result of ours appears in this file yet. We have not run anything.
 
@@ -36,6 +39,8 @@ Chose: **both tracks, with optimisation first and de novo running in parallel on
 owner**, because:
 - The prize fund (€3000) is split **equally** between the two tracks, €800 / €500 / €200 per
   track, so a track with fewer strong teams is worth the same as the crowded one (`TASK p9`).
+  (The event website front page says "3,000 USD" instead; `TASK p9` is the later and higher
+  authority, so we use €3000. The currency does not change the split or this decision.)
 - Submissions in the two tracks are **evaluated independently**, and we may submit any
   proportion of each (`TASK p8`).
 - We do not choose the track. `abguard` classifies each design by identity to the nearest known
@@ -56,7 +61,11 @@ move Abdelrahman onto it.
 
 ---
 
-## [10:55] Primary generation weight is `her2-novel-2026-11-09`, with `her2-2026-11-07` balanced as the diversity arm
+## [10:55] Primary generation weight is `her2-novel-2026-11-09`, with `her2-2026-11-07` **exploratory** (`--sequence-tsr-k 1`) as the diversity arm
+
+Revised in the pre-pitch fact-check pass: this entry previously named `her2-2026-11-07`
+**balanced** as the diversity arm, contradicting `docs/tools-apheris.md` and its own closing
+paragraph. The decision is now exploratory, in both docs, for the reason given below.
 
 The tension: on the trastuzumab CDRH3 task, the weights that hit known binders are the weights
 that fail the novelty filter. The organisers' own table (`TASK p5–6`):
@@ -72,28 +81,62 @@ that fail the novelty filter. The organisers' own table (`TASK p5–6`):
 Options considered:
 1. `her2-2026-11-07` conservative — best shot at real binders, **0% pass novelty**: every design
    is rejected before it is measured. Unusable as a submission source.
-2. `antibody-2026-10-30` — everything passes novelty, 0% known binders, worst interface error of
-   the HER2-relevant rows at 8.2 Å.
+2. `antibody-2026-10-30` — everything passes novelty, 0% known binders, and **8.2 Å, the second
+   best interface error in the table**: better than all three `her2-2026-11-07` rows (9.1–9.4),
+   worse only than `her2-novel-2026-11-09` (6.8 Å).
 3. `her2-novel-2026-11-09` — 86% pass novelty and the **best interface error in the table,
    6.8 Å**, while still recovering 4% known binders.
 
-Chose: **`her2-novel-2026-11-09` as the primary**, because it is the only row that is good on both
-axes at once, and **`her2-2026-11-07` balanced (`--sequence-tsr-k 2`) as a second, smaller arm**
-for loop diversity, accepting that ~94% of that arm is discarded. `antibody-2026-10-30` is held in
-reserve for anything that needs a CDR other than CDRH3 — the HER2 weights redesign CDRH3 only
-(`TASK p6`).
+Chose: **`her2-novel-2026-11-09` as the primary**, and **`her2-2026-11-07` exploratory
+(`--sequence-tsr-k 1`) as a second, smaller arm** for loop diversity. `antibody-2026-10-30` is
+held in reserve for anything that needs a CDR other than CDRH3 — the HER2 weights redesign CDRH3
+only (`TASK p6`) — and as the de novo fallback, since it is the only row at 100% pass.
+
+Why `her2-novel-2026-11-09` over `antibody-2026-10-30`, now that 8.2 Å is read correctly: the
+conclusion survives, but not on interface error alone. `her2-novel-2026-11-09` beats
+`antibody-2026-10-30` on interface error (6.8 vs 8.2 Å) **and** on known-binder recovery (4% vs
+0%), and the only axis it loses is pass rate (86% vs 100%) — a 14-point tax on a filter we can run
+locally before spending anything. `antibody-2026-10-30` has never recovered a measured binder on
+this task, i.e. it carries no HER2-specific signal; it is a generic antibody model that happens to
+be novel by construction. So it is the fallback, not the primary. 8.2 Å being second best is the
+reason it is a *credible* fallback rather than a bad one.
+
+Why **exploratory**, not balanced, for the diversity arm — the actual decision:
+
+| `her2-2026-11-07` setting | Known binders | Pass novelty | Interface error |
+|---|---|---|---|
+| balanced (`--sequence-tsr-k 2`) | 21% | 6% | 9.1 Å |
+| exploratory (`--sequence-tsr-k 1`) | 0.3% | 74% | 9.1 Å |
+
+- **Interface error is identical** at 9.1 Å. The structural-quality axis does not separate them.
+- **The "known binders" column is not a benefit for anything we submit.** A known binder fails
+  the novelty filter by definition (`TASK p6`), so that column counts designs `abguard` will
+  reject. Balanced's 21% is a measure of how much of its output is ineligible, not of how good it
+  is. It is useful only as a reference set — what the model thinks a binder looks like.
+- **Pass rate is the only axis that decides eligible yield.** Per 100 designs: balanced ~6
+  eligible, exploratory ~74. Same GPU batch, 12× the submittable output.
+
+Exploratory therefore dominates balanced on every axis that maps to a submission. Decided:
+diversity arm is `her2-2026-11-07` **exploratory**, `--sequence-tsr-k 1` (`TASK p5`: k=2 balanced,
+k=1 exploratory). Do not run balanced or conservative for candidates.
 
 Operational consequence, and the reason this is a decision and not a note: **a known binder fails
 the novelty filter, so we filter before we rank** (`TASK p6`). Novelty check is step one of the
 scoring pipeline, not a final sanity check. Ranking a pool that still contains known binders
 wastes the compute we do not have.
 
-Evidence: `TASK p5–6` weight table and the two sentences after it.
+**If this doc and `docs/tools-apheris.md` ever disagree on a weight, a setting or a flag, this
+file wins** — it is the decision record the Judgment score is read from; `tools-apheris.md` is the
+how-to and must be edited to match it.
+
+Evidence: `TASK p5–6` weight table and the two sentences after it; `TASK p5` for the
+`--sequence-tsr-k` values.
 
 Confidence: high on the ordering (it is the organisers' own measurement), low on the absolute
 rates for our settings — the table is their run, not ours. What would change our mind: our own
 abguard pass rate on batch 1. If `her2-novel-2026-11-09` passes well below 86% for us, we shift
-volume to the exploratory setting (74% pass).
+volume to the exploratory arm (74% in their run) and, failing that, to `antibody-2026-10-30`
+(100%, 8.2 Å, no HER2 signal).
 
 ---
 

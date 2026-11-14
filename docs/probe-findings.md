@@ -15,7 +15,7 @@ ipSAE needs the per-residue PAE matrix. No reachable Nebius model documents retu
 |---|---|---|---|---|---|
 | `boltz2` | native ~80 s | **no — explicitly excluded** | **no** | yes | yes |
 | `openfold3` | native ~3 min | not stated | **yes** (skill doc prose) | yes | yes |
-| `chai1` | batch ~4 min | absent | absent | absent | absent |
+| `chai1` | file/submit ~270 s | absent | absent | absent | absent |
 | `alphafold3` | batch | not delivered | file-level only | — | — |
 | `openfold3-openbind` | batch | absent | absent | absent | absent |
 | `protenix-v2` | batch ~20 min | absent | absent | absent | absent |
@@ -24,6 +24,10 @@ The gateway contract states boltz2 "does not expose ... **full-PAE** features", 
 outright "The output has **no ipTM**, so do not report one." Five of six models publish no output
 schema at all, so for those, "which fields come back" is unanswerable until a run returns — that
 absence is itself the finding.
+
+Lane note: `chai1` is a **file-lane submit** model, not batch — `forge.py` registers it as
+`("file", "submit_chai1", "predict", 270)`, i.e. 270 s; the resource map lists it as "submit, 5 min".
+Use 5 min for planning, 270 s is the registered estimate. (`docs/tools-nebius.md` also says 5 min.)
 
 `alphafold3` and `openfold3-openbind` have graph deadlines of 12.5 h and 25 h. **Not reachable before
 18:00.** Do not queue them.
@@ -58,16 +62,68 @@ working before they can start — it is not a `forge.py` job. See [tools-apheris
 
 This was the main argument for prioritising the optimisation track, and it is wrong as stated.
 
-Keeping the framework does preserve most of the molecule — but the eligibility rules force a **≥4-residue
-rewrite of CDRH3**, and CDRH3 carries most of trastuzumab's HER2 contact (heavy chain dominates epitope
-residues 557–593). Rewriting it is exactly the change most likely to move the epitope. **Epitope
-preservation still has to be screened for by co-folding**, on both tracks.
+Keeping the framework does preserve most of the molecule. Two separate things are true, and the old
+version of this section conflated them.
+
+**(a) The eligibility rules do force a ≥4-residue rewrite of CDRH3.** Arithmetic, checkable in 60 s:
+
+- Optimisation designs are valid only with **CDRH3 identity to trastuzumab under 70%** (task PDF p2).
+- Trastuzumab CDRH3 = `WGGDGFYAMDY`, **11 residues**. Source of that sequence: the motif list in
+  `scripts/epitope.py`, matched in 1N8Z chain B starting at position 99 (`identity_motif_evidence` in
+  `data/reference/epitope/1n8z_epitope_report.json`), so B:99–109. **No organiser source states the
+  CDRH3 sequence or its boundaries** — it is our own input. Weak corroboration only: the task PDF's
+  variant dataset has "up to 10 mutated positions in CDRH3" (p4), consistent with an 11-mer.
+- 8 of 11 identical = 72.7% ≥ 70% → **fails**. 7 of 11 = 63.6% < 70% → **passes**. So ≥ 4 mutations.
+- **TODO: confirm how abguard computes CDRH3 identity.** The arithmetic above holds only if identity
+  is over the 11-residue loop alone. A wider window (loop + flanks, or whole VH) moves the floor.
+  Ask a mentor on site — cheap to ask, expensive to get wrong.
+
+**(b) CDRH3 does *not* carry most of trastuzumab's HER2 contact.** Our own artifact says otherwise.
+Recomputed from the ΔSASA column of `data/reference/epitope/1n8z_interface_residues.csv` (21 listed
+interface residues on the Fab side; A = light, B = heavy):
+
+| Paratope element | buried ΔSASA | share of 689.2 Å² |
+|---|---|---|
+| CDRH3 only — B:W99 15.7, G103 62.7, F104 6.0, Y105 68.4 | **152.8 Å²** | **22%** |
+| whole heavy chain B | 332.6 Å² | 48% |
+| whole light chain A | 356.6 Å² | 52% |
+
+The two largest single contributors are **light** chain: A:N30 and A:Y92 at 74.0 Å² each, both ahead of
+the best heavy residue B:Y105 (68.4 Å²). 689.2 Å² is the sum over the 21 listed residues; against the
+report's whole-Fab burial of 705.9 Å² the CDRH3 share is 21.6% — ~22% either way. (The old claim
+"heavy chain dominates epitope residues 557–593" is true, but it is about the **HER2** side and says
+nothing about CDRH3's share of the paratope. See section 5.)
+
+Per CDR, same CSV. Loop boundaries are **ours**: H2 and H3 and L3 anchored on the motif matches in
+`1n8z_epitope_report.json` (`RIYPTNGYTR` at B:50, `WGGDGFYAMDY` at B:99, `QQHYTTPPT` at A:89), H1/L1/L2
+assigned by inspection of the canonical set in section 5. No organiser source defines them.
+
+| Loop | buried ΔSASA | share |
+|---|---|---|
+| CDR-H3 | 152.8 Å² | 22% |
+| CDR-H2 (B:R50 Y52 Y57 T58 R59) | 150.9 Å² | 22% |
+| CDR-L1 (A:D28 N30 T31 A32) | 129.3 Å² | 19% |
+| CDR-L3 (A:H91 Y92 T93 T94) | 129.2 Å² | 19% |
+| CDR-L2 (A:S50 F53) | 87.4 Å² | 13% |
+| CDR-H1 (B:Y33) | 28.9 Å² | 4% |
+| A:Y49 (4.5–5.0 Å only, outside the 4.5 Å set) | 10.7 Å² | 2% |
+
+**Does the conclusion survive? Yes, but on much weaker grounds — say so in the pitch.** What the data
+supports: CDRH3 is the **largest single loop, by 1.9 Å² over CDR-H2** — i.e. effectively tied, not
+dominant. It is a fifth of the paratope, it holds the best heavy-chain residue, and the ≥4-residue
+rewrite is **mandatory, not optional**. Re-burying a fifth of the interface differently can move the
+epitope. What the data does **not** support: that CDRH3 does most of the binding, or that it is a
+uniquely risky loop. Four other loops are within a factor of two of it, and the two single biggest
+contacts are in the light chain. So the pitch line is "a forced rewrite of a fifth of the paratope is a
+real epitope risk", not "we are rewriting the part that does most of the binding".
+
+**Epitope preservation still has to be screened by co-folding, on both tracks.** That conclusion is
+unchanged — if anything it gets stronger, because the risk is spread across loops rather than
+concentrated in the one we were already watching. Anything touching CDR-H2, or the light chain's two
+biggest contacts (A:N30, A:Y92), needs the same screen as CDRH3.
 
 Also: the RECIPES `sampling_temp` of `0.20` is far too conservative to clear the identity window. It
 must be raised, and a temperature ladder in one ~110 s job can yield a few hundred candidates.
-
-Still open: how abguard computes CDRH3 identity. Our ≥4-mutation filter assumes it is over the loop
-alone. If abguard uses a wider window the threshold moves. Cheap to ask on site, expensive to get wrong.
 
 ## 4. Nothing on the platform predicts thermostability. `stab-ddg` is a *binding* ddG.
 
@@ -124,7 +180,18 @@ contacts. Heavy chain dominates 557–593; light chain owns 596–605 exclusivel
 shared hinge. Buried area 751 Å² on HER2, 706 Å² on the Fab — a small-to-average interface.
 
 **Hotspots by ΔSASA:** E558 93.3 Å² · P571 77.6 · F573 73.7 · P603 71.4 · P572 66.0 · D560 45.1.
-Weakest members, which a design can miss without real epitope drift: P579 (9.7 Å²), D596 (6.4 Å²).
+
+**Weakest members — two different criteria, do not mix them** (both from
+`1n8z_interface_residues.csv`):
+
+| Criterion | Residues |
+|---|---|
+| smallest buried ΔSASA | D596 (6.4 Å²), C604 (7.5), P579 (9.7) |
+| drops out at a 4.0 Å cutoff | P579 (min dist 4.50 Å), P605 (4.15 Å) |
+
+P579 is the only residue weak on both, so it is the one a design can most safely miss. Earlier
+versions of this doc named "P579, D596" without saying which criterion was meant; by ΔSASA the two
+smallest are D596 and C604, and P579 is third.
 
 **Paratope at 4.5 Å (20 residues)** — the canonical trastuzumab CDR set:
 light D28 N30 T31 A32 S50 F53 H91 Y92 T93 T94 · heavy Y33 R50 Y52 Y57 T58 R59 W99 G103 F104 Y105.

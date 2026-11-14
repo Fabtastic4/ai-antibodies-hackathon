@@ -1,0 +1,464 @@
+<title>Optimisation Run Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: single column of banded sections; instrument-panel register — condensed labels, mono for every sequence and identifier */
+:root{
+  --bg:#eceff3; --surface:#fcfcfb; --surface-2:#e3e8ee; --ink:#0d1520; --ink-2:#4d5a69; --ink-3:#77838f;
+  --line:#ccd4dd; --line-2:#b4bfcb;
+  --accent:#0d6e78; --accent-ink:#0a575f; --accent-soft:#d8e9eb;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  --mag-1:#86b6ef; --mag-2:#4a90e2; --mag-3:#2a78d6; --mag-4:#1a5fb0;
+  --f-disp:"Barlow Condensed",Impact,sans-serif;
+  --f-body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1118; --surface:#151c25; --surface-2:#1d2631; --ink:#e7ecf2; --ink-2:#aab6c3; --ink-3:#7f8b98;
+  --line:#2a3542; --line-2:#3a4756;
+  --accent:#49b3bd; --accent-ink:#7fcdd4; --accent-soft:#16333a;
+  --mag-1:#184f95; --mag-2:#2a78d6; --mag-3:#3987e5; --mag-4:#86b6ef;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0c1118; --surface:#151c25; --surface-2:#1d2631; --ink:#e7ecf2; --ink-2:#aab6c3; --ink-3:#7f8b98;
+  --line:#2a3542; --line-2:#3a4756;
+  --accent:#49b3bd; --accent-ink:#7fcdd4; --accent-soft:#16333a;
+  --mag-1:#184f95; --mag-2:#2a78d6; --mag-3:#3987e5; --mag-4:#86b6ef;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:15px; line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 56px; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px; margin:0 auto}
+h1,h2,h3{text-wrap:balance; margin:0}
+.eyebrow{font-family:var(--f-disp); font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink)}
+section{margin-top:34px}
+section>h2{font-family:var(--f-disp); font-size:25px; font-weight:700; letter-spacing:.015em; margin-bottom:3px}
+section>.sub{color:var(--ink-2); font-size:13.5px; margin:0 0 16px}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:16px}
+
+/* masthead */
+header{padding-block:30px 6px; border-bottom:2px solid var(--ink); margin-bottom:4px}
+header h1{font-family:var(--f-disp); font-size:clamp(34px,8vw,54px); font-weight:700; line-height:.96; letter-spacing:.005em}
+.mast{display:flex; flex-wrap:wrap; gap:18px 26px; align-items:flex-end; justify-content:space-between}
+.clock{display:flex; gap:22px; flex-wrap:wrap}
+.clock div{min-width:0}
+.clock .k{font-family:var(--f-disp); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+.clock .v{font-family:var(--f-mono); font-size:21px; font-weight:600; letter-spacing:-.02em}
+.lede{margin:16px 0 0; font-size:16.5px; color:var(--ink-2); max-width:66ch}
+.lede b{color:var(--ink); font-weight:600}
+
+/* status chips: colour never carries meaning alone — glyph + word always present */
+.chip{display:inline-flex; align-items:center; gap:5px; font-family:var(--f-disp); font-size:11.5px; font-weight:600;
+  letter-spacing:.07em; text-transform:uppercase; padding:2px 8px 2px 6px; border-radius:4px; white-space:nowrap;
+  border:1px solid var(--line-2); background:var(--surface-2); color:var(--ink)}
+.chip .g{font-family:var(--f-body); font-size:12px; line-height:1}
+.chip.done{border-color:var(--good)} .chip.done .g{color:var(--good)}
+.chip.run{border-color:var(--warning)} .chip.run .g{color:var(--warning)}
+.chip.wait{border-color:var(--serious)} .chip.wait .g{color:var(--serious)}
+.chip.block{border-color:var(--critical)} .chip.block .g{color:var(--critical)}
+
+/* progress rail */
+.rail{display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr)); gap:2px; margin:0 0 14px}
+.rail div{min-width:0; padding:9px 10px 11px; background:var(--surface-2); border-top:4px solid var(--line-2)}
+.rail div.ok{border-top-color:var(--good)}
+.rail div.now{border-top-color:var(--warning); background:var(--surface)}
+.rail div.todo{border-top-color:var(--line-2); opacity:.72}
+.rail .n{font-family:var(--f-mono); font-size:11px; color:var(--ink-3)}
+.rail .t{font-family:var(--f-disp); font-size:14.5px; font-weight:600; line-height:1.15; margin-top:1px}
+.rail .s{font-size:11.5px; color:var(--ink-2); margin-top:3px}
+.tally{display:flex; flex-wrap:wrap; gap:10px 20px; align-items:baseline; font-size:13.5px; color:var(--ink-2)}
+.tally b{font-family:var(--f-mono); font-size:19px; color:var(--ink); font-weight:600}
+
+/* route */
+.route{display:grid; gap:10px}
+.stage{display:grid; grid-template-columns:34px 1fr auto; gap:14px; align-items:start;
+  background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--line-2); border-radius:7px; padding:13px 15px}
+.stage.ok{border-left-color:var(--good)} .stage.now{border-left-color:var(--warning)} .stage.next{border-left-color:var(--line-2)}
+.stage .num{font-family:var(--f-disp); font-size:25px; font-weight:700; color:var(--ink-3); line-height:1}
+.stage h3{font-family:var(--f-disp); font-size:19px; font-weight:600; letter-spacing:.01em}
+.stage p{margin:4px 0 0; font-size:13.5px; color:var(--ink-2)}
+.stage .who{font-size:12px; color:var(--ink-3); margin-top:6px; font-family:var(--f-mono)}
+.stage .rt{text-align:right; display:grid; gap:5px; justify-items:end}
+@media (max-width:560px){.stage{grid-template-columns:28px 1fr} .stage .rt{grid-column:1/-1; justify-items:start; text-align:left}}
+
+/* eligibility window */
+.gate{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:10px}
+.gate .g{background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:13px 14px; min-width:0}
+.gate .g .k{font-family:var(--f-disp); font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+.gate .g .v{font-family:var(--f-mono); font-size:17px; font-weight:600; margin-top:3px}
+.gate .g .n{font-size:12.5px; color:var(--ink-2); margin-top:5px}
+.window{margin-top:12px; background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:15px 16px}
+.bar{display:flex; height:30px; border-radius:4px; overflow:hidden; margin:12px 0 7px; border:1px solid var(--line-2)}
+.bar span{display:flex; align-items:center; justify-content:center; font-family:var(--f-disp); font-size:12px;
+  font-weight:600; letter-spacing:.06em; text-transform:uppercase; min-width:0; overflow:hidden; white-space:nowrap}
+.bar .rej{flex:3; background:var(--surface-2); color:var(--ink-3); border-right:2px solid var(--surface)}
+.bar .okz{flex:7; background:var(--accent-soft); color:var(--accent-ink)}
+.scale{display:flex; justify-content:space-between; font-family:var(--f-mono); font-size:11px; color:var(--ink-3)}
+
+/* axes + evidence meters */
+.axes{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:10px}
+.axis{background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:14px 15px; min-width:0}
+.axis h3{font-family:var(--f-disp); font-size:18px; font-weight:600}
+.axis .as{font-size:12px; color:var(--ink-3); font-family:var(--f-mono); margin-top:1px}
+.meter{display:flex; gap:2px; margin:11px 0 6px}
+.meter i{height:9px; flex:1; background:var(--surface-2); border-radius:1px}
+.meter.s3 i:nth-child(-n+3),.meter.s2 i:nth-child(-n+2),.meter.s1 i:nth-child(1){background:var(--mag-3)}
+.axis .lab{font-family:var(--f-disp); font-size:12.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2)}
+.axis p{margin:7px 0 0; font-size:13px; color:var(--ink-2)}
+.tiers{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.tier{display:flex; gap:9px; align-items:baseline; background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:8px 12px}
+.tier b{font-family:var(--f-disp); font-size:19px; font-weight:700}
+.tier span{font-size:12.5px; color:var(--ink-2)}
+
+/* team */
+table{width:100%; border-collapse:collapse; font-size:13.5px}
+.tscroll{overflow-x:auto; border:1px solid var(--line); border-radius:8px; background:var(--surface)}
+th,td{text-align:left; padding:11px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--f-disp); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); background:var(--surface-2); white-space:nowrap}
+td.nm{font-weight:600; white-space:nowrap}
+td.nm small{display:block; font-weight:400; color:var(--ink-3); font-family:var(--f-mono); font-size:11.5px}
+td.iss{white-space:nowrap; font-family:var(--f-mono); font-size:13px}
+.bg{color:var(--ink-2); font-size:12.5px}
+
+/* timeline */
+.tl{display:grid; gap:0}
+.tl div{display:grid; grid-template-columns:74px 1fr; gap:16px; padding:11px 0; border-top:1px solid var(--line)}
+.tl div:first-child{border-top:0}
+.tl .t{font-family:var(--f-mono); font-size:14px; font-weight:600; color:var(--accent-ink)}
+.tl .d{min-width:0; font-size:13.5px}
+.tl .d b{font-weight:600}
+.tl .d span{color:var(--ink-2)}
+.tl div.hard{background:var(--surface-2)}
+.tl div.hard .t{color:var(--critical)}
+
+code{font-family:var(--f-mono); font-size:12.5px; background:var(--surface-2); border:1px solid var(--line);
+  border-radius:4px; padding:1px 5px; word-break:break-word}
+.cmd{display:block; background:var(--surface-2); border:1px solid var(--line); border-radius:6px;
+  padding:10px 12px; margin-top:9px; overflow-x:auto; white-space:pre; font-size:12.5px}
+a{color:var(--accent-ink)}
+footer{margin-top:38px; padding-top:16px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3)}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="mast">
+    <div>
+      <div class="eyebrow">fab-tastic-four · team-4 · optimisation route</div>
+      <h1>Optimisation<br>Run Sheet</h1>
+    </div>
+    <div class="clock">
+      <div><div class="k">Target</div><div class="v">Trastuzumab → HER2</div></div>
+      <div><div class="k">Submit by</div><div class="v">18:00</div></div>
+      <div><div class="k">Designs so far</div><div class="v">0 / 20</div></div>
+    </div>
+  </div>
+  <p class="lede">The scaffolding is finished and the science has not started. Everything below is
+  arranged around one bet: <b>concentrate on the optimisation track</b>, where we have a measured
+  parent, a labelled 524,346-variant dataset on this exact task, and ddG predictors that are even
+  defined. The prize splits evenly across the two tracks, so concentrating costs us nothing in prize
+  terms — and <b>two S-tier designs beat ten B-tier ones.</b></p>
+</header>
+
+<section>
+  <h2>How far we have come</h2>
+  <p class="sub">Five of eight phases closed in the first two hours. The three that remain are the ones
+  that produce molecules.</p>
+  <div class="rail">
+    <div class="ok"><div class="n">01</div><div class="t">Task decoded</div><div class="s">PDF transcribed, contradictions flagged</div></div>
+    <div class="ok"><div class="n">02</div><div class="t">Repo &amp; access</div><div class="s">6 people, 16 issues, milestone</div></div>
+    <div class="ok"><div class="n">03</div><div class="t">Unknowns settled</div><div class="s">5 probes, no compute spent</div></div>
+    <div class="ok"><div class="n">04</div><div class="t">Reference epitope</div><div class="s">19 residues, cross-checked</div></div>
+    <div class="ok"><div class="n">05</div><div class="t">Pipeline skeleton</div><div class="s">5 stages, 01–02 verified</div></div>
+    <div class="now"><div class="n">06</div><div class="t">Generate</div><div class="s">not started — the critical path</div></div>
+    <div class="todo"><div class="n">07</div><div class="t">Score &amp; filter</div><div class="s">harness in build</div></div>
+    <div class="todo"><div class="n">08</div><div class="t">Rank &amp; pitch</div><div class="s">owners assigned</div></div>
+  </div>
+  <div class="tally">
+    <span><b>19</b> HER2 epitope residues fixed</span>
+    <span><b>5</b> blocking unknowns closed</span>
+    <span><b>28</b> review findings caught</span>
+    <span><b>0</b> candidate designs</span>
+    <span><b>0</b> secrets committed</span>
+  </div>
+</section>
+
+<section>
+  <h2>The optimisation route</h2>
+  <p class="sub">Six stages. Each reads a file and writes a file, so a judge can run it on a target we
+  have never seen — Execution is 20% of the pitch score and this is the artifact that earns it.</p>
+  <div class="route">
+
+    <div class="stage ok">
+      <div class="num">1</div>
+      <div>
+        <h3>Target &amp; paratope</h3>
+        <p><span class="mono">1N8Z</span> parsed: <span class="mono">A</span> = Fab light,
+        <span class="mono">B</span> = Fab heavy, <span class="mono">C</span> = HER2, chain identities
+        concluded from sequence motifs and contact counts rather than the header. ANARCII gives the CDR
+        spans; the epitope is pure geometry, not ANARCII's job.</p>
+        <div class="who">done · pipeline/01 + 02 verified on real structures</div>
+      </div>
+      <div class="rt"><span class="chip done"><span class="g">●</span>Complete</span></div>
+    </div>
+
+    <div class="stage ok">
+      <div class="num">2</div>
+      <div>
+        <h3>Reference epitope</h3>
+        <p>19 HER2 residues at 4.5 Å — <b>identical at 5.0 Å</b>, confirmed against an independent
+        brute-force all-pairs check, so the set is not a cutoff artifact. Three loops:
+        <span class="mono">557–573</span>, <span class="mono">579–593</span>,
+        <span class="mono">596–605</span>. Hotspots by burial: E558 93 Å², P571 78, F573 74, P603 71.</p>
+        <div class="who">done · data/reference/epitope/ · issue #6 closed</div>
+      </div>
+      <div class="rt"><span class="chip done"><span class="g">●</span>Complete</span></div>
+    </div>
+
+    <div class="stage now">
+      <div class="num">3</div>
+      <div>
+        <h3>Generate — antifold CDR redesign</h3>
+        <p>Keep the trastuzumab framework, redesign the CDR loops. ~110 s per job against ~6 min plus
+        queue for the diffusion route, and far sharper position control. One job with a temperature
+        ladder yields a few hundred candidates — <b>the RECIPES default
+        <span class="mono">sampling_temp 0.20</span> is far too conservative to clear the identity
+        window and must be raised.</b></p>
+        <div class="who">Josef · issue #7 · the critical path</div>
+      </div>
+      <div class="rt"><span class="chip run"><span class="g">▶</span>Start now</span></div>
+    </div>
+
+    <div class="stage next">
+      <div class="num">4</div>
+      <div>
+        <h3>Eligibility — abguard first, always</h3>
+        <p>A known binder <b>fails</b> the novelty filter, so filtering comes before ranking, not after.
+        Ranking a pool that still contains known binders burns compute we do not have. The real CLI on
+        the VM is the authority; our local pre-check only ever rejects, never promotes.</p>
+        <div class="who">Josef · issue #11 · blocker</div>
+      </div>
+      <div class="rt"><span class="chip block"><span class="g">■</span>Blocker</span></div>
+    </div>
+
+    <div class="stage next">
+      <div class="num">5</div>
+      <div>
+        <h3>Score — one harness, three axes</h3>
+        <p>Co-fold each survivor against HER2. Refold <b>only</b> with a template-taking model
+        (OpenFold3, Protenix, Boltz-2, Mol-1); ESMFold2 folds the target unguided, so it is a second
+        opinion and never the ranking fold. Epitope overlap against stage 2 is free to compute and was
+        missing from the original plan.</p>
+        <div class="who">Mark · issues #9 + #14 · Danielius on axis 3 (#10)</div>
+      </div>
+      <div class="rt"><span class="chip wait"><span class="g">◆</span>In build</span></div>
+    </div>
+
+    <div class="stage next">
+      <div class="num">6</div>
+      <div>
+        <h3>Rank, sanity-gate, submit</h3>
+        <p>Up to 20 ranked designs. <b>Rank order matters more than list length</b> — design #1 is
+        tested in every scenario, #17 almost never. Nothing enters the list without a human biological
+        check and a one-line written defence.</p>
+        <div class="who">Kevin · issue #15 · Lluis gates (#16) · Abdelrahman + Kevin pitch (#13)</div>
+      </div>
+      <div class="rt"><span class="chip wait"><span class="g">◆</span>Owners set</span></div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>The eligibility window</h2>
+  <p class="sub">The single most expensive thing to get wrong. A design outside this window is rejected
+  before it is ever measured, and the track is assigned by <span class="mono">abguard</span> — never
+  chosen by us, never reclassified.</p>
+  <div class="gate">
+    <div class="g"><div class="k">Format</div><div class="v">VHH · scFv · Fab</div><div class="n">Not whole IgG. A general mini-binder fails here, which is why the de novo general checkpoint is unusable.</div></div>
+    <div class="g"><div class="k">Total length</div><div class="v">≤ 250 aa</div><div class="n">One scFv or VHH, or VH + VL combined. <span class="mono">immunum</span> strips tags and linkers first.</div></div>
+    <div class="g"><div class="k">Cysteines</div><div class="v">No unpaired</div><div class="n">A hard gate, so it is useless as a ranking signal — every candidate that reaches the list has passed it.</div></div>
+    <div class="g"><div class="k">Numbering</div><div class="v">≥ 0.1 confidence</div><div class="n">"Is it an antibody?", via <span class="mono">immunum</span>. ANARCII's score is a different number and is not a substitute.</div></div>
+  </div>
+  <div class="window">
+    <div class="eyebrow">CDRH3 identity to trastuzumab — optimisation track</div>
+    <div class="bar"><span class="rej">Rejected ≥ 70%</span><span class="okz">Eligible &lt; 70%</span></div>
+    <div class="scale"><span>100% identical</span><span>70% threshold</span><span>0%</span></div>
+    <p style="margin:11px 0 0;font-size:13.5px;color:var(--ink-2)">Trastuzumab's CDRH3 is 11 residues —
+    <span class="mono">WGGDGFYAMDY</span>. Clearing 70% therefore needs <b>at least 4 mutations</b>
+    (7 of 11 identical = 63.6%), plus <b>more than 2 point mutations</b> from any provided antibody.
+    <br><span style="color:var(--critical)">■</span> <b>Unconfirmed, and it decides eligibility:</b>
+    the task PDF says "at least 2" on p2 but "strictly more than 2" in the filter list and the
+    <span class="mono">abguard</span> flowchart, and it never states whether identity is computed over
+    the loop alone or a wider window. Lluis is asking a mentor — issue #12. Until then we generate to
+    the stricter reading.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What we are judged on, and how strong our evidence is</h2>
+  <p class="sub">Adaptyv measures three properties against the measured trastuzumab baseline. Teams are
+  ranked on S-tier count first — so the goal is designs that plausibly move all three at once, not a
+  long list that each move one.</p>
+  <div class="axes">
+    <div class="axis">
+      <h3>Binding affinity</h3>
+      <div class="as">measured by SPR</div>
+      <div class="meter s2"><i></i><i></i><i></i><i></i></div>
+      <div class="lab">Evidence: moderate</div>
+      <p>ipSAE turned out to be <b>uncomputable</b> on this platform — no model returns a PAE matrix.
+      We rank on openfold3 ipTM plus locally counted cross-chain contacts, pTM and interface ΔSASA.
+      None of those is a K<sub>D</sub>.</p>
+    </div>
+    <div class="axis">
+      <h3>Epitope preservation</h3>
+      <div class="as">competitive binding vs trastuzumab</div>
+      <div class="meter s3"><i></i><i></i><i></i><i></i></div>
+      <div class="lab">Evidence: good</div>
+      <p>Our strongest axis: a cross-checked reference set and overlap scoring that costs nothing to
+      compute. But it is <b>not free</b> — rewriting CDRH3 is exactly the change most likely to move
+      the epitope, so every candidate gets screened.</p>
+    </div>
+    <div class="axis">
+      <h3>Thermostability</h3>
+      <div class="as">directly measured</div>
+      <div class="meter s1"><i></i><i></i><i></i><i></i></div>
+      <div class="lab">Evidence: weak</div>
+      <p>Nothing in the 59-model catalog predicts it. <span class="mono">stab-ddg</span> is a
+      <b>binding</b> ddG, not folding. Best real proxy is free and local: framework germline-likeness —
+      count mutations outside the CDRs and drive it to zero.</p>
+    </div>
+  </div>
+  <div class="tiers">
+    <div class="tier"><b>S</b><span>all three improved — the only tier that really counts</span></div>
+    <div class="tier"><b>A</b><span>two of three</span></div>
+    <div class="tier"><b>B</b><span>one of three</span></div>
+    <div class="tier"><b>—</b><span>ties and regressions count as nothing</span></div>
+  </div>
+  <p style="margin-top:12px;font-size:13.5px;color:var(--ink-2)">Saying plainly that axis 3 is a proxy
+  is worth more than a confident fake number: <b>Judgment is 40% of the pitch score</b>, and it rewards
+  knowing what we do not know.</p>
+</section>
+
+<section>
+  <h2>Who runs what</h2>
+  <p class="sub">Matched to backgrounds as stated in Slack. Everyone can work at the same time — one
+  branch per issue, and every issue carries a prompt you can paste straight into Claude.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Person</th><th>What you bring</th><th>You own</th><th>Issues</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="nm">Josef<small>@josmodev</small></td>
+          <td class="bg">Driving the agents and the repo</td>
+          <td><b>Generation + eligibility.</b> The antifold batches and getting the real abguard running. Warm the queue first — two minutes, and everything waits on it.</td>
+          <td class="iss">#7 #11 #4</td>
+        </tr>
+        <tr>
+          <td class="nm">Mark<small>@markowusu</small></td>
+          <td class="bg">Senior SWE, agentic architecture, data curation, production systems</td>
+          <td><b>The scoring harness and its provenance.</b> Heaviest engineering in the repo: one composite scorer, both tracks, every score naming its model, version and seed.</td>
+          <td class="iss">#9 #14</td>
+        </tr>
+        <tr>
+          <td class="nm">Danielius<small>@Doonse</small></td>
+          <td class="bg">Applied physics &amp; maths, ML, PI-GNNs, interpretability</td>
+          <td><b>Thermostability and the measured data.</b> The axis with no model needs statistical judgement, not a library call. Then 524k labelled CDRH3 variants — a classifier trained on measured binders would beat any pretrained confidence score.</td>
+          <td class="iss">#10 #5</td>
+        </tr>
+        <tr>
+          <td class="nm">Lluis<small>@LluisArtusSuarez</small></td>
+          <td class="bg">Chemist; immunology, crystal structures, knows ANARCII / ProteinMPNN / MD conceptually</td>
+          <td><b>Scientific judgement — no coding.</b> Ask the mentor the eligibility question, then gate every candidate: is it still the trastuzumab epitope, would the fold survive, would a cell make it. Ask others to run anything you want computed.</td>
+          <td class="iss">#12 #16</td>
+        </tr>
+        <tr>
+          <td class="nm">Abdelrahman<small>@Mannypython1</small></td>
+          <td class="bg">Medical student, immunology, public speaking and pitching</td>
+          <td><b>The argument.</b> You can answer the question that separates user fit from a score table: does binding HER2 actually help a patient. Trastuzumab is a real breast-cancer drug, so the patient story is concrete.</td>
+          <td class="iss">#13</td>
+        </tr>
+        <tr>
+          <td class="nm">Kevin<small>@kevinsinghjay-python</small></td>
+          <td class="bg">Medical student, healthcare, sales records, leads and presents</td>
+          <td><b>Pitch delivery and the final list.</b> "What does this cost them today" and "why does this beat the status quo" is the same muscle as selling. Then collate the ranked 20 and chase every one-line defence.</td>
+          <td class="iss">#15 #13</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <code class="cmd">git clone https://github.com/Fabtastic4/ai-antibodies-hackathon.git
+cd ai-antibodies-hackathon &amp;&amp; git checkout -b issue-&lt;n&gt;-&lt;short-name&gt;
+claude     # then paste the prompt from your issue</code>
+  <p style="margin-top:10px;font-size:13px;color:var(--ink-2)">Credentials come from the Slack folder,
+  never from git, never pasted into a chat. <span class="mono">*.private.json</span> and
+  <span class="mono">Files from slack/</span> are gitignored. The VM has <b>one shared home directory
+  and one shared H100</b> — make a folder per person or you will overwrite each other.
+  <b>The machines are shut down tonight.</b></p>
+</section>
+
+<section>
+  <h2>Clock</h2>
+  <p class="sub">Backward-planned from the submission. The hard cutoff is not negotiable: pitch prep is
+  17:00–18:00 and presentations begin 18:05.</p>
+  <div class="tl">
+    <div><div class="t">now</div><div class="d"><b>Warm the queue. Everyone onto the VM.</b> <span>16 teams share the platform and first calls include model load — the long jobs must be in flight before any short fold. Ask the mentor about the eligibility bar in the same trip.</span></div></div>
+    <div><div class="t">12:00</div><div class="d"><b>First antifold batch out.</b> <span>Temperature ladder in one job. Meanwhile abguard gets confirmed on the VM so eligibility is known, not guessed.</span></div></div>
+    <div><div class="t">14:00</div><div class="d"><b>Scoring harness live on real candidates.</b> <span>First openfold3 co-fold must confirm whether <span class="mono">iptm</span> is actually in <span class="mono">result.json</span> — that key is still unverified. Second generation batch informed by batch-1 pass rates.</span></div></div>
+    <div class="hard"><div class="t">15:30</div><div class="d"><b>Stop generating. Start filtering.</b> <span>Hard cutoff. Anything not generated by now does not exist. From here it is abguard, scoring, the biological gate, and writing defences.</span></div></div>
+    <div><div class="t">17:00</div><div class="d"><b>List locked, rehearsal starts.</b> <span>Ranked 20 in <span class="mono">designs/submission.csv</span>, every row with a one-line defence and a score table that says where each number came from.</span></div></div>
+    <div class="hard"><div class="t">18:00</div><div class="d"><b>Submission closes.</b> <span>Presentations 18:05. Winning the pitch is worth 12 extra tested designs — 16 against a base of 4 — so it compounds straight into the experimental prize.</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Open blockers</h2>
+  <div class="route">
+    <div class="stage next" style="border-left-color:var(--critical)">
+      <div class="num">!</div>
+      <div><h3>The eligibility bar is unconfirmed</h3>
+      <p>"At least 2" versus "strictly more than 2" mutations, and whether CDRH3 identity is measured
+      over the loop or a wider window. Only a human at the venue can clear this, and it decides whether
+      our optimisation designs are eligible at all.</p>
+      <div class="who">Lluis · issue #12</div></div>
+      <div class="rt"><span class="chip block"><span class="g">■</span>Needs a mentor</span></div>
+    </div>
+    <div class="stage next" style="border-left-color:var(--critical)">
+      <div class="num">!</div>
+      <div><h3>abguard is unverified on the VM</h3>
+      <p>Its real subcommands, verdict vocabulary and exit codes are unknown. Two defects were just
+      fixed in our wrapper — a nonzero exit used to pass designs silently, and the default run produced
+      an empty table with exit 0.</p>
+      <div class="who">Josef · issue #11</div></div>
+      <div class="rt"><span class="chip block"><span class="g">■</span>Blocker</span></div>
+    </div>
+    <div class="stage next" style="border-left-color:var(--warning)">
+      <div class="num">!</div>
+      <div><h3>The queue is cold</h3>
+      <p><span class="mono">mosaic</span> and <span class="mono">esmfold2</span> are ~22 min on first
+      call, <span class="mono">protenix-v2</span> ~20, <span class="mono">stab-ddg</span> ~12. Nothing
+      is queued yet. Skip <span class="mono">alphafold3</span> and
+      <span class="mono">openfold3-openbind</span> entirely — 12.5 h and 25 h deadlines.</p>
+      <div class="who">Josef · issue #4 · two minutes of work</div></div>
+      <div class="rt"><span class="chip run"><span class="g">▶</span>Do first</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Sources: the organisers' task description PDF, the hackathon resource map, the participant field
+  guide, and five read-only platform probes that spent no compute. Every number here traces to one of
+  those or to our own committed artifacts — see <span class="mono">docs/probe-findings.md</span> and
+  <span class="mono">docs/decision-log.md</span>. Where the task PDF contradicts itself, this page says
+  so rather than picking quietly.
+</footer>
+
+</div>

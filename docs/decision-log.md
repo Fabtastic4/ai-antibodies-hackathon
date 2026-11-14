@@ -282,3 +282,68 @@ the epitope with no SSBOND record only because its partner lies past the constru
 Evidence: `scripts/epitope.py` over RCSB 1N8Z, Biopython NeighborSearch + ShrakeRupley; artifacts in
 `data/reference/epitope/`. Chain identities concluded from sequence motifs and contact counts, not from
 the COMPND record. Confidence: high.
+
+---
+
+## [13:55] Batch 1 result: 14 of 20 eligible, and the failures tell us how to generate
+
+First real designs of the day. `her2-novel-2026-11-09`, 100 designs (seed 1,
+`--recycle-strategy high/front_loaded`), top 20 refolded with Boltz-2 and scored.
+
+Design-stage quality (`b1_design_aggregated_metrics.csv`, mean over the batch): hotspot obedience
+0.9375, sequence adherence 1.0 with 0 violations, `frac_atoms_clashing_1p5A` 0.0002, bond lengths 0%
+unreasonable. Interface: 11.0 H-bond atoms, 1.75 salt bridges, 17.25 hydrophobic atoms.
+
+Refold scores for the 14 eligible (`reports/b1_refold_metrics.csv`), best six:
+
+| id | iptm | min_ipae | binder_plddt | CDRH3 |
+|---|---|---|---|---|
+| her2_cdrh3_74 | 0.912 | 0.3542 | 98.44 | SRDLSLSNYAHDY |
+| her2_cdrh3_14 | 0.903 | 0.3544 | 97.95 | SRWHSLHEYYFDY |
+| her2_cdrh3_88 | 0.900 | 0.3362 | 98.10 | SRSLSLGNYAFDY |
+| her2_cdrh3_52 | 0.893 | 0.3568 | 98.42 | SRDLYLYNYSFDY |
+| her2_cdrh3_28 | 0.888 | 0.3437 | 97.76 | SRSLTPLSDVFDY |
+| her2_cdrh3_91 | 0.888 | 0.3492 | 96.85 | SRDRTPTDYSFDY |
+
+`pass` is empty for every row, with `pass_note` "fewer than 3 target atoms fixed in absolute
+coordinates, so target-aligned RMSDs are undefined" — exactly as `18-vm.md` predicts for this example,
+so we rank on `min_ipae`, `iptm` and `binder_plddt`, and only within one folding model.
+
+**The six rejections are the useful part.** None failed against trastuzumab — all were 6–9 mutations
+away. Every one failed against the **FACS screen**: 1–2 mutations from a sequence already measured in
+`tz_her2_facs_3classes_524346`. For example `her2_cdrh3_53` was 1 mutation from `SRWGSSDFYAFDY`.
+
+Two consequences, and the second is a strategy rather than a fix:
+
+1. **Pre-filter locally before spending refold compute.** CDRH3 Levenshtein against the 524k table is a
+   cheap local computation; refolding a design that abguard will reject wastes GPU minutes we do not
+   have. Our observed pass rate of 70% (14/20) is close to the organisers' claimed 86% for this weight,
+   so the loss is real but not catastrophic.
+2. **The screen is a map of what binds, and the gate forces us exactly 3 mutations off it.** A design
+   sitting 3 mutations from a measured **high** binder is close enough to plausibly inherit binding and
+   far enough to be eligible. That is a deliberate target, not a filter — and it is the one place where
+   having 524,346 labelled sequences is an advantage over teams treating novelty as a hurdle.
+
+Evidence: `abguard team-validate` output quoted in full in the issue #11 thread;
+`designs/submission_b1_valid.csv` (14 rows) and `designs/submission_b1_all20.csv` (all 20, for the
+record). Confidence: high on the measurements, medium on the strategy — untested.
+
+---
+
+## [13:58] Liability reading: the shared motifs are trastuzumab's own, not ours
+
+`abguard liability-report` on the 20: **0 hard errors**, 116 liability occurrences.
+
+All 20 designs carry `Isom`, `DeAmdH`, `TrpOx`, `DeAmdM` and `DeAmdL`. Because the framework and the
+other five CDRs are held fixed by the design spec (sequence adherence 1.0), a motif present in all 20
+is **inherited from trastuzumab itself** and cannot discriminate between our designs. Trastuzumab is an
+approved drug carrying these liabilities, so they are not disqualifying.
+
+The discriminating tags are the rare ones: `Ngly` (1 design), `MetOx` (3), `FragM` (2). Those sit in the
+designed CDRH3 and are the ones worth penalising in the ranking, because a design without them is
+strictly better on an axis the organisers' own tool measures.
+
+`mCys`, `xCys`, `FragH`, `Hydro` and `IntBind`: zero occurrences.
+
+Evidence: `abguard liability-report designs/submission_b1_all20.csv`. Confidence: high on the counts,
+high on the framework-inheritance inference (it follows from sequence adherence 1.0).

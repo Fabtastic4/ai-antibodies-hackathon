@@ -1,0 +1,1356 @@
+{
+ "hetero_groups": {
+  "A/W/HOH": 19,
+  "B/W/HOH": 13,
+  "C/H_NAG/NAG": 2,
+  "C/H_SO4/SO4": 1,
+  "C/W/HOH": 47
+ },
+ "chains": {
+  "A": {
+   "observed_residues": 214,
+   "seqres_length": 214,
+   "resnum_range": [
+    1,
+    214
+   ],
+   "insertion_codes": [],
+   "unresolved_from_REMARK465": [],
+   "n_unresolved": 0,
+   "sequence": "DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSRSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIKRTVAAPSVFIFPPSDEQLKSGTASVVCLLNNFYPREAKVQWKVDNALQSGNSQESVTEQDSKDSTYSLSSTLTLSKADYEKHKVYACEVTHQGLSSPVTKSFNRGEC"
+  },
+  "B": {
+   "observed_residues": 220,
+   "seqres_length": 220,
+   "resnum_range": [
+    1,
+    220
+   ],
+   "insertion_codes": [],
+   "unresolved_from_REMARK465": [],
+   "n_unresolved": 0,
+   "sequence": "EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAYLQMNSLRAEDTAVYYCSRWGGDGFYAMDYWGQGTLVTVSSASTKGPSVFPLAPSSKSTSGGTAALGCLVKDYFPEPVTVSWNSGALTSGVHTFPAVLQSSGLYSLSSVVTVPSSSLGTQTYICNVNHKPSNTKVDKKVEP"
+  },
+  "C": {
+   "observed_residues": 581,
+   "seqres_length": 607,
+   "resnum_range": [
+    1,
+    607
+   ],
+   "insertion_codes": [],
+   "unresolved_from_REMARK465": [
+    "102ASN",
+    "103ASN",
+    "104THR",
+    "105THR",
+    "106PRO",
+    "107VAL",
+    "108THR",
+    "109GLY",
+    "110ALA",
+    "303GLU",
+    "304ASP",
+    "305GLY",
+    "361GLY",
+    "362ASP",
+    "363PRO",
+    "364ALA",
+    "581GLY",
+    "582VAL",
+    "583LYS",
+    "584PRO",
+    "585ASP",
+    "586LEU",
+    "587SER",
+    "588TYR",
+    "589MET",
+    "590PRO"
+   ],
+   "n_unresolved": 26,
+   "sequence": "TQVCTGTDMKLRLPASPETHLDMLRHLYQGCQVVQGNLELTYLPTNASLSFLQDIQEVQGYVLIAHNQVRQVPLQRLRIVRGTQLFEDNYALAVLDNGDPLSPGGLRELQLRSLTEILKGGVLIQRNPQLCYQDTILWKDIFHKNNQLALTLIDTNRSRACHPCSPMCKGSRCWGESSEDCQSLTRTVCAGGCARCKGPLPTDCCHEQCAAGCTGPKHSDCLACLHFNHSGICELHCPALVTYNTDTFESMPNPEGRYTFGASCVTACPYNYLSTDVGSCTLVCPLHNQEVTATQRCEKCSKPCARVCYGLGMEHLREVRAVTSANIQEFAGCKKIFGSLAFLPESFDSNTAPLQPEQLQVFETLEEITGYLYISAWPDSLPDLSVFQNLQVIRGRILHNGAYSLTLQGLGISWLGLRSLRELGSGLALIHHNTHLCFVHTVPWDQLFRNPHQALLHTANRPEDECVGEGLACHQLCARGHCWGPGPTQCVNCSQFLRGQECVEECRVLQGLPREYVNARHCLPCHPECQPQNGSVTCFGPEADQCVACAHYKDPPFCVARCPSIWKFPDEEGACQPCPIN"
+  }
+ },
+ "identity_motif_evidence_1based_index_in_observed_seq": {
+  "A": {
+   "IgG1_CH1_start_ASTKGPSVFPLAP": null,
+   "IgG_kappa_CL_start_RTVAAPSVFIFPPS": 108,
+   "IgG_kappa_CL_end_SFNRGEC": 208,
+   "trastuzumab_CDRH3_WGGDGFYAMDY": null,
+   "trastuzumab_CDRH2_core_RIYPTNGYTR": null,
+   "trastuzumab_CDRL3_QQHYTTPPT": 89,
+   "Ig_FR2_WVRQAP": null,
+   "Ig_kappa_FR2_WYQQKP": 35
+  },
+  "B": {
+   "IgG1_CH1_start_ASTKGPSVFPLAP": 121,
+   "IgG_kappa_CL_start_RTVAAPSVFIFPPS": null,
+   "IgG_kappa_CL_end_SFNRGEC": null,
+   "trastuzumab_CDRH3_WGGDGFYAMDY": 99,
+   "trastuzumab_CDRH2_core_RIYPTNGYTR": 50,
+   "trastuzumab_CDRL3_QQHYTTPPT": null,
+   "Ig_FR2_WVRQAP": 36,
+   "Ig_kappa_FR2_WYQQKP": null
+  },
+  "C": {
+   "IgG1_CH1_start_ASTKGPSVFPLAP": null,
+   "IgG_kappa_CL_start_RTVAAPSVFIFPPS": null,
+   "IgG_kappa_CL_end_SFNRGEC": null,
+   "trastuzumab_CDRH3_WGGDGFYAMDY": null,
+   "trastuzumab_CDRH2_core_RIYPTNGYTR": null,
+   "trastuzumab_CDRL3_QQHYTTPPT": null,
+   "Ig_FR2_WVRQAP": null,
+   "Ig_kappa_FR2_WYQQKP": null
+  }
+ },
+ "interchain_contacts": {
+  "A-B": {
+   "heavy_atom_pairs_<=4.5A": 516,
+   "residue_pairs_<=4.5A": 95
+  },
+  "A-C": {
+   "heavy_atom_pairs_<=4.5A": 105,
+   "residue_pairs_<=4.5A": 19
+  },
+  "B-C": {
+   "heavy_atom_pairs_<=4.5A": 116,
+   "residue_pairs_<=4.5A": 23
+  }
+ },
+ "epitope_4.5A": [
+  {
+   "chain": "C",
+   "resnum": 557,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 3.51,
+   "contacting_chains": {
+    "B": 3.51
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 558,
+   "icode": "",
+   "resname": "GLU",
+   "one_letter": "E",
+   "min_distance": 3.13,
+   "contacting_chains": {
+    "B": 3.13
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 560,
+   "icode": "",
+   "resname": "ASP",
+   "one_letter": "D",
+   "min_distance": 2.6,
+   "contacting_chains": {
+    "A": 2.82,
+    "B": 2.6
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 561,
+   "icode": "",
+   "resname": "GLN",
+   "one_letter": "Q",
+   "min_distance": 3.71,
+   "contacting_chains": {
+    "B": 3.71
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 569,
+   "icode": "",
+   "resname": "LYS",
+   "one_letter": "K",
+   "min_distance": 2.96,
+   "contacting_chains": {
+    "A": 2.96
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 570,
+   "icode": "",
+   "resname": "ASP",
+   "one_letter": "D",
+   "min_distance": 3.5,
+   "contacting_chains": {
+    "B": 3.5
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 571,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 2.89,
+   "contacting_chains": {
+    "A": 2.89,
+    "B": 3.32
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 572,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 3.11,
+   "contacting_chains": {
+    "A": 3.11,
+    "B": 4.0
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 573,
+   "icode": "",
+   "resname": "PHE",
+   "one_letter": "F",
+   "min_distance": 3.42,
+   "contacting_chains": {
+    "B": 3.42
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 579,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 4.5,
+   "contacting_chains": {
+    "B": 4.5
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 591,
+   "icode": "",
+   "resname": "ILE",
+   "one_letter": "I",
+   "min_distance": 3.74,
+   "contacting_chains": {
+    "B": 3.74
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 593,
+   "icode": "",
+   "resname": "LYS",
+   "one_letter": "K",
+   "min_distance": 2.42,
+   "contacting_chains": {
+    "B": 2.42
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 596,
+   "icode": "",
+   "resname": "ASP",
+   "one_letter": "D",
+   "min_distance": 2.99,
+   "contacting_chains": {
+    "A": 2.99
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 598,
+   "icode": "",
+   "resname": "GLU",
+   "one_letter": "E",
+   "min_distance": 3.52,
+   "contacting_chains": {
+    "A": 3.52
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 600,
+   "icode": "",
+   "resname": "ALA",
+   "one_letter": "A",
+   "min_distance": 3.82,
+   "contacting_chains": {
+    "A": 3.82
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 602,
+   "icode": "",
+   "resname": "GLN",
+   "one_letter": "Q",
+   "min_distance": 3.05,
+   "contacting_chains": {
+    "A": 3.05
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 603,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 3.56,
+   "contacting_chains": {
+    "A": 3.56
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 604,
+   "icode": "",
+   "resname": "CYS",
+   "one_letter": "C",
+   "min_distance": 3.81,
+   "contacting_chains": {
+    "A": 3.81
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 605,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 4.15,
+   "contacting_chains": {
+    "A": 4.15
+   }
+  }
+ ],
+ "epitope_5.0A": [
+  {
+   "chain": "C",
+   "resnum": 557,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 3.51,
+   "contacting_chains": {
+    "B": 3.51
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 558,
+   "icode": "",
+   "resname": "GLU",
+   "one_letter": "E",
+   "min_distance": 3.13,
+   "contacting_chains": {
+    "B": 3.13
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 560,
+   "icode": "",
+   "resname": "ASP",
+   "one_letter": "D",
+   "min_distance": 2.6,
+   "contacting_chains": {
+    "A": 2.82,
+    "B": 2.6
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 561,
+   "icode": "",
+   "resname": "GLN",
+   "one_letter": "Q",
+   "min_distance": 3.71,
+   "contacting_chains": {
+    "B": 3.71
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 569,
+   "icode": "",
+   "resname": "LYS",
+   "one_letter": "K",
+   "min_distance": 2.96,
+   "contacting_chains": {
+    "A": 2.96
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 570,
+   "icode": "",
+   "resname": "ASP",
+   "one_letter": "D",
+   "min_distance": 3.5,
+   "contacting_chains": {
+    "B": 3.5
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 571,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 2.89,
+   "contacting_chains": {
+    "A": 2.89,
+    "B": 3.32
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 572,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 3.11,
+   "contacting_chains": {
+    "A": 3.11,
+    "B": 4.0
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 573,
+   "icode": "",
+   "resname": "PHE",
+   "one_letter": "F",
+   "min_distance": 3.42,
+   "contacting_chains": {
+    "B": 3.42
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 579,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 4.5,
+   "contacting_chains": {
+    "B": 4.5
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 591,
+   "icode": "",
+   "resname": "ILE",
+   "one_letter": "I",
+   "min_distance": 3.74,
+   "contacting_chains": {
+    "B": 3.74
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 593,
+   "icode": "",
+   "resname": "LYS",
+   "one_letter": "K",
+   "min_distance": 2.42,
+   "contacting_chains": {
+    "B": 2.42
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 596,
+   "icode": "",
+   "resname": "ASP",
+   "one_letter": "D",
+   "min_distance": 2.99,
+   "contacting_chains": {
+    "A": 2.99
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 598,
+   "icode": "",
+   "resname": "GLU",
+   "one_letter": "E",
+   "min_distance": 3.52,
+   "contacting_chains": {
+    "A": 3.52
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 600,
+   "icode": "",
+   "resname": "ALA",
+   "one_letter": "A",
+   "min_distance": 3.82,
+   "contacting_chains": {
+    "A": 3.82
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 602,
+   "icode": "",
+   "resname": "GLN",
+   "one_letter": "Q",
+   "min_distance": 3.05,
+   "contacting_chains": {
+    "A": 3.05
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 603,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 3.56,
+   "contacting_chains": {
+    "A": 3.56
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 604,
+   "icode": "",
+   "resname": "CYS",
+   "one_letter": "C",
+   "min_distance": 3.81,
+   "contacting_chains": {
+    "A": 3.81
+   }
+  },
+  {
+   "chain": "C",
+   "resnum": 605,
+   "icode": "",
+   "resname": "PRO",
+   "one_letter": "P",
+   "min_distance": 4.15,
+   "contacting_chains": {
+    "A": 4.15
+   }
+  }
+ ],
+ "paratope_4.5A": [
+  {
+   "chain": "A",
+   "resnum": 28,
+   "icode": "",
+   "resname": "ASP",
+   "one_letter": "D",
+   "min_distance": 4.5,
+   "contacting_chains": {
+    "C": 4.5
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 30,
+   "icode": "",
+   "resname": "ASN",
+   "one_letter": "N",
+   "min_distance": 2.99,
+   "contacting_chains": {
+    "C": 2.99
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 31,
+   "icode": "",
+   "resname": "THR",
+   "one_letter": "T",
+   "min_distance": 3.05,
+   "contacting_chains": {
+    "C": 3.05
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 32,
+   "icode": "",
+   "resname": "ALA",
+   "one_letter": "A",
+   "min_distance": 3.69,
+   "contacting_chains": {
+    "C": 3.69
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 33,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 3.42,
+   "contacting_chains": {
+    "C": 3.42
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 50,
+   "icode": "",
+   "resname": "SER",
+   "one_letter": "S",
+   "min_distance": 3.61,
+   "contacting_chains": {
+    "C": 3.61
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 50,
+   "icode": "",
+   "resname": "ARG",
+   "one_letter": "R",
+   "min_distance": 2.6,
+   "contacting_chains": {
+    "C": 2.6
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 52,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 4.39,
+   "contacting_chains": {
+    "C": 4.39
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 53,
+   "icode": "",
+   "resname": "PHE",
+   "one_letter": "F",
+   "min_distance": 3.56,
+   "contacting_chains": {
+    "C": 3.56
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 57,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 3.51,
+   "contacting_chains": {
+    "C": 3.51
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 58,
+   "icode": "",
+   "resname": "THR",
+   "one_letter": "T",
+   "min_distance": 4.11,
+   "contacting_chains": {
+    "C": 4.11
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 59,
+   "icode": "",
+   "resname": "ARG",
+   "one_letter": "R",
+   "min_distance": 3.43,
+   "contacting_chains": {
+    "C": 3.43
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 91,
+   "icode": "",
+   "resname": "HIS",
+   "one_letter": "H",
+   "min_distance": 2.89,
+   "contacting_chains": {
+    "C": 2.89
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 92,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 2.96,
+   "contacting_chains": {
+    "C": 2.96
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 93,
+   "icode": "",
+   "resname": "THR",
+   "one_letter": "T",
+   "min_distance": 4.05,
+   "contacting_chains": {
+    "C": 4.05
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 94,
+   "icode": "",
+   "resname": "THR",
+   "one_letter": "T",
+   "min_distance": 2.82,
+   "contacting_chains": {
+    "C": 2.82
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 99,
+   "icode": "",
+   "resname": "TRP",
+   "one_letter": "W",
+   "min_distance": 4.05,
+   "contacting_chains": {
+    "C": 4.05
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 103,
+   "icode": "",
+   "resname": "GLY",
+   "one_letter": "G",
+   "min_distance": 2.42,
+   "contacting_chains": {
+    "C": 2.42
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 104,
+   "icode": "",
+   "resname": "PHE",
+   "one_letter": "F",
+   "min_distance": 4.27,
+   "contacting_chains": {
+    "C": 4.27
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 105,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 3.32,
+   "contacting_chains": {
+    "C": 3.32
+   }
+  }
+ ],
+ "paratope_5.0A": [
+  {
+   "chain": "A",
+   "resnum": 28,
+   "icode": "",
+   "resname": "ASP",
+   "one_letter": "D",
+   "min_distance": 4.5,
+   "contacting_chains": {
+    "C": 4.5
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 30,
+   "icode": "",
+   "resname": "ASN",
+   "one_letter": "N",
+   "min_distance": 2.99,
+   "contacting_chains": {
+    "C": 2.99
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 31,
+   "icode": "",
+   "resname": "THR",
+   "one_letter": "T",
+   "min_distance": 3.05,
+   "contacting_chains": {
+    "C": 3.05
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 32,
+   "icode": "",
+   "resname": "ALA",
+   "one_letter": "A",
+   "min_distance": 3.69,
+   "contacting_chains": {
+    "C": 3.69
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 33,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 3.42,
+   "contacting_chains": {
+    "C": 3.42
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 49,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 4.64,
+   "contacting_chains": {
+    "C": 4.64
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 50,
+   "icode": "",
+   "resname": "SER",
+   "one_letter": "S",
+   "min_distance": 3.61,
+   "contacting_chains": {
+    "C": 3.61
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 50,
+   "icode": "",
+   "resname": "ARG",
+   "one_letter": "R",
+   "min_distance": 2.6,
+   "contacting_chains": {
+    "C": 2.6
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 52,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 4.39,
+   "contacting_chains": {
+    "C": 4.39
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 53,
+   "icode": "",
+   "resname": "PHE",
+   "one_letter": "F",
+   "min_distance": 3.56,
+   "contacting_chains": {
+    "C": 3.56
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 57,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 3.51,
+   "contacting_chains": {
+    "C": 3.51
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 58,
+   "icode": "",
+   "resname": "THR",
+   "one_letter": "T",
+   "min_distance": 4.11,
+   "contacting_chains": {
+    "C": 4.11
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 59,
+   "icode": "",
+   "resname": "ARG",
+   "one_letter": "R",
+   "min_distance": 3.43,
+   "contacting_chains": {
+    "C": 3.43
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 91,
+   "icode": "",
+   "resname": "HIS",
+   "one_letter": "H",
+   "min_distance": 2.89,
+   "contacting_chains": {
+    "C": 2.89
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 92,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 2.96,
+   "contacting_chains": {
+    "C": 2.96
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 93,
+   "icode": "",
+   "resname": "THR",
+   "one_letter": "T",
+   "min_distance": 4.05,
+   "contacting_chains": {
+    "C": 4.05
+   }
+  },
+  {
+   "chain": "A",
+   "resnum": 94,
+   "icode": "",
+   "resname": "THR",
+   "one_letter": "T",
+   "min_distance": 2.82,
+   "contacting_chains": {
+    "C": 2.82
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 99,
+   "icode": "",
+   "resname": "TRP",
+   "one_letter": "W",
+   "min_distance": 4.05,
+   "contacting_chains": {
+    "C": 4.05
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 103,
+   "icode": "",
+   "resname": "GLY",
+   "one_letter": "G",
+   "min_distance": 2.42,
+   "contacting_chains": {
+    "C": 2.42
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 104,
+   "icode": "",
+   "resname": "PHE",
+   "one_letter": "F",
+   "min_distance": 4.27,
+   "contacting_chains": {
+    "C": 4.27
+   }
+  },
+  {
+   "chain": "B",
+   "resnum": 105,
+   "icode": "",
+   "resname": "TYR",
+   "one_letter": "Y",
+   "min_distance": 3.32,
+   "contacting_chains": {
+    "C": 3.32
+   }
+  }
+ ],
+ "sasa_method": {
+  "implementation": "Bio.PDB.SASA.ShrakeRupley (defaults: probe_radius=1.40, n_points=100)",
+  "dSASA_definition": "SASA(unbound reference) - SASA(ABC complex), heavy atoms only, waters removed",
+  "unbound_reference_HER2": "chain C alone",
+  "unbound_reference_Fab": "chains A+B together (so the H-L interface is not scored as burial)"
+ },
+ "epitope_hotspots_by_dsasa": [
+  {
+   "resnum": 558,
+   "resname": "GLU",
+   "one_letter": "E",
+   "dsasa_A2": 93.3,
+   "min_distance": 3.13,
+   "contacting_chain": "B:3.13",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 571,
+   "resname": "PRO",
+   "one_letter": "P",
+   "dsasa_A2": 77.6,
+   "min_distance": 2.89,
+   "contacting_chain": "A:2.89;B:3.32",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 573,
+   "resname": "PHE",
+   "one_letter": "F",
+   "dsasa_A2": 73.7,
+   "min_distance": 3.42,
+   "contacting_chain": "B:3.42",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 603,
+   "resname": "PRO",
+   "one_letter": "P",
+   "dsasa_A2": 71.4,
+   "min_distance": 3.56,
+   "contacting_chain": "A:3.56",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 572,
+   "resname": "PRO",
+   "one_letter": "P",
+   "dsasa_A2": 66.0,
+   "min_distance": 3.11,
+   "contacting_chain": "A:3.11;B:4.0",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 560,
+   "resname": "ASP",
+   "one_letter": "D",
+   "dsasa_A2": 45.1,
+   "min_distance": 2.6,
+   "contacting_chain": "A:2.82;B:2.6",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 557,
+   "resname": "PRO",
+   "one_letter": "P",
+   "dsasa_A2": 38.4,
+   "min_distance": 3.51,
+   "contacting_chain": "B:3.51",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 569,
+   "resname": "LYS",
+   "one_letter": "K",
+   "dsasa_A2": 38.1,
+   "min_distance": 2.96,
+   "contacting_chain": "A:2.96",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 602,
+   "resname": "GLN",
+   "one_letter": "Q",
+   "dsasa_A2": 37.6,
+   "min_distance": 3.05,
+   "contacting_chain": "A:3.05",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 591,
+   "resname": "ILE",
+   "one_letter": "I",
+   "dsasa_A2": 37.4,
+   "min_distance": 3.74,
+   "contacting_chain": "B:3.74",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 598,
+   "resname": "GLU",
+   "one_letter": "E",
+   "dsasa_A2": 34.3,
+   "min_distance": 3.52,
+   "contacting_chain": "A:3.52",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 561,
+   "resname": "GLN",
+   "one_letter": "Q",
+   "dsasa_A2": 27.0,
+   "min_distance": 3.71,
+   "contacting_chain": "B:3.71",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 593,
+   "resname": "LYS",
+   "one_letter": "K",
+   "dsasa_A2": 25.5,
+   "min_distance": 2.42,
+   "contacting_chain": "B:2.42",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 570,
+   "resname": "ASP",
+   "one_letter": "D",
+   "dsasa_A2": 21.8,
+   "min_distance": 3.5,
+   "contacting_chain": "B:3.5",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 600,
+   "resname": "ALA",
+   "one_letter": "A",
+   "dsasa_A2": 14.5,
+   "min_distance": 3.82,
+   "contacting_chain": "A:3.82",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 605,
+   "resname": "PRO",
+   "one_letter": "P",
+   "dsasa_A2": 13.0,
+   "min_distance": 4.15,
+   "contacting_chain": "A:4.15",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 579,
+   "resname": "PRO",
+   "one_letter": "P",
+   "dsasa_A2": 9.7,
+   "min_distance": 4.5,
+   "contacting_chain": "B:4.5",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 604,
+   "resname": "CYS",
+   "one_letter": "C",
+   "dsasa_A2": 7.5,
+   "min_distance": 3.81,
+   "contacting_chain": "A:3.81",
+   "within_4.5A": "yes"
+  },
+  {
+   "resnum": 596,
+   "resname": "ASP",
+   "one_letter": "D",
+   "dsasa_A2": 6.4,
+   "min_distance": 2.99,
+   "contacting_chain": "A:2.99",
+   "within_4.5A": "yes"
+  }
+ ],
+ "paratope_hotspots_by_dsasa": [
+  {
+   "chain": "A",
+   "resnum": 30,
+   "resname": "ASN",
+   "dsasa_A2": 74.0,
+   "min_distance": 2.99,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 92,
+   "resname": "TYR",
+   "dsasa_A2": 74.0,
+   "min_distance": 2.96,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 105,
+   "resname": "TYR",
+   "dsasa_A2": 68.4,
+   "min_distance": 3.32,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 53,
+   "resname": "PHE",
+   "dsasa_A2": 65.2,
+   "min_distance": 3.56,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 57,
+   "resname": "TYR",
+   "dsasa_A2": 65.2,
+   "min_distance": 3.51,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 103,
+   "resname": "GLY",
+   "dsasa_A2": 62.7,
+   "min_distance": 2.42,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 59,
+   "resname": "ARG",
+   "dsasa_A2": 52.7,
+   "min_distance": 3.43,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 33,
+   "resname": "TYR",
+   "dsasa_A2": 28.9,
+   "min_distance": 3.42,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 50,
+   "resname": "ARG",
+   "dsasa_A2": 27.3,
+   "min_distance": 2.6,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 94,
+   "resname": "THR",
+   "dsasa_A2": 26.3,
+   "min_distance": 2.82,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 31,
+   "resname": "THR",
+   "dsasa_A2": 25.9,
+   "min_distance": 3.05,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 91,
+   "resname": "HIS",
+   "dsasa_A2": 24.2,
+   "min_distance": 2.89,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 50,
+   "resname": "SER",
+   "dsasa_A2": 22.2,
+   "min_distance": 3.61,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 28,
+   "resname": "ASP",
+   "dsasa_A2": 17.4,
+   "min_distance": 4.5,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 99,
+   "resname": "TRP",
+   "dsasa_A2": 15.7,
+   "min_distance": 4.05,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 32,
+   "resname": "ALA",
+   "dsasa_A2": 12.0,
+   "min_distance": 3.69,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 49,
+   "resname": "TYR",
+   "dsasa_A2": 10.7,
+   "min_distance": 4.64,
+   "within_4.5A": "no"
+  },
+  {
+   "chain": "B",
+   "resnum": 104,
+   "resname": "PHE",
+   "dsasa_A2": 6.0,
+   "min_distance": 4.27,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "A",
+   "resnum": 93,
+   "resname": "THR",
+   "dsasa_A2": 4.7,
+   "min_distance": 4.05,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 52,
+   "resname": "TYR",
+   "dsasa_A2": 3.6,
+   "min_distance": 4.39,
+   "within_4.5A": "yes"
+  },
+  {
+   "chain": "B",
+   "resnum": 58,
+   "resname": "THR",
+   "dsasa_A2": 2.1,
+   "min_distance": 4.11,
+   "within_4.5A": "yes"
+  }
+ ],
+ "total_buried_sasa_A2": {
+  "HER2_chain_C": 750.7,
+  "Fab_chains_A+B": 705.9
+ }
+}

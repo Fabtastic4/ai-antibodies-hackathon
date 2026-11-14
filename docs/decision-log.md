@@ -130,3 +130,112 @@ score names), `RECIPES` §2 (no ipTM from Boltz2).
 Confidence: high — this is the organisers' stated ranking basis for this exercise. What would
 change our mind: a pass column appearing in an actual `refold-score` output, or an organiser
 saying otherwise on the day.
+
+---
+
+## [11:15] ipSAE is out as the ranking metric; openfold3 ipTM + local contact counting is in
+
+Options considered:
+1. ipSAE, as originally planned — **not computable**. ipSAE needs the per-residue PAE matrix; no
+   reachable Nebius model documents returning one, and the gateway contract affirmatively excludes
+   "full-PAE" for boltz2. boltz2 also returns no ipTM.
+2. AlphaFold3 / openfold3-openbind on the batch lane — graph deadlines of 12.5 h and 25 h. **Not
+   reachable before 18:00.**
+3. `openfold3` ipTM (native, ~3 min) plus locally computed cross-chain heavy-atom contacts, pTM and
+   interface ΔSASA.
+
+Chose: option 3, with the local contact count as the primary and ipTM as the confirmation, because the
+contact count depends on no undocumented adapter field and costs no platform budget. True PAE-derived
+`min_ipae` is available only through Apheris Foundry `refold-score` on the VM, so if the pitch needs an
+ipSAE-like number it comes from there.
+
+Evidence: `forge.py schema` for boltz2/openfold3/chai1/alphafold3/openfold3-openbind/protenix-v2 (five
+of six publish no output schema at all); `scientific-gateway/references/client-contract.md` on
+"full-PAE"; `RECIPES.md` "The output has no ipTM, so do not report one"; `openfold3/SKILL.md` naming
+`iptm` "as rendered by the adapter". See `docs/probe-findings.md` §1.
+
+Confidence: high that ipSAE is unavailable. **Low that openfold3 returns ipTM** — that rests on skill-doc
+prose, not a machine-readable contract. What would change our mind: the first real openfold3 co-fold.
+Whoever runs it must read `result.json` and confirm the key as a deliverable of that run.
+
+---
+
+## [11:15] De novo generation runs on the VM, not through forge.py
+
+`forge.py` exposes no checkpoint selector for `rfd4-proteina` and cannot be made to. The antibody and
+HER2 weights exist only as Apheris Foundry Docker images on the team VM, selected by choosing the image.
+Nebius's hosted endpoint is the general checkpoint, which emits "a general protein binder, not a VHH" —
+not one of the three accepted formats, so it fails the format gate before anything else.
+
+Consequence: whoever owns the de novo track needs SSH to the VM working before they can start. This was
+previously recorded as an open unknown about forge.py; it is now closed in the other direction.
+
+Evidence: `forge.py schema rfd4-proteina --full`; resource map "Not a VHH"; `TASK p5` weights table.
+Confidence: high.
+
+---
+
+## [11:15] Correction: antifold does not win the epitope axis for free
+
+Earlier reasoning for prioritising optimisation assumed that keeping the trastuzumab framework preserves
+the epitope essentially by construction. **That is wrong as stated.** Eligibility forces a ≥4-residue
+rewrite of CDRH3, and CDRH3 carries most of trastuzumab's HER2 contact — the heavy chain dominates
+epitope residues 557–593. Rewriting it is precisely the change most likely to move the epitope.
+
+Revised: epitope preservation must be screened by co-folding and epitope-overlap scoring on **both**
+tracks. Optimisation is still the better expected value — sharper position control than the HER2 weights
+and a ~110 s model versus 6 min plus queue — but one of the three axes is not free.
+
+Also corrected: the RECIPES `sampling_temp` of 0.20 is too conservative to clear the identity window and
+must be raised; a temperature ladder in one job yields a few hundred candidates.
+
+Evidence: `forge.py schema antifold`; `RECIPES.md` antifold recipe; epitope computation below.
+Confidence: high on the mechanism, medium on the mutation count — it depends on how abguard computes
+CDRH3 identity, which is unspecified (open question for the organisers).
+
+---
+
+## [11:15] Thermostability is our weakest axis, and we will say so in the pitch
+
+Nothing on the platform predicts thermostability. Of 59 catalog models, only `stab-ddg` matches any
+stability-related name, and its single operation is `predict-binding-ddg` over two **disjoint** partner
+sets — its own reference says it is "not a generic folding-stability calculation". FoldX, CamSol, Flex
+ddG, PyRosetta, ThermoMPNN, Aggrescan, SoluProt and NetSolP are all absent from the catalog.
+
+Chose, per track and format:
+- Optimisation + Fab/scFv: `stab-ddg` repurposed to the **VH–VL interface**, labelled as a VH–VL
+  interface ΔΔG and never as a folding ΔΔG.
+- Optimisation + VHH: `esm2-650m score-variants` only — a single domain has no second partner.
+- De novo: `esm2-650m score-sequences` (PLL, per-residue mean because lengths differ). Every ddG is
+  **undefined** here, not merely noisy; there is no parent to subtract.
+- All candidates, free and local: **framework germline-likeness** — count mutations outside the CDRs and
+  drive it to zero. Antibody Tm is dominated by framework and VH–VL pairing, not loops.
+
+Rejected: `bioemu2` — emits conformations, no ΔG/ΔΔG/Tm, needs an MSA per chain, and any number from 8
+samples would be a metric we invented. Also noted: disulfide presence is useless as a discriminator,
+because abguard already hard-rejects unpaired cysteines, so every ranked candidate has passed it.
+
+Evidence: `forge.py schema stab-ddg` (`operations: ["predict-binding-ddg"]`, disjoint partner sets);
+`protein-scoring/references/binding.md`; `models --all` (59 ids, one match); `esm2.md` on what PLL is
+not. See `docs/probe-findings.md` §4.
+
+Confidence: high on availability, low on every proxy's correlation with measured Tm — which is the
+point, and is what we report.
+
+---
+
+## [11:15] Reference epitope fixed at the 4.5 Å contact set from 1N8Z
+
+19 HER2 residues: P557 E558 D560 Q561 K569 D570 P571 P572 F573 P579 I591 K593 D596 E598 A600 Q602 P603
+C604 P605. **Identical at 5.0 Å**, verified against an independent brute-force all-pairs cross-check, so
+the set is not an artifact of the cutoff. Hotspots by ΔSASA: E558, P571, F573, P603, P572, D560.
+
+This set is now (a) the hotspot spec for generation and (b) the reference for the epitope-overlap axis.
+
+Two traps recorded so nobody loses a day to them: chain C residue *n* = UniProt P04626 residue *n+22*,
+so the epitope is 579–627 in UniProt numbering and specs must state their convention; and C604 sits in
+the epitope with no SSBOND record only because its partner lies past the construct end.
+
+Evidence: `scripts/epitope.py` over RCSB 1N8Z, Biopython NeighborSearch + ShrakeRupley; artifacts in
+`data/reference/epitope/`. Chain identities concluded from sequence motifs and contact counts, not from
+the COMPND record. Confidence: high.

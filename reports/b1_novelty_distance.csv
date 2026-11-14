@@ -1,0 +1,21 @@
+sequence_id,cdrh3,distance_to_trastuzumab,distance_to_nearest_measured,n_at_that_distance,nearest_cdrh3,nearest_class,nearest_kd_nM,iptm,min_ipae,binder_plddt,verdict,reason
+her2_cdrh3_26,SRSTAATSYAFDY,7,2,8,SRWTAVTSYAFDY,high,,0.916,0.3281,98.4096,reject,"2 edit(s) from SRWTAVTSYAFDY (measured high), needs 3"
+her2_cdrh3_74,SRDLSLSNYAHDY,7,4,51,SRDLVCSLYAFDY,medium,,0.912,0.3542,98.4441,pass,
+her2_cdrh3_40,SRWHSTSYYYFDY,7,2,2,SRYHSHSYYYFDY,medium,,0.911,0.3587,97.1107,reject,"2 edit(s) from SRYHSHSYYYFDY (measured medium), needs 3"
+her2_cdrh3_14,SRWHSLHEYYFDY,7,3,10,SRWHSLSHYVFDY,low,,0.903,0.3544,97.9453,pass,
+her2_cdrh3_82,SRWSSLYYYYFDY,7,2,3,SRWSSLRYYTFDY,high,,0.901,0.3735,96.8278,reject,"2 edit(s) from SRWSSLRYYTFDY (measured high), needs 3"
+her2_cdrh3_88,SRSLSLGNYAFDY,6,3,19,SRWSSLGAYAFDY,high,,0.9,0.3362,98.1048,pass,
+her2_cdrh3_52,SRDLYLYNYSFDY,8,3,2,SRWSYLGNYSFDY,high,,0.893,0.3568,98.4214,pass,
+her2_cdrh3_28,SRSLTPLSDVFDY,9,3,2,SRWLMPHSDVFDY,medium,,0.888,0.3437,97.7556,pass,
+her2_cdrh3_91,SRDRTPTDYSFDY,8,3,1,SRWRTPGFYSFDY,high,,0.888,0.3492,96.8455,pass,
+her2_cdrh3_31,SRWHSSYDYYFDY,7,3,27,SRWMSSGFYYFDY,medium,,0.888,0.3791,97.5046,pass,
+her2_cdrh3_3,SRWASSSEYYFDY,7,3,100,SRWASCSFYSFDY,high,9.242493,0.886,0.3637,98.0417,pass,
+her2_cdrh3_39,SRDMAGSSHAFDY,8,2,1,SRWMAGSSYAFDY,high,,0.885,0.3481,98.046,reject,"2 edit(s) from SRWMAGSSYAFDY (measured high), needs 3"
+her2_cdrh3_17,SRSLDGYYNYFDY,7,4,14,SRHSGDGYYAYDY,,139.0,0.878,0.3844,98.0991,pass,
+her2_cdrh3_63,SRSRGSLDAAFDY,7,4,13,SRWGGSGDWAFDY,,256.8663,0.868,0.3573,97.1271,pass,
+her2_cdrh3_21,SRWKSSYYYYFDY,7,3,15,SRWMSSGFYYFDY,medium,,0.864,0.3835,97.2046,pass,
+her2_cdrh3_4,SRYWSLHYYAMDY,6,3,1,SRYTSLHFYAFDY,high,,0.861,0.3875,97.8532,pass,
+her2_cdrh3_10,SRTTPAVAYAHDY,7,3,1,SRWTPAVMYAHTY,low,,0.858,0.3788,98.3519,pass,
+her2_cdrh3_12,SRDLSLSVYAFDY,7,3,14,SRYLVCSVYAFDY,medium,,0.848,0.3798,97.708,pass,
+her2_cdrh3_53,SRWGSSTFYAFDY,4,1,1,SRWGSSDFYAFDY,high,,0.837,0.4017,97.3323,reject,"1 edit(s) from SRWGSSDFYAFDY (measured high), needs 3"
+her2_cdrh3_47,SRYGSLTFYAMDY,4,2,3,SRYGSIGFYAMDY,high,,0.71,0.5241,97.7214,reject,"2 edit(s) from SRYGSIGFYAMDY (measured high), needs 3"

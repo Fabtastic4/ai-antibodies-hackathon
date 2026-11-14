@@ -23,3 +23,10 @@ data/**/*.gz
 !data/**/README.md
 *.pt
 *.ckpt
+
+# The hackathon bucket copy, ~5 GB (scripts/fetch_hackathon_data.py, issue #5).
+# The tables are regenerable from s3://apheris-oslo-hackathon; the fetch
+# manifest is the provenance record of which copy a number came from, so that
+# one file IS committed.
+hackathon-data/*
+!hackathon-data/fetch_manifest.json

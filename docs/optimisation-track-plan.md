@@ -7,6 +7,40 @@ State when this was written: `data/` empty, `designs/submission.csv` header-only
 "We have not run anything." The 11:15 "launch long jobs first" milestone was missed. Everything
 below is ordered so the queue waits are paid in parallel instead of in series.
 
+> ## STATUS — verified on the VM at 13:05, supersedes the assumptions below
+>
+> Full detail in **[`docs/data-inventory.md`](data-inventory.md)**. What changed:
+>
+> **Confirmed, so the plan stands.** `her2-novel-2026-11-09` is on the box, and **one image holds
+> every weight** (`--model her2-novel|her2-exploratory|…`) — no image juggling. OpenFold3 (incl.
+> OpenBind), Protenix v2, Mol-1, ESMFold2 all present. Josef's smoke run already produced 4 designs
+> in 2m37s, so the command is proven. The antifold/proteinmpnn fallback is **not needed**.
+>
+> **Generation is running.** Launched 12:53 from `~/mark/generate.sh`: 200 × `her2-novel` seed 1,
+> then 64 × `her2-exploratory` seed 2. The H100 was idle at 0% until then. Samples are written
+> incrementally, so **whatever exists at 15:30 is the batch** — no need to kill the job to harvest.
+>
+> **🔴 `abguard` IS NOT ON THE BOX.** Not in `PATH`, not in `~/.local/bin`, nothing from a filesystem
+> search. It is the submission gate and the thing that decides our track. **This needs a person to
+> go and ask the Apheris team, now.** (`foundry-toolkit module list` also fails on a missing login,
+> but that one is harmless — the images are local.)
+>
+> **Step 2 is largely done for us.** `~/Data/12-her2/` ships `her2_fv_1n8z.cif` plus a fully
+> commented `her2_cdrh3.yaml`: CDRH3 is **chain B 99–108**, HER2 is split into chains C/D at the
+> unresolved 581–590 loop, and **four 1N8Z epitope hotspots are already annotated**. Lluis's job
+> shrinks to expanding those into the full 4.5 Å contact list in both numberings.
+>
+> **The eligibility floor is now exact.** Trastuzumab CDRH3 is `WGGDGFYAMD` — **10 residues**. < 70%
+> identity means ≤ 6 identical, so **≥ 4 mutations, always**. And the FACS table ships a
+> **precomputed `edit_distance` column**, so the ≥ 4-mutation subset is `df[df.edit_distance >= 4]`.
+>
+> **Baseline to beat: KD 0.152 nM** (wild-type trastuzumab, row 1 of the SPR table).
+>
+> **Lever 4 got much stronger and much cheaper — see the revision in that section below.**
+>
+> **Free epitope signal.** The design metrics CSV already returns `hotspot_obedience` per design,
+> before any refold, plus interchain H-bond / salt-bridge / hydrophobic counts and clash fractions.
+
 Scope: **optimisation track only** — point mutations on trastuzumab, CDRH3 redesign. De novo stays
 with Danielius on `ws3-generate`; this plan does not touch it.
 
@@ -141,17 +175,47 @@ of thing a judge asks about.
 
 ### Lever 4 — a *learned* structural filter, from the dataset everyone will skip
 
-`zenodo-18390239-ab-ag-complexes` plus `sigma2-ab-ag-champloo` is the most underrated thing in the
-bucket. Read what is actually in it:
+**REVISED 13:05 after opening the files — this got stronger and about 1000× cheaper than planned.**
 
-- **1.8M predicted complexes** from **106 cognate and 11,342 non-cognate pairings** — so ~11,448
-  pairs with a **ground-truth binds / does-not-bind label**.
-- Predicted by **three independent models** (AlphaFold3, Boltz-2, Chai-1) at **50 samples each**.
-- `sigma2-ab-ag-champloo` gives **per-sample ipTM, pLDDT and PAE** for those predictions.
+Forget the 1.8M complexes and the per-replica archives. `iptm_confidence_scores.zip` inside
+`zenodo-18390239-ab-ag-complexes/` unpacks to **three 91×91 all-vs-all ipTM matrices** —
+`af3_matrix_clean.csv`, `boltz2_matrix_clean.csv`, `chai1_matrix_clean.csv` — **150 KB in total.**
 
-Most teams will glance at this, see 5 GB of structure scores, and skip it. The organisers' own README
-tells you not to: *"these are pairs that were measured and found not to bind, which is what lets you
-calibrate a structure-prediction confidence filter before trusting it to rank designs."*
+Rows and columns are antigen PDB ids, so the **diagonal is a cognate (real) pair and every
+off-diagonal cell is a non-cognate pair**: ~91 positives and ~8,190 labelled negatives, with the
+same pairs scored independently by all three models. Everything this lever needs, openable instantly.
+
+*(The per-replica archives are 162 GB and 1.7 TB. Do not sync them — they are the raw form of what
+these matrices already summarise, and they would fill the disk.)*
+
+Observed values for antigen `3OGO`:
+
+| Pair | Type | AF3 | Boltz-2 | Chai-1 |
+|---|---|---|---|---|
+| 3OGO–3OGO | **cognate** | 0.89 | 0.93 | **0.18** |
+| 3OGO–3RJQ | non-cognate | 0.12 | **0.64** | 0.13 |
+| 3OGO–4M3K | non-cognate | 0.16 | **0.90** | 0.24 |
+
+Three things fall out of that, and they are better than the 454-negatives argument we had:
+
+1. **Boltz-2 assigns 0.90 to a pair that does not bind.**
+2. **Chai-1 assigns the genuine cognate pair 0.18** — it would throw away the right answer.
+3. **The three models disagree violently on identical input.** So the plan's "second opinion from a
+   different predictor" step must *report* disagreement, not average it away. Agreement between two
+   models is only reassuring if we have shown the models agree on things we know the answer to.
+
+And the clincher, from `sigma2-ab-ag-champloo/README.txt` — the dataset's own paper is:
+
+> **"Structural Plausibility Without Binding Specificity: Limits of AI-Based Antibody-Antigen
+> Structure Prediction Confidence Scores"** — Smorodina et al., incl. **Greiff**.
+> DOI 10.64898/2026.03.02.709004
+
+**Our central argument is the thesis of the organisers' own paper.** We are not inventing a critique
+of confidence scores, we are applying the published result whose data they handed us. Cite it.
+
+Also in there: `spr-supplementary/spr_table_s1_pairwise.csv` has measured `pair_type`
+(cognate/non-cognate), `spr_outcome`, `kd_nM` **and** `af3_iptm` in the same row — a direct,
+honest ROC on measured ground truth. Use it as the headline figure if the matrices prove awkward.
 
 **So stop thresholding ipTM and learn the filter instead.** Per-sample scores across 50 samples means
 we have a *distribution*, not a point estimate. Features per pair, all cheap and tabular:

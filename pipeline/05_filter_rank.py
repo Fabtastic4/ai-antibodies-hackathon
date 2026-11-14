@@ -51,12 +51,36 @@ PASS, FAIL, UNKNOWN = "pass", "fail", "indeterminate"
 # --weight and the choice is recorded in the output.
 DEFAULT_WEIGHTS = {"min_ipae": 1.0, "iptm": 1.0, "binder_plddt": 1.0}
 
-# Direction per score. Must agree with 04_score.py.
+# Direction per score. Must agree with 04_score.py and thermostability.py.
 HIGHER_IS_BETTER = {
     "min_ipae": False, "iptm": True, "binder_plddt": True, "ipsae": True,
     "aggrescan3d": False, "soluprot": True, "netsolp": True, "mpnn_soluble": True,
+    # thermostability axis (pipeline/thermostability.py, GitHub issue #10). Only
+    # the two terms we compute ourselves have a direction our sources settle:
+    # both are distances from a stated reference sequence, so the direction is
+    # true by construction rather than by assumption.
+    "framework_mutations": False, "framework_identity": True,
+    "esm2_pll_per_residue": True,
 }
 DEV_COLUMNS = ("aggrescan3d", "soluprot", "netsolp", "mpnn_soluble")
+STABILITY_COLUMNS = ("framework_mutations", "framework_identity",
+                     "vh_vl_interface_ddg", "esm2_pll_per_residue", "esm2_variant_score")
+
+# Scores we can RECORD but must not RANK on, because our sources do not state
+# which direction is better. Ranking on a guessed sign silently inverts the
+# list, and only the top few designs are ever tested, so this is the most
+# expensive kind of mistake available here. Move a score into HIGHER_IS_BETTER
+# once someone confirms its convention - and say where they confirmed it.
+DIRECTION_UNCONFIRMED = {
+    "vh_vl_interface_ddg":
+        "stab-ddg's reference does not state whether a stabilising mutation is "
+        "negative or positive. Confirm with `python3 forge.py schema stab-ddg` or a "
+        "known-stabilising control, then add it to HIGHER_IS_BETTER.",
+    "esm2_variant_score":
+        "the sign convention of esm2-650m `score-variants` is not documented in our "
+        "sources. Confirm with `python3 forge.py schema esm2-650m`, then add it to "
+        "HIGHER_IS_BETTER.",
+}
 
 
 def check(status: str, detail: str, *, source: str) -> dict:
@@ -334,6 +358,14 @@ def rank_candidates(recs: list, weights: dict) -> list:
         tiebreak, because the task PDF gives no threshold for any of them.
     """
     used = {k: w for k, w in weights.items() if w}
+    # Defence in depth: the CLI already refuses these, but rank_candidates is
+    # importable and HIGHER_IS_BETTER.get(name, True) would silently treat an
+    # unknown direction as "higher is better" and order the list backwards.
+    guessed = sorted(k for k in used if k in DIRECTION_UNCONFIRMED)
+    if guessed:
+        raise ValueError(
+            "cannot rank on {0}: direction unconfirmed, so the ordering would be a "
+            "guess. See DIRECTION_UNCONFIRMED in this file.".format(", ".join(guessed)))
     ranges = {}
     for name in used:
         vals = [v for v in (score_value(r, name) for r in recs) if v is not None]
@@ -374,6 +406,8 @@ COLUMNS = [
     "rank", "candidate_id", "format", "track_intent", "abguard_track", "verdict",
     "filter_source", "rank_score", "min_ipae", "iptm", "binder_plddt",
     "aggrescan3d", "soluprot", "netsolp", "mpnn_soluble",
+    "framework_mutations", "framework_identity", "vh_vl_interface_ddg",
+    "esm2_pll_per_residue", "esm2_variant_score",
     "total_length_aa", "n_cysteines", "missing_scores",
     "generator", "model_image", "weights", "seed", "pipeline_version", "generated_at",
 ]
@@ -401,7 +435,7 @@ def row_for(rec: dict, verdict: str, filter_source: str, abguard_track, reasons)
         "generated_at": prov.get("timestamp"),
         "reasons": "; ".join(reasons or []),
     }
-    for name in ("min_ipae", "iptm", "binder_plddt") + DEV_COLUMNS:
+    for name in ("min_ipae", "iptm", "binder_plddt") + DEV_COLUMNS + STABILITY_COLUMNS:
         row[name] = score_value(rec, name)
     return row
 
@@ -448,9 +482,15 @@ def main(argv=None) -> int:
         if "=" not in item:
             raise SystemExit("--weight takes NAME=VALUE, got {0!r}".format(item))
         k, v = item.split("=", 1)
-        if k.strip() not in HIGHER_IS_BETTER:
+        k = k.strip()
+        if k in DIRECTION_UNCONFIRMED:
+            raise SystemExit(
+                "refusing to rank on {0!r}: its direction is unconfirmed.\n  {1}\n"
+                "  It is still recorded as a column in the output.".format(
+                    k, DIRECTION_UNCONFIRMED[k]))
+        if k not in HIGHER_IS_BETTER:
             raise SystemExit("unknown score {0!r}; known: {1}".format(k, ", ".join(sorted(HIGHER_IS_BETTER))))
-        weights[k.strip()] = float(v)
+        weights[k] = float(v)
 
     out_dir = os.path.dirname(os.path.abspath(args.out)) or "."
     work_dir = os.path.join(out_dir, "filter_work")

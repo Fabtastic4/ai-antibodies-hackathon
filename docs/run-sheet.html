@@ -189,6 +189,13 @@ footer{margin-top:38px; padding-top:16px; border-top:1px solid var(--line); font
     <span><b>0</b> candidate designs</span>
     <span><b>0</b> secrets committed</span>
   </div>
+  <p style="margin:14px 0 0;font-size:13.5px;color:var(--ink-2)"><b>Competition shape, now sourced:</b>
+  Adaptyv tests <b>100 designs in total</b> — 64 guaranteed (4 per team × <b>16 teams</b>) plus 36 from
+  placement and judge nominations. Each track is ranked separately, so an optimisation design competes
+  only against other teams' optimisation designs. <b>And ~5 GB of measured data is already on the VM:</b>
+  524,346 FACS-classified CDRH3s, 768 SPR affinities, per-sample PAE for 1.8M predicted complexes with
+  measured SPR for some pairs, and ready-made train/val/test splits — see
+  <span class="mono">docs/apheris-slides.md</span>.</p>
 </section>
 
 <section>
@@ -283,7 +290,7 @@ footer{margin-top:38px; padding-top:16px; border-top:1px solid var(--line); font
   before it is ever measured, and the track is assigned by <span class="mono">abguard</span> — never
   chosen by us, never reclassified.</p>
   <div class="gate">
-    <div class="g"><div class="k">Format</div><div class="v">VHH · scFv · Fab</div><div class="n">Not whole IgG. A general mini-binder fails here, which is why the de novo general checkpoint is unusable.</div></div>
+    <div class="g" style="border-color:var(--warning)"><div class="k">Format — new</div><div class="v">Fab · scFv</div><div class="n">The Apheris slides say an optimisation design must be the <b>same format as trastuzumab</b>, so <b>not VHH</b>. The task PDF never said this. De novo keeps all three.</div></div>
     <div class="g"><div class="k">Total length</div><div class="v">≤ 250 aa</div><div class="n">One scFv or VHH, or VH + VL combined. <span class="mono">immunum</span> strips tags and linkers first.</div></div>
     <div class="g"><div class="k">Cysteines</div><div class="v">No unpaired</div><div class="n">A hard gate, so it is useless as a ranking signal — every candidate that reaches the list has passed it.</div></div>
     <div class="g"><div class="k">Numbering</div><div class="v">≥ 0.1 confidence</div><div class="n">"Is it an antibody?", via <span class="mono">immunum</span>. ANARCII's score is a different number and is not a substitute.</div></div>
@@ -294,12 +301,17 @@ footer{margin-top:38px; padding-top:16px; border-top:1px solid var(--line); font
     <div class="scale"><span>100% identical</span><span>70% threshold</span><span>0%</span></div>
     <p style="margin:11px 0 0;font-size:13.5px;color:var(--ink-2)">Trastuzumab's CDRH3 is 11 residues —
     <span class="mono">WGGDGFYAMDY</span>. Clearing 70% therefore needs <b>at least 4 mutations</b>
-    (7 of 11 identical = 63.6%), plus <b>more than 2 point mutations</b> from any provided antibody.
-    <br><span style="color:var(--critical)">■</span> <b>Unconfirmed, and it decides eligibility:</b>
-    the task PDF says "at least 2" on p2 but "strictly more than 2" in the filter list and the
-    <span class="mono">abguard</span> flowchart, and it never states whether identity is computed over
-    the loop alone or a wider window. Lluis is asking a mentor — issue #12. Until then we generate to
-    the stricter reading.</p>
+    (7 of 11 identical = 63.6%).
+    <br><span style="color:var(--good)">●</span> <b>The second bar is now sourced.</b> The Apheris
+    slides, presented today and newer than the task PDF, say <b>≥2 mutations away from every sequence in
+    the provided data</b> — siding with the looser of the PDF's two contradictory readings. And "the
+    provided data" is not a short reference list: per Leonardo in Slack, our CDRH3 must differ from all
+    <b>525,063</b> measured loops in the HER2 tables (524,346 FACS + 768 SPR). The novelty pre-check has
+    to load that table.
+    <br><span style="color:var(--warning)">◆</span> Still open: whether identity is measured over the
+    loop alone or a wider window, and whether "same format" is enforced literally. One sentence from a
+    mentor settles both — issue #12. We generate to the stricter reading meanwhile, which is valid under
+    every version.</p>
   </div>
 </section>
 
@@ -333,8 +345,9 @@ footer{margin-top:38px; padding-top:16px; border-top:1px solid var(--line); font
       <div class="meter s1"><i></i><i></i><i></i><i></i></div>
       <div class="lab">Evidence: weak</div>
       <p>Nothing in the 59-model catalog predicts it. <span class="mono">stab-ddg</span> is a
-      <b>binding</b> ddG, not folding. Best real proxy is free and local: framework germline-likeness —
-      count mutations outside the CDRs and drive it to zero.</p>
+      <b>binding</b> ddG, not folding — but since optimisation designs are now Fab/scFv, it applies to
+      <b>all</b> of them as a VH–VL interface ΔΔG, a real determinant of T<sub>m</sub>. Plus framework
+      germline-likeness, free and local.</p>
     </div>
   </div>
   <div class="tiers">
@@ -422,14 +435,14 @@ claude     # then paste the prompt from your issue</code>
 <section>
   <h2>Open blockers</h2>
   <div class="route">
-    <div class="stage next" style="border-left-color:var(--critical)">
+    <div class="stage next" style="border-left-color:var(--warning)">
       <div class="num">!</div>
-      <div><h3>The eligibility bar is unconfirmed</h3>
-      <p>"At least 2" versus "strictly more than 2" mutations, and whether CDRH3 identity is measured
-      over the loop or a wider window. Only a human at the venue can clear this, and it decides whether
-      our optimisation designs are eligible at all.</p>
+      <div><h3>Two eligibility details still open</h3>
+      <p>The slides settled the mutation count at <b>≥2</b>. What remains: whether CDRH3 identity is
+      measured over the loop or a wider window, and whether "same format as trastuzumab" is enforced
+      literally — if it is, a VHH optimisation design is rejected outright. One mentor, one sentence.</p>
       <div class="who">Lluis · issue #12</div></div>
-      <div class="rt"><span class="chip block"><span class="g">■</span>Needs a mentor</span></div>
+      <div class="rt"><span class="chip wait"><span class="g">◆</span>Partly settled</span></div>
     </div>
     <div class="stage next" style="border-left-color:var(--critical)">
       <div class="num">!</div>
@@ -454,11 +467,13 @@ claude     # then paste the prompt from your issue</code>
 </section>
 
 <footer>
-  Sources: the organisers' task description PDF, the hackathon resource map, the participant field
-  guide, and five read-only platform probes that spent no compute. Every number here traces to one of
-  those or to our own committed artifacts — see <span class="mono">docs/probe-findings.md</span> and
-  <span class="mono">docs/decision-log.md</span>. Where the task PDF contradicts itself, this page says
-  so rather than picking quietly.
+  Sources: the organisers' task description PDF, the Apheris challenge slides presented on the day, the
+  hackathon resource map, the participant field guide, Leonardo Castorina's Slack message of 10:17, and
+  five read-only platform probes that spent no compute. Every number here traces to one of those or to
+  our own committed artifacts — see <span class="mono">docs/apheris-slides.md</span>,
+  <span class="mono">docs/probe-findings.md</span> and <span class="mono">docs/decision-log.md</span>.
+  Where two organiser sources disagree — and on the prize figures they flatly do — this page says so
+  rather than picking quietly.
 </footer>
 
 </div>

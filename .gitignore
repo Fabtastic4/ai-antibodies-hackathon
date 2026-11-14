@@ -24,9 +24,13 @@ data/**/*.gz
 *.pt
 *.ckpt
 
-# The hackathon bucket copy, ~5 GB (scripts/fetch_hackathon_data.py, issue #5).
-# The tables are regenerable from s3://apheris-oslo-hackathon; the fetch
-# manifest is the provenance record of which copy a number came from, so that
-# one file IS committed.
+# Bucket data pulled from the VM: review before committing (see scripts/pull_vm_data.sh)
+data/bucket/committable.tar.gz
+data/bucket/extracted/**/*.csv.gz
+
+# A local full copy of the bucket, ~5 GB, if one is made outside data/bucket/
+# (scripts/vm_inventory_data.sh syncs to $HOME/hackathon-data on the VM; issue #5).
+# The tables are regenerable from s3://apheris-oslo-hackathon, so only the fetch
+# manifest - the record of which copy a number came from - is worth versioning.
 hackathon-data/*
 !hackathon-data/fetch_manifest.json

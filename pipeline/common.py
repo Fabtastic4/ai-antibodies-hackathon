@@ -129,6 +129,38 @@ def write_jsonl(path: str, records) -> str:
     return path
 
 
+def missing_input(path: str, *, what: str, produced_by: str) -> SystemExit:
+    """One-line message for an input file that is absent or unreadable.
+
+    Raise this instead of letting open() reach the user as a traceback. Exit
+    code 1 (see cli(): 0 ok, 1 missing dependency or unreadable input, 2 bad
+    arguments, 3 needs confirming on the VM).
+    """
+    return SystemExit("missing input: {0}\n  expected {1}, produced by {2}".format(
+        os.path.abspath(path), what, produced_by))
+
+
+def read_input_jsonl(path: str, *, what: str, produced_by: str) -> list:
+    """read_jsonl() for a stage input: a missing or unreadable file becomes a
+    one-line message, not a traceback."""
+    if not os.path.exists(path):
+        raise missing_input(path, what=what, produced_by=produced_by)
+    try:
+        return read_jsonl(path)
+    except (OSError, ValueError) as exc:
+        raise SystemExit("cannot read {0}: {1}".format(os.path.abspath(path), exc)) from exc
+
+
+def read_input_json(path: str, *, what: str, produced_by: str):
+    """read_json() for a stage input, with the same one-line failure."""
+    if not os.path.exists(path):
+        raise missing_input(path, what=what, produced_by=produced_by)
+    try:
+        return read_json(path)
+    except (OSError, ValueError) as exc:
+        raise SystemExit("cannot read {0}: {1}".format(os.path.abspath(path), exc)) from exc
+
+
 def read_jsonl(path: str) -> list:
     out = []
     with open(path, encoding="utf-8") as fh:
@@ -258,18 +290,77 @@ def candidate_sequences(rec: dict) -> dict:
     return {k: v for k, v in (rec.get("chains") or {}).items() if k != "linker" and v}
 
 
-def total_length(rec: dict) -> int:
-    """Total amino acids as the task PDF counts them: the whole length of a
-    single scFv or VHH, or VH and VL combined for a Fab. The scFv linker is part
-    of that single chain, so it counts."""
+# THE PDF COUNTS THE SUBMITTED CHAINS TWO WAYS, and we do not get to pick one:
+#   * p3 Figure 2 puts "Extract antibody sequence - immunum strips tags and
+#     linkers" BEFORE the shared hard checks, and the p3 prose repeats it: the
+#     tool "extracts the antibody sequence (that is, excludes potential tags and
+#     linkers) with the immunum library".
+#   * p7 states the limit as "Maximal total length of 250 amino acids (whole
+#     length of a single scFv or VHH, or combined for VH and VL)", which for an
+#     scFv reads as linker included.
+# So we report BOTH counts and let the disagreement show up as indeterminate.
+# TODO: confirm which count abguard applies, by running it on one scFv whose
+# length straddles 250 with and without its linker. Owner: whoever gets abguard
+# running on the VM.
+
+# Poly-histidine run treated as a purification tag for the "did we count a tag?"
+# question. This length is OUR heuristic, not a number from any source, and
+# immunum's actual tag definition is not in our sources.
+# TODO: confirm immunum's tag definition; until then this only ever downgrades a
+# check to indeterminate, it never promotes one.
+POLY_HIS_MIN = 6
+
+
+def detect_tag_motifs(rec: dict) -> list:
+    """Sequence stretches we can recognise as a likely tag. Heuristic, see
+    POLY_HIS_MIN. Returns [{chain, motif, length, start}]."""
+    out = []
+    for chain, seq in candidate_sequences(rec).items():
+        for m in re.finditer("H{" + str(POLY_HIS_MIN) + ",}", seq or ""):
+            out.append({"chain": chain, "motif": "poly-His", "length": len(m.group(0)),
+                        "start": m.start()})
+    return out
+
+
+def total_length(rec: dict, *, strip: bool = False) -> int:
+    """Total amino acids over the submitted chains.
+
+    strip=False: every submitted residue, scFv linker included (task PDF p7
+                 wording, "whole length of a single scFv or VHH, or combined for
+                 VH and VL").
+    strip=True:  linker and any detected tag motif removed (task PDF p3 Figure 2,
+                 "immunum strips tags and linkers").
+    """
     chains = rec.get("chains") or {}
     n = sum(len(v) for k, v in chains.items() if k != "linker" and v)
     if rec.get("format") == "scFv" and chains.get("linker"):
-        n += len(chains["linker"])
+        if not strip:
+            n += len(chains["linker"])
+    if strip:
+        n -= sum(t["length"] for t in detect_tag_motifs(rec))
     return n
 
 
+def length_report(rec: dict) -> dict:
+    """Both counts plus what was stripped, so a detail string can name them."""
+    chains = rec.get("chains") or {}
+    linker = chains.get("linker") if rec.get("format") == "scFv" else None
+    tags = detect_tag_motifs(rec)
+    return {
+        "submitted": total_length(rec, strip=False),
+        "stripped": total_length(rec, strip=True),
+        "linker_aa": len(linker) if linker else 0,
+        "tags": tags,
+        "carries_linker_or_tag": bool(linker) or bool(tags),
+    }
+
+
 def count_cysteines(rec: dict) -> int:
+    """Cysteines over the submitted chains, excluding the scFv linker (which
+    immunum strips, task PDF p3 Figure 2). Tags are NOT excluded: we cannot
+    identify them in general, so a tagged sequence can give a different parity
+    than immunum computes - callers must treat the parity as indeterminate when
+    detect_tag_motifs() finds anything."""
     return sum(seq.count("C") for seq in candidate_sequences(rec).values())
 
 
@@ -360,9 +451,30 @@ DEFAULT_REFERENCE_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.ab
 def load_reference_set(path: str | None = None) -> dict:
     """Load the reference antibodies the novelty checks compare against.
 
-    Expected shape:
+    Expected shape - all three keys, because 05_filter_rank.precheck() reads all
+    three and a file with only two leaves checks indeterminate:
+
       {"trastuzumab": {"H": "...", "L": "...", "cdrh3": "..."},
-       "provided": [{"id": "...", "H": "...", "L": "..."}, ...]}
+       "provided": [{"id": "...", "H": "...", "L": "..."}, ...],
+       "known":    [{"id": "...", "H": "...", "L": "..."}, ...]}
+
+      trastuzumab  the baseline. `cdrh3` is required for either track's extra
+                   check (task PDF p3: CDRH3 mutations away from trastuzumab /
+                   CDRH3 identity to trastuzumab).
+      provided     the antibodies the organisers provide as data points. The
+                   optimisation check "strictly more than 2 point mutations from
+                   any data point provided" (task PDF p7) runs against this list.
+      known        known antibodies from known databases. The track-deciding
+                   comparison - "less than 70% sequence identity to any known
+                   antibody in known databases" (task PDF p2), "Identity to
+                   nearest known antibody under 70%?" (task PDF p3 Figure 2) -
+                   runs against this list. Without it the track cannot be
+                   pre-assigned and precheck() reports track_assignment and
+                   novelty as indeterminate.
+
+    TODO: confirm what counts as a "known database" for abguard (OAS? SAbDab?
+    the organisers' own set?) before any novelty number is quoted to a judge.
+    Owner: whoever gets abguard running on the VM.
 
     The task PDF does NOT contain any trastuzumab sequence, so this repo ships
     no sequence either: filling it in from memory is exactly the kind of wrong
@@ -438,8 +550,10 @@ def say(quiet: bool, *parts) -> None:
 
 def cli(main_func, argv=None) -> int:
     """Run a stage's main() and turn an unverified-interface error into a short
-    message instead of a traceback. Exit codes: 0 ok, 2 argparse, 3 the stage
-    needs something confirmed on the VM first."""
+    message instead of a traceback. Exit codes: 0 ok, 1 missing dependency or a
+    missing/unreadable input file (both raise SystemExit with one line of text),
+    2 argparse, 3 the stage needs something confirmed on the VM first, 130
+    interrupted."""
     try:
         return main_func(argv)
     except ConfirmOnVM as exc:

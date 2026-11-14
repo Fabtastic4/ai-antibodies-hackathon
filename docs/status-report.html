@@ -100,11 +100,13 @@ footer{font-size:14px; color:var(--muted); text-align:center}
 <div class="wrap">
 
   <header>
-    <p class="eyebrow">Team fab-tastic-four · AI × Antibodies, Oslo · 14 November 2026, 15:50</p>
+    <p class="eyebrow">Team fab-tastic-four · AI × Antibodies, Oslo · 14 November 2026, 16:15</p>
     <h1>Trastuzumab CDRH3 optimisation against HER2</h1>
-    <p class="lede">Campaign status at four hours in. Two generation batches, 400 designs, an
-      eligibility gate we can now run offline, and one remaining blocker. Every figure is computed
-      from files in the repository and names the file it came from.</p>
+    <p class="lede">Campaign status with one hour forty-five minutes to submission. Two generation
+      batches, 400 designs, an eligibility gate we can now run offline, one tree after the branch
+      merge — and one remaining blocker, unchanged since 15:00: not a single design carries a
+      complete score card. Every figure is computed from files in the repository and names the file it
+      came from.</p>
   </header>
 
   <div class="tiles">
@@ -157,11 +159,18 @@ footer{font-size:14px; color:var(--muted); text-align:center}
     </div>
     <p style="margin-top:14px">192 unique eligible loops for 20 slots. <b>Eligibility stopped being the
       binding constraint this afternoon.</b></p>
-    <p>The constraint is the fourth bar. <code>score/rank.py</code> exits 3 and writes nothing, because
-      <code>min_ipae</code> and <code>predicted_ddg</code> are absent for every candidate — two of the
-      three judged axes. That refusal is correct: a ranking on the paratope proxy alone would be a
-      proxy wearing a score table's clothes. At the measured 15–17 s/design, refolding a shortlist is
-      roughly twenty minutes of compute.</p>
+    <p>The constraint is the fourth bar. <code>score/rank.py</code> exits 3 and writes nothing: it has
+      <b>191</b> candidates with a paratope score, <b>0</b> with a refold score and <b>0</b> with a
+      ddG, so <code>min_ipae</code> (axis 1, binding) and <code>predicted_ddg</code> (axis 3,
+      thermostability) are absent for every candidate — two of the three judged axes. That refusal is
+      correct: a ranking on the paratope proxy alone would be a proxy wearing a score table's clothes.
+      At the measured 15–17 s/design, refolding a shortlist is roughly twenty minutes of compute, and
+      it can run on Nebius off the shared H100.</p>
+    <p>Two counts of the same funnel differ by one, and both are reported rather than reconciled
+      quietly: <code>scripts/novelty_distance.py</code> over all 400 designs gives 211 eligible and 192
+      unique, while <code>pipeline/status.py</code> counting the committed eligible lists gives 210 and
+      191. Batch 1's committed 140 rows are a strict subset of our 141; batch 2 agrees at 70 with one
+      design differing each way. At 20 slots the difference changes nothing.</p>
     <p class="caption">141/200 eligible in <code>b1-novel-s1</code>, 70/200 in
       <code>b2-explor-s2-fixed</code>, no CDRH3 shared between batches.
       <code>reports/b1_full_novelty_distance.csv</code>, <code>reports/b2_novelty_distance.csv</code>.</p>
@@ -785,10 +794,10 @@ footer{font-size:14px; color:var(--muted); text-align:center}
       <li class="done"><time>13:03</time><span><code>abguard</code> located on the VM; three premises corrected against the code.</span></li>
       <li class="done"><time>13:58</time><span>Batch 1 refold set: 14 of 20 eligible, top ipTM 0.912.</span></li>
       <li class="done"><time>15:05</time><span>Offline novelty check over all 400 designs: <b>211 eligible, 192 unique</b>.</span></li>
-      <li class="done"><time>15:40</time><span>The two divergent branches merged back into one tree.</span></li>
-      <li class="todo"><time>15:30</time><span>Generation cutoff. <b>Enough eligible designs exist</b> — 192 for 20 slots.</span></li>
-      <li class="todo"><time>now</time><span><b>Refold a shortlist.</b> Nothing can be submitted until <code>min_ipae</code> and ddG exist.</span></li>
-      <li class="todo"><time>16:00</time><span>Freeze the candidate pool; record the verdict against every row.</span></li>
+      <li class="done"><time>15:30</time><span>Generation cutoff held. <b>Enough eligible designs exist</b> — 192 for 20 slots, 9.6× selection.</span></li>
+      <li class="done"><time>15:40</time><span>The two divergent branches merged back into one tree; <code>selftest.sh</code> 5 passed, 0 failed, 2 skipped.</span></li>
+      <li class="todo"><time>now</time><span><b>Refold a shortlist.</b> Nothing can be submitted until <code>min_ipae</code> and ddG exist. PR #17 carries axis 3 and is still outside main.</span></li>
+      <li class="todo"><time>16:30</time><span>Freeze the candidate pool; record the verdict against every row. Fall back to <code>--allow-partial</code> only if the refold has not landed, and name the <code>n/a</code> columns in the pitch.</span></li>
       <li class="todo"><time>17:00</time><span>Pitch rehearsal, timed, twice.</span></li>
       <li class="todo"><time>18:00</time><span>Submission closes. Ranked list, up to 20.</span></li>
     </ol>
@@ -832,7 +841,8 @@ footer{font-size:14px; color:var(--muted); text-align:center}
       <li><i class="box"></i><span><b>Thermostability has no model on the platform.</b> One of the three
         judged properties. <code>stab-ddg</code> computes a binding ddG across two disjoint partner
         chains, which gives a single-domain binder nothing. Proxies only — label them as proxies in the
-        table and in the pitch.</span></li>
+        table and in the pitch. <b>PR #17 holds that axis and is not yet in main</b>, which puts it on
+        the critical path next to the refold.</span></li>
       <li><i class="box"></i><span><b>The de novo track is empty.</b> All 400 designs are CDRH3
         redesigns of the parent. If we are not entering that track, say so as a decision rather than
         leaving it looking overlooked.</span></li>
@@ -850,8 +860,10 @@ footer{font-size:14px; color:var(--muted); text-align:center}
 
   <footer>Computed from <code>reports/b1_novelty_distance.json</code>,
     <code>b1_full_novelty_distance.csv</code>, <code>b2_novelty_distance.csv</code>,
-    <code>b1_refold_metrics.csv</code> and the organisers' FACS and SPR tables.
+    <code>b1_refold_metrics.csv</code>, <code>reports/rank.stdout</code>,
+    <code>pipeline/status.py</code> and the organisers' FACS and SPR tables.
     Novelty distances by <code>scripts/novelty_distance.py</code>, verified against
-    <code>abguard team-validate</code>.</footer>
+    <code>abguard team-validate</code>. Who is on what, and the clock, are in
+    <code>docs/run-sheet.html</code>.</footer>
 
 </div>

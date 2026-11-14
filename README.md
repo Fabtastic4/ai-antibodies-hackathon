@@ -40,6 +40,13 @@ What each judged axis rests on, for the 20:
 | Thermostability | `predicted_ddg`: ESM-2 650M pseudo-log-likelihood | 20 of 20 | A proxy, labelled as one in `thermostability_basis`. Not a ddG in kcal/mol; nothing hosted predicts thermostability |
 | Expression | `netsolp_solubility_min` | 20 of 20 | Floor 0.4960, calibrated on 190 measured binders; all 20 clear it |
 
+**ipTM cross-check.** OpenFold3 ipTM now exists for all 210 eligible designs and Boltz-2 ipTM for
+139 of batch 1: [`reports/iptm-of3-vs-boltz2-all210.csv`](reports/iptm-of3-vs-boltz2-all210.csv).
+The two models barely agree on which design binds (Pearson r = 0.15), so the 20 stay ranked on
+epitope contact. On OpenFold3 the 20 score 0.47–0.63 against a field median of 0.57.
+[`designs/top31-consensus.csv`](designs/top31-consensus.csv) is the two-model consensus shortlist,
+all batch 1 — a cross-check, not a submission candidate.
+
 Built but not used to rank the 20: the thermostability stage
 [`pipeline/thermostability.py`](pipeline/thermostability.py) (issue #10), the VH–VL interface
 `stab-ddg` job (`scripts/stab_ddg_*`), and two learned affinity models —

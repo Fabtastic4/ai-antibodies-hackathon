@@ -811,3 +811,56 @@ and numbering checks still belong to abguard.
 
 Confidence: what would change our mind — if abguard on the VM rejects any design this check passes,
 the 85k-row gap is the first place to look.
+
+---
+
+## [16:10] The trastuzumab affinity baseline is eight replicates spanning 6.2x, not one number
+
+A design is tiered on whether it **improves on trastuzumab**, measured. We had been treating
+trastuzumab's affinity as a single value. In the organisers' own SPR table it is eight rows:
+
+  0.0285, 0.0379, 0.0792, 0.123, 0.146, 0.152, 0.165, 0.178 nM
+
+Which replicate the comparison uses changes the answer by nearly an order of magnitude in hit
+rate, over the 182 measured non-WT variants:
+
+| Baseline used | Variants that beat it |
+|---|---|
+| best replicate, 0.0285 nM | 1 of 182 (0.5%) |
+| mean, 0.1137 nM | 4 of 182 (2.2%) |
+| worst replicate, 0.178 nM | 7 of 182 (3.8%) |
+
+Two consequences. First, for the pitch: "improves affinity" is not a well-defined claim until the
+baseline is named, and saying so demonstrates we understood what the tier actually measures --
+judgment axis, and cheap. Second, for expectations: even at the most generous baseline the prior
+on a CDRH3 substitution beating the parent is under 4%, among sequences already selected for
+measurement. With 4 designs tested at base, the expected count of affinity improvements is well
+below one. The epitope axis is where our evidence actually is.
+
+Evidence: `trastuzumab_her2_spr_all_768.csv`, rows with `cdrh3 = WGGDGFYAMD`.
+
+Confidence: high on the arithmetic. Unknown which baseline the judges use -- **TODO: ask an
+organiser**, it is a 30-second question and it affects every tier claim any team makes today.
+
+## [16:15] rank.py was refusing on an axis it already had
+
+`score/rank.py` reported `candidates with a refold score : 0` while 20 designs carried a measured
+`min_ipae` on disk. Three independent faults in the join, each silent:
+
+1. `--refold` defaulted to `reports/batch1-refold.csv`, which does not exist. A missing file reads
+   as an empty table, not as an error.
+2. The score table names its key `query_id`; the candidate pool uses `design_id`.
+3. The two live in different namespaces -- `her2_cdrh3_14` against
+   `b1-novel-s1-her2_cdrh3_14`.
+
+Fixed by normalising ids before the join (`design_key`), pooling score tables per batch the way
+paratope tables already were, and counting coverage **over the candidate pool** rather than
+counting rows in the score table -- a table whose ids join to nothing was the failure mode the
+script could not see. Coverage is now printed, and a short count against the slots is called out.
+
+Result: 16 of 191 candidates now carry a measured `min_ipae`, and the refusal is down from two
+axes to one. `predicted_ddg` is genuinely absent -- `stab-ddg` has never run, and nothing in
+`reports/` has ever held that column.
+
+Confidence: high. `selftest.sh` still passes 5/0/2 and rank.py still exits 3, now for the right
+reason.

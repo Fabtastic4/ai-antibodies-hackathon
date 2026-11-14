@@ -49,3 +49,9 @@ hackathon-data/*
 # model weights are distributed outside git (see pipeline/score/affinity_v2/README.md)
 models/
 .inference_token*
+
+# JapanFold API key (never commit). The team key lives in the Slack codes txt and is read
+# in place via $JAPANFOLD_KEY_FILE — see docs/SETUP.md §6 — so it should never land here.
+*.key
+japanfold.key
+.env

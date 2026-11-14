@@ -122,7 +122,7 @@ footer{font-size:14px; color:var(--muted); text-align:center}
 
   <section>
     <h2>The wall</h2>
-    <p>Here is every one of the 20 hands we checked properly. <b>Up</b> is a better grip. <b>Right</b> is how different the hand is from the nearest hand <i>anybody has ever measured</i> — and other people have already measured <b>525,031</b> of them.</p>
+    <p>Here is every one of the 20 hands we checked properly. <b>Up</b> is a better grip. <b>Right</b> is how different the hand is from the nearest hand <i>anybody has ever measured</i> — and other people have already measured <b>525,027</b> of them.</p>
     <div class="chart">
       <svg viewBox="0 0 660 312" role="img" aria-label="Scatter plot: grip score against number of edits from the nearest measured CDRH3. All designs at 1 or 2 edits are rejected, including the three highest grip scores. The fourteen allowed designs sit at exactly 3 or 4 edits.">
       <rect x="62.0" y="30.0" width="234.4" height="236.0" fill="var(--noZone)"/>
@@ -196,7 +196,7 @@ footer{font-size:14px; color:var(--muted); text-align:center}
     <p class="caption">Each circle is one design, numbered. Nothing to the left of the dashed line is allowed, however well it grips.</p>
     <p style="margin-top:14px">Look where our <b>three best grippers</b> are. All three are on the wrong side of the line. The hand that squeezed hardest of all — number 26, at 0.916 — is <b>two fingertips</b> away from a hand somebody already measured. So it is out.</p>
     <p>And look at the allowed ones. Every single one sits at <b>exactly 3 or 4</b>. Not one has any room to spare. The whole batch is squeezed into a band one fingertip wide.</p>
-    <div class="grown"><b>Grown-up version.</b> x is CDRH3 Levenshtein distance to the nearest of 525,031 unique measured CDRH3s (FACS 524,316 + SPR 715), y is Boltz-2 ipTM. The gate is ≥ 3 for our novelty class. Of the 14 eligible, 11 sit at exactly 3 and 3 at 4 — so the batch has essentially zero novelty margin, and any reference database wider than the one we hold locally would start eating into it. abguard's bundled database is 610,109 rows, 85k more than we can see.</div>
+    <div class="grown"><b>Grown-up version.</b> x is CDRH3 Levenshtein distance to the nearest of 525,027 unique measured CDRH3s (FACS 524,313 + SPR 715), y is Boltz-2 ipTM. The gate is ≥ 3 for our novelty class. Of the 14 eligible, 11 sit at exactly 3 and 3 at 4 — so the batch has essentially zero novelty margin, and any reference database wider than the one we hold locally would start eating into it. abguard's bundled database is 610,109 rows, 85k more than we can see.</div>
   </section>
 
   <section>
@@ -222,12 +222,12 @@ footer{font-size:14px; color:var(--muted); text-align:center}
       <p>The referee lives on the big computer and we only get answers from it in batches. So this afternoon we rebuilt its novelty test to run on a laptop. On these 20 hands it gives the <b>same verdict on every single one</b> — the same 14 yes, the same 6 no — in <b>38 seconds</b>, with nothing to install.</p>
       <p>That changes the order of our work: we can now throw away the doomed hands <i>before</i> paying for the expensive grip test, instead of after.</p>
     </div>
-    <div class="grown"><b>Grown-up version.</b> <code>scripts/novelty_distance.py</code>, standard library only, 20 designs × 525,031 references in 38 s. 20/20 agreement with <code>abguard team-validate</code>. It gets there by re-extracting every reference CDRH3 from its <code>vh_sequence</code> (the segment between the conserved Cys and the WGxG motif) rather than reading the <code>cdrh3</code> column, which holds the 10-mer core — the exact trap <code>docs/abguard.md</code> §2 warns about, and the reason a naive check would have passed designs abguard rejects. Output: <code>reports/b1_novelty_distance.csv</code>.</div>
+    <div class="grown"><b>Grown-up version.</b> <code>scripts/novelty_distance.py</code>, standard library only, 20 designs × 525,027 references in 38 s. 20/20 agreement with <code>abguard team-validate</code>. It gets there by re-extracting every reference CDRH3 from its <code>vh_sequence</code> (the segment between the conserved Cys and the WGxG motif) rather than reading the <code>cdrh3</code> column, which holds the 10-mer core — the exact trap <code>docs/abguard.md</code> §2 warns about, and the reason a naive check would have passed designs abguard rejects. Output: <code>reports/b1_novelty_distance.csv</code>.</div>
   </section>
 
   <section>
     <h2>Where the good hands live</h2>
-    <p>Now the awkward part. This picture takes all 524,316 measured hands, sorts them by <b>how far they are from the original medicine</b>, and shows what fraction of each group held on <b>well</b>, <b>so-so</b> or <b>badly</b>.</p>
+    <p>Now the awkward part. This picture takes all 524,313 measured hands, sorts them by <b>how far they are from the original medicine</b>, and shows what fraction of each group held on <b>well</b>, <b>so-so</b> or <b>badly</b>.</p>
     <div class="chart">
       <svg viewBox="0 0 660 308" role="img" aria-label="Stacked bar chart: of measured variants 1 to 3 edits from trastuzumab, about 90 percent bind well; by 9 or 10 edits away, most bind badly.">
       <rect x="62.0" y="30.0" width="175.8" height="228.0" fill="var(--okZone)"/>
@@ -721,9 +721,10 @@ footer{font-size:14px; color:var(--muted); text-align:center}
     <h2>What is still missing</h2>
     <p>Saying the gaps out loud is worth more points than pretending there are none.</p>
     <ul class="todolist">
-      <li><i class="box done"></i><span><b>A novelty check we can run ourselves.</b> Done this afternoon, and it agrees with the referee on all 20. This was the biggest hole.</span></li>
+      <li><i class="box done"></i><span><b>A novelty check we can run ourselves.</b> Done this afternoon, and it agrees with the referee on all 20 of batch 1. This was the biggest hole — and it immediately found a bigger one in batch 2.</span></li>
       <li><i class="box"></i><span><b>The hand-in sheet is still empty.</b> <code class="seq">designs/submission.csv</code> has its column names and no rows. The 14 good hands live in a batch file beside it.</span></li>
-      <li><i class="box"></i><span><b>Batch 2, aimed properly.</b> Start from the measured hands that <i>already</i> grip well, move exactly three fingertips, and check locally before paying for a grip test. The pond is 1,341 hands.</span></li>
+      <li><i class="box"></i><span><b>Batch 2 is mostly dead on arrival.</b> 200 more hands were made on another branch and never checked against the measured pile — only against the original medicine. Run through the new check: <b>129 are too close to something already tried</b>, and six are <i>exact copies</i> of a measured hand. Seventy survive. The pattern is the same as batch 1, only worse: 103 of the 129 were blocked by a hand the screen rated good.</span></li>
+      <li><i class="box"></i><span><b>Batch 3, aimed properly.</b> Start from the measured hands that <i>already</i> grip well, move exactly three fingertips, and check locally before paying for a grip test. The pond is 1,341 hands.</span></li>
       <li><i class="box"></i><span><b>The brand-new-hand route is empty.</b> Everything so far rewrites the old hand's fingertips. The other route needs the big computer and has nothing committed.</span></li>
       <li><i class="box"></i><span><b>Does the hand survive being warm?</b> One of the three judged properties, and no model on the platform measures it. We have stand-ins only, and we have to say so.</span></li>
       <li><i class="box"></i><span><b>Nobody has asked how to rank.</b> The referee's sheet has no rank column. We think it is row order. Someone should ask an organiser.</span></li>

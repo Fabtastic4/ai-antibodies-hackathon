@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T14:30:47+0100",
+ "generated": "2026-11-14T15:15:16+0100",
  "inputs": {
   "designs": "designs/submission_b1_all20.csv",
   "facs": "data/bucket/extracted/hackathon-data/her2-trastuzumab/tz_her2_facs_3classes_524346.csv.zip",
@@ -11,13 +11,14 @@
   "cutoff": 5,
   "mutations_required": 3,
   "trastuzumab_cdrh3": "SRWGGDGFYAMDY",
-  "references_unique": 525031,
+  "references_unique": 525027,
   "note": "reference CDRH3s re-extracted from vh_sequence, not read from the cdrh3 column, which holds the 10-mer core"
  },
  "summary": {
   "designs": 20,
   "pass": 14,
-  "reject": 6
+  "reject": 6,
+  "review": 0
  },
  "designs": [
   {
@@ -1039,12 +1040,12 @@
   },
   "5": {
    "low": 4148,
-   "high": 16913,
+   "high": 16912,
    "medium": 7433
   },
   "6": {
    "medium": 29942,
-   "high": 37940,
+   "high": 37939,
    "low": 18550
   },
   "7": {
@@ -1054,7 +1055,7 @@
   },
   "8": {
    "medium": 58310,
-   "high": 40430,
+   "high": 40429,
    "low": 52098
   },
   "9": {
@@ -1158,12 +1159,6 @@
    "core": "FGSRGFYAYA",
    "kd_nM": 0.471,
    "core_edit_distance": 5
-  },
-  {
-   "cdrh3": "SRW",
-   "core": "WWGGGLYSFH",
-   "kd_nM": 0.588,
-   "core_edit_distance": 6
   },
   {
    "cdrh3": "SRWTYNSFYAMDY",

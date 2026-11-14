@@ -53,6 +53,14 @@ TRASTUZUMAB_CDRH3 = "SRWGGDGFYAMDY"
 # whole-Fv identity only selects which bar applies.
 MUTATIONS_REQUIRED = 3
 
+# A handful of rows in both tables are frameshifted, so the C...WGxG extraction
+# returns a stub like "SRW". Left in the reference set those stubs sit at
+# distance 0 from any design whose own extraction fails, which reads as "exact
+# duplicate of a measured binder" and is nothing of the kind. Both sides are
+# therefore screened on length: short references are dropped, and a short
+# design is reported for review instead of being silently rejected.
+MIN_CDRH3_LEN = 6
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HER2 = os.path.join(REPO, "data/bucket/extracted/hackathon-data/her2-trastuzumab")
 FACS_ZIP = os.path.join(HER2, "tz_her2_facs_3classes_524346.csv.zip")
@@ -170,6 +178,9 @@ def load_references(facs_zip: str, spr_csv: str, verbose: bool = True):
             if cdrh3 is None:
                 dropped["facs_no_motif"] += 1
                 continue
+            if len(cdrh3) < MIN_CDRH3_LEN:
+                dropped["facs_stub"] += 1
+                continue
             try:
                 core_ed = int(row["edit_distance"])
             except (KeyError, TypeError, ValueError):
@@ -185,6 +196,9 @@ def load_references(facs_zip: str, spr_csv: str, verbose: bool = True):
             cdrh3 = extract_cdrh3(row["vh_sequence"])
             if cdrh3 is None:
                 dropped["spr_no_motif"] += 1
+                continue
+            if len(cdrh3) < MIN_CDRH3_LEN:
+                dropped["spr_stub"] += 1
                 continue
             kd = None
             if row.get("kd_nM"):
@@ -220,16 +234,39 @@ def nearest(query: str, refs: list[str], cutoff: int):
     return best, hits
 
 
+# Our files disagree about what the heavy chain column is called: the abguard
+# submission schema says heavy_sequence, designs/raw/*.csv says sequence, and
+# the organisers' tables say vh_sequence. Accept all of them rather than
+# silently scoring an empty string -- which looks exactly like "nothing is
+# eligible" and is the kind of result you believe at 4pm.
+HEAVY_COLUMNS = ("heavy_sequence", "sequence", "vh_sequence", "heavy", "vh")
+ID_COLUMNS = ("sequence_id", "design_id", "id", "name")
+
+
+def _first(row: dict, names: tuple[str, ...], default=""):
+    for n in names:
+        v = row.get(n)
+        if v:
+            return v
+    return default
+
+
 def load_designs(path: str):
     out = []
     with open(path, newline="", encoding="utf-8") as fh:
-        for row in csv.DictReader(fh):
-            heavy = row.get("heavy_sequence", "")
-            cdrh3 = extract_cdrh3(heavy)
+        reader = csv.DictReader(fh)
+        cols = reader.fieldnames or []
+        if not any(c in cols for c in HEAVY_COLUMNS):
+            raise SystemExit(
+                f"{path}: no heavy chain column. Looked for "
+                f"{', '.join(HEAVY_COLUMNS)}; found {', '.join(cols) or 'nothing'}."
+            )
+        for row in reader:
+            heavy = _first(row, HEAVY_COLUMNS)
             out.append({
-                "sequence_id": row.get("sequence_id"),
-                "kind": row.get("kind"),
-                "cdrh3": cdrh3,
+                "sequence_id": _first(row, ID_COLUMNS, default=f"row{len(out) + 1}"),
+                "kind": row.get("kind") or row.get("format"),
+                "cdrh3": extract_cdrh3(heavy),
                 "heavy_len": len(heavy),
                 "light_len": len(row.get("light_sequence") or ""),
             })
@@ -282,8 +319,19 @@ def main() -> int:
     t0 = time.time()
     for n, d in enumerate(designs, 1):
         q = d["cdrh3"]
-        if not q:
-            d.update(verdict="error", reason="no C...WGxG motif in heavy_sequence")
+        if not q or len(q) < MIN_CDRH3_LEN:
+            d.update(
+                verdict="review",
+                eligible=False,
+                distance_display="n/a",
+                nearest=[],
+                reason=("no C...WGxG motif in the heavy chain" if not q else
+                        f"extracted CDRH3 is only {len(q)} residues ({q!r}) -- the "
+                        f"heavy chain is probably frameshifted or truncated. Not "
+                        f"scored; check this one by hand."),
+            )
+            print(f"  [{n:>2}/{len(designs)}] {d['sequence_id']:<16} "
+                  f"{'REVIEW':<14} {d['reason']}", file=sys.stderr)
             results.append(d)
             continue
         t1 = time.time()
@@ -326,8 +374,10 @@ def main() -> int:
               f"  ({time.time() - t1:.1f}s)", file=sys.stderr)
 
     npass = sum(1 for r in results if r.get("verdict") == "pass")
-    print(f"\n{npass} of {len(results)} pass the local novelty pre-check "
-          f"({time.time() - t0:.0f}s)", file=sys.stderr)
+    nreview = sum(1 for r in results if r.get("verdict") == "review")
+    print(f"\n{npass} of {len(results)} pass the local novelty pre-check"
+          + (f", {nreview} need a manual look" if nreview else "")
+          + f" ({time.time() - t0:.0f}s)", file=sys.stderr)
 
     # --- context tables the status report draws on -------------------------
     landscape = defaultdict(Counter)
@@ -366,7 +416,7 @@ def main() -> int:
                      "from the cdrh3 column, which holds the 10-mer core"),
         },
         "summary": {"designs": len(results), "pass": npass,
-                    "reject": len(results) - npass},
+                    "reject": len(results) - npass - nreview, "review": nreview},
         "designs": results,
         "landscape": {str(k): dict(v) for k, v in sorted(landscape.items())},
         "affinity": affinity,

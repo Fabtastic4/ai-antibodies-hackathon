@@ -64,6 +64,10 @@ svg{display:block; max-width:100%; height:auto}
 .tickmark{stroke:var(--c3); stroke-width:1.4; opacity:.5}
 .wtl{font-family:var(--mono); font-weight:700; font-size:13px; fill:var(--ink)}
 .repl{font-family:var(--mono); font-weight:700; font-size:12px; fill:var(--c2)}
+.fnum{font-family:var(--display); font-weight:700; font-size:15px; fill:var(--ink)}
+.fnumin{font-family:var(--display); font-weight:700; font-size:15px; fill:#fff}
+.flab{font-family:var(--body); font-weight:600; font-size:11.5px; fill:var(--muted)}
+.fdrop{font-family:var(--body); font-size:11px; fill:var(--muted); font-style:italic}
 .pielab{font-family:var(--display); font-weight:600; font-size:15px; fill:#fff}
 .key{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:12px; font-size:14px; color:var(--muted)}
 .key span{display:flex; align-items:center; gap:7px}
@@ -99,17 +103,17 @@ footer{font-size:14px; color:var(--muted); text-align:center}
 <div class="wrap">
 
   <header>
-    <p class="eyebrow">Fab-tastic Four · Oslo · Saturday 14 November 2026 · 14:00</p>
+    <p class="eyebrow">Fab-tastic Four · Oslo · Saturday 14 November 2026 · 15:50</p>
     <h1>We are building a better sticky hand</h1>
     <p class="lede">A status report simple enough for a five-year-old, with the real measurements under every picture. Every number here was computed today from the team's own files.</p>
   </header>
 
   <div class="tiles">
-    <div class="tile"><div class="n" style="color:var(--c3)">100</div><div class="l">new hands made</div></div>
-    <div class="tile"><div class="n" style="color:var(--c1)">14</div><div class="l">allowed, out of the best 20</div></div>
-    <div class="tile"><div class="n" style="color:var(--c1)">0.912</div><div class="l">best allowed grip</div></div>
-    <div class="tile"><div class="n" style="color:var(--c2)">5 of 6</div><div class="l">rejects killed by a <i>good</i> hand</div></div>
-    <div class="tile"><div class="n" style="color:var(--c2)">4 h</div><div class="l">left before we hand in</div></div>
+    <div class="tile"><div class="n" style="color:var(--c3)">400</div><div class="l">hands made, both batches</div></div>
+    <div class="tile"><div class="n" style="color:var(--c1)">211</div><div class="l">allowed by the rules</div></div>
+    <div class="tile"><div class="n" style="color:var(--c1)">192</div><div class="l">of those, all different</div></div>
+    <div class="tile"><div class="n" style="color:var(--c2)">0</div><div class="l">fully score-carded yet</div></div>
+    <div class="tile"><div class="n" style="color:var(--c2)">20</div><div class="l">we are allowed to hand in</div></div>
   </div>
 
   <section>
@@ -118,6 +122,49 @@ footer{font-size:14px; color:var(--muted); text-align:center}
     <p>Our job today is a <b>better hand</b>. We may only change the <b>fingertips</b> — thirteen letters at the end of the loop that actually touches the button. And the new hand has to be properly <b>new</b>: if it looks like a hand someone has already tried, it does not count, no matter how well it works.</p>
     <p>That last rule is the whole story of our day.</p>
     <div class="grown"><b>Grown-up version.</b> Optimisation track, trastuzumab–HER2. The organisers' <code>her2-novel-2026-11-09</code> weight redesigns the IMGT CDRH3 only; framework sequence adherence is 1.0, so every design shares trastuzumab's framework. Batch 1 is 100 designs, seed 42; the top 20 by generator score were refolded with Boltz-2 against the 1N8Z epitope.</div>
+  </section>
+
+  <section>
+    <h2>Where all 400 hands ended up</h2>
+    <p>Since this morning the team has made <b>400</b> hands across two batches. Here is what happens
+      to them as each rule is applied.</p>
+    <div class="chart">
+      <svg viewBox="0 0 660 295" role="img" aria-label="Funnel: 400 designs made, 211 allowed by the novelty rule, 192 unique, 0 with a complete score card, 20 submission slots.">
+      <rect x="56.0" y="34.0" width="592.0" height="38.0" rx="5" fill="var(--c3)"><title>Hands we made: 400</title></rect>
+      <text class="fnumin" x="636.0" y="59.0" text-anchor="end">400</text>
+      <text class="flab" x="56.0" y="27.0">Hands we made</text>
+      <rect x="56.0" y="85.0" width="312.3" height="38.0" rx="5" fill="var(--c1)"><title>Allowed by the rules: 211</title></rect>
+      <text class="fnumin" x="356.3" y="110.0" text-anchor="end">211</text>
+      <text class="flab" x="56.0" y="78.0">Allowed by the rules</text>
+      <rect x="56.0" y="136.0" width="284.2" height="38.0" rx="5" fill="var(--c1)"><title>All different from each other: 192</title></rect>
+      <text class="fnumin" x="328.2" y="161.0" text-anchor="end">192</text>
+      <text class="flab" x="56.0" y="129.0">All different from each other</text>
+      <rect x="56.0" y="187.0" width="0.0" height="38.0" rx="5" fill="var(--c2)"><title>Carrying a full score card: 0</title></rect>
+      <text class="fnum" x="66.0" y="212.0" text-anchor="start">0</text>
+      <text class="flab" x="56.0" y="180.0">Carrying a full score card</text>
+      <rect x="56.0" y="238.0" width="29.6" height="38.0" rx="5" fill="var(--c4)"><title>Slots we may hand in: 20</title></rect>
+      <text class="fnum" x="95.6" y="263.0" text-anchor="start">20</text>
+      <text class="flab" x="56.0" y="231.0">Slots we may hand in</text>
+      <text class="fdrop" x="648.0" y="78.0" text-anchor="end">189 too close to something already tried</text>
+      <text class="fdrop" x="648.0" y="180.0" text-anchor="end">19 were copies of each other</text>
+      </svg>
+    </div>
+    <p style="margin-top:14px">We have <b>192 good, different hands</b> and room for <b>20</b>. Having enough
+      allowed hands stopped being the problem some time this afternoon.</p>
+    <p><b>The problem is now the bottom bar.</b> To put a hand on the list we have to say how well it
+      grips and whether it survives being warm — and right now <b>not one</b> of the 192 has both
+      numbers. The program that writes the final list checks, finds them missing, and refuses to
+      write anything. It is right to refuse: a list ranked on the one number we do have would be a
+      guess wearing a scoreboard's clothes.</p>
+    <div class="grown"><b>Grown-up version.</b> 141 of 200 eligible in <code>b1-novel-s1</code>, 70 of 200 in
+      <code>b2-explor-s2-fixed</code>; 211 eligible, 192 unique CDRH3 loops, no overlap between batches.
+      Neither batch's gate run actually reached abguard — both <code>*-gate.stdout</code> files say
+      <code>abguard not found</code> — so these are the offline check's numbers, cross-validated against
+      the committed eligible lists (batch 1: their 140 is a strict subset of our 141; batch 2: both 70,
+      differing by one each way) and against <code>abguard team-validate</code> on the refolded 20.
+      <code>score/rank.py</code> exits 3 because <code>min_ipae</code> and <code>predicted_ddg</code> are
+      absent for every candidate — two of the three judged axes. At the measured 15–17 s/design, a
+      shortlist refold is roughly 20 minutes of compute.</div>
   </section>
 
   <section>
@@ -686,7 +733,10 @@ footer{font-size:14px; color:var(--muted); text-align:center}
       <li class="done"><time>13:03</time><span>Found the referee, read its rule book, fixed our three wrong rules.</span></li>
       <li class="done"><time>13:58</time><span><b>First real hands.</b> 100 made, 20 checked, 14 allowed, best grip 0.912.</span></li>
       <li class="done"><time>14:00</time><span>Rebuilt the referee's novelty test to run on a laptop. <b>Agrees on all 20.</b></span></li>
-      <li class="todo"><time>15:30</time><span>Stop making new hands. A job started after this might still be queueing at four.</span></li>
+      <li class="done"><time>15:05</time><span>Checked all 400 hands against the measured pile. <b>211 survive, 192 of them different.</b></span></li>
+      <li class="done"><time>15:40</time><span>Merged the team's two lines of work back into one repository.</span></li>
+      <li class="todo"><time>15:30</time><span>Stop making new hands. <b>Enough exist</b> — 192 for 20 slots.</span></li>
+      <li class="todo"><time>now</time><span><b>Run the grip test on a shortlist.</b> Nothing can be handed in until this finishes.</span></li>
       <li class="todo"><time>16:00</time><span>Freeze the list. Every hand gets the referee's verdict written next to it.</span></li>
       <li class="todo"><time>17:00</time><span>Practise the talk out loud, with a timer. Twice.</span></li>
       <li class="todo"><time>18:00</time><span><b>Hand it in.</b> Up to 20 hands, best first.</span></li>
@@ -719,15 +769,29 @@ footer{font-size:14px; color:var(--muted); text-align:center}
 
   <section>
     <h2>What is still missing</h2>
-    <p>Saying the gaps out loud is worth more points than pretending there are none.</p>
+    <p>Saying the gaps out loud is worth more points than pretending there are none. In order of
+      what actually blocks the hand-in.</p>
     <ul class="todolist">
-      <li><i class="box done"></i><span><b>A novelty check we can run ourselves.</b> Done this afternoon, and it agrees with the referee on all 20 of batch 1. This was the biggest hole — and it immediately found a bigger one in batch 2.</span></li>
-      <li><i class="box"></i><span><b>The hand-in sheet is still empty.</b> <code class="seq">designs/submission.csv</code> has its column names and no rows. The 14 good hands live in a batch file beside it.</span></li>
-      <li><i class="box"></i><span><b>Batch 2 is mostly dead on arrival.</b> 200 more hands were made on another branch and never checked against the measured pile — only against the original medicine. Run through the new check: <b>129 are too close to something already tried</b>, and six are <i>exact copies</i> of a measured hand. Seventy survive. The pattern is the same as batch 1, only worse: 103 of the 129 were blocked by a hand the screen rated good.</span></li>
-      <li><i class="box"></i><span><b>Batch 3, aimed properly.</b> Start from the measured hands that <i>already</i> grip well, move exactly three fingertips, and check locally before paying for a grip test. The pond is 1,341 hands.</span></li>
-      <li><i class="box"></i><span><b>The brand-new-hand route is empty.</b> Everything so far rewrites the old hand's fingertips. The other route needs the big computer and has nothing committed.</span></li>
-      <li><i class="box"></i><span><b>Does the hand survive being warm?</b> One of the three judged properties, and no model on the platform measures it. We have stand-ins only, and we have to say so.</span></li>
-      <li><i class="box"></i><span><b>Nobody has asked how to rank.</b> The referee's sheet has no rank column. We think it is row order. Someone should ask an organiser.</span></li>
+      <li><i class="box"></i><span><b>Nothing can be handed in until the grip numbers exist.</b> This is
+        the only true blocker. The ranking program needs two numbers per hand and has neither, for any
+        of the 192. Measured speed is about 15 seconds a hand, so a shortlist is roughly twenty minutes
+        of computer time. Until that runs, the hand-in sheet cannot be written at all.</span></li>
+      <li><i class="box"></i><span><b>Does the hand survive being warm?</b> One of the three judged
+        properties, and no program on the platform measures it. We have stand-ins only, and the talk has
+        to say so out loud rather than hope nobody asks.</span></li>
+      <li><i class="box"></i><span><b>The brand-new-hand route is still empty.</b> All 400 hands rewrite
+        the old hand's fingertips. The other route needs the big computer and has nothing committed. If
+        we are not entering it, the talk should say that we chose not to, not leave it looking forgotten.</span></li>
+      <li><i class="box"></i><span><b>Nobody has asked how to rank.</b> The referee's sheet has no rank
+        column. We think it is row order. Two minutes with an organiser settles it.</span></li>
+      <li><i class="box done"></i><span><b>A novelty check we can run ourselves.</b> Done. It agrees with
+        the referee on all 20 refolded hands, and on both batches' own lists across 400 more. This was
+        the biggest hole this morning.</span></li>
+      <li><i class="box done"></i><span><b>Both batches checked against the measured pile.</b> Neither
+        batch had actually been — both gate runs quietly failed to find the referee and fell back to
+        comparing against the original medicine alone. Now done properly: 211 of 400 survive.</span></li>
+      <li><i class="box done"></i><span><b>One repository again.</b> The team's work had split into two
+        lines that never met. Merged, with every conflict resolved by keeping both sides' findings.</span></li>
     </ul>
   </section>
 

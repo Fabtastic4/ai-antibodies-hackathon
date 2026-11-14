@@ -1,15 +1,15 @@
   reports/b1-novel-s1-paratope.csv: 121 designs
   reports/b2-explor-s2-fixed-paratope.csv: 70 designs
-  schema: 24 columns read from existing designs/submission.csv
+  schema: 27 columns read from existing designs/submission.csv
 candidates with a paratope score : 191
-candidates with a refold score   : 0
+candidates with a refold score   : 12
 candidates with a ddG score      : 0
 slots                            : 20
+  NOTE only 12 of 20 slots can carry a measured min_ipae; the rest would rank on the paratope proxy alone.
 
 REFUSING to write a submission. Missing required evidence:
-  - min_ipae         axis 1 (binding) - boltz2 co-fold interface error, stage 5 refold
-  - predicted_ddg    axis 3 (thermostability) - stab-ddg, not yet run
+  - predicted_ddg    axis 3 (thermostability) - NO hosted thermostability predictor exists; stab-ddg is BINDING ddG. Whatever fills this column is a proxy and must name itself in thermostability_basis. Not yet run
 
-Two of the three judged axes would be empty, so a rank order here would be
-the paratope proxy wearing a scores table's clothes. Run stage 5 (refold),
+1 of the three judged axes would be empty, so a rank order here would be
+the remaining proxies wearing a scores table's clothes. Fill the axis above,
 or pass --allow-partial to emit with 'n/a' in every unmeasured column.

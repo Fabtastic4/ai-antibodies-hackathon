@@ -1,0 +1,15 @@
+{
+ "label": "cf-b2-explor-s2-fixed-her2_cdrh3_26",
+ "model": "boltz2",
+ "tool": "boltz2_predict_native",
+ "key": "oslo-boltz2-cf-b2-explor-s2-fixed-her2_cdrh3_26",
+ "kind": "inline",
+ "submitted_at": 1794667962.7068942,
+ "operation_id": "op-f81f2840d30f791f",
+ "state": "failed",
+ "state_at_submit": "queued",
+ "result_available": false,
+ "state_checked_at": "2026-11-14T16:31:17Z",
+ "structure_on_disk": false,
+ "error": "inference outcome unknown (HTTP 000, no response captured)"
+}

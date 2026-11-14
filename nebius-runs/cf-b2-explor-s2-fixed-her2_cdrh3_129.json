@@ -1,0 +1,14 @@
+{
+ "label": "cf-b2-explor-s2-fixed-her2_cdrh3_129",
+ "model": "boltz2",
+ "tool": "boltz2_predict_native",
+ "key": "oslo-boltz2-cf-b2-explor-s2-fixed-her2_cdrh3_129",
+ "kind": "inline",
+ "submitted_at": 1794667974.522722,
+ "operation_id": "op-56b68cae5ca4a562",
+ "state": "succeeded",
+ "state_at_submit": "queued",
+ "result_available": true,
+ "state_checked_at": "2026-11-14T16:31:14Z",
+ "structure_on_disk": true
+}

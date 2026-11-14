@@ -37,7 +37,7 @@ data/**/*.gz
 # Bucket data pulled from the VM: review before committing (see scripts/pull_vm_data.sh)
 data/bucket/committable.tar.gz
 data/bucket/extracted/**/*.csv.gz
-nebius-runs/
+
 
 # JapanFold API key (never commit). The team key lives in the Slack codes txt and is read
 # in place via $JAPANFOLD_KEY_FILE — see docs/SETUP.md §6 — so it should never land here.

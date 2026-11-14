@@ -1,0 +1,14 @@
+{
+ "label": "cf-b1-novel-s1-her2_cdrh3_14",
+ "model": "boltz2",
+ "tool": "boltz2_predict_native",
+ "key": "oslo-boltz2-cf-b1-novel-s1-her2_cdrh3_14",
+ "kind": "inline",
+ "submitted_at": 1794668005.9854379,
+ "operation_id": "op-5c3acac053572750",
+ "state": "succeeded",
+ "state_at_submit": "queued",
+ "result_available": true,
+ "state_checked_at": "2026-11-14T16:31:13Z",
+ "structure_on_disk": true
+}

@@ -1,0 +1,11 @@
+{
+ "label": "pae-probe",
+ "model": "boltz2",
+ "tool": "boltz2_predict_native",
+ "key": "oslo-boltz2-pae-probe",
+ "kind": "inline",
+ "submitted_at": 1794650551.102981,
+ "operation_id": "op-1b4ec8ab238beabd",
+ "state": "succeeded",
+ "total_seconds": 63
+}

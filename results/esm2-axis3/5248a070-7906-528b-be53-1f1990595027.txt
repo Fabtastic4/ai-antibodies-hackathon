@@ -1,0 +1,17 @@
+{
+  "entries": [
+    {
+      "artifact": {
+        "artifact_id": "d39fd6ac-e540-5550-820b-1c02e10c664e",
+        "compression": "none",
+        "media_type": "application/x-tar",
+        "sha256": "e7959f054bd0421442ecdabf2dd60be0fdb3dbfc8a581fd3582ebb6f6a8d088c",
+        "size_bytes": 32768
+      },
+      "name": "workload",
+      "semantic_type": "protein-sequence-scoring-tar/v1"
+    }
+  ],
+  "manifest_id": "oslo-esm2-650m-esm2-axis3",
+  "schema": "fs2-serve.nebius.ai/scientific-artifact-manifest/v1"
+}

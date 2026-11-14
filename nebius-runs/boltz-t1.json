@@ -1,0 +1,11 @@
+{
+ "label": "boltz-t1",
+ "model": "boltz2",
+ "tool": "boltz2_predict_native",
+ "key": "oslo-boltz2-boltz-t1",
+ "kind": "inline",
+ "submitted_at": 1794667758.4372292,
+ "operation_id": "op-851ba89e48c2c9a2",
+ "state": "succeeded",
+ "total_seconds": 86
+}

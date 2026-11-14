@@ -1,0 +1,6 @@
+Starting boltz2. Usually about 80 seconds on the first call.
+Run id: op-1b4ec8ab238beabd  (saved in nebius-runs/pae-probe.json)
+  [   0s] queued
+  [  10s] running
+  [  63s] succeeded
+Done in 63 seconds. Download with: forge.py fetch op-1b4ec8ab238beabd --dest results/op-1b4ec8ab238beabd

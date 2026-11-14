@@ -1,0 +1,142 @@
+{
+ "schema": "fs2-serve.nebius.ai/scientific-run-result/v2",
+ "operation_id": "op-2faeb5c6ddee21bf",
+ "model_id": "esm2-650m",
+ "status": "succeeded",
+ "terminal_status": "succeeded",
+ "input_manifest": {
+  "artifact_id": "5248a070-7906-528b-be53-1f1990595027",
+  "compression": "none",
+  "media_type": "application/vnd.fs2.scientific-manifest+json",
+  "sha256": "6ffe5c118f8c9c51d624610d4810e2f6f5116d01bf5bc0f4e46a9ba0d023b86e",
+  "size_bytes": 511
+ },
+ "output_manifest": {
+  "artifact_id": "0b21d0f3-a6cb-59af-8a91-7695a1770964",
+  "sha256": "3d046e62f47a8be275abc26464c6e5649e413569f5bacdb5b11a4d3559385c63",
+  "size_bytes": 644,
+  "media_type": "application/vnd.fs2.scientific-manifest+json",
+  "compression": "none"
+ },
+ "semantic_validation": {
+  "status": "passed",
+  "validator_id": "esm2-score-v1",
+  "rows_completed": 191,
+  "residues_scored": 22920
+ },
+ "native_result": {
+  "validation": {
+   "status": "passed",
+   "validator_id": "esm2-score-v1",
+   "rows_completed": 191,
+   "residues_scored": 22920
+  },
+  "files": [
+   {
+    "name": "result",
+    "semantic_type": "esm2-score-result/v1",
+    "media_type": "application/json",
+    "compression": null,
+    "file": {
+     "path": "result.json",
+     "sha256": "01f33a0e525dc6f66e307b25e3b898c69f1f3ab973645f63e7e37f3f3ca6355d",
+     "size_bytes": 2043
+    }
+   },
+   {
+    "name": "scores",
+    "semantic_type": "esm2-score-table/v1",
+    "media_type": "text/csv",
+    "compression": null,
+    "file": {
+     "path": "scores.csv",
+     "sha256": "04cb5a2910687d8a7a4b5327f7050bbe30e571dacf87ca86ee2557f81921af4f",
+     "size_bytes": 19875
+    }
+   }
+  ],
+  "command_seconds": 190.32375972205773,
+  "command_timing_scope": "terminal-stage-only",
+  "runtime_metrics": {
+   "preparation_seconds": 2.9814839707687497,
+   "model_load_seconds": 5.077461082022637,
+   "scoring_seconds": 181.68452422041446,
+   "score_rows_per_second": 1.051272808289848,
+   "rows_completed": 191,
+   "residues_scored": 22920,
+   "forward_contexts": 22920
+  }
+ },
+ "customer_storage": {
+  "available": true,
+  "bucket": "fs2-oslo-hackathon-participant-05-2195b44034",
+  "prefix": "runs/esm2-650m/op-2faeb5c6ddee21bf/",
+  "manifest_key": "runs/esm2-650m/op-2faeb5c6ddee21bf/manifest.json",
+  "files": [
+   {
+    "path": "artifacts/result.json",
+    "sha256": "01f33a0e525dc6f66e307b25e3b898c69f1f3ab973645f63e7e37f3f3ca6355d",
+    "size_bytes": 2043,
+    "key": "runs/esm2-650m/op-2faeb5c6ddee21bf/artifacts/result.json"
+   },
+   {
+    "path": "artifacts/scores.csv",
+    "sha256": "04cb5a2910687d8a7a4b5327f7050bbe30e571dacf87ca86ee2557f81921af4f",
+    "size_bytes": 19875,
+    "key": "runs/esm2-650m/op-2faeb5c6ddee21bf/artifacts/scores.csv"
+   },
+   {
+    "path": "result.json",
+    "sha256": "5585940e7168c97ab6ea5ba9078b1a13627ab9f9fbf7bce35b2da0283d629b41",
+    "size_bytes": 893,
+    "key": "runs/esm2-650m/op-2faeb5c6ddee21bf/result.json"
+   }
+  ]
+ },
+ "progress": {
+  "schema": "scientific-ai/progress/v1",
+  "updated_at": null,
+  "current_step_id": null,
+  "steps": [
+   {
+    "step_id": "delivered_calls",
+    "command": null,
+    "state": "completed",
+    "unit": "call",
+    "initial_step": null,
+    "target_step": null,
+    "observed_step": null,
+    "durable_step": null,
+    "timestep_ps": null,
+    "completed_ns": null,
+    "durable_completed_ns": null,
+    "target_ns": null,
+    "ns_per_day": null,
+    "ns_per_day_source": null,
+    "completed_units": 1.0,
+    "durable_completed_units": 1.0,
+    "target_units": null,
+    "rate": null,
+    "rate_unit": null,
+    "rate_source": null,
+    "rate_window_seconds": null,
+    "observed_at": null,
+    "durable_at": null,
+    "rate_updated_at": null
+   }
+  ],
+  "available": true,
+  "stale": false,
+  "stale_after_seconds": null,
+  "source": "verified-delivery"
+ },
+ "execution": {
+  "stage_id": "score",
+  "shard_id": "main",
+  "role": "run",
+  "owner": {
+   "tenant_id": "oslo-hackathon",
+   "principal_id": "58165ec97adff58084a6af73a59e004ea7655d9fa7e29d083e7050b540370472"
+  }
+ }
+}

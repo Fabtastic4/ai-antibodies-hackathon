@@ -1,0 +1,131 @@
+{
+ "model_id": "boltz2",
+ "operation": {
+  "id": "op-1b4ec8ab238beabd",
+  "status": "SUCCEEDED"
+ },
+ "result": {
+  "schema": "fs2-serve.nebius.ai/operation-artifact-result/v1",
+  "artifact": {
+   "artifact_id": "fccdfe1f-222b-57ac-9ea2-aabdcc933729",
+   "sha256": "0d648f9c37d75b7ca1e17c5944e8ec095f7dde098eba73276ca21bf7346830d5",
+   "size_bytes": 183166,
+   "media_type": "application/json",
+   "compression": "none"
+  },
+  "content_type": "application/json"
+ },
+ "response": {
+  "operation_id": "op-1b4ec8ab238beabd",
+  "attempt_id": "op-1b4ec8ab238beabd-42t6t",
+  "http_status": 200,
+  "content_type": "application/json",
+  "size_bytes": 183166,
+  "sha256": "5e21003ab61f80e64a5cba6dfe3247144ea703b7905157fd582bde6fae4033c4",
+  "timings": {
+   "posted_at": "2026-11-14T10:02:54Z",
+   "first_byte_at": "2026-11-14T10:03:26Z",
+   "completed_at": "2026-11-14T10:03:27Z",
+   "duration_s": 32.593531
+  },
+  "capture_complete": true,
+  "artifact": {
+   "artifact_id": "ba18834d-e118-52d9-896e-1c4ae33f42c4",
+   "sha256": "5e21003ab61f80e64a5cba6dfe3247144ea703b7905157fd582bde6fae4033c4",
+   "size_bytes": 183166,
+   "media_type": "application/json",
+   "compression": "none"
+  }
+ },
+ "upstream_success": true,
+ "customer_storage": {
+  "available": true,
+  "bucket": "fs2-oslo-hackathon-participant-05-2195b44034",
+  "prefix": "runs/boltz2/op-1b4ec8ab238beabd/",
+  "manifest_key": "runs/boltz2/op-1b4ec8ab238beabd/manifest.json",
+  "files": [
+   {
+    "path": "artifacts/ba18834d-e118-52d9-896e-1c4ae33f42c4.json",
+    "sha256": "5e21003ab61f80e64a5cba6dfe3247144ea703b7905157fd582bde6fae4033c4",
+    "size_bytes": 183166,
+    "key": "runs/boltz2/op-1b4ec8ab238beabd/artifacts/ba18834d-e118-52d9-896e-1c4ae33f42c4.json"
+   },
+   {
+    "path": "artifacts/fccdfe1f-222b-57ac-9ea2-aabdcc933729.json",
+    "sha256": "0d648f9c37d75b7ca1e17c5944e8ec095f7dde098eba73276ca21bf7346830d5",
+    "size_bytes": 183166,
+    "key": "runs/boltz2/op-1b4ec8ab238beabd/artifacts/fccdfe1f-222b-57ac-9ea2-aabdcc933729.json"
+   },
+   {
+    "path": "result.json",
+    "sha256": "62c1b0c4acea0a385e96cb6e66e736927b5411fc56e607b8e7085e4a3f6a546f",
+    "size_bytes": 1051,
+    "key": "runs/boltz2/op-1b4ec8ab238beabd/result.json"
+   }
+  ]
+ },
+ "progress": {
+  "schema": "scientific-ai/progress/v1",
+  "updated_at": null,
+  "current_step_id": null,
+  "steps": [
+   {
+    "step_id": "delivered_calls",
+    "command": null,
+    "state": "completed",
+    "unit": "call",
+    "initial_step": null,
+    "target_step": null,
+    "observed_step": null,
+    "durable_step": null,
+    "timestep_ps": null,
+    "completed_ns": null,
+    "durable_completed_ns": null,
+    "target_ns": null,
+    "ns_per_day": null,
+    "ns_per_day_source": null,
+    "completed_units": 1.0,
+    "durable_completed_units": 1.0,
+    "target_units": null,
+    "rate": null,
+    "rate_unit": null,
+    "rate_source": null,
+    "rate_window_seconds": null,
+    "observed_at": null,
+    "durable_at": null,
+    "rate_updated_at": null
+   },
+   {
+    "step_id": "structures",
+    "command": null,
+    "state": "completed",
+    "unit": "structure",
+    "initial_step": null,
+    "target_step": null,
+    "observed_step": null,
+    "durable_step": null,
+    "timestep_ps": null,
+    "completed_ns": null,
+    "durable_completed_ns": null,
+    "target_ns": null,
+    "ns_per_day": null,
+    "ns_per_day_source": null,
+    "completed_units": null,
+    "durable_completed_units": null,
+    "target_units": null,
+    "rate": null,
+    "rate_unit": null,
+    "rate_source": null,
+    "rate_window_seconds": null,
+    "observed_at": null,
+    "durable_at": null,
+    "rate_updated_at": null
+   }
+  ],
+  "available": true,
+  "stale": false,
+  "stale_after_seconds": null,
+  "source": "verified-delivery"
+ },
+ "execution": "async"
+}

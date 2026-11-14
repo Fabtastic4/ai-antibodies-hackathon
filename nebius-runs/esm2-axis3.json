@@ -1,0 +1,15 @@
+{
+ "label": "esm2-axis3",
+ "model": "esm2-650m",
+ "tool": "submit_esm2_650m",
+ "key": "oslo-esm2-650m-esm2-axis3",
+ "kind": "file",
+ "operation": "score-sequences",
+ "submitted_at": 1794667375.776397,
+ "operation_id": "op-2faeb5c6ddee21bf",
+ "state": "succeeded",
+ "state_at_submit": "queued",
+ "result_available": true,
+ "state_checked_at": "2026-11-14T16:31:20Z",
+ "structure_on_disk": false
+}

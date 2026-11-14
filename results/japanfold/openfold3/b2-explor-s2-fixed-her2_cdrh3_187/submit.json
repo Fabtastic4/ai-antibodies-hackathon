@@ -1,0 +1,8 @@
+{
+  "model": "openfold3",
+  "name": "b2-explor-s2-fixed-her2_cdrh3_187",
+  "params": {
+    "write_pae": true
+  },
+  "idempotency_key": "6fc7f7a5-88ab-4b73-a155-abe9502f28ee"
+}

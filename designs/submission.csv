@@ -1,1 +1,1 @@
-design_id,format,sequence,parent,mutations,method,model_version,seed,plddt,iptm,ipsae,predicted_ddg,liability_flags,cysteine_count,rank,reason_for_selection
+design_id,format,sequence,light_sequence,parent,mutations,track,method,model_version,seed,run_id,plddt,iptm,ipsae,min_ipae,binder_plddt,predicted_ddg,epitope_overlap_frac,thermostability_basis,liability_flags,netsolp_solubility_min,cysteine_count,rank,reason_for_selection

@@ -1,0 +1,31 @@
+Unique eligible designs analysed: 121
+Wild-type CDRH3 window 99-107: WGGDGFYAM
+Measured CDRH3-HER2 contacts: W99 (4.05 A), G103 (2.42 A), F104 (4.27 A), Y105 (3.32 A)
+
+| CDRH3 contact residues preserved | designs | share |
+|---|---|---|
+| 2 of 4 | 16 | 13.2% |
+| 1 of 4 | 68 | 56.2% |
+| 0 of 4 | 37 | 30.6% |
+
+G103 (closest contact, 2.42 A) preserved: 4/121 (3.3%)
+
+| Contact | designs that mutate it | share |
+|---|---|---|
+| W99 | 108 | 89.3% |
+| G103 | 117 | 96.7% |
+| F104 | 121 | 100.0% |
+| Y105 | 38 | 31.4% |
+
+Cross-tab: CDRH3 mutation count x contacts preserved
+| mutations | 4 kept | 3 | 2 | 1 | 0 | total |
+|---|---|---|---|---|---|---|
+| 5 | 0 | 0 | 6 | 0 | 0 | 6 |
+| 6 | 0 | 0 | 4 | 13 | 0 | 17 |
+| 7 | 0 | 0 | 6 | 36 | 3 | 45 |
+| 8 | 0 | 0 | 0 | 19 | 29 | 48 |
+| 9 | 0 | 0 | 0 | 0 | 5 | 5 |
+
+Wrote reports/b1-novel-s1-paratope.csv (121 rows)
+
+Priority for refold scoring (>=3 contacts kept AND >=6 mutations): 0

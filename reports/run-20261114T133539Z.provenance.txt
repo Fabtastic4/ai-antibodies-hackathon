@@ -1,0 +1,15 @@
+run_id         20261114T133539Z
+target         1N8Z  chain C
+designs        
+cutoff         4.5 A all-heavy-atom
+seed           20261114
+offline        1
+python         Python 3.12.5
+uname          Darwin 25.4.0 arm64
+git            dc5a8f8
+PYTHONHASHSEED 0
+target_sha256  ed934d36503335c6764b08880f9e50933d99eb13b9bf145339cfcaee150eb21e  data/target/1n8z.pdb
+stage_gate     SKIPPED - abguard not on this machine
+stage_gate     SKIPPED - abguard not on this machine
+stage_solubility SKIPPED - netsolp is VM-local
+stage_refold   SKIPPED - needs Nebius key, launched explicitly

@@ -64,8 +64,11 @@ Per the task PDF, every team machine ships with:
   `foundry-toolkit module list`; `Tutorial.html` (Hackathon VM tab) shows how to run each one.
 - **RCSB MCP**, for fast access to known protein structures.
 - **Read-only credentials for the hackathon data bucket**, `s3://apheris-oslo-hackathon`.
-- **abguard**, the CLI that checks a design against the hard filters before submission. Run it on
-  every candidate; a design that fails is not submitted.
+- **abguard**, the CLI that checks a design against the hard filters before submission.
+  At `~/.local/bin/abguard` — a `uv` tool, **not** a Foundry Docker image, and on `PATH` in a
+  **login shell only**. Scripts need `bash -lc "abguard ..."` or the absolute path, otherwise it
+  looks missing. Do not reinstall it. Run the gate on every candidate:
+  `bash pipeline/filter/gate.sh` — see [`abguard.md`](abguard.md).
 
 Pull data onto the machine (example straight from the PDF):
 
@@ -150,9 +153,11 @@ The rule, no exceptions:
 `results/` and `nebius-runs/` hold run ids and outputs with **no keys**, and we must show where
 every score came from — so they **should be committed**.
 
-> **Conflict to resolve (owner needed):** the current `.gitignore` also lists `nebius-runs/` and
-> `results/` under the ignore block, which contradicts the rule above and START-HERE.md. Someone
-> owning repo hygiene should remove those two lines, then `git add -f` anything already written.
+> **Resolved 13:20 (W1).** The blanket `nebius-runs/` and `results/` ignores are gone, replaced by
+> patterns that ignore only the blobs inside them (`*.cif`, `*.pdb`, `*.tar`, `*.gz`) so run ids
+> and score tables commit normally. Verified: `credentials*.json`, `*.private.json`, `*.pem`,
+> `id_*`, `team-4*` and `Files from slack/` are still ignored, including inside those folders.
+> Nothing needs `git add -f` any more. Still run `git status` before every push.
 
 Before `git push`, run `git status` and look at what is staged. One leaked key ends the day.
 

@@ -32,8 +32,15 @@ that misses its track's criteria is rejected, never reclassified.
 
 | Track | Criteria (all must hold) |
 |---|---|
-| De novo | < 70% sequence identity to any known antibody in known databases **and** ≥ 2 CDRH3 mutations away from trastuzumab |
-| Optimisation | everything else; valid only if < 70% **CDRH3** identity to trastuzumab **and** > 2 point mutations from any provided antibody |
+| De novo | < 70% sequence identity to any known antibody in known databases **and** ≥ 2 CDRH3 mutations from every known CDRH3 |
+| Optimisation | everything else (≥ 70% identity to trastuzumab); valid only if the CDRH3 is **≥ 3 mutations from trastuzumab *and* from every one of the 610,109 CDRH3s abguard knows** |
+
+> Measured on our own batch 1, not read off the PDF — see **[`docs/abguard.md`](docs/abguard.md)**.
+> There is **no 70% CDRH3-identity threshold** to clear: identity only picks your track. The real
+> optimisation bar is the mutation count, counted against all 610,109 known CDRH3s, so 3 mutations
+> from trastuzumab is necessary but **nowhere near sufficient**. Batch 1, 129 real designs:
+> **91 eligible (70.5%), zero hard errors, every rejection on novelty.** By distance from
+> trastuzumab: **3–4 mutations → 0/12, 5 → 44%, 6+ → 79–89%.** **Target ≥ 6.**
 
 Identity comparison is type-aware: a VHH is compared against known VHHs and heavy chains; scFv and Fab
 are split into paired chains and compared as paired antibodies. Tags and linkers are stripped first
@@ -62,19 +69,26 @@ designs that plausibly move all three axes at once.
 
 Run before anything goes on the submission list. A failing design is not submitted.
 
-- [ ] Format is **VHH, scFv or Fab**
-- [ ] **No unpaired cysteines**
+Do not hand-check these. **Run the gate:**
+
+```bash
+bash pipeline/filter/gate.sh            # on the VM; exit 0 = eligible, non-zero = not a submission
+```
+
+- [ ] Format is **VHH, scFv or Fab** (Fab goes in as `kind=paired`). Not a whole IgG
+- [ ] **No unpaired cysteines**, per chain and per domain
 - [ ] `immunum` numbering confidence **≥ 0.1** ("is it an antibody?")
-- [ ] Total length **≤ 250 aa** (whole single scFv or VHH; VH + VL combined for Fab)
-- [ ] Novelty: de novo → < 70% identity to any known antibody. Optimisation → < 70% CDRH3 identity to
-      trastuzumab **and** strictly > 2 point mutations from any provided data point
+- [ ] Length **≤ 250 aa per chain** — *not* VH + VL combined. Canonical 20 amino acids only, no `X`
+- [ ] Novelty: ≥ 3 CDRH3 mutations (optimisation) or ≥ 2 (de novo) from **every** known CDRH3
 - [ ] Soft, no filter but it decides whether we get measured at all: expression. Prior Adaptyv rounds
       improved once teams scored candidates with **Aggrescan 3D, SoluProt, NetSolP, ProteinMPNN
       (soluble weights)**
 
-`abguard` is pre-installed on the team VM and organisers provide it as a CLI (task PDF p4, p7).
-The constraints above are the PDF's own list, and it labels them "the constraints known so far" (p7) —
-the tool may enforce more than this.
+`abguard` is pre-installed on the team VM at `~/.local/bin/abguard` — **login shell only**, so
+scripts need `bash -lc`. It is not a Foundry Docker module. Its novelty reference is bundled and on
+by default; nothing to build. Full write-up: **[`docs/abguard.md`](docs/abguard.md)**. The constraints above are
+the task PDF's own list, and it labels them "the constraints known so far" (p7) — the tool
+enforces more than the PDF states, and `docs/abguard.md` is the record of what it actually does.
 
 ## Submission shape
 
@@ -142,36 +156,32 @@ Files from slack/   organiser handouts + credentials. Not for committing secrets
 
 ## Open questions / contradictions in the sources
 
-- The task PDF contradicts itself: "at least 2 mutations from any provided antibody" (p2) vs "strictly
-  more than 2 point mutations from any data point provided" in the hard-filter list (p7) and "More than
-  2 point mutations" in the `abguard` flowchart (p3). Treat **> 2** as the bar — two of three say so.
-  TODO: confirm with a mentor.
-- Optimisation requiring **< 70% CDRH3 identity to trastuzumab** (p2, p3, p7) is a large change for a
-  "point mutation" track: trastuzumab's CDRH3 is 11 residues, so it means ≥ 4 substitutions — see
-  [docs/probe-findings.md](docs/probe-findings.md) §3 for the arithmetic and its one assumption.
-  TODO: confirm with a mentor before committing the optimisation list.
-- The pre-read material disagrees with the task PDF on four numbers. **The PDF wins.** The old numbers
-  are not in this repo — they are on the event website and in the participant field guide, so here is
-  each one with where it comes from:
-
-| Pre-read source says | Task PDF says | Use |
-|---|---|---|
-| "end with **up to 10** designs to present" / "Select up to 10 to validate" (participant guide, design-funnel + judging sections) | "each team compiles a ranked list of **up to 20** designs: 16, assuming they win, + 4 spare" (p7) | **20** |
-| "**~5 tested**" / "We can probably test five designs per team" (participant guide) | base **4** tested for every team, +12/+8/+4 by placement, +2 per judge nomination, max 16 (p8, Figure 3) | **4 base, up to 16** |
-| "Prize money of **3,000 USD**" (event site, prizes + FAQ) | "total prize fund of **€3000**... equally distributed between... two tracks", €800/€500/€200 per track (p9) | **€3000, split per track** |
-| "Apheris and Openfold are the monetary prize sponsors; **to qualify for that prize, include Apheris' version of Openfold in your pipeline**" (participant guide, prizes) | prize section names no such condition (p9) | **unresolved — see below** |
-
-- The Apheris-OpenFold qualification condition is **not superseded, just unrepeated**. The task PDF
-  does not restate it and does not contradict it. Treat it as live: if we want the €3000, assume
-  Apheris OpenFold must appear in the pipeline. **TODO: confirm with an organiser or the Apheris team
-  on site** (task PDF p4: "If something doesn't work on your machine, find the Apheris team on site").
-- **Team size:** the event-site FAQ says "Maximum team size is 5 people"; we are 6. The task PDF says
-  nothing about team size, so the FAQ is not superseded. The schedule does list "team adjustments (if
-  necessary)" at 09:00, which is presumably how we got to 6. **TODO: confirm with an organiser that a
-  6-person team is eligible.** Do not assume it is fine because nobody stopped us.
-- Links: event site https://oslo-ai-antibodies-hackathon.vercel.app/ · competition terms
-  https://proteinbase.com/competitions/anthropic-adaptyv-2026/terms (linked from the event-site FAQ).
-- IP, from the same FAQ: tested designs are **published on Proteinbase under the open ODC-BY licence**
-  — sequence, predicted structure, design method, measurements, our name and team name. Submitting
-  gives Anthropic and Adaptyv permission to use and publish the design; they do not become its owners.
-  Relevant to the 20% "path to value" criterion — nothing we submit stays private.
+- ~~The task PDF says optimisation needs "at least 2 mutations" on p2 but "strictly more than 2" in
+  the hard-filter list.~~ **Closed 13:10** — `abguard` enforces **≥ 3** and says so in every
+  rejection message. No mentor needed.
+- ~~Optimisation requiring **< 70% CDRH3 identity to trastuzumab** is a large change for a "point
+  mutation" track.~~ **Closed 13:10 — the premise was wrong.** `abguard` never computes a CDRH3
+  identity threshold. The ≥70% figure only classifies a design as a trastuzumab variant rather than
+  de novo; our CDRH3 variants sit at 98–99% whole-sequence identity and are perfectly valid
+  optimisations. See [`docs/abguard.md`](docs/abguard.md) §3.
+- Still open, and the only `abguard` question worth a mentor's time: `novelty-report` prints a
+  `--no-novelty: prior art was not checked` warning even when a reference is passed, and its
+  nearest-neighbour column only ever reports `trastuzumab`. `team-validate` uses the full reference
+  correctly. Cosmetic bug, or a second code path?
+- The pre-read guide's numbers (≤10 designs, ~5 tested, team max 5, 3000 USD tied to Apheris OpenFold)
+  are superseded by the task PDF everywhere they disagree. Use the PDF.
+- **Still live, and worth money:** the participant guide says "Apheris and Openfold are the
+  monetary prize sponsors; to qualify for that prize, include Apheris' version of Openfold in your
+  pipeline". The task PDF's prize section (p9) neither repeats nor contradicts this, so it is
+  **unrepeated, not superseded**. If we want the €3000, assume Apheris OpenFold must appear in the
+  pipeline. **TODO: confirm with an organiser or the Apheris team on site.**
+- **Team size:** the event-site FAQ says "Maximum team size is 5 people"; we are 6. The task PDF is
+  silent, so the FAQ is not superseded. The schedule does list "team adjustments (if necessary)" at
+  09:00, which is presumably how we got here. **TODO: confirm a 6-person team is eligible.** Do not
+  assume it is fine because nobody stopped us.
+- **IP**, from the same FAQ: tested designs are **published on Proteinbase under the open ODC-BY
+  licence** — sequence, predicted structure, design method, measurements, our name and team name.
+  Submitting gives Anthropic and Adaptyv permission to use and publish the design; they do not
+  become its owners. Relevant to the 20% "path to value" criterion: nothing we submit stays private.
+- Links: event site https://oslo-ai-antibodies-hackathon.vercel.app/ ·
+  terms https://proteinbase.com/competitions/anthropic-adaptyv-2026/terms

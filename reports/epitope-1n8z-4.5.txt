@@ -1,0 +1,56 @@
+# data/target/1n8z.pdb  cutoff 4.5 A  chains(residues): {'A': 214, 'B': 220, 'C': 581}
+
+## Epitope - HER2 chain C, 19 residues
+| HER2 residue | min dist (A) | contacts |
+|---|---|---|
+| P557 (PRO) | 3.51 | 1 |
+| E558 (GLU) | 3.13 | 6 |
+| D560 (ASP) | 2.60 | 3 |
+| Q561 (GLN) | 3.71 | 1 |
+| K569 (LYS) | 2.96 | 1 |
+| D570 (ASP) | 3.50 | 2 |
+| P571 (PRO) | 2.89 | 4 |
+| P572 (PRO) | 3.11 | 6 |
+| F573 (PHE) | 3.42 | 4 |
+| P579 (PRO) | 4.50 | 1 |
+| I591 (ILE) | 3.74 | 1 |
+| K593 (LYS) | 2.42 | 2 |
+| D596 (ASP) | 2.99 | 1 |
+| E598 (GLU) | 3.52 | 2 |
+| A600 (ALA) | 3.82 | 1 |
+| Q602 (GLN) | 3.05 | 2 |
+| P603 (PRO) | 3.56 | 2 |
+| C604 (CYS) | 3.81 | 1 |
+| P605 (PRO) | 4.15 | 1 |
+
+Epitope residue list: P557,E558,D560,Q561,K569,D570,P571,P572,F573,P579,I591,K593,D596,E598,A600,Q602,P603,C604,P605
+
+## Paratope - Fab, 20 residues
+| chain | Fab residue | min dist (A) | contacts |
+|---|---|---|---|
+| A (VL) | D28 (ASP) | 4.50 | 1 |
+| A (VL) | N30 (ASN) | 2.99 | 4 |
+| A (VL) | T31 (THR) | 3.05 | 1 |
+| A (VL) | A32 (ALA) | 3.69 | 1 |
+| A (VL) | S50 (SER) | 3.61 | 1 |
+| A (VL) | F53 (PHE) | 3.56 | 3 |
+| A (VL) | H91 (HIS) | 2.89 | 2 |
+| A (VL) | Y92 (TYR) | 2.96 | 3 |
+| A (VL) | T93 (THR) | 4.05 | 1 |
+| A (VL) | T94 (THR) | 2.82 | 2 |
+| B (VH) | Y33 (TYR) | 3.42 | 2 |
+| B (VH) | R50 (ARG) | 2.60 | 3 |
+| B (VH) | Y52 (TYR) | 4.39 | 1 |
+| B (VH) | Y57 (TYR) | 3.51 | 2 |
+| B (VH) | T58 (THR) | 4.11 | 1 |
+| B (VH) | R59 (ARG) | 3.43 | 3 |
+| B (VH) | W99 (TRP) | 4.05 | 2 |
+| B (VH) | G103 (GLY) | 2.42 | 4 |
+| B (VH) | F104 (PHE) | 4.27 | 1 |
+| B (VH) | Y105 (TYR) | 3.32 | 4 |
+
+VH (chain B) paratope: 10 residues, 33-105: Y33,R50,Y52,Y57,T58,R59,W99,G103,F104,Y105
+
+VL (chain A) paratope: 10 residues, 28-94: D28,N30,T31,A32,S50,F53,H91,Y92,T93,T94
+
+# HER2 epitope span: 557-605

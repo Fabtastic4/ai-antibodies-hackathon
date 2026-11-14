@@ -84,13 +84,13 @@ in `fab-tastic-four` before the first push, since W5 is the only one who merges 
 
 ```
 credentials + VM (W1)
-  └─> long Nebius jobs queued (W1/W3) <- do this at 11:15, it is pure latency
+  └─> long jobs queued (W1/W3)        <- do this at 11:15, it is pure latency
   └─> SSH + Foundry images on the VM (W1)
-  │     └─> de novo generation (W3 Danielius)   <- HARD BLOCK: no SSH, no de novo track at all.
+  │     └─> de novo generation (W3 Danielius)   <- STILL BLOCKED: nothing committed on this track.
   │                                               The HER2/antibody RFD4 checkpoints are VM-only
   │                                               (probe-findings.md §2)
-  └─> abguard working (W1)            <- the final gate; if this is not up by 13:00 we cannot
-  │                                      certify a single design and the submission is at risk
+  └─> abguard working (W1)            <- DONE 13:20. `bash pipeline/filter/gate.sh`, docs/abguard.md
+  │                                      Offline pre-filter: scripts/novelty_distance.py
   └─> target structure (W2)
         └─> epitope residue list (W2, done — probe-findings.md §5)
               └─> generation inputs (W3: optimisation on Nebius `antifold`, de novo on the VM)
@@ -171,20 +171,36 @@ Remote: `github.com/Fabtastic4/ai-antibodies-hackathon`. Branch `main` is what t
 Run this against any candidate before it goes in the submission table. All of it, in order.
 Anything you cannot fill in is a blocker, not a rounding error.
 
-Hard filters — `abguard` decides, we do not argue (task PDF p3, p7):
+Hard filters — `abguard` decides, we do not argue. **Do not hand-check these, run the gate:**
 
-- [ ] Format is VHH, scFv or Fab. Not a whole IgG.
-- [ ] Total length ≤ **250** aa (single chain, or VH + VL combined).
-- [ ] No unpaired cysteines.
-- [ ] `immunum` numbering confidence ≥ **0.1**.
-- [ ] `abguard` run, output recorded in the candidate's row, verdict = eligible.
+```bash
+bash pipeline/filter/gate.sh designs/submission.csv   # on the VM. exit 0 = eligible
+```
+
+It converts our table to abguard's columns, writes `reports/novelty-report.csv` and
+`reports/liability-report.json`, then gates. Verified working end to end on the VM at 13:20 —
+both the fail path (exit 1) and the pass path (exit 0). Details and the measured numbers:
+[`abguard.md`](abguard.md).
+
+- [ ] Gate exits 0. That single check covers format, length, alphabet, cysteines, `immunum`
+      confidence and novelty — it is the same tool the organisers run.
+- [ ] Verdict and the novelty row recorded in the candidate's row (from `reports/novelty-report.csv`).
 - [ ] Track recorded as abguard assigned it. **A design is never moved between tracks** — if it
       misses its own track's criteria it is rejected, not reclassified.
-- [ ] De novo track: < 70% identity to the nearest known antibody **and** ≥ 2 CDRH3 mutations
-      from trastuzumab.
-- [ ] Optimisation track: < 70% CDRH3 identity to trastuzumab **and** more than 2 point
-      mutations from any provided antibody. (p2 says "at least 2", p3 and p7 say "more than 2" —
-      we build to **> 2** and let abguard confirm. TODO: confirm with an organiser.)
+
+What the gate is actually enforcing, so generation aims at the right target:
+
+- Length ≤ **250 aa per chain** — *not* VH + VL combined. Canonical 20 amino acids only.
+- Cysteines paired per chain **and** per domain.
+- Optimisation (≥70% identity to trastuzumab): CDRH3 **≥ 3 mutations** from trastuzumab *and from
+  every one of the 610,109 known CDRH3s*, including the full 524k FACS screen. De novo: ≥ 2.
+- **There is no < 70% CDRH3-identity requirement.** Identity only picks the track. Measured on
+  batch 1 (129 real designs, `her2-novel-2026-11-09`, seed 1): **91 eligible, 70.5%, zero hard
+  errors, all 38 rejections on novelty.** By distance from trastuzumab: **3–4 → 0/12, 5 → 44%,
+  6 → 83%, 7 → 79%, 8 → 89%.** **Target ≥ 6 mutations.** 35 of the 38 rejections were ≥3 from
+  trastuzumab and died on proximity to a *different* measured loop — the parent is not the
+  binding constraint, the 524k screen is. Over-generate ~1.4× and dedupe on `heavy_sequence`
+  (batch 1's 91 survivors held only 85 unique chains).
 
 Ranking evidence — we rank our own designs, so the numbers have to exist:
 

@@ -97,12 +97,21 @@ SUBSETS = [
                "affinities. REQUIRED, not optional: the optimisation novelty filter (#12) "
                "compares our CDRH3 against every sequence in here, and it is large enough to "
                "train a ranker on measured binders.",
-        "expect": {"rows_exact": {"facs_variants": 524346},
-                   "rows_conflicting": {"spr_variants": [190, 768]},
-                   "note": "524346 FACS variants + 717 optimisation designs = 525063, the "
-                           "novelty corpus size quoted in #12. That arithmetic is exact, so "
-                           "the novelty pre-check should concatenate those two tables and "
-                           "assert 525063."},
+        "expect": {"rows_exact": {"facs_variants": 524346, "spr_rows": 768},
+                   "bytes_at_least": 5_000_000,
+                   "derived": {"spr_with_measurable_kd":
+                               "190 of the 768 SPR rows carry a real KD, spanning 0.023-13863 nM "
+                               "- 5.8 orders of magnitude, so fit on log KD or the numbers will "
+                               "flatter you. The other 578 are MEASURED NON-BINDERS on our exact "
+                               "target, which is signal, not waste. Trastuzumab itself appears 8x "
+                               "at 0.03-0.18 nM: that is the baseline every design is scored "
+                               "against. Observed on the VM, docs/vm-data.md."},
+                   "note": "190 vs 768 is NOT a source conflict: 768 is the SPR table's row "
+                           "count, 190 is how many have a measurable KD. Both numbers quoted in "
+                           "issue #5 were right about different things. Separately, 524346 FACS "
+                           "+ 717 optimisation designs = 525063 (the corpus size in #12), but "
+                           "that is now descriptive only - abguard ships its own reference DB "
+                           "(abguard_cdrh3.parquet), so do NOT assemble a second novelty corpus."},
     },
     {
         "key": "trastuzumab-ngs",
@@ -113,7 +122,11 @@ SUBSETS = [
                "splits removes the main way to fool ourselves when training a ranker - "
                "a split we choose ourselves can leak near-duplicate CDRH3s across folds.",
         "expect": {"files_at_least": 1,
-                   "note": "no count is stated for the splits; report what is there"},
+                   "bytes_at_least": 2_000_000_000,
+                   "note": "~2.4 GB and ships STILL ZIPPED (observed on the VM). Extract before "
+                           "any row count means anything. The splits are clonotype-split, which "
+                           "is the point: a split we choose ourselves leaks near-duplicate "
+                           "CDRH3s across folds and flatters the model."},
     },
     {
         "key": "champloo-confidence",
@@ -127,7 +140,10 @@ SUBSETS = [
                "of assuming one does.",
         "expect": {"files_at_least": 1,
                    "must_contain_dirs": ["spr-supplementary"],
-                   "note": "no total count stated; spr-supplementary is the part that matters"},
+                   "bytes_at_least": 1_500_000_000,
+                   "note": "~1.7 GB of per-replica AF3/Chai-1 confidence JSONs, 50 samples per "
+                           "pair, plus a 29-pair SPR supplement. Row counts do not apply, so the "
+                           "size floor is what catches a truncated sync here."},
     },
     {
         "key": "ab-ag-complexes",
@@ -140,6 +156,7 @@ SUBSETS = [
                "filter before trusting it to rank. LARGEST subset - fetch it last.",
         "expect": {"rows_approx": {"predicted_complexes": 1800000},
                    "rows_exact": {"true_negative_pairs": 454},
+                   "bytes_at_least": 500_000_000,
                    "derived": {"true_negatives_iptm_ge_0.7":
                                "21 of the 454 pairs score AF3 ipTM >= 0.7 while having no "
                                "measurable binding. That is a FILTER over the true-negative "
@@ -155,6 +172,9 @@ SUBSETS = [
 
 ROW_READABLE = (".csv", ".tsv", ".txt")
 ROW_NEEDS_READER = (".parquet", ".feather", ".h5", ".hdf5", ".npy", ".npz", ".pkl", ".arrow")
+# Archives: zenodo-10831512 ships still zipped (observed on the VM, docs/vm-data.md), so a
+# row count is meaningless until it is extracted. Say that, rather than "not a row format".
+ROW_ARCHIVE = (".zip", ".gz", ".tgz", ".tar", ".bz2", ".xz", ".7z")
 
 
 # --------------------------------------------------------------------------
@@ -228,6 +248,9 @@ def count_rows(path: str) -> dict:
     rather than a zero that would read as an empty table.
     """
     ext = os.path.splitext(path)[1].lower()
+    if ext in ROW_ARCHIVE:
+        return {"rows": None, "unverified": "{0} archive - extract it before any count from it "
+                                            "means anything".format(ext)}
     if ext in ROW_NEEDS_READER:
         return {"rows": None, "unverified": "{0} needs a reader (pandas/pyarrow); "
                                             "count it separately".format(ext)}
@@ -302,6 +325,15 @@ def verify(sub: dict, inv: dict) -> dict:
     if not inv.get("exists") or inv["n_files"] == 0:
         add("present", "FAIL", "nothing at the destination")
         return {"status": "FAIL", "checks": checks}
+
+    if "bytes_at_least" in exp:
+        got = inv["bytes"]
+        want = exp["bytes_at_least"]
+        # Most of this bucket is parquet, zip and JSON, where a row count says
+        # nothing. A size floor is the only check that catches a truncated sync
+        # for those subsets, so it is a FAIL, not a warning.
+        add("bytes_at_least", "ok" if got >= want else "FAIL",
+            "{0:.1f} MB on disk, expected at least {1:.1f} MB".format(got / 1e6, want / 1e6))
 
     if "files_at_least" in exp:
         n = inv["n_files"]

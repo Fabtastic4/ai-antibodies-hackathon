@@ -284,6 +284,29 @@ function renderScores() {
   add('ESM-2 proxy', d.thermostability_proxy.value);
   box.append(t);
 
+  // Axis 1 — binding. Its own block, because whether it was measured is the whole point.
+  if (d.axis1) {
+    const t1 = el('table', 'kv');
+    t1.style.marginTop = '8px';
+    const row = (k, v, u) => {
+      const tr = el('tr');
+      tr.append(el('th', null, k));
+      tr.append(el('td', 'v', v === null || v === undefined ? '—' : `${fmt(v)}${u || ''}`));
+      t1.append(tr);
+    };
+    const head = el('tr', 'sep');
+    head.append(el('th', null, d.axis1.measured ? 'axis 1 — measured' : 'axis 1 — not measured'));
+    head.append(el('td', null, ''));
+    t1.append(head);
+    row('min interface pAE', d.axis1.min_ipae, ' Å');
+    row('ipTM', d.axis1.iptm);
+    row('binder pLDDT (refold)', d.axis1.binder_plddt);
+    box.append(t1);
+    box.append(Object.assign(
+      el('div', `basis ${d.axis1.measured ? '' : 'synthetic'}`),
+      { textContent: d.axis1.basis }));
+  }
+
   // Live scores added by a lane run this session.
   if (d.lane_scores) {
     const t2 = el('table', 'kv');

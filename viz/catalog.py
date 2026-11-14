@@ -78,6 +78,22 @@ def load_catalog(submission: str | pathlib.Path | None = None) -> dict:
     solub = _by_key([r for p in sorted(REPORTS.glob("*-solubility.csv")) for r in _read(p)],
                     "sequence_id", "design_id")
     ddg = _by_key(_read(REPORTS / "esm2-axis3-ddg.csv"), "design_id")
+
+    # Axis 1, where it was actually measured. reports/b1_refold_metrics.csv carries real
+    # min_ipae / iptm / binder_plddt from the VM refold-score lane.
+    #
+    # Joined on the HEAVY SEQUENCE, never on the id. The ids collide across runs: that file's
+    # `her2_cdrh3_14` is CDRH3 WHSLHEYYF while the submission's b1-novel-s1-her2_cdrh3_14 is
+    # WHNLHEYYF -- a different molecule with the same trailing number. An id join would staple
+    # a measured interface error onto the wrong sequence, which is worse than leaving it n/a.
+    # A sequence join yields nothing until the submitted designs are themselves refolded, and
+    # then it populates on its own.
+    refold_by_seq = {}
+    for p in (REPORTS / "b1_refold_metrics.csv", REPORTS / "b2_refold_metrics.csv"):
+        for r in _read(p):
+            seq = (r.get("binder_sequence") or "").strip()
+            if seq:
+                refold_by_seq.setdefault(seq, r)
     contacts = _by_key(_read(REPORTS / "cofold-contacts.csv"), "design_id")
     novelty = _by_key([r for p in sorted(REPORTS.glob("*-novelty.csv")) for r in _read(p)],
                       "design_id")
@@ -131,6 +147,25 @@ def load_catalog(submission: str | pathlib.Path | None = None) -> dict:
                 "binder_plddt": None,
                 "cdrh3_plddt": None,
             }
+
+        # Axis 1: measured on the VM, or honestly absent.
+        rf = refold_by_seq.get(heavy, {})
+        axis1 = {
+            "min_ipae": _num(rf.get("min_ipae")) if rf else _num(row.get("min_ipae")),
+            "iptm": _num(rf.get("iptm")) if rf else _num(row.get("iptm")),
+            "binder_plddt": _num(rf.get("binder_plddt")) if rf else None,
+            "binder_ptm": _num(rf.get("binder_ptm")) if rf else None,
+            "measured": bool(rf),
+            "basis": (f"MEASURED on the VM: RFD4-Proteina refold-score, model "
+                      f"{rf.get('model', '?')}, binder chain {rf.get('binder_chain', '?')} "
+                      f"vs target {rf.get('target_chains', '?')}; matched to this design by "
+                      f"heavy sequence, not by id"
+                      if rf else
+                      "NOT MEASURED for this design. reports/b1_refold_metrics.csv holds real "
+                      "min_ipae/iptm, but for a different candidate set -- the trailing ids "
+                      "collide across runs, so it is not joined. Run the JapanFold af2ig lane "
+                      "or a VM refold on these exact sequences to fill it."),
+        }
 
         p_row = paratope.get(did, {})
         s_row = solub.get(did, {})
@@ -214,6 +249,7 @@ def load_catalog(submission: str | pathlib.Path | None = None) -> dict:
                                           or n_row.get("min_mutations")),
                 "eligible": n_row.get("eligible") or n_row.get("passes"),
             },
+            "axis1": axis1,
             "contacts_kept_pos": p_row.get("contacts_kept_pos"),
             "contacts_lost": p_row.get("contacts_lost"),
             "improvement": improvement,
@@ -254,7 +290,10 @@ def load_catalog(submission: str | pathlib.Path | None = None) -> dict:
                    "n_epitope_hit": spread("n_epitope_hit"),
                    "binder_plddt": spread("binder_plddt")},
         "designs": designs,
-        "source": {"submission": str(sub_path.relative_to(REPO)),
+        # relative_to raises for a path outside the repo, and --submission may well point
+        # outside it, so fall back to the absolute path rather than dying on a label.
+        "source": {"submission": str(sub_path.relative_to(REPO))
+                   if sub_path.is_relative_to(REPO) else str(sub_path),
                    "n_designs": len(designs),
                    "n_with_structure": sum(1 for d in designs if d["structure"]["available"])},
     }

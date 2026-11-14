@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab4 keynote</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="keynote.css">
+</head>
+<body class="keynote">
+
+<div id="stage-wrap">
+<div id="stage">
+
+  <section class="slide cover">
+    <div class="grow"></div>
+    <div class="rule"></div>
+    <p class="eyebrow">fab-tastic-four · team 4</p>
+    <h1>A better trastuzumab,<br>ranked on evidence</h1>
+    <p class="lede">400 designs, 20 slots, and a pipeline that refuses to guess.</p>
+    <div class="grow"></div>
+    <p class="meta">AI × Antibodies Hackathon · Oslo · 14 November 2026</p>
+    <aside>We are fab-tastic-four. In five minutes: what we built to improve trastuzumab against HER2, what the data told us, and the 20 designs we are handing in. We rank on evidence we measured, and we say so where we could not measure.</aside>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">The challenge</p>
+    <h2>Three measurements decide the score</h2>
+    <p class="lede">Every tested design is compared with trastuzumab itself. Beat it on all three for S tier, and teams are ranked on S-tier count first.</p>
+    <div class="cards">
+      <div class="kcard"><p class="tag">Axis 1</p><p class="label">Binding to HER2</p><p class="body">Measured by SPR.</p></div>
+      <div class="kcard"><p class="tag">Axis 2</p><p class="label">Epitope preservation</p><p class="body">Competitive binding against trastuzumab.</p></div>
+      <div class="kcard"><p class="tag">Axis 3</p><p class="label">Thermostability</p><p class="body">Measured directly.</p></div>
+    </div>
+    <div class="grow"></div>
+    <p class="knote">So the goal was never volume. It was designs that plausibly move all three at once.</p>
+    <aside>Adaptyv measures three things for every tested design: binding by SPR, whether it still hits the same epitope, and thermostability. Three out of three is S tier, and teams rank on S-tier count first. Ten designs that each improve one thing lose to two that improve all three.</aside>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">What we learned first</p>
+    <h2>The novelty bar sits higher than the rules say</h2>
+    <p class="lede">The gate counts CDRH3 mutations against 610,109 known sequences, not only trastuzumab. Eligibility on our first batch, by distance from trastuzumab:</p>
+    <div class="cards">
+      <div class="kcard"><p class="big warn">0 / 12</p><p class="label">3–4 mutations</p><p class="body">The stated minimum. None passed.</p></div>
+      <div class="kcard"><p class="big">44%</p><p class="label">5 mutations</p><p class="body">A coin flip.</p></div>
+      <div class="kcard"><p class="big good">79–89%</p><p class="label">6 or more mutations</p><p class="body">Where designs reliably clear the gate.</p></div>
+    </div>
+    <div class="grow"></div>
+    <p class="knote">Novelty and affinity pull in opposite directions. The gate pushed us further from trastuzumab than affinity alone would choose.</p>
+    <aside>The rules say three CDRH3 mutations from trastuzumab. But abguard counts against every one of 610 thousand known CDRH3s. At three or four mutations, zero of twelve passed. Five, 44 percent. Six or more, 79 to 89 percent. That reshaped the campaign.</aside>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">The campaign</p>
+    <h2>400 designs became 20</h2>
+    <div class="funnel">
+      <div class="frow"><p class="fname">Generated, two batches</p><div class="ftrack"><div class="fbar" style="width:100%"></div></div><p class="fnum">400</p></div>
+      <div class="frow"><p class="fname">Pass the novelty gate</p><div class="ftrack"><div class="fbar" style="width:52.5%"></div></div><p class="fnum">210</p></div>
+      <div class="frow"><p class="fname">Unique heavy chains</p><div class="ftrack"><div class="fbar" style="width:47.75%"></div></div><p class="fnum">191</p></div>
+      <div class="frow"><p class="fname">Keep hotspot contact G103</p><div class="ftrack"><div class="fbar" style="width:8.75%"></div></div><p class="fnum">35</p></div>
+      <div class="frow"><p class="fname">Ranked for submission</p><div class="ftrack"><div class="fbar on" style="width:5%"></div></div><p class="fnum">20</p></div>
+    </div>
+    <div class="grow"></div>
+    <p class="knote">Batch 2, the exploratory arm, supplied 31 of the 35 shortlisted designs. It looked worse on eligibility and carried the epitope case.</p>
+    <aside>We generated 400 CDRH3 redesigns with RFD4-Proteina. About half passed the novelty gate, 191 were unique. G103 is trastuzumab's closest contact to HER2, at 2.4 angstroms; keeping it took us to 35, and from those we ranked 20.</aside>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">The pipeline</p>
+    <h2>Anyone can re-run it in under a minute</h2>
+    <p class="lede">Seven stages. Four need only python3 and run anywhere. Three need the team VM or a GPU, so their last real output is committed.</p>
+    <div class="stages">
+      <div class="stage"><p class="sname">Fetch</p><p class="swhere">Laptop</p></div>
+      <div class="stage"><p class="sname">Epitope</p><p class="swhere">Laptop</p></div>
+      <div class="stage"><p class="sname">Paratope</p><p class="swhere">Laptop</p></div>
+      <div class="stage"><p class="sname">Gate</p><p class="swhere vm">VM, cached</p></div>
+      <div class="stage"><p class="sname">Solubility</p><p class="swhere vm">VM, cached</p></div>
+      <div class="stage"><p class="sname">Co-fold</p><p class="swhere vm">GPU, cached</p></div>
+      <div class="stage"><p class="sname">Rank</p><p class="swhere">Laptop</p></div>
+    </div>
+    <div class="proof">
+      <p class="pnum">12 / 12</p>
+      <p class="ptext">self-test checks pass: re-runs are byte-identical, the published epitope is reproduced, the negative controls are rejected, and the ranker refuses to write a submission when a judged axis has no score.</p>
+    </div>
+    <aside>Seven stages from structure to ranked table. Four run on any laptop. The three that need our VM or a GPU ship their last real output. One command runs twelve checks, including that the ranker refuses to invent a submission when it has no evidence for an axis.</aside>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">The result that changed the ranking</p>
+    <h2>The co-fold overturned our proxy</h2>
+    <div class="cards two">
+      <div class="kcard"><p class="tag">What the paratope proxy said</p><p class="big">18 tied</p><p class="label">Identical top score of 0.75</p><p class="body">Nothing separated them, so the order fell through to mutation count.</p></div>
+      <div class="kcard"><p class="tag warn">What the Boltz-2 co-fold showed</p><p class="big warn">8 of 18</p><p class="label">Bind away from the epitope</p><p class="body">Zero of the 19 epitope residues touched. Six of the eight had the proxy's top score.</p></div>
+    </div>
+    <div class="grow"></div>
+    <p class="knote">Measured epitope contact spread the field from 0.58 down to 0.00. The eight are demoted to ranks 13–20 and labelled, not hidden.</p>
+    <aside>Our first draft ranked on a paratope proxy, and it gave 18 designs the same top score. Then the co-folds came back. Eight of 18 put the antibody somewhere else on HER2 entirely. Six of those eight were designs the proxy rated best. So we re-ranked on what the co-fold measured.</aside>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">The cross-check</p>
+    <h2>Two models barely agree on which design binds</h2>
+    <div class="cards">
+      <div class="kcard"><p class="big">210</p><p class="label">designs scored by OpenFold3</p><p class="body">Every eligible design, both batches.</p></div>
+      <div class="kcard"><p class="big">139</p><p class="label">also scored by Boltz-2</p><p class="body">Batch 1 only.</p></div>
+      <div class="kcard"><p class="big warn">0.15</p><p class="label">Pearson r between their ipTM</p><p class="body">Boltz-2 reads 0.13 higher on average, and the rank orders are close to unrelated.</p></div>
+    </div>
+    <div class="grow"></div>
+    <p class="knote">An ipTM ranking inherits whichever model produced it. So we ranked on where the antibody lands, and kept ipTM as a cross-check.</p>
+    <aside>We scored all 210 eligible designs with OpenFold3 and 139 with Boltz-2 as well. Correlation 0.15. If you rank on ipTM you are really choosing a model. We ranked on whether the co-fold puts the antibody on the epitope.</aside>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">The submission</p>
+    <h2>The 20 we are handing in</h2>
+    <div class="strip" id="strip"></div>
+    <div class="legend">
+      <p>Ranks 1–10: co-fold on the epitope</p>
+      <p>Ranks 11–12: no co-fold returned</p>
+      <p>Ranks 13–20: co-fold off the epitope, labelled</p>
+    </div>
+    <div class="cards tight">
+      <div class="kcard"><p class="tag">Binding and epitope</p><p class="label">Top 10 touch 5 to 11 of 19 epitope residues</p><p class="body">Contact fraction from the Boltz-2 co-fold. Wild-type trastuzumab VH touches 8 on the crystal.</p></div>
+      <div class="kcard"><p class="tag">Thermostability</p><p class="label">A labelled proxy on all 20</p><p class="body">ESM-2 pseudo-log-likelihood. Not a ddG; nothing hosted predicts thermostability.</p></div>
+      <div class="kcard"><p class="tag">Expression</p><p class="label">All 20 clear the solubility floor</p><p class="body">NetSolP, floor 0.496, calibrated on 190 measured binders.</p></div>
+    </div>
+    <div class="grow"></div>
+    <p class="knote">Next: the same 20, live, in 3D.</p>
+    <aside>All Fabs, all optimisation track, four to seven CDRH3 mutations, light chain untouched. Ranks one to ten co-fold on the epitope. Eleven and twelve had no co-fold. Thirteen to twenty co-fold off the epitope. Now let us look at them.</aside>
+  </section>
+
+  <section class="slide live" data-live="/">
+    <aside>Live viewer. Pick rank 1: HER2 epitope residues the binder reaches are green, the ones it misses amber, CDRH3 orange, substitutions in red. Show the improvement card against wild type: 11 of 19 against 8. Then pick a rank 13–20 design to show one landing off the epitope. Use the bar at the bottom to move on; arrow keys go to the viewer while it has focus.</aside>
+  </section>
+
+  <section class="slide close">
+    <p class="eyebrow">What we stand behind</p>
+    <h1>20 Fabs. Every number traceable.</h1>
+    <div class="rows">
+      <div class="row"><p class="k">Our best bet</p><p class="v">Rank 1: six CDRH3 mutations, and its co-fold touches 11 of the 19 epitope residues, 3 more than wild type.</p></div>
+      <div class="row"><p class="k">Our limits</p><p class="v">OpenFold3 and Boltz-2 barely agree on which design binds (r = 0.15), so we ranked on epitope contact, not ipTM. Thermostability rests on a labelled proxy.</p></div>
+      <div class="row"><p class="k">Check us</p><p class="v">Clone the repo and run the self-test. Under a minute, no credentials, no GPU.</p></div>
+    </div>
+    <div class="grow"></div>
+    <p class="meta">github.com/Fabtastic4/ai-antibodies-hackathon</p>
+    <aside>We are handing in 20 Fabs, and every number behind them traces to a file in the repo. Our limits: two structure models barely agree, and thermostability is a proxy. We would rather tell you that than have the lab tell you. Thank you.</aside>
+  </section>
+
+</div>
+<iframe id="live" title="HER2 binder review" hidden></iframe>
+</div>
+
+<div id="notes" hidden></div>
+
+<footer id="bar">
+  <button id="prev" aria-label="Previous slide">‹ prev</button>
+  <span id="count"></span>
+  <button id="next" aria-label="Next slide">next ›</button>
+  <div id="progress"><div id="progress-fill"></div></div>
+  <button id="notes-btn">notes</button>
+  <a href="/" class="barlink">viewer only</a>
+</footer>
+
+<script src="keynote.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ on the optimisation track: CDRH3 redesigns, submitted as Fabs.
 
 - [Where we are](#where-we-are)
 - [Run it](#run-it)
+- [The website and keynote](#the-website-and-keynote)
 - [The pipeline](#the-pipeline)
 - [The task](#the-task) · [scoring](#how-we-are-scored) · [hard filters](#hard-filters--abguard) · [submission shape](#submission-shape) · [pitch](#pitch-criteria) · [prizes](#prizes)
 - [Docs](#docs) · [Repo map](#repo-map) · [Open questions](#open-questions)
@@ -69,6 +70,27 @@ committed outputs. Its last stage **refuses to write a submission** when a judge
 score, rather than rank on proxies; the committed `submission.csv` is produced by
 [`pipeline/score/apply_cofold_rank.py`](pipeline/score/apply_cofold_rank.py) from the co-fold
 evidence. Walkthrough for a judge or a new machine: **[`docs/REPRODUCE.md`](docs/REPRODUCE.md)**.
+
+## The website and keynote
+
+A local site that shows each of the 20 designs in 3D against HER2, which CDRH3 residues changed,
+and how each compares with wild-type trastuzumab. The pitch keynote lives in the same site, with
+the viewer as its live-demo slide.
+
+```bash
+python3 viz/server.py                 # then open http://127.0.0.1:8765
+python3 viz/server.py --host 0.0.0.0  # also prints a LAN URL for the room
+```
+
+| Page | What it is |
+|---|---|
+| `http://127.0.0.1:8765/` | The viewer: design list, 3D structure, CDRH3 changes, improvement over wild type, scores, provenance |
+| `http://127.0.0.1:8765/keynote.html` | The 10-slide keynote. Slide 9 is the live viewer. Arrow keys or the bottom bar to move, `n` for speaker notes |
+
+Standard library only, nothing to install. The 3D panel needs the co-fold structures in
+`results/cofold/<id>/model.cif`, which are not in git, and 3Dmol.js from the network; every
+number works without either. Loading the site bills nothing. Details and the inference lanes:
+[`viz/README.md`](viz/README.md).
 
 ## The pipeline
 
@@ -206,6 +228,7 @@ From task PDF p9. The event site says "3,000 USD" instead; the PDF wins.
 ```
 pipeline/  the reproducible run: run.sh, selftest.sh, status.py
            generate/ -> score/ -> filter/, plus thermostability.py
+viz/       the website: 3D design review and the keynote (python3 viz/server.py)
 scripts/   one-off tools: novelty distance, G103 shortlist, stab-ddg prep, VM data fetch
 designs/   raw/ (the two generated batches), shortlist_g103.csv,
            submission.csv (the ranked 20), fab-tastic-four.csv (the hand-in)

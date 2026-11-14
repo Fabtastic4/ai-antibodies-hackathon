@@ -1,0 +1,110 @@
+/* The keynote. Same tokens as the viewer (style.css), so a slide and the live screen read as
+   one thing. Slides are laid out on a fixed 1920x1080 stage and scaled to the window. */
+
+body.keynote { overflow: hidden; }
+
+#stage-wrap { position: fixed; inset: 0 0 44px 0; background: #0a0e14; overflow: hidden; }
+
+#stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--s, 1));
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 128px;
+  display: none;
+  flex-direction: column;
+  background: var(--bg);
+}
+.slide.current { display: flex; }
+.slide aside { display: none; }
+.slide p, .slide h1, .slide h2 { margin: 0; }
+.slide .grow { flex: 1; }
+
+.slide h1 { font-size: 116px; font-weight: 700; line-height: 1.05; letter-spacing: -2px; }
+.slide h2 { font-size: 72px; font-weight: 650; line-height: 1.1; letter-spacing: -1px; }
+.eyebrow { font-size: 24px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px !important; }
+.lede { font-size: 32px; line-height: 1.4; color: var(--ink-dim); margin-top: 32px !important; max-width: 1300px; }
+.knote { font-size: 24px; line-height: 1.4; color: var(--ink-dim); }
+.meta { font-size: 30px; color: var(--ink-dim); }
+.good { color: var(--hit) !important; }
+.warn { color: var(--loop) !important; }
+
+.cover { background: #0a0e14; }
+.cover .rule { width: 160px; height: 8px; background: var(--accent); margin-bottom: 48px; }
+
+/* cards */
+.cards { display: flex; gap: 32px; margin-top: 64px; }
+.cards.tight { margin-top: 44px; }
+.kcard { flex: 1; background: var(--panel); border: 2px solid var(--line); border-radius: 24px; padding: 40px; display: flex; flex-direction: column; gap: 16px; }
+.kcard .big { font-size: 112px; font-weight: 700; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.kcard .label { font-size: 32px; font-weight: 600; line-height: 1.3; }
+.kcard .body { font-size: 24px; line-height: 1.4; color: var(--ink-dim); }
+.kcard .tag { font-size: 22px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+
+/* funnel */
+.funnel { display: flex; flex-direction: column; gap: 20px; margin-top: 56px; }
+.frow { display: flex; align-items: center; gap: 32px; }
+.fname { width: 520px; font-size: 32px; }
+.ftrack { flex: 1; height: 72px; }
+.fbar { height: 72px; background: var(--line); border-radius: 12px; }
+.fbar.on { background: var(--hit); }
+.fnum { width: 140px; font-size: 56px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* pipeline */
+.stages { display: flex; gap: 16px; margin-top: 56px; }
+.stage { flex: 1; background: var(--panel); border: 2px solid var(--line); border-radius: 16px; padding: 28px 20px; display: flex; flex-direction: column; gap: 12px; }
+.sname { font-size: 28px; font-weight: 600; }
+.swhere { font-size: 24px; color: var(--hit); }
+.swhere.vm { color: var(--loop); }
+.proof { display: flex; gap: 64px; margin-top: 56px; align-items: center; }
+.pnum { font-size: 120px; font-weight: 700; line-height: 1; color: var(--hit); white-space: nowrap; }
+.ptext { font-size: 32px; line-height: 1.4; color: var(--ink-dim); max-width: 1100px; }
+
+/* the ranked 20: green = on the epitope, amber = off it, as in the viewer's legend */
+.strip { display: flex; gap: 12px; margin-top: 56px; }
+.cell { flex: 1; height: 88px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 600; }
+.cell.on { background: var(--hit); color: #06210f; }
+.cell.none { background: var(--panel); border: 2px solid var(--ink-dim); }
+.cell.off { background: #6b4a12; color: var(--ink); }
+.legend { display: flex; gap: 48px; margin-top: 20px; }
+.legend p { font-size: 24px; color: var(--ink-dim); }
+
+/* close */
+.close { background: var(--accent); color: #06162b; }
+.close .eyebrow, .close .meta { color: #06162b; }
+.rows { display: flex; flex-direction: column; gap: 28px; margin-top: 64px; }
+.row { display: flex; gap: 32px; align-items: baseline; }
+.row .k { width: 360px; font-size: 24px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.row .v { flex: 1; font-size: 32px; line-height: 1.35; }
+
+/* the live slide is the viewer itself, unscaled, filling the window above the bar */
+#live { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--bg); }
+
+/* bar */
+#bar {
+  position: fixed; left: 0; right: 0; bottom: 0; height: 44px;
+  background: var(--panel); border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 12px; padding: 0 14px;
+  font-size: 13px; color: var(--ink-dim);
+}
+#bar button, #bar .barlink {
+  background: var(--panel-2); color: var(--ink); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 5px 12px; font: inherit; cursor: pointer; text-decoration: none;
+}
+#bar button:hover, #bar .barlink:hover { border-color: var(--accent); }
+#count { min-width: 56px; text-align: center; font-variant-numeric: tabular-nums; }
+#progress { flex: 1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+#progress-fill { height: 100%; background: var(--accent); width: 0; transition: width .2s ease; }
+
+#notes {
+  position: fixed; left: 14px; right: 14px; bottom: 56px; max-height: 30vh; overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 14px 18px; font-size: 16px; line-height: 1.5; color: var(--ink); z-index: 5;
+}

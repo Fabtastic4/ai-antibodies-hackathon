@@ -1,0 +1,201 @@
+sequence_id,cdrh3,distance_to_trastuzumab,distance_to_nearest_measured,n_at_that_distance,nearest_cdrh3,nearest_class,nearest_kd_nM,iptm,min_ipae,binder_plddt,verdict,reason
+b1-novel-s1-her2_cdrh3_0,SRDLSLSDFSFDY,9,4,6,SRWSSLRDYSFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_1,SRDSPAAGYAFDY,7,3,14,SRYSPASPYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_10,SRTTPAVAYAHDY,7,3,1,SRWTPAVMYAHTY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_100,SRDSPYYDSAFDY,8,4,15,SRLSPYRFYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_101,SRSTPAVDYAFDY,7,3,4,SRWSQPAVYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_102,SRSLSYYNYAFDY,7,4,39,SRWHSQYNYEFDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_103,SRDLSSSSYAFDY,7,3,19,SRDLVCSLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_104,SRWSPAVGYAMDY,5,3,21,SRWSQPAVYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_105,SRSTAAVDYAFDY,7,3,16,SRYTAATFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_106,SRWSSAVGYAHDY,6,3,16,SRWSSVGPYALDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_107,SRAPIGSNWAFDY,8,4,9,SRWPIGGFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_108,SRSLSFYNYAFDY,7,4,93,SRWHSQYNYEFDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_109,SRWGSLTFYAYDY,4,1,1,SRWGSGTFYAYDY,high,,,,,reject,"1 edit(s) from SRWGSGTFYAYDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_11,SRSSFAYGLAFDY,8,4,12,SRWSLAGLYAFDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_110,SRWASLYDYYFDY,7,2,1,SRWASLRDYSFDY,high,,,,,reject,"2 edit(s) from SRWASLRDYSFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_111,SRDLSLSNYAYDY,7,3,1,SRWLSRSFYAYDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_112,SRTTSASGYAHDY,7,4,99,SRYTANGFYAHDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_113,SRSPAGSSYAFDY,7,2,2,SRWPAGSFYAFDY,high,,,,,reject,"2 edit(s) from SRWPAGSFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_114,SRYGSGSFLAMDY,5,2,1,SRWGSGSFLAYDY,high,,,,,reject,"2 edit(s) from SRWGSGSFLAYDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_115,SRTTASVDYAHDY,7,4,30,SRYTANGFYAHDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_116,SRWHSLYYYYFDY,7,3,32,SRWHSQYNYEFDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_117,SRWGPPGFYAMDY,2,1,5,SRWGIPGFYAMDY,high,,,,,reject,"2 edit(s) from trastuzumab, needs 3"
+b1-novel-s1-her2_cdrh3_118,SRWSAAVDYAFDY,6,2,14,SRWSAFGDYAFDY,high,,,,,reject,"2 edit(s) from SRWSAFGDYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_119,SRWSSSTFYAFDY,5,2,23,SRWSGSGFYAFDY,high,,,,,reject,"2 edit(s) from SRWSGSGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_12,SRDLSFSVYAFDY,7,2,1,SRYLFFSVYAFDY,medium,,,,,reject,"2 edit(s) from SRYLFFSVYAFDY (measured medium), needs 3"
+b1-novel-s1-her2_cdrh3_120,SRSLSYYNYAFDY,7,4,39,SRWHSQYNYEFDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_121,SRSLSYYDYAFDY,7,4,40,SRNLVCYLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_122,SRWTSSVGYAMDY,5,2,1,SRWSSVGDYAMDY,high,,,,,reject,"2 edit(s) from SRWSSVGDYAMDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_123,SRWRADVGYAFDY,5,2,9,SRWRADVLYAYDY,high,,,,,reject,"2 edit(s) from SRWRADVLYAYDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_124,SRSLFPPYLYFDY,9,4,7,SRWSAFPPYTFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_125,SRSTSSVDYAMDY,6,3,1,SRWSSVGDYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_126,SRSLSPLSSVFDY,9,3,1,SRWLMPLSYVFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_127,SRWGSLTFYAFDY,4,2,20,SRWGSVTFYTFDY,high,,,,,reject,"2 edit(s) from SRWGSVTFYTFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_128,SRSHLYPYYYFDY,8,4,23,SRWSHLRPYSFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_129,SRWSAAVGYAHDY,6,3,34,SRWSAASFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_13,SRWGWSGFYAMDY,2,1,4,SRWGLSGFYAMDY,high,,,,,reject,"2 edit(s) from trastuzumab, needs 3"
+b1-novel-s1-her2_cdrh3_130,SRSSFSTHGAFDY,8,4,3,SRWGTSGHGAFDY,,112.3355,,,,pass,
+b1-novel-s1-her2_cdrh3_131,SRWGPSGFYAFDY,3,1,12,SRWSPSGFYAFDY,high,,,,,reject,"1 edit(s) from SRWSPSGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_132,SRWTSSVDYAMDY,5,2,1,SRWSSVGDYAMDY,high,,,,,reject,"2 edit(s) from SRWSSVGDYAMDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_133,SRWASLYDYYFDY,7,2,1,SRWASLRDYSFDY,high,,,,,reject,"2 edit(s) from SRWASLRDYSFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_134,SRDLSLSNYAFDY,7,3,7,SRDLVCSLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_135,SRWGPPYFYAFDY,4,1,1,SRWGPPGFYAFDY,high,,,,,reject,"1 edit(s) from SRWGPPGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_136,SRSIGEAPGAFDY,7,3,1,SRWIGIAPYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_137,SRWGSSGFYAFDY,3,1,13,SRWGISGFYAFDY,high,,,,,reject,"1 edit(s) from SRWGISGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_138,SRSDPSTHGAFAY,9,4,1,SRWHPSTLYAFAY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_139,SRWGSPGFYAFDY,3,1,16,SRWGPPGFYAFDY,high,,,,,reject,"1 edit(s) from SRWGPPGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_14,SRWHNLHEYYFDY,7,3,5,SRWANLHSYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_140,SRSTAAVDYAFDY,7,3,16,SRYTAATFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_141,SRWMSGSYYAFDY,6,2,6,SRWMLSGSYAFDY,medium,,,,,reject,"2 edit(s) from SRWMLSGSYAFDY (measured medium), needs 3"
+b1-novel-s1-her2_cdrh3_142,SRYASLYEYYFDY,8,3,1,SRYASPGFYYFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_143,SRWGPSGFLAMDY,3,2,7,SRWGPYGFYAMDY,high,,,,,reject,"2 edit(s) from SRWGPYGFYAMDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_144,SRWGPSHFYAFDY,4,2,31,SRWSPSGFYAFDY,high,,,,,reject,"2 edit(s) from SRWSPSGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_145,SRDMSSSDFAFDY,8,3,3,SRYSSSDFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_146,SRDMSGSSHAFDY,8,3,1,SRWMAGSSYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_147,SRSHSTSDYYFDY,8,3,7,SRYHSHSDYVFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_148,SRSTVSVDYAMDY,6,4,19,SRWSGVSVYAYDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_149,SRDLLPYPYAFDY,7,3,3,SRYALPGPYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_15,SRSTSAVDYAMDY,6,3,1,SRWTSAGMYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_150,SRWGPPSFYAFDY,4,1,4,SRWGPPGFYAFDY,high,,,,,reject,"1 edit(s) from SRWGPPGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_151,SRDLSSSDFAHDY,8,4,11,SRWLLSSSDAHVY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_152,SRSMSLTSYAFDY,7,4,90,SRWMKLGMYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_153,SRWGSLSFYAFDY,4,1,2,SRWGTLSFYAFDY,medium,,,,,reject,"1 edit(s) from SRWGTLSFYAFDY (measured medium), needs 3"
+b1-novel-s1-her2_cdrh3_154,SRWGPSGFYAFDY,3,1,12,SRWSPSGFYAFDY,high,,,,,reject,"1 edit(s) from SRWSPSGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_155,SRWSAAVGYAMDY,5,3,47,SRWLACVQYAMDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_156,SRSTSSVGYAFDY,7,3,2,SRWSSVGPYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_157,SRWGSPGFYAFDY,3,1,16,SRWGPPGFYAFDY,high,,,,,reject,"1 edit(s) from SRWGPPGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_158,SRSLSLSVYAFDY,7,3,13,SRYLVCSVYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_159,SRSTSSVGYAMDY,6,3,1,SRWSSVGDYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_16,SRWASLYLYYFDY,7,2,9,SRWASLRLYYFVY,high,,,,,reject,"2 edit(s) from SRWASLRLYYFVY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_160,SRYASSSQYYFDY,8,3,12,SRYLVSSLYYFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_161,SRDLSLSVFAFDY,8,4,35,SRYLVCSVYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_162,SRWHYPSYYAFDY,6,2,5,SRWHTPGYYAFDY,medium,,,,,reject,"2 edit(s) from SRWHTPGYYAFDY (measured medium), needs 3"
+b1-novel-s1-her2_cdrh3_163,SRSTAAVDYAFDY,7,3,16,SRYTAATFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_164,SRDLDSYSYAFDY,7,3,4,SRWLDIASYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_165,SRSMAALDYAFDY,7,3,3,SRFSMPALYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_166,SRDLSSTIRAFDY,8,4,5,SRYLVSSIYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_167,SRSRSAYGYAMDY,6,3,1,SRRSNYGPYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_168,SRWSSSVGYAMDY,5,2,1,SRWSSVGDYAMDY,high,,,,,reject,"2 edit(s) from SRWSSVGDYAMDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_169,SRYHSSSAYYFDY,8,2,1,SRYHSHSYYYFDY,medium,,,,,reject,"2 edit(s) from SRYHSHSYYYFDY (measured medium), needs 3"
+b1-novel-s1-her2_cdrh3_17,SRYSSGTDYAFDY,7,2,1,SRYSSTDFYAFDY,high,,,,,reject,"2 edit(s) from SRYSSTDFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_170,SRYHSLHEYYFDY,8,3,12,SRYHSHSYYIFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_171,SRYASLSSYYFDY,8,3,37,SRWASLRSYTFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_172,SRWGSLTFYAFDY,4,2,20,SRWGSVTFYTFDY,high,,,,,reject,"2 edit(s) from SRWGSVTFYTFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_173,SRWGSLTFYAFDY,4,2,20,SRWGSVTFYTFDY,high,,,,,reject,"2 edit(s) from SRWGSVTFYTFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_174,SRWASLYDYYFDY,7,2,1,SRWASLRDYSFDY,high,,,,,reject,"2 edit(s) from SRWASLRDYSFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_175,SRSTAAVDYAMDY,6,3,1,SRWLACVDYAMDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_176,SRSTAAVDYAMDY,6,3,1,SRWLACVDYAMDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_177,SRYASTSDYYYDY,8,3,5,SRWASCSMYYYDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_178,SRDMPGSDLAFDY,8,4,10,SRWKPGSFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_179,SRDLSLYNRAFDY,8,4,3,SRDLVCSLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_18,SRSTRSVAYAFDY,7,3,5,SRWTRSSLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_180,SRSTSSVGYAFDY,7,3,2,SRWSSVGPYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_181,SRYHSYYDYYFDY,8,3,4,SRYHSHSDYVFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_182,SRSPYGSDYAFDY,7,3,7,SRLSPYSLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_183,SRSHSGSDRAFDY,8,4,18,SRYHSHSDYVFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_184,SRSTSAVDYAFDY,7,3,2,SRWTSAGMYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_185,SRWGPAGFYAFDY,3,1,9,SRWGVAGFYAFDY,high,,,,,reject,"1 edit(s) from SRWGVAGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_186,SRSFPFHSAVFDY,9,5,70,SRFPHHSMYFIDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_187,SRSVSSSALYFDY,9,4,11,SRWVLSSLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_188,SRWASLFYYYYDY,7,2,1,SRWASLTMYYYDY,medium,,,,,reject,"2 edit(s) from SRWASLTMYYYDY (measured medium), needs 3"
+b1-novel-s1-her2_cdrh3_189,SRYSTYSVPAFDY,8,3,5,SRYCAYSVYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_19,SRSTASVGYAMDY,6,4,52,SRWLACVQYAMDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_190,SRTLTSGIYAMDY,5,3,10,SRYTTSGSYAMDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_191,SRSTSSVGYAMDY,6,3,1,SRWSSVGDYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_192,SRYVPSSVPAFDY,8,3,2,SRYLVSSVYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_193,SRDMPGSALAFDY,8,4,11,SRWKPGSFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_194,SRSTASVGYAFDY,7,3,11,SRWTASRLYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_195,SRWGPSHFYAMDY,3,2,10,SRWGPYGFYAMDY,high,,,,,reject,"2 edit(s) from SRWGPYGFYAMDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_196,SRSTSSVGYAFDY,7,3,2,SRWSSVGPYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_197,SRSLSLSDYTFDY,8,3,3,SRWSSLRDYTFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_198,SRSTSAVDYAFDY,7,3,2,SRWTSAGMYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_199,SRSLSSSDFAFDY,8,3,4,SRYSSSDFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_2,SRWGPPYFYAMDY,3,2,6,SRWGIPGFYAMDY,high,,,,,reject,"2 edit(s) from SRWGIPGFYAMDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_20,SRWGSSSFYAFDY,4,1,1,SRWGSSDFYAFDY,high,,,,,reject,"1 edit(s) from SRWGSSDFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_21,SRWKSSYYYYFDY,7,3,15,SRWMSSGFYYFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_22,SRSLSLGSDVFDY,8,3,1,SRWLSDGFDVFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_23,SRWHSLSDYYFDY,7,2,7,SRWHSLSHYVFDY,low,,,,,reject,"2 edit(s) from SRWHSLSHYVFDY (measured low), needs 3"
+b1-novel-s1-her2_cdrh3_24,SRSTSSVSYAFDY,7,3,3,SRYTTSVSYALDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_25,SRSTASVDYAFDY,7,3,7,SRWTASRLYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_26,SRSTAATSYAFDY,7,2,8,SRWTAVTSYAFDY,high,,,,,reject,"2 edit(s) from SRWTAVTSYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_27,SRWTSSVSYAFDY,6,2,1,SRWTASRSYAFDY,high,,,,,reject,"2 edit(s) from SRWTASRSYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_28,SRSTLAVSYAFDY,7,3,11,SRWTAVTSYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_29,SRDMSGSDFAFDY,7,4,26,SRWSGSGFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_3,SRWASSSEYYFDY,7,3,100,SRWASCSFYSFDY,high,9.242493,,,,pass,
+b1-novel-s1-her2_cdrh3_30,SRDLSSSDFAFDY,8,3,3,SRYSSSDFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_31,SRWHSSYDYYFDY,7,3,27,SRWMSSGFYYFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_32,SRTTAAVSYAHDY,7,4,68,SRYTANGFYAHDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_33,SREPLGFLRAFDY,7,4,31,SRWALGGLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_34,SRSPVTYSWAFDY,8,4,14,SRWSPVRTYSFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_35,SRSTASVDYAFDY,7,3,7,SRWTASRLYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_36,SRWGSSGFYAMDY,2,1,5,SRWGLSGFYAMDY,high,,,,,reject,"2 edit(s) from trastuzumab, needs 3"
+b1-novel-s1-her2_cdrh3_37,SRSYSLSHFAFDY,8,3,1,SRYTLRSHFAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_38,SRSTAAVDYAFDY,7,3,16,SRYTAATFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_39,SRDMAGSSHAFDY,8,2,1,SRWMAGSSYAFDY,high,,,,,reject,"2 edit(s) from SRWMAGSSYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_4,SRYWSLHYYAMDY,6,3,1,SRYTSLHFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_40,SRWHSTSDYYFDY,7,2,3,SRWHSHSDYVFDY,low,,,,,reject,"2 edit(s) from SRWHSHSDYVFDY (measured low), needs 3"
+b1-novel-s1-her2_cdrh3_41,SRWGSLTFYAFDY,4,2,20,SRWGSVTFYTFDY,high,,,,,reject,"2 edit(s) from SRWGSVTFYTFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_42,SRTTAAVDYAHDY,7,4,48,SRYTANGFYAHDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_43,SRDLSLSNYAFDY,7,3,7,SRDLVCSLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_44,SRSYGSAPSFFDY,8,4,8,SRYSAPSFYTFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_45,SRYASVSHYYFDY,8,3,37,SRWADVSMYYFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_46,SRSYSTSYYYFDY,8,3,1,SRYHSHSYYYFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_47,SRYGSLTFYAMDY,4,2,3,SRYGSIGFYAMDY,high,,,,,reject,"2 edit(s) from SRYGSIGFYAMDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_48,SRSRSLSHYYFDY,8,3,6,SRWHSLSHYVFDY,low,,,,,pass,
+b1-novel-s1-her2_cdrh3_49,SRWNSAYGYAMDY,5,3,8,SRWSAYGMYANDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_5,SRSTSAVDYAFDY,7,3,2,SRWTSAGMYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_50,SRWGPPGFYAFDY,3,0,1,SRWGPPGFYAFDY,high,,,,,reject,"0 edit(s) from SRWGPPGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_51,SRYASLTEYYFDY,8,3,8,SRYASPGFYYFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_52,SRDLYLNNYSFDY,8,3,2,SRWSYLGNYSFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_53,SRWGSSTFYAFDY,4,1,1,SRWGSSDFYAFDY,high,,,,,reject,"1 edit(s) from SRWGSSDFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_54,SRYHSLYEYYFDY,8,3,4,SRYHSYSYYVFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_55,SRYASLYNYYFDY,8,3,4,SRYASPGFYYFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_56,SRWHSLSEYYFDY,7,2,7,SRWHSLSHYVFDY,low,,,,,reject,"2 edit(s) from SRWHSLSHYVFDY (measured low), needs 3"
+b1-novel-s1-her2_cdrh3_57,SRYGPGSFLAFDY,6,2,2,SRYGAYSFLAFDY,high,,,,,reject,"2 edit(s) from SRYGAYSFLAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_58,SRSLSYSDFAFDY,8,4,22,SRYLFFSLFAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_59,SRSTAAVDYAFDY,7,3,16,SRYTAATFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_6,SRSTSAYGYAMDY,6,3,1,SRWTSAGMYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_60,SRWSYAYDYAMDY,5,3,3,SRWSDASFYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_61,SRSLGSADYAFDY,6,3,4,SRWLGSGLYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_62,SRSLSLYDYSFDY,8,3,3,SRWSSLRDYSFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_63,SRSRGSHDSAFDY,7,4,7,SRWGGSGDWAFDY,,256.8663,,,,pass,
+b1-novel-s1-her2_cdrh3_64,SRYASSSNLAFDY,8,3,8,SRYASSGMLAFKY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_65,SRSLSLSNFAFDY,8,4,17,SRYLFFSLFAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_66,SRSSPSYGYAFDY,7,3,9,SRWSPSGFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_67,SRYMSSSNLAFDY,8,4,74,SRYIQSSLLLFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_68,SRSLPGSSHAFDY,8,4,36,SRWLTGSLYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_69,SRSLSSYNYAFDY,7,3,2,SRWSASSYYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_7,SRSTASVDYAMDY,6,3,1,SRWLACVDYAMDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_70,SRSTSSVGYAYDY,7,4,87,SRWSGVSVYAYDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_71,SRWASTTDYYYDY,7,2,1,SRWASLTMYYYDY,medium,,,,,reject,"2 edit(s) from SRWASLTMYYYDY (measured medium), needs 3"
+b1-novel-s1-her2_cdrh3_72,SRWGPSGFYAFDY,3,1,12,SRWSPSGFYAFDY,high,,,,,reject,"1 edit(s) from SRWSPSGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_73,SRDYSTSYYYFDY,8,3,1,SRYHSHSYYYFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_74,SRDLSSSNYAHDY,7,3,2,SRWLQSSMYAHDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_75,SRSTFSVDYAMDY,6,4,14,SRWSTFGDYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_76,SRSTLSVGYAFDY,7,3,2,SRWSTLGGYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_77,SRSTAAVDYAMDY,6,3,1,SRWLACVDYAMDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_78,SRWASLYDYYFDY,7,2,1,SRWASLRDYSFDY,high,,,,,reject,"2 edit(s) from SRWASLRDYSFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_79,SRWGSPGFYAFDY,3,1,16,SRWGPPGFYAFDY,high,,,,,reject,"1 edit(s) from SRWGPPGFYAFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_8,SRSLSLYDYAFDY,7,4,68,SRNLVCYLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_80,SRSLSLSVYAFDY,7,3,13,SRYLVCSVYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_81,SRSTAAVGYAFDY,7,3,19,SRYTAATFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_82,SRWSSLYYYYFDY,7,2,3,SRWSSLRYYTFDY,high,,,,,reject,"2 edit(s) from SRWSSLRYYTFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_83,SRDLSFSSYAFDY,7,3,23,SRDLVCSLYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_84,SRSAPPPAFAFDY,8,4,20,SRSAAPPINTFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_85,SRSTAAVGYAMDY,6,4,71,SRWLACVQYAMDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_86,SRYGLTTPGAFDY,7,4,49,SRWGLGGPYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_87,SRDLSSTIRAFDY,8,4,5,SRYLVSSIYAFDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_88,SRSLSLGNYAFDY,6,3,19,SRWSSLGAYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_89,SRWGSLTFYAFDY,4,2,20,SRWGSVTFYTFDY,high,,,,,reject,"2 edit(s) from SRWGSVTFYTFDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_9,SRWSPAYGYAMDY,5,3,14,SRWGPYGFYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_90,SRWGSLTFYAMDY,3,2,4,SRWGRLGFYAMDY,high,,,,,reject,"2 edit(s) from SRWGRLGFYAMDY (measured high), needs 3"
+b1-novel-s1-her2_cdrh3_91,SRDRTPTDYSFDY,8,3,1,SRWRTPGFYSFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_92,SRTTAAVGYAHDY,7,4,59,SRYTANGFYAHDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_93,SRSTAAVGYAMDY,6,4,71,SRWLACVQYAMDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_94,SRWTAAVDYAHDY,6,3,17,SRWFACVDYAIDY,medium,,,,,pass,
+b1-novel-s1-her2_cdrh3_95,SRYHSLSEYYFDY,8,2,2,SRYHSLSYYVFDY,medium,,,,,reject,"2 edit(s) from SRYHSLSYYVFDY (measured medium), needs 3"
+b1-novel-s1-her2_cdrh3_96,SRSTSSVGYAMDY,6,3,1,SRWSSVGDYAMDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_97,SRSVSLGSYYFDY,7,3,3,SRWVVLGLYYFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_98,SRSTAAVDYAFDY,7,3,16,SRYTAATFYAFDY,high,,,,,pass,
+b1-novel-s1-her2_cdrh3_99,SRWTSAVGYAMDY,5,2,1,SRWTSAGMYAMDY,high,,,,,reject,"2 edit(s) from SRWTSAGMYAMDY (measured high), needs 3"

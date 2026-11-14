@@ -1,10 +1,10 @@
 {
- "generated": "2026-11-14T15:20:08+0100",
+ "generated": "2026-11-14T15:40:11+0100",
  "inputs": {
-  "designs": "../../../../private/tmp/claude-501/-Users-josef--claude-spares-spare-S4qluG/0a7483d2-dccb-4ff5-937b-46fac30f5086/scratchpad/b2.csv",
+  "designs": "designs/raw/b2-explor-s2-fixed.csv",
   "facs": "data/bucket/extracted/hackathon-data/her2-trastuzumab/tz_her2_facs_3classes_524346.csv.zip",
   "spr": "data/bucket/extracted/hackathon-data/her2-trastuzumab/trastuzumab_her2_spr_all_768.csv",
-  "refold": "../../../../nonexistent"
+  "refold": "reports/b2_refold_metrics.csv"
  },
  "method": {
   "metric": "Levenshtein distance on IMGT CDRH3",

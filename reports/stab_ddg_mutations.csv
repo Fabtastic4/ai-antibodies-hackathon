@@ -1,0 +1,212 @@
+design_id,batch,n_mutations,mutations,verified_against
+b1-novel-s1-her2_cdrh3_0,b1-novel-s1,9,W99D G100L G101S D102L G103S F104D Y105F A106S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_1,b1-novel-s1,7,W99D G100S G101P D102A G103A F104G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_10,b1-novel-s1,7,W99T G100T G101P D102A G103V F104A M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_100,b1-novel-s1,8,W99D G100S G101P D102Y G103Y F104D Y105S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_101,b1-novel-s1,7,W99S G100T G101P D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_102,b1-novel-s1,7,W99S G100L G101S D102Y G103Y F104N M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_103,b1-novel-s1,7,W99D G100L G101S D102S G103S F104S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_104,b1-novel-s1,5,G100S G101P D102A G103V F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_105,b1-novel-s1,7,W99S G100T G101A D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_106,b1-novel-s1,6,G100S G101S D102A G103V F104G M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_107,b1-novel-s1,8,W99A G100P G101I D102G G103S F104N Y105W M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_108,b1-novel-s1,7,W99S G100L G101S D102F G103Y F104N M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_11,b1-novel-s1,8,W99S G100S G101F D102A G103Y F104G Y105L M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_111,b1-novel-s1,7,W99D G100L G101S D102L G103S F104N M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_112,b1-novel-s1,7,W99T G100T G101S D102A G103S F104G M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_115,b1-novel-s1,7,W99T G100T G101A D102S G103V F104D M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_116,b1-novel-s1,7,G100H G101S D102L G103Y F104Y A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_120,b1-novel-s1,7,W99S G100L G101S D102Y G103Y F104N M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_121,b1-novel-s1,7,W99S G100L G101S D102Y G103Y F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_124,b1-novel-s1,9,W99S G100L G101F D102P G103P F104Y Y105L A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_125,b1-novel-s1,6,W99S G100T G101S D102S G103V F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_126,b1-novel-s1,9,W99S G100L G101S D102P G103L F104S Y105S A106V M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_128,b1-novel-s1,8,W99S G100H G101L D102Y G103P F104Y A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_129,b1-novel-s1,6,G100S G101A D102A G103V F104G M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_130,b1-novel-s1,8,W99S G100S G101F D102S G103T F104H Y105G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_134,b1-novel-s1,7,W99D G100L G101S D102L G103S F104N M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_136,b1-novel-s1,7,W99S G100I D102E G103A F104P Y105G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_138,b1-novel-s1,9,W99S G100D G101P D102S G103T F104H Y105G M107F D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_14,b1-novel-s1,7,G100H G101N D102L G103H F104E A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_140,b1-novel-s1,7,W99S G100T G101A D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_142,b1-novel-s1,8,W99Y G100A G101S D102L G103Y F104E A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_145,b1-novel-s1,8,W99D G100M G101S D102S G103S F104D Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_146,b1-novel-s1,8,W99D G100M G101S D102G G103S F104S Y105H M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_147,b1-novel-s1,8,W99S G100H G101S D102T G103S F104D A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_148,b1-novel-s1,6,W99S G100T G101V D102S G103V F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_149,b1-novel-s1,7,W99D G100L G101L D102P G103Y F104P M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_15,b1-novel-s1,6,W99S G100T G101S D102A G103V F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_151,b1-novel-s1,8,W99D G100L G101S D102S G103S F104D Y105F M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_152,b1-novel-s1,7,W99S G100M G101S D102L G103T F104S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_155,b1-novel-s1,5,G100S G101A D102A G103V F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_156,b1-novel-s1,7,W99S G100T G101S D102S G103V F104G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_158,b1-novel-s1,7,W99S G100L G101S D102L G103S F104V M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_159,b1-novel-s1,6,W99S G100T G101S D102S G103V F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_160,b1-novel-s1,8,W99Y G100A G101S D102S G103S F104Q A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_161,b1-novel-s1,8,W99D G100L G101S D102L G103S F104V Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_163,b1-novel-s1,7,W99S G100T G101A D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_164,b1-novel-s1,7,W99D G100L G101D D102S G103Y F104S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_165,b1-novel-s1,7,W99S G100M G101A D102A G103L F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_166,b1-novel-s1,8,W99D G100L G101S D102S G103T F104I Y105R M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_167,b1-novel-s1,6,W99S G100R G101S D102A G103Y F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_170,b1-novel-s1,8,W99Y G100H G101S D102L G103H F104E A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_171,b1-novel-s1,8,W99Y G100A G101S D102L G103S F104S A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_175,b1-novel-s1,6,W99S G100T G101A D102A G103V F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_176,b1-novel-s1,6,W99S G100T G101A D102A G103V F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_177,b1-novel-s1,8,W99Y G100A G101S D102T G103S F104D A106Y M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_178,b1-novel-s1,8,W99D G100M G101P D102G G103S F104D Y105L M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_179,b1-novel-s1,8,W99D G100L G101S D102L G103Y F104N Y105R M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_18,b1-novel-s1,7,W99S G100T G101R D102S G103V F104A M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_180,b1-novel-s1,7,W99S G100T G101S D102S G103V F104G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_181,b1-novel-s1,8,W99Y G100H G101S D102Y G103Y F104D A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_182,b1-novel-s1,7,W99S G100P G101Y D102G G103S F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_183,b1-novel-s1,8,W99S G100H G101S D102G G103S F104D Y105R M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_184,b1-novel-s1,7,W99S G100T G101S D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_186,b1-novel-s1,9,W99S G100F G101P D102F G103H F104S Y105A A106V M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_187,b1-novel-s1,9,W99S G100V G101S D102S G103S F104A Y105L A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_189,b1-novel-s1,8,W99Y G100S G101T D102Y G103S F104V Y105P M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_19,b1-novel-s1,6,W99S G100T G101A D102S G103V F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_190,b1-novel-s1,5,W99T G100L G101T D102S F104I,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_191,b1-novel-s1,6,W99S G100T G101S D102S G103V F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_192,b1-novel-s1,8,W99Y G100V G101P D102S G103S F104V Y105P M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_193,b1-novel-s1,8,W99D G100M G101P D102G G103S F104A Y105L M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_194,b1-novel-s1,7,W99S G100T G101A D102S G103V F104G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_196,b1-novel-s1,7,W99S G100T G101S D102S G103V F104G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_197,b1-novel-s1,8,W99S G100L G101S D102L G103S F104D A106T M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_198,b1-novel-s1,7,W99S G100T G101S D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_199,b1-novel-s1,8,W99S G100L G101S D102S G103S F104D Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_21,b1-novel-s1,7,G100K G101S D102S G103Y F104Y A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_22,b1-novel-s1,8,W99S G100L G101S D102L F104S Y105D A106V M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_24,b1-novel-s1,7,W99S G100T G101S D102S G103V F104S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_25,b1-novel-s1,7,W99S G100T G101A D102S G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_28,b1-novel-s1,7,W99S G100T G101L D102A G103V F104S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_29,b1-novel-s1,8,W99D G100M G101S D102G G103S F104D Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_3,b1-novel-s1,7,G100A G101S D102S G103S F104E A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_30,b1-novel-s1,8,W99D G100L G101S D102S G103S F104D Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_31,b1-novel-s1,7,G100H G101S D102S G103Y F104D A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_32,b1-novel-s1,7,W99T G100T G101A D102A G103V F104S M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_33,b1-novel-s1,8,W99E G100P G101L D102G G103F F104L Y105R M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_34,b1-novel-s1,8,W99S G100P G101V D102T G103Y F104S Y105W M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_35,b1-novel-s1,7,W99S G100T G101A D102S G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_37,b1-novel-s1,8,W99S G100Y G101S D102L G103S F104H Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_38,b1-novel-s1,7,W99S G100T G101A D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_4,b1-novel-s1,6,W99Y G100W G101S D102L G103H F104Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_42,b1-novel-s1,7,W99T G100T G101A D102A G103V F104D M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_43,b1-novel-s1,7,W99D G100L G101S D102L G103S F104N M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_44,b1-novel-s1,8,W99S G100Y D102S G103A F104P Y105S A106F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_45,b1-novel-s1,8,W99Y G100A G101S D102V G103S F104H A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_46,b1-novel-s1,8,W99S G100Y G101S D102T G103S F104Y A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_48,b1-novel-s1,8,W99S G100R G101S D102L G103S F104H A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_49,b1-novel-s1,5,G100N G101S D102A G103Y F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_5,b1-novel-s1,7,W99S G100T G101S D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_51,b1-novel-s1,8,W99Y G100A G101S D102L G103T F104E A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_52,b1-novel-s1,8,W99D G100L G101Y D102L G103N F104N A106S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_54,b1-novel-s1,8,W99Y G100H G101S D102L G103Y F104E A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_55,b1-novel-s1,8,W99Y G100A G101S D102L G103Y F104N A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_58,b1-novel-s1,8,W99S G100L G101S D102Y G103S F104D Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_59,b1-novel-s1,7,W99S G100T G101A D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_6,b1-novel-s1,6,W99S G100T G101S D102A G103Y F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_60,b1-novel-s1,5,G100S G101Y D102A G103Y F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_61,b1-novel-s1,6,W99S G100L D102S G103A F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_62,b1-novel-s1,8,W99S G100L G101S D102L G103Y F104D A106S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_63,b1-novel-s1,7,W99S G100R D102S G103H F104D Y105S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_64,b1-novel-s1,8,W99Y G100A G101S D102S G103S F104N Y105L M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_65,b1-novel-s1,8,W99S G100L G101S D102L G103S F104N Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_66,b1-novel-s1,7,W99S G100S G101P D102S G103Y F104G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_67,b1-novel-s1,8,W99Y G100M G101S D102S G103S F104N Y105L M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_68,b1-novel-s1,8,W99S G100L G101P D102G G103S F104S Y105H M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_69,b1-novel-s1,7,W99S G100L G101S D102S G103Y F104N M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_7,b1-novel-s1,6,W99S G100T G101A D102S G103V F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_70,b1-novel-s1,7,W99S G100T G101S D102S G103V F104G M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_73,b1-novel-s1,8,W99D G100Y G101S D102T G103S F104Y A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_74,b1-novel-s1,7,W99D G100L G101S D102S G103S F104N M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_75,b1-novel-s1,6,W99S G100T G101F D102S G103V F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_76,b1-novel-s1,7,W99S G100T G101L D102S G103V F104G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_77,b1-novel-s1,6,W99S G100T G101A D102A G103V F104D,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_8,b1-novel-s1,7,W99S G100L G101S D102L G103Y F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_80,b1-novel-s1,7,W99S G100L G101S D102L G103S F104V M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_81,b1-novel-s1,7,W99S G100T G101A D102A G103V F104G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_83,b1-novel-s1,7,W99D G100L G101S D102F G103S F104S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_84,b1-novel-s1,8,W99S G100A G101P D102P G103P F104A Y105F M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_85,b1-novel-s1,6,W99S G100T G101A D102A G103V F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_86,b1-novel-s1,7,W99Y G101L D102T G103T F104P Y105G M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_87,b1-novel-s1,8,W99D G100L G101S D102S G103T F104I Y105R M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_88,b1-novel-s1,6,W99S G100L G101S D102L F104N M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_9,b1-novel-s1,5,G100S G101P D102A G103Y F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_91,b1-novel-s1,8,W99D G100R G101T D102P G103T F104D A106S M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_92,b1-novel-s1,7,W99T G100T G101A D102A G103V F104G M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_93,b1-novel-s1,6,W99S G100T G101A D102A G103V F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_94,b1-novel-s1,6,G100T G101A D102A G103V F104D M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_96,b1-novel-s1,6,W99S G100T G101S D102S G103V F104G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_97,b1-novel-s1,7,W99S G100V G101S D102L F104S A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b1-novel-s1-her2_cdrh3_98,b1-novel-s1,7,W99S G100T G101A D102A G103V F104D M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_0,b2-explor-s2-fixed,5,G100A G101P D102M F104G D108Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_106,b2-explor-s2-fixed,7,G100R G101R D102E F104V Y105L M107L D108N,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_107,b2-explor-s2-fixed,10,W99R G100L G101F D102E G103A F104N Y105V A106Y M107Y D108G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_115,b2-explor-s2-fixed,8,G100R G101Y D102T G103N F104M Y105R A106Y M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_116,b2-explor-s2-fixed,8,W99Y G100A G101Q D102K G103Q F104W A106D M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_126,b2-explor-s2-fixed,8,W99Y G100K G101A D102S G103A F104V M107L D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_127,b2-explor-s2-fixed,7,D102N G103A F104L Y105F A106T M107A D108P,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_128,b2-explor-s2-fixed,8,G100Y G101Y D102N G103N Y105G A106V M107Y D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_129,b2-explor-s2-fixed,5,G100N G101V D102G F104Q A106Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_130,b2-explor-s2-fixed,8,G100V G101Y D102N F104M Y105A A106V M107Q D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_131,b2-explor-s2-fixed,7,G101M D102W G103A F104S A106V M107Y D108H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_133,b2-explor-s2-fixed,10,W99L G100Y G101R D102G G103S F104L Y105S A106T M107Y D108E,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_134,b2-explor-s2-fixed,6,G100F G101W D102H F104T A106S M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_136,b2-explor-s2-fixed,9,W99Y G100L G101R D102A G103P F104L A106D M107Y D108P,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_139,b2-explor-s2-fixed,6,G100Y G101N D102R F104E A106Q M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_141,b2-explor-s2-fixed,8,G100V G101N D102R F104G Y105T A106Y M107Y D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_144,b2-explor-s2-fixed,8,G100A G101A D102S G103A Y105F A106G M107F D108E,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_146,b2-explor-s2-fixed,6,G100K G103H Y105R A106S M107Y D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_155,b2-explor-s2-fixed,6,W99Y G100T D102F G103S A106S M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_156,b2-explor-s2-fixed,5,G100H D102I Y105W A106E M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_157,b2-explor-s2-fixed,6,W99Y G100E D102L A106D M107Y D108G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_167,b2-explor-s2-fixed,10,W99S G100L G101L D102G G103I F104Y Y105S A106N M107P D108L,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_170,b2-explor-s2-fixed,5,W99A G101Y D102A A106T M107T,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_172,b2-explor-s2-fixed,9,W99F G100S G101R D102R G103R F104Y A106P M107F D108G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_173,b2-explor-s2-fixed,9,W99Y G100E D102G G103E F104A Y105N A106G M107Y D108G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_174,b2-explor-s2-fixed,7,G101H D102P F104G Y105A A106S M107F D108T,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_175,b2-explor-s2-fixed,5,D102N G103Y F104D A106S M107H,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_18,b2-explor-s2-fixed,8,G100R G101S D102Y G103L F104L Y105F A106V M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_184,b2-explor-s2-fixed,7,G101E D102A G103S F104T A106V M107F D108T,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_185,b2-explor-s2-fixed,5,G100Y G101Q D102R F104V M107V,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_187,b2-explor-s2-fixed,7,G100D G101A D102P F104S A106S M107V D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_188,b2-explor-s2-fixed,7,W99Y G101D G103V F104Y A106S M107Y D108E,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_189,b2-explor-s2-fixed,7,W99Y G100V G101L D102V G103S A106Y M107L,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_190,b2-explor-s2-fixed,7,W99Y G100R D102S Y105W A106S M107Y D108R,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_192,b2-explor-s2-fixed,6,G100F G101A D102P Y105F M107L D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_195,b2-explor-s2-fixed,6,G101E D102W F104T A106T M107A D108K,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_197,b2-explor-s2-fixed,7,G100Y G101K D102E F104E Y105H A106N M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_199,b2-explor-s2-fixed,6,G101I D102G G103A F104T A106S D108S,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_2,b2-explor-s2-fixed,6,G100H G101P D102M F104T A106V M107F,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_20,b2-explor-s2-fixed,7,W99Y G100T G101V D102H Y105L A106G D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_25,b2-explor-s2-fixed,9,W99Y G100I G101S D102K G103N F104S A106Q M107F D108R,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_26,b2-explor-s2-fixed,7,G100D G101D D102Y F104N A106Y M107Y D108R,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_31,b2-explor-s2-fixed,8,G100D G101I D102G F104G Y105K A106W M107Y D108Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_32,b2-explor-s2-fixed,9,W99Y G100L D102P G103N F104N Y105F A106Y M107F D108G,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_33,b2-explor-s2-fixed,9,W99F G100N G101E D102L F104W Y105L A106L M107Q D108N,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_40,b2-explor-s2-fixed,8,W99Y G100P G101Y D102G G103S F104L A106S D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_41,b2-explor-s2-fixed,7,W99Y G100E G101Q D102P F104V Y105M D108T,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_45,b2-explor-s2-fixed,7,W99D G100Y G101Y D102R F104D A106R M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_50,b2-explor-s2-fixed,7,G100Y D102V G103S Y105F A106Q M107F D108S,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_51,b2-explor-s2-fixed,8,W99Y G100P D102G G103R Y105H A106V M107Y D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_52,b2-explor-s2-fixed,7,G100Y G101L D102G G103Y A106E M107Y D108L,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_55,b2-explor-s2-fixed,7,W99Y G101S D102R F104L Y105H A106E M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_57,b2-explor-s2-fixed,6,W99Y G101Y D102K G103H A106D M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_59,b2-explor-s2-fixed,7,W99F G101A D102F F104Q A106S M107Y D108L,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_6,b2-explor-s2-fixed,5,G100S G101D D102G G103Y D108P,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_64,b2-explor-s2-fixed,9,G100R G101N D102G G103S F104Y Y105G A106T M107F D108S,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_67,b2-explor-s2-fixed,7,G100N G101A D102H F104G A106W M107Y D108P,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_69,b2-explor-s2-fixed,8,G100I G101E D102E G103N F104S A106S M107F D108E,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_71,b2-explor-s2-fixed,5,G101S D102V G103A F104V M107W,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_73,b2-explor-s2-fixed,8,W99Y G100H G101K D102L G103A F104I Y105D M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_8,b2-explor-s2-fixed,9,W99D G100D G101L D102Y G103N F104I A106Q M107L D108N,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_80,b2-explor-s2-fixed,6,G101F D102T G103A F104L A106Y M107Y,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_83,b2-explor-s2-fixed,7,W99Y G101F D102G G103H Y105L M107F D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_84,b2-explor-s2-fixed,9,W99F G100H G101L D102Y F104N Y105L A106P M107F D108R,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_85,b2-explor-s2-fixed,6,G100Y G101Q D102Y F104Y M107Y D108E,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_89,b2-explor-s2-fixed,8,W99S G100C G101S D102H F104L Y105H A106H M107L,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_90,b2-explor-s2-fixed,8,W99Y G100E G101D D102G G103A F104N M107A D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_93,b2-explor-s2-fixed,7,G100P G101N D102R F104L A106S M107P D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_98,b2-explor-s2-fixed,7,W99Y G101R D102G F104A A106G M107F D108Q,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif
+b2-explor-s2-fixed-her2_cdrh3_99,b2-explor-s2-fixed,8,W99Y G100P D102T G103A F104L Y105F M107F D108A,data/bucket/extracted/rfd4/Data/12-her2/her2_fv_1n8z.cif

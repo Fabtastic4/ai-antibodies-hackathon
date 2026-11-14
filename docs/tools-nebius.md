@@ -253,10 +253,13 @@ not resolve them. Check that field before trusting a design. `omit_AAs` forbids 
   yourself, or get ipTM from the **Apheris Foundry** path on the VM: `rfd4-proteina refold-prepare`
   → fold with Predict Structure → `refold-score`, which reports `min_ipae`, `iptm` and
   `binder_plddt` (task PDF; for the HER2 exercise its pass column stays empty, so rank on those
-  three). Schema reads since then ([probe-findings.md §1](probe-findings.md)): `chai1` and
-  `protenix-v2` publish **no output schema at all**, so no ipTM is promised for either; `openfold3`
-  ipTM appears only in skill-doc prose, hedged as "as rendered by the adapter". **TODO: confirm by
-  reading `result.json` from the first real `openfold3` co-fold** — whoever runs it owns that check.
+  three). **TODO resolved (14 Nov, `forge.py schema`):** none of `openfold3`, `chai1` or
+  `protenix-v2` report ipTM or PAE. `openfold3` states "CIF output only"; `chai1` and `protenix-v2`
+  advertise no pae/iptm/ptm/confidence field at all. The `pae-probe` artifact confirms boltz2 returns
+  exactly `confidence_scores`, `ptm_scores`, `structures` — nothing else. **`min_ipae` and `iptm` are
+  unobtainable on the hosted lane; axis 1 as specified requires the Apheris Foundry path on the VM.**
+  The only hosted binding signal is cross-chain contacts counted from a boltz2 co-fold mmCIF (75 s
+  per design), which is a *different* metric and must not be reported as ipTM or min_ipae.
 - **A3M per chain.** Boltz2 needs an alignment for *every* polymer. A one-line `">query\n<SEQ>\n"`
   works for a first look; `msa-search-pdb70` (40 s) is better and that is what goes into the final
   numbers. For a VHH, PDB70 often finds few relatives — that is normal, not a failure.
@@ -294,7 +297,7 @@ is where the parallelism is.
 | Affinity screen | `boltz2` co-fold candidate + HER2, 75 s each | confidence + pTM, **no ipTM** |
 | Confirmation of the shortlist | `openfold3`, and `protenix-v2` if we can afford 20 min | two dissimilar models agreeing is worth more than one high score |
 | Ranking signal on sequences | `esm2-650m` / `esmc-300m`/`600m` scores, `saprot-650m` structure-aware embeddings, `igbert` for H/L | cheap, 3–5 min, useful as a second axis |
-| Thermostability axis | — (nothing) | **Settled, not open:** of 59 catalog models exactly one matches `thermo\|stabil\|ddg\|solub\|aggreg\|foldx\|camsol\|rosetta\|flex\|melt`, and it is `stab-ddg`, whose only operation is `predict-binding-ddg` — **binding** ddG, not folding stability ([probe-findings.md §4](probe-findings.md)). No ThermoMPNN, no FoldX, no CamSol, no Aggrescan, no SoluProt, no NetSolP. Use the §4 proxies and label them as proxies |
+| Thermostability axis | no direct predictor exists — pick a proxy and name it | **TODO resolved (14 Nov):** nothing hosted predicts thermostability. `stab-ddg` is **binding** ddG. ThermoMPNN is not in the 34 and not in the install list. `OpenDDE` is in the install list (~1 h, VM-side) and is the only candidate direct predictor. Judges measure thermostability *experimentally* (`task.md` p335–341, Adaptyv), so `predicted_ddg` is a **selection prior, not a deliverable** — any defensible proxy is legitimate provided `thermostability_basis` states which one. Cheapest hosted proxy: `esm2-650m` pseudo-likelihood, 4 min  Catalog evidence: of 59 models exactly one matches `thermo\|stabil\|ddg\|solub\|aggreg\|foldx\|camsol\|rosetta\|flex\|melt` ([probe-findings.md §4](probe-findings.md)) |
 
 Epitope preservation is judged by competitive binding against trastuzumab, so the trastuzumab–HER2
 interface has to be an input to design, not an afterthought. The task PDF notes a known complex of

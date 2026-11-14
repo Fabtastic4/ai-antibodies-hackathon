@@ -37,3 +37,4 @@ data/**/*.gz
 # Bucket data pulled from the VM: review before committing (see scripts/pull_vm_data.sh)
 data/bucket/committable.tar.gz
 data/bucket/extracted/**/*.csv.gz
+nebius-runs/

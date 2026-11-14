@@ -814,6 +814,61 @@ the 85k-row gap is the first place to look.
 
 ---
 
+## [16:05] Submission built: co-fold evidence breaks the 18-way tie the proxy could not
+
+`designs/submission.csv` and the hand-in file `designs/fab-tastic-four.csv` now exist.
+
+The 15:40 draft ranked on a proxy that scored **18 designs identically at 0.75**. Cause:
+`rank.py`'s key is `(-contacts_kept, min_ipae, -mutations)`, and `min_ipae` is `+inf` for every
+design because the hosted lane returns no PAE and no ipTM (`docs/tools-nebius.md`). Slot 2 was
+dead, so order fell to mutation count.
+
+18 of 20 Boltz-2 co-folds landed by 16:15. `pipeline/score/cofold_contacts.py` scores them into
+`reports/cofold-contacts.csv`, giving that slot a measured quantity: the fraction of the 19
+published 1N8Z epitope residues the binder touches. It spreads 0.58 → 0.00 where the proxy was
+flat. It is **not** ipTM and **not** min_ipae, and it is written only to `cofold_epitope_frac`,
+`cofold_n_epitope_hit`, `cofold_n_contacts`.
+
+`pipeline/score/apply_cofold_rank.py` applies it: primary key unchanged (`epitope_overlap_frac`),
+then evidence tier (measured on-epitope / unmeasured / measured off-epitope), then the measured
+fraction, then mutation count. Effect at the top, which is what gets tested:
+
+| | was | now |
+|---|---|---|
+| `her2_cdrh3_187` (11/19 epitope) | 3 | **1** |
+| `her2_cdrh3_170` (8/19) | 12 | **4** |
+| `her2_cdrh3_185` (8/19) | 13 | **5** |
+| `her2_cdrh3_134` (6/19) | **1** | 7 |
+| `her2_cdrh3_129` (0/19) | 9 | 13 |
+
+**Eight of the 18 co-fold off-epitope.** `_129`, `_156`, `_195`, `_85`, `_0`, `_6` and both b1
+designs `_116`, `_14` make 148-283 cross-chain contacts and **0/19** to the epitope — docked
+elsewhere on HER2. Six of the eight were proxy-rated 0.75, its top score.
+
+So contact retention is a weak predictor of epitope engagement: it rated 18 designs identically
+and the co-fold splits them 10 on / 6 off / 2 unmeasured. Final order is 1-10 measured on-epitope,
+11-12 unmeasured (`_26`, `_67`, never submitted by the batch), 13-20 measured off-epitope, each
+labelled in `design_description`.
+
+The eight were **not** replaced — a judgement to confirm. All 18 designs at 3/4 contacts kept are
+already in the list (8+8+2 of 70 in b2), so every available swap trades a measured off-epitope
+design for an unmeasured one at 2/4 contacts: worse on the primary axis, and that axis is now
+known to carry little information. If GPU budget and time allow before 18:00, co-fold a slice of
+the `contacts_kept=2` tier (26 designs) and promote whatever lands on-epitope.
+
+Validation: `to_abguard.py --submission` exits 0, 20/20 paired. An independent re-check, not
+reusing the converter's logic, confirms the exact 5-column header, 20 unique ids, 120 aa heavy /
+107 aa light, 2 cysteines per chain, canonical alphabet only, non-empty descriptions, light chain
+identical to trastuzumab WT, and every mutation inside CDRH3 — no framework drift.
+
+**Residual risk**: `abguard` is VM-only, so `team-validate` was not re-run on the final 20 here.
+The evidence they pass novelty is that all 20 appear in the 14:25 `team-validate --drop` eligible
+output. `novelty-report` cannot corroborate it — `is_novel_enough` is empty and
+`cdrh3_nearest_source` reads `trastuzumab` for all 20, the cosmetic bug `abguard.md` records. Run
+`bash pipeline/filter/gate.sh designs/submission.csv` on the VM before posting if it is still up.
+
+---
+
 ## [16:10] The trastuzumab affinity baseline is eight replicates spanning 6.2x, not one number
 
 A design is tiered on whether it **improves on trastuzumab**, measured. We had been treating

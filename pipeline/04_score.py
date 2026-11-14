@@ -30,6 +30,11 @@ are not model scores and are labelled as flags.
 Nothing in this file fabricates a number. A score we did not read is null with a
 note saying why, and stage 05 treats null as missing, not as zero.
 
+This stage only ADDS keys to a candidate record. Everything stage 03 wrote is
+carried through untouched, `cdrh3` included - stage 05's novelty check reads it,
+and dropping it would silently disable the one hard filter that decides the
+track. The summary line below counts how many records still carry it.
+
 Usage:
   python3 04_score.py runs/candidates.jsonl --refold-scores results/refold_score.json \\
       --dev-scores results/dev/ -o runs/scored.jsonl
@@ -329,7 +334,9 @@ def main(argv=None) -> int:
     common.add_io_args(p, out_default=None)
     args = p.parse_args(argv)
 
-    recs = common.read_jsonl(args.candidates)
+    recs = common.read_input_jsonl(
+        args.candidates, what="candidates.jsonl",
+        produced_by="03_generate.py --from-sequences (--dispatch none writes no candidates)")
     if not recs:
         raise SystemExit("{0} has no candidates".format(args.candidates))
 
@@ -393,6 +400,11 @@ def main(argv=None) -> int:
         print(common.table(rows, ["score", "have", "of"]))
         if missing_refold:
             print("warning: {0}/{1} candidate(s) have no refold scores at all".format(missing_refold, len(recs)))
+        no_cdrh3 = sum(1 for r in recs if not r.get("cdrh3"))
+        if no_cdrh3:
+            print("warning: {0}/{1} candidate(s) carry no 'cdrh3', so stage 05's novelty check will "
+                  "be indeterminate for them. Set it in stage 03 (--cdrh3 or --jobspec)."
+                  .format(no_cdrh3, len(recs)))
         print("wrote " + path)
     return 0
 

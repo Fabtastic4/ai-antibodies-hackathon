@@ -1,6 +1,17 @@
 .DS_Store
 .env
 .venv/
+
+# SECRETS — never commit. Everyone gets these from the Slack folder instead.
+*.private.json
+credentials*.json
+Files from slack/
+**/japanfold*codes*
+*.pem
+id_*
+team-4*
+nebius-runs/
+results/
 __pycache__/
 *.pyc
 

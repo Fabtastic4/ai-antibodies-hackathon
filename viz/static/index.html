@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HER2 Binder Review</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.0/3Dmol-min.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1>HER2 binder review</h1>
+    <span class="sub" id="hdr-sub">loading…</span>
+    <span class="spacer"></span>
+    <span class="sub" id="hdr-base"></span>
+  </header>
+
+  <!-- ───────────── designs ───────────── -->
+  <nav class="col" id="left">
+    <h2>Designs <span id="n-designs"></span></h2>
+    <div id="design-list"></div>
+  </nav>
+
+  <!-- ───────────── 3D ───────────── -->
+  <main id="center">
+    <div id="viewport"></div>
+    <div id="loading">building the viewer…</div>
+
+    <div id="toolbar">
+      <button class="tool on" data-t="antigen">antigen</button>
+      <button class="tool" data-t="surface">surface</button>
+      <button class="tool on" data-t="epitope">epitope</button>
+      <button class="tool on" data-t="light">light chain</button>
+      <button class="tool on" data-t="loop">CDRH3</button>
+      <button class="tool on" data-t="muts">mutations</button>
+      <button class="tool" data-t="contacts">contacts</button>
+      <button class="tool" data-t="plddt">colour by pLDDT</button>
+      <button class="tool" data-t="spin">spin</button>
+      <button class="tool" data-t="reset">recentre</button>
+    </div>
+
+    <div id="legend"></div>
+    <div id="viewer-note"></div>
+  </main>
+
+  <!-- ───────────── detail ───────────── -->
+  <aside class="col" id="right">
+
+    <div class="card">
+      <h3>CDRH3 — what changed</h3>
+      <div class="body">
+        <div class="seqbox" id="seq-cdr"></div>
+        <div id="mut-list" style="margin-top:9px"></div>
+        <div id="paratope-note"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Improvement vs wild-type trastuzumab</h3>
+      <div class="body" id="improvement"></div>
+    </div>
+
+    <div class="card">
+      <h3>Scores</h3>
+      <div class="body" id="scores"></div>
+    </div>
+
+    <div class="card">
+      <h3>Run inference</h3>
+      <div class="body">
+        <div id="lanes"></div>
+        <select class="lane-pick" id="lane-pick"></select>
+        <button class="run" id="run-btn">run</button>
+        <button class="run ghost" id="run-all-btn">price this for all designs</button>
+        <div id="run-out"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Provenance</h3>
+      <div class="body" id="provenance"></div>
+    </div>
+
+  </aside>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -126,10 +126,34 @@ The key is in `japanfold-oslo-hackathon-codes 4.txt` in the Slack folder. Do not
 file in this repo, and do not paste it in chat.
 
 Reason to bother: JapanFold is the only route to **RoseTTAFold3, OpenDDE and AF2-IG**. It connects
-as a skill to Claude Code and the models are then callable directly from Claude Code.
+as an MCP server to Claude Code and the models are then callable directly from Claude Code.
 
-TODO: confirm the exact connect command / skill install step — it is in the txt file and nobody has
-written it up here yet.
+**Connect command** (confirmed 14 Nov against the live endpoint — the server returns it in its
+own unauthenticated error, so this no longer needs the txt file):
+
+```bash
+export JAPANFOLD_API_KEY=...        # from the Slack txt; your shell only, never a repo file
+claude mcp add --transport http japanfold https://api.japanfold.aiand.com/mcp \
+  --header "Authorization: Bearer $JAPANFOLD_API_KEY"
+```
+
+`.mcp.json` in the repo root already declares it with `${JAPANFOLD_API_KEY}` expanded from the
+environment, so exporting the variable is enough — a new Claude Code session picks it up and the
+key stays out of the commit.
+
+Every MCP tool is also plain HTTPS under `https://api.japanfold.aiand.com/v1` with the same
+bearer header, so a job started in one place can be fetched anywhere with the same key.
+`GET /v1/models` needs no key at all and lists every model with what past jobs billed.
+
+**What it unlocks for our submission.** `af2ig` takes a designed complex — target coordinates
+plus the binder sequence, which is what `results/cofold/*/model.cif` already is — and reports
+**ipTM and interface pAE**, the two columns `rank.py` wants for axis 1 and that
+`docs/tools-nebius.md` records as unobtainable on the hosted lane. With `write_pae: true` it also
+returns the full PAE matrix, which JapanFold describes as the one Adaptyv's ipSAE pipeline reads.
+`opendde-abag` co-folds antibody–antigen with `site` constraints, so a refold can be steered onto
+the 19 HER2 epitope residues. Scoring all 18 folded designs costs about $0.09.
+
+Driver and details: [`../viz/README.md`](../viz/README.md), `python3 viz/japanfold.py --check`.
 
 ## 7. AMASS — NEEDS AN OWNER, CLAIM IT NOW
 

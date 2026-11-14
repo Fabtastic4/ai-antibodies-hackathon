@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "japanfold": {
+      "type": "http",
+      "url": "https://api.japanfold.aiand.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${JAPANFOLD_API_KEY}"
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+Unique eligible designs analysed: 70
+Wild-type CDRH3 window 99-107: WGGDGFYAM
+Measured CDRH3-HER2 contacts: W99 (4.05 A), G103 (2.42 A), F104 (4.27 A), Y105 (3.32 A)
+
+| CDRH3 contact residues preserved | designs | share |
+|---|---|---|
+| 3 of 4 | 18 | 25.7% |
+| 2 of 4 | 26 | 37.1% |
+| 1 of 4 | 19 | 27.1% |
+| 0 of 4 | 7 | 10.0% |
+
+G103 (closest contact, 2.42 A) preserved: 32/70 (45.7%)
+
+| Contact | designs that mutate it | share |
+|---|---|---|
+| W99 | 32 | 45.7% |
+| G103 | 38 | 54.3% |
+| F104 | 53 | 75.7% |
+| Y105 | 32 | 45.7% |
+
+Cross-tab: CDRH3 mutation count x contacts preserved
+| mutations | 4 kept | 3 | 2 | 1 | 0 | total |
+|---|---|---|---|---|---|---|
+| 4 | 0 | 2 | 0 | 0 | 0 | 2 |
+| 5 | 0 | 8 | 4 | 0 | 0 | 12 |
+| 6 | 0 | 8 | 12 | 4 | 0 | 24 |
+| 7 | 0 | 0 | 10 | 5 | 1 | 16 |
+| 8 | 0 | 0 | 0 | 10 | 3 | 13 |
+| 9 | 0 | 0 | 0 | 0 | 3 | 3 |
+
+Wrote reports/b2-explor-s2-fixed-paratope.csv (70 rows)
+
+Priority for refold scoring (>=3 contacts kept AND >=6 mutations): 8
+  b2-explor-s2-fixed-her2_cdrh3_134 WFWHGTYSY  muts=6 kept=W99+G103+Y105      lost=F104T
+  b2-explor-s2-fixed-her2_cdrh3_139 WYNRGEYQF  muts=6 kept=W99+G103+Y105      lost=F104E
+  b2-explor-s2-fixed-her2_cdrh3_187 WDAPGSYSV  muts=6 kept=W99+G103+Y105      lost=F104S
+  b2-explor-s2-fixed-her2_cdrh3_2 WHPMGTYVF  muts=6 kept=W99+G103+Y105      lost=F104T
+  b2-explor-s2-fixed-her2_cdrh3_26 WDDYGNYYY  muts=6 kept=W99+G103+Y105      lost=F104N
+  b2-explor-s2-fixed-her2_cdrh3_52 WYLGYFYEY  muts=6 kept=W99+F104+Y105      lost=G103Y
+  b2-explor-s2-fixed-her2_cdrh3_67 WNAHGGYWY  muts=6 kept=W99+G103+Y105      lost=F104G
+  b2-explor-s2-fixed-her2_cdrh3_93 WPNRGLYSP  muts=6 kept=W99+G103+Y105      lost=F104L

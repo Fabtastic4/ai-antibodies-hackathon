@@ -864,3 +864,42 @@ axes to one. `predicted_ddg` is genuinely absent -- `stab-ddg` has never run, an
 
 Confidence: high. `selftest.sh` still passes 5/0/2 and rank.py still exits 3, now for the right
 reason.
+
+---
+
+## [16:45] Correction: 12 candidates carry a measured min_ipae, not 16. And the shortlist is G103
+
+Two things, one of which is me correcting myself.
+
+**The correction.** The 16:15 entry said 16 candidates carried a measured `min_ipae` after the
+join fix. It is **12**. Normalising ids by stripping the batch prefix made them meet, but it also
+merged the two batches' namespaces -- b1 and b2 both number designs from 0, so
+`b2-explor-s2-fixed-her2_cdrh3_26` silently inherited `b1-novel-s1-her2_cdrh3_26`'s ipTM of 0.916
+and min_ipae of 0.3281. Four candidates were matched that way. Exactly the failure the join fix
+was meant to end, reintroduced one layer up.
+
+Fixed by qualifying score rows **up** into the batch their file belongs to, rather than stripping
+candidates down: `reports/b1_refold_metrics.csv` is batch 1, so its bare `her2_cdrh3_26` is
+registered as `b1-novel-s1-her2_cdrh3_26`, and candidates match on the full id only. Caught
+because a b2 design appeared in the shortlist carrying b1's best-in-batch ipTM, which was too
+good to be true and was.
+
+**The shortlist.** Hard-filter the eligible pool on retaining **G103** -- the closest paratope
+contact to HER2 at 2.42 A -- then rank on contacts kept, novelty margin and the NetSolP floor.
+175 of 211 eligible designs mutate G103 away, so this cuts 211 to **35**, which is ~9 minutes of
+refold instead of ~50 and leaves 20 slots a 1.75x selection.
+
+The striking part: **batch 2 supplies 31 of the 35, batch 1 only 4.** Batch 1 has 141 eligible
+designs to batch 2's 70, and 117 of its 121 scored designs drop G103. So the arm that looked
+worse on eligibility is carrying almost the whole epitope-preservation case. This vindicates the
+14:20 decision to keep both arms, and on a ground nobody had stated: `her2-exploratory` is not
+just buying diversity, it is the only arm producing designs that still touch the hotspot.
+
+Evidence: `designs/shortlist_g103.csv`, `reports/shortlist-*-eligible.csv`, derived by
+`scripts/shortlist.py`. G103 retention cross-checks against the paratope tables' own
+`g103_kept` column on 190 of 190 rows.
+
+Confidence: high on the arithmetic. Medium on the choice of G103 as the hard filter -- it is one
+contact, chosen because it is the closest and because the paratope stage already tracks it. A
+design that loses G103 but keeps several others is not necessarily worse, and if the refold comes
+back cheap we should score the other 176 too rather than trust this cut.

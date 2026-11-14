@@ -61,14 +61,40 @@ def design_key(row_or_id):
     return val
 
 
+# A score table usually carries bare ids (her2_cdrh3_26) while candidates carry batch-
+# qualified ones (b1-novel-s1-her2_cdrh3_26). Stripping the prefix to make them meet would
+# merge the two batches' namespaces: b1 and b2 both number designs from 0, so b2's design 26
+# would silently inherit b1's scores. So instead we qualify the score row UP, using the batch
+# its file belongs to, and candidates are then matched on the full id only.
+FILE_BATCH = (("b1", "b1-novel-s1-"), ("b2", "b2-explor-s2-fixed-"))
+
+
+def batch_of_file(path):
+    name = os.path.basename(path)
+    for token, prefix in FILE_BATCH:
+        if name.startswith(token) or f"-{token}-" in name or f"_{token}_" in name:
+            return prefix
+    return None
+
+
 def score_table(paths):
-    """Pool one or more score tables, keyed on the normalised design id."""
+    """Pool score tables, keyed on the full batch-qualified design id."""
     out = {}
     for path in paths or []:
+        prefix = batch_of_file(path)
         for r in read_csv(path):
-            k = design_key(r)
-            if k:
-                out[k] = r
+            raw = design_key(r)          # bare id, whatever column it came from
+            if not raw:
+                continue
+            for c in ID_COLUMNS:         # if the row was already qualified, keep that
+                if r.get(c, "").startswith(BATCH_PREFIXES):
+                    out[r[c]] = r
+                    break
+            else:
+                if prefix:
+                    out[prefix + raw] = r
+                else:
+                    out[raw] = r
     return out
 
 
@@ -128,8 +154,8 @@ def main():
 
     # Count coverage over the candidate pool, not rows in the score table: a score table
     # full of ids that join to nothing is the failure mode this script was blind to.
-    n_refold = sum(1 for r in para if design_key(r) in refold)
-    n_ddg = sum(1 for r in para if design_key(r) in ddg)
+    n_refold = sum(1 for r in para if r["design_id"] in refold)
+    n_ddg = sum(1 for r in para if r["design_id"] in ddg)
 
     have = {"contacts_kept": True, "min_ipae": n_refold > 0, "predicted_ddg": n_ddg > 0}
     missing = [k for k, v in have.items() if not v]
@@ -156,7 +182,7 @@ def main():
 
     # Rank: contacts preserved first (axis 2), then interface error, then mutation count.
     def key(r):
-        ipae = refold.get(design_key(r), {}).get("min_ipae")
+        ipae = refold.get(r["design_id"], {}).get("min_ipae")
         try:
             ipae = float(ipae)
         except (TypeError, ValueError):
@@ -170,8 +196,8 @@ def main():
         w = csv.DictWriter(fh, fieldnames=cols, extrasaction="ignore", restval="")
         w.writeheader()
         for i, r in enumerate(ranked, 1):
-            rf = refold.get(design_key(r), {})
-            dg = ddg.get(design_key(r), {})
+            rf = refold.get(r["design_id"], {})
+            dg = ddg.get(r["design_id"], {})
             kept = r.get("contacts_kept", "0")
             w.writerow({
                 "track": "optimisation",

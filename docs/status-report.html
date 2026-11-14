@@ -100,7 +100,7 @@ footer{font-size:14px; color:var(--muted); text-align:center}
 <div class="wrap">
 
   <header>
-    <p class="eyebrow">Team fab-tastic-four · AI × Antibodies, Oslo · 14 November 2026, 16:15</p>
+    <p class="eyebrow">Team fab-tastic-four · AI × Antibodies, Oslo · 14 November 2026, 16:25</p>
     <h1>Trastuzumab CDRH3 optimisation against HER2</h1>
     <p class="lede">Campaign status with one hour forty-five minutes to submission. Two generation
       batches, 400 designs, an eligibility gate we can now run offline, one tree after the branch
@@ -159,13 +159,18 @@ footer{font-size:14px; color:var(--muted); text-align:center}
     </div>
     <p style="margin-top:14px">192 unique eligible loops for 20 slots. <b>Eligibility stopped being the
       binding constraint this afternoon.</b></p>
-    <p>The constraint is the fourth bar. <code>score/rank.py</code> exits 3 and writes nothing: it has
-      <b>191</b> candidates with a paratope score, <b>0</b> with a refold score and <b>0</b> with a
-      ddG, so <code>min_ipae</code> (axis 1, binding) and <code>predicted_ddg</code> (axis 3,
-      thermostability) are absent for every candidate — two of the three judged axes. That refusal is
-      correct: a ranking on the paratope proxy alone would be a proxy wearing a score table's clothes.
-      At the measured 15–17 s/design, refolding a shortlist is roughly twenty minutes of compute, and
-      it can run on Nebius off the shared H100.</p>
+    <p>The constraint is the fourth bar. <code>score/rank.py</code> exits 3 and writes nothing. As of
+      16:20 it has <b>191</b> candidates with a paratope score, <b>16</b> with a measured
+      <code>min_ipae</code> and <b>0</b> with a ddG, so <b>one</b> of the three judged axes is empty:
+      <code>predicted_ddg</code> (axis 3, thermostability). That refusal is correct — a ranking with a
+      whole axis absent would be the remaining proxies wearing a score table's clothes.</p>
+    <p>Axis 1 read <b>0</b> until 16:20, which was a join bug rather than missing data: the refold
+      scores existed on disk while <code>rank.py</code> looked for them under a filename that does not
+      exist, under a different column name, in a different id namespace. Three silent faults, each
+      enough on its own to make a measured axis disappear. Fixed; the count is now computed over the
+      candidate pool, so a score table whose ids join to nothing can no longer read as a pass. The
+      remaining 175 candidates genuinely have no refold — at the measured 15–17 s/design, a shortlist
+      is roughly twenty minutes on Nebius, off the shared H100.</p>
     <p>Two counts of the same funnel differ by one, and both are reported rather than reconciled
       quietly: <code>scripts/novelty_distance.py</code> over all 400 designs gives 211 eligible and 192
       unique, while <code>pipeline/status.py</code> counting the committed eligible lists gives 210 and

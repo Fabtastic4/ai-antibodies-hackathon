@@ -194,6 +194,7 @@ From task PDF p9. The event site says "3,000 USD" instead; the PDF wins.
 | | |
 |---|---|
 | **Status** | [`status-report.html`](docs/status-report.html) · [`run-sheet.html`](docs/run-sheet.html) · [`decision-log.md`](docs/decision-log.md) (why each call was made, timestamped) |
+| **Pitch** | [`pitch-and-rubrics.md`](docs/pitch-and-rubrics.md) · the 5-minute keynote, *The Novelty Wall*, 10 slides with speaker notes — a private Claude artifact, team access only, so it is linked from Slack rather than here |
 | **Running things** | [`REPRODUCE.md`](docs/REPRODUCE.md) · [`SETUP.md`](docs/SETUP.md) · [`pipeline/README.md`](pipeline/README.md) |
 | **The gate** | [`abguard.md`](docs/abguard.md) · [`probe-findings.md`](docs/probe-findings.md) |
 | **Science** | [`epitope.md`](docs/epitope.md) · [`optimisation-track-plan.md`](docs/optimisation-track-plan.md) · [`hackathon-brief.md`](docs/hackathon-brief.md) (molecule and model primer) |

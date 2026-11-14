@@ -79,12 +79,19 @@ Nothing else carries pLDDT **[disk]**:
 ### The README overclaims, and it costs us the dataset's central question
 
 The bucket README says this folder holds "ipTM, pLDDT, PAE". That is true **only for the AF3 real
-pairs**. The AF3 **shuffled** pairs (152 GB) and the Boltz-2 per-replica archive (1.7 TB) are listed
-in `table_of_contents_10.11582_2026.owjnnp5q.csv` but **were not downloaded** — together ~1.9 TB.
+pairs**. The AF3 **shuffled** pairs and the Boltz-2 per-replica archive are listed in
+`table_of_contents_10.11582_2026.owjnnp5q.csv` but **were not downloaded**. **[verified in-repo]**
+from that file, now committed: shuffled = 162,691,164,832 B (**162.7 GB**), Boltz-2 =
+1,699,040,788,429 B (**1.70 TB**), af3_real = 1.34 GB. Together **1.86 TB**. Do not start that
+sync: it would fill the box. (An earlier draft said 152 GB for the shuffled archive, taken on
+report; the figure above is read from the table of contents.)
 
-**Consequence:** we **cannot** compare pLDDT between real and shuffled pairs from local data, and
-that comparison *is* the dataset's central question — does a confidence score separate binders from
-non-binders. What we *can* do instead:
+**Consequence:** we **cannot** compare *pLDDT* between real and shuffled pairs from local data.
+That is a narrower loss than it first looks, because the cross-class comparison itself **is**
+available — the small `iptm_confidence_scores.zip` matrices summarise both classes, and the huge
+archives are only their per-replica raw form. So the dataset's central question (does a
+confidence score separate binders from non-binders) is answerable here; only the pLDDT-specific
+version of it is not. Use:
 
 - **ipTM**, full matrices, **both classes** — the comparison is available here.
 - **Chai-1 `ptm`/`iptm`** across all 14,722 systems.
@@ -395,8 +402,10 @@ model takes (§5) · where pLDDT does and does not exist (§2).
 2. **Which CDRH3 window does `abguard` use for its identity denominator** — the 11-residue loop or a
    wider one? [`probe-findings.md` §3](probe-findings.md)'s floor depends on it, and shipping the
    reference DB does not by itself answer it (§3).
-3. **Which ipTM column in `zenodo-18390239-…` is the AF3 one?** Computing the 454/21 true-negative
-   split confirms it (see `fetch_hackathon_data.py`, `derived` expectation).
+3. ~~Which ipTM column is the AF3 one?~~ **Answered:** `sigma2-ab-ag-champloo/spr-supplementary/`
+   `spr_table_s1_pairwise.csv` carries `pair_type`, `spr_outcome`, `kd_nM` and **`af3_iptm`** in the
+   same row — a measured label and the confidence score together, i.e. a direct ROC. Computing the
+   454/21 split is still a useful cross-check (`fetch_hackathon_data.py`, `derived` expectation).
 4. **Cross-model score comparability in stage 05** (§5) — fold all ranked candidates with one model,
    or rank within model and merge.
 5. **Does the participant guide's "include Apheris' OpenFold to qualify" condition still hold?**

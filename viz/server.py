@@ -60,7 +60,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     # quieter log: one line, no noise about favicons
     def log_message(self, fmt, *args):
-        if "favicon" in (args[0] if args else ""):
+        if "favicon" in str(args[0] if args else ""):
             return
         sys.stderr.write(f"  {self.address_string()} {fmt % args}\n")
 

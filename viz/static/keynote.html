@@ -3,165 +3,250 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fab4 keynote</title>
+<title>Fab4 — HER2 binder campaign</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="keynote.css">
 </head>
 <body class="keynote">
 
-<div id="stage-wrap">
-<div id="stage">
+<div id="progress"><div id="progress-fill"></div></div>
 
-  <section class="slide cover">
-    <div class="grow"></div>
+<header id="topbar">
+  <span class="brand">fab-tastic-four</span>
+  <nav id="nav">
+    <a href="#task">task</a>
+    <a href="#ceiling">ceiling</a>
+    <a href="#build">build</a>
+    <a href="#evidence">evidence</a>
+    <a href="#twenty">the 20</a>
+    <a href="#close">close</a>
+  </nav>
+  <span class="spacer"></span>
+  <button id="notes-btn" type="button">notes</button>
+  <a class="barlink" href="/">viewer only</a>
+</header>
+
+<main>
+
+<!-- ─────────────────────────── 1. cover ─────────────────────────── -->
+<section class="sec cover" id="top">
+  <div class="wrap">
     <div class="rule"></div>
-    <p class="eyebrow">fab-tastic-four · team 4</p>
+    <p class="eyebrow">AI × Antibodies Hackathon · Oslo · 14 November 2026</p>
     <h1>A better trastuzumab,<br>ranked on evidence</h1>
-    <p class="lede">400 designs, 20 slots, and a pipeline that refuses to guess.</p>
-    <div class="grow"></div>
-    <p class="meta">AI × Antibodies Hackathon · Oslo · 14 November 2026</p>
-    <aside>We are fab-tastic-four. In five minutes: what we built to improve trastuzumab against HER2, what the data told us, and the 20 designs we are handing in. We rank on evidence we measured, and we say so where we could not measure.</aside>
-  </section>
+    <p class="lede">400 designs, 20 slots, and a pipeline that refuses to guess. Every number
+      on this page is read from a file in the repo, and the last section is the live viewer.</p>
+    <p class="scroll-hint">scroll ↓</p>
+  </div>
+  <aside>We are fab-tastic-four. In five minutes: the trap in this task, what we built, what the
+    evidence changed, and the 20 designs we are handing in. The theme is that we rank on what we
+    measured and label what we could not.</aside>
+</section>
 
-  <section class="slide">
-    <p class="eyebrow">The challenge</p>
-    <h2>Three measurements decide the score</h2>
-    <p class="lede">Every tested design is compared with trastuzumab itself. Beat it on all three for S tier, and teams are ranked on S-tier count first.</p>
-    <div class="cards">
-      <div class="kcard"><p class="tag">Axis 1</p><p class="label">Binding to HER2</p><p class="body">Measured by SPR.</p></div>
+<!-- ─────────────────────────── 2. the task ─────────────────────────── -->
+<section class="sec" id="task">
+  <div class="wrap">
+    <p class="eyebrow">The task, and the trap inside it</p>
+    <h2>Three measured axes — and a novelty gate that moves you away from all three</h2>
+    <p class="lede">Adaptyv measures every tested design against trastuzumab itself. Three out of
+      three is S tier, and teams rank on S-tier count first.</p>
+
+    <div class="cards three">
+      <div class="kcard"><p class="tag">Axis 1</p><p class="label">Binding to HER2</p><p class="body">SPR.</p></div>
       <div class="kcard"><p class="tag">Axis 2</p><p class="label">Epitope preservation</p><p class="body">Competitive binding against trastuzumab.</p></div>
       <div class="kcard"><p class="tag">Axis 3</p><p class="label">Thermostability</p><p class="body">Measured directly.</p></div>
     </div>
-    <div class="grow"></div>
-    <p class="knote">So the goal was never volume. It was designs that plausibly move all three at once.</p>
-    <aside>Adaptyv measures three things for every tested design: binding by SPR, whether it still hits the same epitope, and thermostability. Three out of three is S tier, and teams rank on S-tier count first. Ten designs that each improve one thing lose to two that improve all three.</aside>
-  </section>
 
-  <section class="slide">
-    <p class="eyebrow">What we learned first</p>
-    <h2>The novelty bar sits higher than the rules say</h2>
-    <p class="lede">The gate counts CDRH3 mutations against 610,109 known sequences, not only trastuzumab. Eligibility on our first batch, by distance from trastuzumab:</p>
-    <div class="cards">
+    <p class="note">But a design only counts if <code>abguard</code> accepts it, and the gate counts
+      CDRH3 mutations against <b>610,109</b> known sequences — not just against trastuzumab.
+      Eligibility on our first batch:</p>
+
+    <div class="cards three">
       <div class="kcard"><p class="big warn">0 / 12</p><p class="label">3–4 mutations</p><p class="body">The stated minimum. None passed.</p></div>
       <div class="kcard"><p class="big">44%</p><p class="label">5 mutations</p><p class="body">A coin flip.</p></div>
       <div class="kcard"><p class="big good">79–89%</p><p class="label">6 or more mutations</p><p class="body">Where designs reliably clear the gate.</p></div>
     </div>
-    <div class="grow"></div>
-    <p class="knote">Novelty and affinity pull in opposite directions. The gate pushed us further from trastuzumab than affinity alone would choose.</p>
-    <aside>The rules say three CDRH3 mutations from trastuzumab. But abguard counts against every one of 610 thousand known CDRH3s. At three or four mutations, zero of twelve passed. Five, 44 percent. Six or more, 79 to 89 percent. That reshaped the campaign.</aside>
-  </section>
+  </div>
+  <aside>Three measurements decide the score, each against trastuzumab measured in the same lab.
+    But nothing gets measured unless abguard passes it, and abguard counts mutations against 610
+    thousand known CDRH3s. At three or four mutations, zero of twelve passed. Six or more, 79 to 89
+    percent. So the gate pushes every design a long way from trastuzumab. Hold that thought.</aside>
+</section>
 
-  <section class="slide">
-    <p class="eyebrow">The campaign</p>
-    <h2>400 designs became 20</h2>
-    <div class="funnel">
-      <div class="frow"><p class="fname">Generated, two batches</p><div class="ftrack"><div class="fbar" style="width:100%"></div></div><p class="fnum">400</p></div>
-      <div class="frow"><p class="fname">Pass the novelty gate</p><div class="ftrack"><div class="fbar" style="width:52.5%"></div></div><p class="fnum">210</p></div>
-      <div class="frow"><p class="fname">Unique heavy chains</p><div class="ftrack"><div class="fbar" style="width:47.75%"></div></div><p class="fnum">191</p></div>
-      <div class="frow"><p class="fname">Keep hotspot contact G103</p><div class="ftrack"><div class="fbar" style="width:8.75%"></div></div><p class="fnum">35</p></div>
-      <div class="frow"><p class="fname">Ranked for submission</p><div class="ftrack"><div class="fbar on" style="width:5%"></div></div><p class="fnum">20</p></div>
-    </div>
-    <div class="grow"></div>
-    <p class="knote">Batch 2, the exploratory arm, supplied 31 of the 35 shortlisted designs. It looked worse on eligibility and carried the epitope case.</p>
-    <aside>We generated 400 CDRH3 redesigns with RFD4-Proteina. About half passed the novelty gate, 191 were unique. G103 is trastuzumab's closest contact to HER2, at 2.4 angstroms; keeping it took us to 35, and from those we ranked 20.</aside>
-  </section>
+<!-- ─────────────────────────── 3. the ceiling ─────────────────────────── -->
+<section class="sec deep" id="ceiling">
+  <div class="wrap">
+    <p class="eyebrow">What we checked before designing anything</p>
+    <h2>Where the gate puts you, nothing has ever out-bound trastuzumab</h2>
+    <p class="lede">190 trastuzumab CDRH3 variants with <b>measured</b> SPR affinity, grouped by how
+      many of the 10 loop residues changed. Median K<sub>D</sub>, log scale — shorter is better.</p>
 
-  <section class="slide">
-    <p class="eyebrow">The pipeline</p>
-    <h2>Anyone can re-run it in under a minute</h2>
-    <p class="lede">Seven stages. Four need only python3 and run anywhere. Three need the team VM or a GPU, so their last real output is committed.</p>
-    <div class="stages">
-      <div class="stage"><p class="sname">Fetch</p><p class="swhere">Laptop</p></div>
-      <div class="stage"><p class="sname">Epitope</p><p class="swhere">Laptop</p></div>
-      <div class="stage"><p class="sname">Paratope</p><p class="swhere">Laptop</p></div>
-      <div class="stage"><p class="sname">Gate</p><p class="swhere vm">VM, cached</p></div>
-      <div class="stage"><p class="sname">Solubility</p><p class="swhere vm">VM, cached</p></div>
-      <div class="stage"><p class="sname">Co-fold</p><p class="swhere vm">GPU, cached</p></div>
-      <div class="stage"><p class="sname">Rank</p><p class="swhere">Laptop</p></div>
+    <div class="fall">
+      <div class="frow"><p class="fk">wild type</p><div class="ftrack"><div class="fbar good" style="width:3.7%"></div></div><p class="fv">0.13 nM</p><p class="fn">n=8</p></div>
+      <div class="frow"><p class="fk">1</p><div class="ftrack"><div class="fbar" style="width:47.1%"></div></div><p class="fv">4.5 nM</p><p class="fn">n=15</p></div>
+      <div class="frow"><p class="fk">2</p><div class="ftrack"><div class="fbar" style="width:66.0%"></div></div><p class="fv">20.5 nM</p><p class="fn">n=14</p></div>
+      <div class="frow"><p class="fk">3</p><div class="ftrack"><div class="fbar" style="width:62.3%"></div></div><p class="fv">15.0 nM</p><p class="fn">n=19</p></div>
+      <div class="frow"><p class="fk">4</p><div class="ftrack"><div class="fbar" style="width:79.4%"></div></div><p class="fv">60.7 nM</p><p class="fn">n=34</p></div>
+      <div class="frow band"><p class="fk">5</p><div class="ftrack"><div class="fbar warn" style="width:84.9%"></div></div><p class="fv">92.7 nM</p><p class="fn">n=32</p></div>
+      <div class="frow band"><p class="fk">6</p><div class="ftrack"><div class="fbar warn" style="width:84.9%"></div></div><p class="fv">93.0 nM</p><p class="fn">n=29</p></div>
+      <div class="frow band"><p class="fk">7</p><div class="ftrack"><div class="fbar warn" style="width:90.6%"></div></div><p class="fv">149.6 nM</p><p class="fn">n=18</p></div>
+      <div class="frow"><p class="fk">8</p><div class="ftrack"><div class="fbar" style="width:97.1%"></div></div><p class="fv">248.5 nM</p><p class="fn">n=10</p></div>
+      <div class="frow"><p class="fk">9</p><div class="ftrack"><div class="fbar" style="width:93.7%"></div></div><p class="fv">190.7 nM</p><p class="fn">n=4</p></div>
+      <div class="frow"><p class="fk">10</p><div class="ftrack"><div class="fbar" style="width:94.6%"></div></div><p class="fv">203.0 nM</p><p class="fn">n=4</p></div>
+      <p class="axis">substituted CDRH3 residues (of 10) · amber band = where the novelty gate puts our designs</p>
     </div>
-    <div class="proof">
-      <p class="pnum">12 / 12</p>
-      <p class="ptext">self-test checks pass: re-runs are byte-identical, the published epitope is reproduced, the negative controls are rejected, and the ranker refuses to write a submission when a judged axis has no score.</p>
-    </div>
-    <aside>Seven stages from structure to ranked table. Four run on any laptop. The three that need our VM or a GPU ship their last real output. One command runs twelve checks, including that the ranker refuses to invent a submission when it has no evidence for an axis.</aside>
-  </section>
 
-  <section class="slide">
-    <p class="eyebrow">The result that changed the ranking</p>
-    <h2>The co-fold overturned our proxy</h2>
+    <div class="cards three">
+      <div class="kcard"><p class="big warn">0 of 79</p><p class="label">beat wild type in our band</p><p class="body">Measured variants at 5–7 substitutions. Across the whole table only 10 of 187 beat it, all close to wild type — and all too close to pass the gate.</p></div>
+      <div class="kcard"><p class="big">12 nM</p><p class="label">our 20, predicted</p><p class="body">Our own affinity model, served live on the VM, puts all 20 weaker than wild type. It agrees with the measured table it was trained on.</p></div>
+      <div class="kcard"><p class="tag good">So we played the board</p><p class="label">Axis 1 is not winnable here. Axes 2 and 3 are.</p><p class="body">We optimised epitope preservation and stability, and we do not claim an affinity win we cannot support.</p></div>
+    </div>
+  </div>
+  <aside>Before designing anything we asked what is even achievable. 190 variants of this exact
+    loop with measured SPR. Affinity falls off hard with mutation distance. In the band the novelty
+    gate forces us into, five to seven substitutions, seventy-nine measured variants, not one beats
+    wild-type trastuzumab. Our own affinity model, running on the VM right now, says the same about
+    our twenty. So we stopped pretending axis one was winnable and played axes two and three.
+    If another team tells you they beat trastuzumab on affinity tonight, ask them this question.</aside>
+</section>
+
+<!-- ─────────────────────────── 4. what we built ─────────────────────────── -->
+<section class="sec" id="build">
+  <div class="wrap">
+    <p class="eyebrow">What we built</p>
+    <h2>400 designs to 20, and anyone can re-run it in under a minute</h2>
+
+    <div class="split">
+      <div class="funnel">
+        <div class="urow"><p class="uname">Generated, two batches</p><div class="utrack"><div class="ubar" style="width:100%"></div></div><p class="unum">400</p></div>
+        <div class="urow"><p class="uname">Pass the novelty gate</p><div class="utrack"><div class="ubar" style="width:52.5%"></div></div><p class="unum">210</p></div>
+        <div class="urow"><p class="uname">Unique heavy chains</p><div class="utrack"><div class="ubar" style="width:47.75%"></div></div><p class="unum">191</p></div>
+        <div class="urow"><p class="uname">Keep hotspot contact G103</p><div class="utrack"><div class="ubar" style="width:8.75%"></div></div><p class="unum">35</p></div>
+        <div class="urow"><p class="uname">Ranked for submission</p><div class="utrack"><div class="ubar on" style="width:5%"></div></div><p class="unum">20</p></div>
+        <p class="axis">G103 is trastuzumab's closest contact to HER2, at 2.42 Å. Most eligible designs mutate it away.</p>
+      </div>
+
+      <div class="side">
+        <div class="stages">
+          <div class="stage"><p class="sname">Fetch</p><p class="swhere">laptop</p></div>
+          <div class="stage"><p class="sname">Epitope</p><p class="swhere">laptop</p></div>
+          <div class="stage"><p class="sname">Paratope</p><p class="swhere">laptop</p></div>
+          <div class="stage"><p class="sname">Gate</p><p class="swhere vm">VM</p></div>
+          <div class="stage"><p class="sname">Solubility</p><p class="swhere vm">VM</p></div>
+          <div class="stage"><p class="sname">Co-fold</p><p class="swhere vm">GPU</p></div>
+          <div class="stage"><p class="sname">Rank</p><p class="swhere">laptop</p></div>
+        </div>
+        <div class="proof">
+          <p class="pnum">12 / 12</p>
+          <p class="ptext">self-test checks pass. Re-runs are byte-identical, the published epitope is
+            reproduced, four negative controls are rejected, and the ranker <b>refuses to write a
+            submission</b> when a judged axis has no score.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside>Seven stages from structure to ranked table. Four run on any laptop with nothing but
+    python; the three that need our VM or a GPU ship their last real output, so the rest still
+    reproduces. One command runs twelve checks, including my favourite: the ranker refuses to invent
+    a submission when it has no evidence for an axis. That refusal is in the repo and it fired on us.</aside>
+</section>
+
+<!-- ─────────────────────────── 5. evidence ─────────────────────────── -->
+<section class="sec deep" id="evidence">
+  <div class="wrap">
+    <p class="eyebrow">What the evidence changed</p>
+    <h2>Twice, a measurement overturned a number we liked</h2>
+
     <div class="cards two">
-      <div class="kcard"><p class="tag">What the paratope proxy said</p><p class="big">18 tied</p><p class="label">Identical top score of 0.75</p><p class="body">Nothing separated them, so the order fell through to mutation count.</p></div>
-      <div class="kcard"><p class="tag warn">What the Boltz-2 co-fold showed</p><p class="big warn">8 of 18</p><p class="label">Bind away from the epitope</p><p class="body">Zero of the 19 epitope residues touched. Six of the eight had the proxy's top score.</p></div>
+      <div class="kcard">
+        <p class="tag">The proxy said everything was fine</p>
+        <p class="big">18 tied</p>
+        <p class="label">at the same top score of 0.75</p>
+        <p class="body">Our paratope proxy could not separate them, so the draft order fell through
+          to mutation count. Then the Boltz-2 co-folds landed: <b>8 of 18</b> put the antibody
+          somewhere else on HER2 entirely — hundreds of contacts, none on the epitope. Six of those
+          eight were designs the proxy rated best. They are demoted to ranks 13–20 and
+          <b>labelled, not hidden</b>.</p>
+      </div>
+      <div class="kcard">
+        <p class="tag warn">And we could not just rank on ipTM</p>
+        <p class="big warn">r = 0.15</p>
+        <p class="label">OpenFold3 vs Boltz-2 agreement</p>
+        <p class="body">We scored all <b>210</b> eligible designs with OpenFold3 and <b>139</b> with
+          Boltz-2 as well. Boltz-2 reads 0.13 ipTM higher on average, but the rank orders are close
+          to unrelated — not an offset you can subtract. An ipTM ranking inherits whichever model
+          produced it, so we ranked on where the antibody actually lands and kept ipTM as a
+          cross-check.</p>
+      </div>
     </div>
-    <div class="grow"></div>
-    <p class="knote">Measured epitope contact spread the field from 0.58 down to 0.00. The eight are demoted to ranks 13–20 and labelled, not hidden.</p>
-    <aside>Our first draft ranked on a paratope proxy, and it gave 18 designs the same top score. Then the co-folds came back. Eight of 18 put the antibody somewhere else on HER2 entirely. Six of those eight were designs the proxy rated best. So we re-ranked on what the co-fold measured.</aside>
-  </section>
 
-  <section class="slide">
-    <p class="eyebrow">The cross-check</p>
-    <h2>Two models barely agree on which design binds</h2>
-    <div class="cards">
-      <div class="kcard"><p class="big">210</p><p class="label">designs scored by OpenFold3</p><p class="body">Every eligible design, both batches.</p></div>
-      <div class="kcard"><p class="big">139</p><p class="label">also scored by Boltz-2</p><p class="body">Batch 1 only.</p></div>
-      <div class="kcard"><p class="big warn">0.15</p><p class="label">Pearson r between their ipTM</p><p class="body">Boltz-2 reads 0.13 higher on average, and the rank orders are close to unrelated.</p></div>
-    </div>
-    <div class="grow"></div>
-    <p class="knote">An ipTM ranking inherits whichever model produced it. So we ranked on where the antibody lands, and kept ipTM as a cross-check.</p>
-    <aside>We scored all 210 eligible designs with OpenFold3 and 139 with Boltz-2 as well. Correlation 0.15. If you rank on ipTM you are really choosing a model. We ranked on whether the co-fold puts the antibody on the epitope.</aside>
-  </section>
+    <p class="note">Both results made our list look worse, and both are in the repo with the code
+      that produced them.</p>
+  </div>
+  <aside>Twice a measurement overturned a number we liked. First, our paratope proxy gave eighteen
+    designs the same top score; the co-folds showed eight of them bind off the epitope, including
+    six the proxy rated best. Second, we wanted to rank on ipTM, so we ran two structure models over
+    every eligible design: they barely agree, correlation 0.15. Both results made our list look
+    worse. Both are in the repo.</aside>
+</section>
 
-  <section class="slide">
+<!-- ─────────────────────────── 6. the 20 + live viewer ─────────────────────────── -->
+<section class="sec tall" id="twenty">
+  <div class="wrap">
     <p class="eyebrow">The submission</p>
     <h2>The 20 we are handing in</h2>
+
     <div class="strip" id="strip"></div>
     <div class="legend">
-      <p>Ranks 1–10: co-fold on the epitope</p>
-      <p>Ranks 11–12: no co-fold returned</p>
-      <p>Ranks 13–20: co-fold off the epitope, labelled</p>
+      <p><span class="sw on"></span>Ranks 1–10 — co-fold lands on the epitope</p>
+      <p><span class="sw none"></span>Ranks 11–12 — no co-fold returned</p>
+      <p><span class="sw off"></span>Ranks 13–20 — co-fold lands off the epitope, labelled</p>
     </div>
-    <div class="cards tight">
-      <div class="kcard"><p class="tag">Binding and epitope</p><p class="label">Top 10 touch 5 to 11 of 19 epitope residues</p><p class="body">Contact fraction from the Boltz-2 co-fold. Wild-type trastuzumab VH touches 8 on the crystal.</p></div>
-      <div class="kcard"><p class="tag">Thermostability</p><p class="label">A labelled proxy on all 20</p><p class="body">ESM-2 pseudo-log-likelihood. Not a ddG; nothing hosted predicts thermostability.</p></div>
-      <div class="kcard"><p class="tag">Expression</p><p class="label">All 20 clear the solubility floor</p><p class="body">NetSolP, floor 0.496, calibrated on 190 measured binders.</p></div>
+
+    <div class="cards three tight">
+      <div class="kcard"><p class="tag">Axis 1 + 2 · epitope contact</p><p class="label">Rank 1 reaches 11 of 19 epitope residues</p><p class="body">Wild-type VH reaches 8 on the crystal. Rank 1 beats it, ranks 2–5 match it, the rest fall below — and the viewer below shows you exactly that, per design.</p></div>
+      <div class="kcard"><p class="tag">Axis 3 · thermostability</p><p class="label">A labelled proxy on all 20</p><p class="body">ESM-2 pseudo-log-likelihood. Not a ddG, and nothing hosted predicts thermostability. The column says so in the file.</p></div>
+      <div class="kcard"><p class="tag">Expression</p><p class="label">All 20 clear the solubility floor</p><p class="body">NetSolP, floor 0.496, calibrated on the 190 measured binders.</p></div>
     </div>
-    <div class="grow"></div>
-    <p class="knote">Next: the same 20, live, in 3D.</p>
-    <aside>All Fabs, all optimisation track, four to seven CDRH3 mutations, light chain untouched. Ranks one to ten co-fold on the epitope. Eleven and twelve had no co-fold. Thirteen to twenty co-fold off the epitope. Now let us look at them.</aside>
-  </section>
 
-  <section class="slide live" data-live="/">
-    <aside>Live viewer. Pick rank 1: HER2 epitope residues the binder reaches are green, the ones it misses amber, CDRH3 orange, substitutions in red. Show the improvement card against wild type: 11 of 19 against 8. Then pick a rank 13–20 design to show one landing off the epitope. Use the bar at the bottom to move on; arrow keys go to the viewer while it has focus.</aside>
-  </section>
+    <p class="note live-cue">Live, from the running pipeline — pick any design: <b>green</b> epitope
+      residues are reached, <b>amber</b> are missed, <b>orange</b> is CDRH3, <b>red</b> sticks are
+      substitutions.</p>
+  </div>
 
-  <section class="slide close">
+  <div class="frame">
+    <iframe id="live" title="HER2 binder review" src="/" loading="lazy"></iframe>
+  </div>
+  <aside>All twenty are Fabs on the optimisation track, four to seven CDRH3 mutations, light chain
+    untouched. Ranks one to ten land on the epitope; eleven and twelve had no co-fold come back;
+    thirteen to twenty land off it and say so. Now the live viewer: pick rank one, show eleven of
+    nineteen epitope residues against wild type's eight, then pick a rank in the teens to show one
+    landing off the epitope. Every panel here reads the same files the ranking did.</aside>
+</section>
+
+<!-- ─────────────────────────── 7. close ─────────────────────────── -->
+<section class="sec close" id="close">
+  <div class="wrap">
     <p class="eyebrow">What we stand behind</p>
     <h1>20 Fabs. Every number traceable.</h1>
     <div class="rows">
-      <div class="row"><p class="k">Our best bet</p><p class="v">Rank 1: six CDRH3 mutations, and its co-fold touches 11 of the 19 epitope residues, 3 more than wild type.</p></div>
-      <div class="row"><p class="k">Our limits</p><p class="v">OpenFold3 and Boltz-2 barely agree on which design binds (r = 0.15), so we ranked on epitope contact, not ipTM. Thermostability rests on a labelled proxy.</p></div>
-      <div class="row"><p class="k">Check us</p><p class="v">Clone the repo and run the self-test. Under a minute, no credentials, no GPU.</p></div>
+      <div class="row"><p class="k">Our best bet</p><p class="v">Rank 1 — six CDRH3 mutations, and the only design whose co-fold reaches more of the epitope than wild-type VH does: 11 of 19 against 8.</p></div>
+      <div class="row"><p class="k">Our judgment call</p><p class="v">The novelty gate forces every eligible design into a band where no measured variant has ever beaten trastuzumab's affinity. So we optimised epitope preservation and stability instead of claiming an affinity win.</p></div>
+      <div class="row"><p class="k">Our limits</p><p class="v">Two structure models barely agree on binding (r = 0.15), thermostability rests on a labelled proxy, and eight of our twenty co-fold off the epitope. All three are on the face of the submission file.</p></div>
+      <div class="row"><p class="k">Check us</p><p class="v">Clone the repo and run <code>bash pipeline/selftest.sh</code>. Under a minute, no credentials, no GPU.</p></div>
     </div>
-    <div class="grow"></div>
     <p class="meta">github.com/Fabtastic4/ai-antibodies-hackathon</p>
-    <aside>We are handing in 20 Fabs, and every number behind them traces to a file in the repo. Our limits: two structure models barely agree, and thermostability is a proxy. We would rather tell you that than have the lab tell you. Thank you.</aside>
-  </section>
+  </div>
+  <aside>To close. Twenty Fabs, every number traceable to a file. Our best bet is rank one, the only
+    design that reaches more of the epitope than wild type does. Our judgment call was to stop
+    chasing affinity once the measured data said the gate had closed that door. Our limits are on
+    the face of the submission file rather than in a footnote. And you do not have to take any of it
+    on trust: clone the repo and run the self-test. Thank you.</aside>
+</section>
 
-</div>
-<iframe id="live" title="HER2 binder review" hidden></iframe>
-</div>
+</main>
 
 <div id="notes" hidden></div>
-
-<footer id="bar">
-  <button id="prev" aria-label="Previous slide">‹ prev</button>
-  <span id="count"></span>
-  <button id="next" aria-label="Next slide">next ›</button>
-  <div id="progress"><div id="progress-fill"></div></div>
-  <button id="notes-btn">notes</button>
-  <a href="/" class="barlink">viewer only</a>
-</footer>
-
 <script src="keynote.js"></script>
 </body>
 </html>

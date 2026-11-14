@@ -48,6 +48,13 @@ epitope contact. On OpenFold3 the 20 score 0.47–0.63 against a field median of
 [`designs/top31-consensus.csv`](designs/top31-consensus.csv) is the two-model consensus shortlist,
 all batch 1 — a cross-check, not a submission candidate.
 
+**Affinity reality check.** The 190 measured SPR binders say the novelty gate closes the affinity
+door: at the 5–7 CDRH3 substitutions our designs carry, **0 of 79 measured variants beat wild-type
+trastuzumab** (median 112 nM against its 0.13 nM), and only 10 of 187 beat it anywhere in the table.
+Daniel's `affinity_v2` model, served on the VM, agrees — it puts all 20 weaker than wild type:
+[`reports/affinity-v2-submission20.csv`](reports/affinity-v2-submission20.csv). So the 20 are
+ranked on epitope preservation and stability, not on an affinity claim.
+
 Built but not used to rank the 20: the thermostability stage
 [`pipeline/thermostability.py`](pipeline/thermostability.py) (issue #10), the VH–VL interface
 `stab-ddg` job (`scripts/stab_ddg_*`), and two learned affinity models —
@@ -74,8 +81,8 @@ evidence. Walkthrough for a judge or a new machine: **[`docs/REPRODUCE.md`](docs
 ## The website and keynote
 
 A local site that shows each of the 20 designs in 3D against HER2, which CDRH3 residues changed,
-and how each compares with wild-type trastuzumab. The pitch keynote lives in the same site, with
-the viewer as its live-demo slide.
+and how each compares with wild-type trastuzumab. The pitch keynote lives in the same site, as a
+single scrolling page that ends in the live viewer.
 
 ```bash
 python3 viz/server.py                 # then open http://127.0.0.1:8765
@@ -85,7 +92,7 @@ python3 viz/server.py --host 0.0.0.0  # also prints a LAN URL for the room
 | Page | What it is |
 |---|---|
 | `http://127.0.0.1:8765/` | The viewer: design list, 3D structure, CDRH3 changes, improvement over wild type, scores, provenance |
-| `http://127.0.0.1:8765/keynote.html` | The 10-slide keynote. Slide 9 is the live viewer. Arrow keys or the bottom bar to move, `n` for speaker notes |
+| `http://127.0.0.1:8765/keynote.html` | The pitch, as one scrolling page: the task, the measured affinity ceiling, what we built, what the evidence changed, the 20, and the live viewer inline at the end. `n` or the button toggles speaker notes |
 
 Standard library only, nothing to install. The 3D panel needs the co-fold structures in
 `results/cofold/<id>/model.cif`, which are not in git, and 3Dmol.js from the network; every

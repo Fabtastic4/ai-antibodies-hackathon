@@ -1,15 +1,10 @@
-/* Keynote navigation. No dependencies.
-   Keys: right / space / PageDown = next, left / PageUp = back, n = speaker notes.
-   The live slide hands the window to the viewer in an iframe; while the viewer has focus the
-   keys belong to it, so the bar's prev / next buttons are how you leave. */
+/* One scrolling page. Scroll progress, the active nav link, and the speaker-notes panel,
+   which shows the note belonging to whichever section is currently on screen. */
 (() => {
-  const slides = [...document.querySelectorAll('.slide')];
-  const stage = document.getElementById('stage');
-  const live = document.getElementById('live');
+  const secs = [...document.querySelectorAll('.sec')];
+  const links = [...document.querySelectorAll('#nav a')];
   const notes = document.getElementById('notes');
-  const count = document.getElementById('count');
   const fill = document.getElementById('progress-fill');
-  let at = 0;
 
   // The ranked 20, coloured the way the viewer colours the epitope.
   const strip = document.getElementById('strip');
@@ -20,40 +15,39 @@
     strip.appendChild(c);
   }
 
-  function fit() {
-    const wrap = document.getElementById('stage-wrap');
-    const s = Math.min(wrap.clientWidth / 1920, wrap.clientHeight / 1080);
-    stage.style.setProperty('--s', s);
+  let current = secs[0];
+
+  function onScroll() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    fill.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+
+    // The section covering the middle of the window is the one being presented.
+    const mid = window.innerHeight / 2;
+    const now = secs.find((s) => {
+      const r = s.getBoundingClientRect();
+      return r.top <= mid && r.bottom > mid;
+    }) || secs[0];
+
+    if (now !== current) {
+      current = now;
+      links.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + now.id));
+      const aside = now.querySelector('aside');
+      notes.textContent = aside ? aside.textContent.replace(/\s+/g, ' ').trim() : '';
+    }
   }
 
-  function show(i) {
-    at = Math.max(0, Math.min(slides.length - 1, i));
-    slides.forEach((s, k) => s.classList.toggle('current', k === at));
-    const cur = slides[at];
-    const isLive = cur.dataset.live !== undefined;
-    if (isLive && !live.getAttribute('src')) live.src = cur.dataset.live;
-    live.hidden = !isLive;
-    stage.hidden = isLive;
-    const aside = cur.querySelector('aside');
-    notes.textContent = aside ? aside.textContent : '';
-    count.textContent = (at + 1) + ' / ' + slides.length;
-    fill.style.width = ((at + 1) / slides.length * 100) + '%';
-    if (location.hash !== '#' + (at + 1)) history.replaceState(null, '', '#' + (at + 1));
-    if (!isLive) window.focus();
-  }
-
-  document.getElementById('prev').onclick = () => show(at - 1);
-  document.getElementById('next').onclick = () => show(at + 1);
-  document.getElementById('notes-btn').onclick = () => { notes.hidden = !notes.hidden; };
+  document.getElementById('notes-btn').onclick = () => {
+    notes.hidden = !notes.hidden;
+    if (!notes.hidden && !notes.textContent) onScroll();
+  };
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(at + 1); }
-    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(at - 1); }
-    else if (e.key === 'n') notes.hidden = !notes.hidden;
+    // Only when the page itself has focus; inside the viewer iframe the keys are its own.
+    if (e.key === 'n' && !e.metaKey && !e.ctrlKey) notes.hidden = !notes.hidden;
   });
-  window.addEventListener('resize', fit);
-  window.addEventListener('hashchange', () => show((parseInt(location.hash.slice(1), 10) || 1) - 1));
 
-  fit();
-  show((parseInt(location.hash.slice(1), 10) || 1) - 1);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
 })();

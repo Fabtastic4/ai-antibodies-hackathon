@@ -1,0 +1,6 @@
+12K	/home/hackathon/hackathon-data/README.md
+6.0M	/home/hackathon/hackathon-data/her2-trastuzumab
+1.7G	/home/hackathon/hackathon-data/sigma2-ab-ag-champloo
+2.4G	/home/hackathon/hackathon-data/zenodo-10831512-trastuzumab-ngs
+560M	/home/hackathon/hackathon-data/zenodo-18390239-ab-ag-complexes
+1.6M	/home/hackathon/rfd4

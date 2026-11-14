@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Large or regenerable artifacts — keep paths and provenance in the repo, not the blobs
+data/**/*.cif
+data/**/*.pdb
+data/**/*.mmcif
+data/**/*.gz
+!data/**/README.md
+*.pt
+*.ckpt

@@ -1,5 +1,10 @@
 # Apheris Foundry — Predict Structure and RFD4-Proteina
 
+> **Corrected 14:10.** This doc's novelty criteria were wrong. There is no <70% CDRH3-identity
+> requirement - identity only classifies the track. The real bar is the CDRH3 mutation count,
+> counted against all 610,109 known CDRH3s. Measured on batch 1: 3-4 mutations pass 0/12, 5 passes
+> 44%, 6+ passes 79-89%, so **generate at >=6**. See [`abguard.md`](abguard.md).
+
 Source: the official task description PDF, Tooling → Apheris section. Numbers here are the
 PDF's, not estimates. Anything not in the PDF is marked `TODO: confirm`.
 
@@ -92,8 +97,8 @@ Read it in this order:
 
 | Track | Run | Why |
 |---|---|---|
-| **Optimisation** (CDRH3, needs <70% CDRH3 identity to trastuzumab) | `her2-novel-2026-11-09` as the default; `her2-2026-11-07` **exploratory** (`--sequence-tsr-k 1`) as the diversity arm | Only settings with a pass rate that survives abguard, and her2-novel has the best interface error |
-| **De novo** (<70% identity to any known antibody) | `her2-novel-2026-11-09`, or `antibody-2026-10-30` if we need CDRs other than H3 | Novelty is the binding constraint on this track; `antibody-2026-10-30` passes 100% but has found 0% known binders |
+| **Optimisation** (CDRH3; needs >=3 CDRH3 mutations from trastuzumab AND from all 610,109 known CDRH3s - target >=6, see `abguard.md`) | `her2-novel-2026-11-09` as the default; `her2-2026-11-07` **exploratory** (`--sequence-tsr-k 1`) as the diversity arm | Only settings with a pass rate that survives abguard, and her2-novel has the best interface error |
+| **De novo** (<70% identity to any known antibody; >=2 CDRH3 mutations) | `her2-novel-2026-11-09`, or `antibody-2026-10-30` if we need CDRs other than H3 | Novelty is the binding constraint on this track; `antibody-2026-10-30` passes 100% but has found 0% known binders |
 | Anything touching CDRH1/H2/L | `antibody-2026-10-30` | HER2 weights physically cannot |
 
 Do **not** spend H100 hours on `her2-2026-11-07` conservative. Its designs cannot be submitted.

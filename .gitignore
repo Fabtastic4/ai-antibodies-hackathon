@@ -10,10 +10,20 @@ Files from slack/
 *.pem
 id_*
 team-4*
-nebius-runs/
-results/
 __pycache__/
 *.pyc
+
+# Run ids and score tables ARE the provenance for every number we report, so they are
+# committed deliberately (START-HERE.md, SETUP.md §8). Only the blobs inside them are ignored.
+# They hold no keys — keys are covered by the SECRETS block above and stay ignored everywhere.
+nebius-runs/**/*.cif
+nebius-runs/**/*.pdb
+nebius-runs/**/*.tar
+nebius-runs/**/*.gz
+results/**/*.cif
+results/**/*.pdb
+results/**/*.tar
+results/**/*.gz
 
 # Large or regenerable artifacts — keep paths and provenance in the repo, not the blobs
 data/**/*.cif

@@ -14,8 +14,15 @@ that misses its track's criteria is rejected, never reclassified.
 
 | Track | Criteria (all must hold) |
 |---|---|
-| De novo | < 70% sequence identity to any known antibody in known databases **and** ≥ 2 CDRH3 mutations away from trastuzumab |
-| Optimisation | everything else; valid only if < 70% **CDRH3** identity to trastuzumab **and** > 2 point mutations from any provided antibody |
+| De novo | < 70% sequence identity to any known antibody in known databases **and** ≥ 2 CDRH3 mutations from every known CDRH3 |
+| Optimisation | everything else (≥ 70% identity to trastuzumab); valid only if the CDRH3 is **≥ 3 mutations from trastuzumab *and* from every one of the 610,109 CDRH3s abguard knows** |
+
+> Measured on our own batch 1, not read off the PDF — see **[`docs/abguard.md`](docs/abguard.md)**.
+> There is **no 70% CDRH3-identity threshold** to clear: identity only picks your track. The real
+> optimisation bar is the mutation count, counted against all 610,109 known CDRH3s, so 3 mutations
+> from trastuzumab is necessary but **nowhere near sufficient**. Batch 1, 129 real designs:
+> **91 eligible (70.5%), zero hard errors, every rejection on novelty.** By distance from
+> trastuzumab: **3–4 mutations → 0/12, 5 → 44%, 6+ → 79–89%.** **Target ≥ 6.**
 
 Identity comparison is type-aware: a VHH is compared against known VHHs and heavy chains; scFv and Fab
 are split into paired chains and compared as paired antibodies. Tags and linkers are stripped first
@@ -42,17 +49,24 @@ designs that plausibly move all three axes at once.
 
 Run before anything goes on the submission list. A failing design is not submitted.
 
-- [ ] Format is **VHH, scFv or Fab**
-- [ ] **No unpaired cysteines**
+Do not hand-check these. **Run the gate:**
+
+```bash
+bash pipeline/filter/gate.sh            # on the VM; exit 0 = eligible, non-zero = not a submission
+```
+
+- [ ] Format is **VHH, scFv or Fab** (Fab goes in as `kind=paired`). Not a whole IgG
+- [ ] **No unpaired cysteines**, per chain and per domain
 - [ ] `immunum` numbering confidence **≥ 0.1** ("is it an antibody?")
-- [ ] Total length **≤ 250 aa** (whole single scFv or VHH; VH + VL combined for Fab)
-- [ ] Novelty: de novo → < 70% identity to any known antibody. Optimisation → < 70% CDRH3 identity to
-      trastuzumab **and** strictly > 2 point mutations from any provided data point
+- [ ] Length **≤ 250 aa per chain** — *not* VH + VL combined. Canonical 20 amino acids only, no `X`
+- [ ] Novelty: ≥ 3 CDRH3 mutations (optimisation) or ≥ 2 (de novo) from **every** known CDRH3
 - [ ] Soft, no filter but it decides whether we get measured at all: expression. Prior Adaptyv rounds
       improved once teams scored candidates with **Aggrescan 3D, SoluProt, NetSolP, ProteinMPNN
       (soluble weights)**
 
-`abguard` is pre-installed on the team VM. Organisers provide it as a CLI.
+`abguard` is pre-installed on the team VM at `~/.local/bin/abguard` — **login shell only**, so
+scripts need `bash -lc`. It is not a Foundry Docker module. Its novelty reference is bundled and on
+by default; nothing to build. Full write-up: **[`docs/abguard.md`](docs/abguard.md)**.
 
 ## Submission shape
 
@@ -113,11 +127,18 @@ Files from slack/   organiser handouts + credentials. Not for committing secrets
 
 ## Open questions / contradictions in the sources
 
-- The task PDF says optimisation needs "at least 2 mutations from any provided antibody" on p2 but
-  "strictly more than 2 point mutations" in the hard-filter list and the `abguard` flowchart. Treat
-  **> 2** as the bar. TODO: confirm with a mentor.
-- Optimisation requiring **< 70% CDRH3 identity to trastuzumab** is a large change for a "point
-  mutation" track. TODO: confirm with a mentor before committing the optimisation list.
+- ~~The task PDF says optimisation needs "at least 2 mutations" on p2 but "strictly more than 2" in
+  the hard-filter list.~~ **Closed 13:10** — `abguard` enforces **≥ 3** and says so in every
+  rejection message. No mentor needed.
+- ~~Optimisation requiring **< 70% CDRH3 identity to trastuzumab** is a large change for a "point
+  mutation" track.~~ **Closed 13:10 — the premise was wrong.** `abguard` never computes a CDRH3
+  identity threshold. The ≥70% figure only classifies a design as a trastuzumab variant rather than
+  de novo; our CDRH3 variants sit at 98–99% whole-sequence identity and are perfectly valid
+  optimisations. See [`docs/abguard.md`](docs/abguard.md) §3.
+- Still open, and the only `abguard` question worth a mentor's time: `novelty-report` prints a
+  `--no-novelty: prior art was not checked` warning even when a reference is passed, and its
+  nearest-neighbour column only ever reports `trastuzumab`. `team-validate` uses the full reference
+  correctly. Cosmetic bug, or a second code path?
 - The pre-read guide's numbers (≤10 designs, ~5 tested, team max 5, 3000 USD tied to Apheris OpenFold)
   are superseded by the task PDF everywhere they disagree. Use the PDF.
 - Links: event site https://oslo-ai-antibodies-hackathon.vercel.app/ ·

@@ -26,9 +26,24 @@ source.
 ### The SPR number is not a source conflict
 
 Issue #5 quotes both "190 with SPR affinities" and "SPR affinities (768 variants)". Both are right
-**[disk]**: the table has **768 rows**, of which **190 carry a measurable K<sub>D</sub>**. The other
-578 are measured **non-binders on our exact target**, which is signal, not waste. Nothing needs
+: the table has **768 rows**, of which **190 carry a measurable K<sub>D</sub>**. Nothing needs
 resolving with the organisers.
+
+**[verified in-repo]** — the table is now committed at
+`data/bucket/extracted/hackathon-data/her2-trastuzumab/trastuzumab_her2_spr_all_768.csv`
+(columns `cdrh3, vh_sequence, vl_sequence, kd_nM, binding_result`), so these were counted rather
+than taken on report. The `binding_result` breakdown matters, and an earlier draft of this file got
+it wrong by calling all 578 non-K<sub>D</sub> rows "measured non-binders":
+
+| `binding_result` | rows | usable as |
+|---|---|---|
+| `quantified_binding` | 190 | affinity labels |
+| `no_reportable_kd` | 460 | genuine negatives on our exact target |
+| `inconclusive` | 104 | **nothing** — not a negative |
+| `not_reported` | 14 | **nothing** |
+
+The usable negative set is therefore **460, not 578**. Treating the 118 inconclusive/not-reported
+rows as non-binders would poison any classifier trained on them.
 
 The 190 span **0.0234–13,863 nM — 5.8 orders of magnitude**. Fit anything on log K<sub>D</sub>; a
 model that looks good in linear nM is fooling us.
@@ -97,9 +112,12 @@ From `her2-trastuzumab/trastuzumab_her2_spr_all_768.csv` **[disk]**.
 **`WGSQGFYAYD` — K<sub>D</sub> = 0.0234 nM (23 pM)**, the tightest binder in the SPR table. Same
 VH/VL scaffold as the trastuzumab rows; only CDRH3 differs, so it is a genuine trastuzumab variant.
 
-**Do not call it an improvement.** It appears **once** — a single measurement with no replicate. Its
-margin over trastuzumab's best replicate (0.0234 vs 0.0285 nM) is well inside the spread of the
-wild-type's own eight measurements. The safe claim is **"as tight as trastuzumab"**, and the
+**Do not call it an improvement.** It appears **once** — a single measurement with no replicate.
+**[verified in-repo]** the eight wild-type replicates are 0.0285, 0.0379, 0.0792, 0.123, 0.146,
+0.152, 0.165, 0.178 nM. So `WGSQGFYAYD` does sit below all eight, but its margin over the best of
+them is **1.22×**, while those eight replicates of a *single* molecule span **6.2×** among
+themselves. A 1.22× edge from one unreplicated measurement, against a reference whose own spread is
+five times larger, is not a detected difference. The safe claim is **"as tight as trastuzumab"**, and the
 defensible pitch line is that the data contains no demonstrated affinity improvement, only
 equivalence. It is also **absent from the 524,346-row FACS table** — it exists only in the SPR set.
 
@@ -138,6 +156,19 @@ draft of this file flagged that as an unresolved contradiction. **It is not one.
   No change needed there.
 - **B99–108 (10 positions)** — the design/mutation window. What the organisers' variant library,
   their SPR table and `her2_cdrh3.yaml` all use.
+
+**[verified in-repo]** The SPR table settles this directly. Its `vh_sequence` column carries
+`…YYCSR` **`WGGDGFYAMDY`** `WGQGTLVTVSS` — the 11-mer is present in the construct, at 1-based
+position **99**, immediately followed by FR4's conserved `WGQGT` — while the `cdrh3` column holds
+only the 10-mer. Two different windows in the same row of the same file.
+
+**And the same check validated the parent our whole axis rests on.** The organisers' `vh_sequence`
+(120 aa) and `vl_sequence` (107 aa) are **byte-identical** to the VH and VL that
+[`pipeline/thermostability.py`](../pipeline/thermostability.py) derives from 1N8Z via the CH1/CL
+start motifs. Two independent sources — a crystal structure and the organisers' own library
+construct — agree exactly, so the parent sequences and the VH=1–120 / VL=1–107 domain boundaries are
+confirmed, not assumed. It also means `common.load_reference_set()`'s "this repo ships no
+trastuzumab sequence" is now wrong in **two** places.
 
 The **≥4-substitution floor survives either way** **[inferred]**: on a 10-mer, 3 substitutions give
 7/10 = 70.0%, which is *not* under 70% and fails; 4 give 60% and pass. Same floor

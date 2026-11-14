@@ -465,6 +465,13 @@ def rank_candidates(recs: list, weights: dict) -> list:
         raise ValueError(
             "cannot rank on {0}: direction unconfirmed, so the ordering would be a "
             "guess. See DIRECTION_UNCONFIRMED in this file.".format(", ".join(guessed)))
+    bad_w = sorted(k for k, w in used.items()
+                   if w != w or w in (float("inf"), float("-inf")) or w < 0)
+    if bad_w:
+        raise ValueError(
+            "weights must be finite and >= 0; got {0}. sum(w) is the divisor in this "
+            "function, so a negative weight inverts every other term.".format(
+                ", ".join("{0}={1}".format(k, used[k]) for k in bad_w)))
     ranges = {}
     for name in used:
         vals = [v for v in (score_value(r, name) for r in recs) if v is not None]
@@ -593,7 +600,20 @@ def main(argv=None) -> int:
                     k, DIRECTION_UNCONFIRMED[k]))
         if k not in HIGHER_IS_BETTER:
             raise SystemExit("unknown score {0!r}; known: {1}".format(k, ", ".join(sorted(HIGHER_IS_BETTER))))
-        weights[k] = float(v)
+        try:
+            w = float(v)
+        except ValueError:
+            raise SystemExit("--weight {0}: {1!r} is not a number".format(k, v)) from None
+        # A negative weight is not "deprioritise": rank_candidates divides by
+        # sum(w), so one large enough to turn that denominator negative flips the
+        # sign of every other term and inverts the submission order silently.
+        # Direction belongs in HIGHER_IS_BETTER, never in a weight's sign.
+        if w != w or w in (float("inf"), float("-inf")) or w < 0:
+            raise SystemExit(
+                "--weight {0}={1}: weights must be finite and >= 0. To flip a score's "
+                "direction, change HIGHER_IS_BETTER; a negative weight would invert the "
+                "whole ranking, not just this term.".format(k, v))
+        weights[k] = w
 
     out_dir = os.path.dirname(os.path.abspath(args.out)) or "."
     work_dir = os.path.join(out_dir, "filter_work")
@@ -715,10 +735,38 @@ def main(argv=None) -> int:
                   "immunum, which we do not have. So eligible=0 is the normal result here and "
                   "ranked.csv is header-only. A non-empty ranked.csv needs either the real abguard "
                   "(--abguard-cmd) or --include-unverified.")
-        incomplete = sum(1 for r in rows if r["rank_score"] is None)
+        # Count over the POOL, not the truncated table: a design whose score was
+        # missing sorts last, so it is the first to fall past --top and would
+        # never be counted here. Silence then looks like "everything scored".
+        incomplete = sum(1 for r in pool if r.get("_rank_score") is None)
         if incomplete:
-            print("{0} row(s) have no rank_score because a ranking score is missing; they sort "
-                  "last and are not imputed.".format(incomplete))
+            which = sorted({s for r in pool if r.get("_rank_score") is None
+                            for s in (r.get("_missing_scores") or [])})
+            dropped = sum(1 for r in pool[args.top:] if r.get("_rank_score") is None)
+            print("{0} candidate(s) have no rank_score because a weighted score is missing"
+                  "{1}; they sort last and are not imputed.{2}".format(
+                      incomplete,
+                      " (" + ", ".join(which) + ")" if which else "",
+                      " {0} of them fell past --top {1} and are NOT in the table.".format(
+                          dropped, args.top) if dropped else ""))
+            # A weighted term that is structurally null for one whole track
+            # removes that track from the submission without failing anything.
+            by_track: dict = {}
+            for r in pool:
+                by_track.setdefault(r.get("track_intent") or "unknown", []).append(r)
+            for track, recs_t in sorted(by_track.items()):
+                if not recs_t or any(r.get("_rank_score") is not None for r in recs_t):
+                    continue
+                # Only worth saying when the nullness is TRACK-SPECIFIC. If no
+                # candidate anywhere scored, the count above already said so and
+                # a per-track line is noise.
+                others_scored = any(r.get("_rank_score") is not None
+                                    for t, rs in by_track.items() if t != track for r in rs)
+                if others_scored:
+                    print("  WARNING: every {0} candidate ({1}) lacks a weighted score while "
+                          "other tracks have one, so this whole track sorts last - possibly "
+                          "because a weighted term only the other track can produce. Rank "
+                          "within track instead.".format(track, len(recs_t)))
         print("wrote " + ranked_path)
         print("wrote " + os.path.abspath(rej_path))
         print("wrote " + man_path)

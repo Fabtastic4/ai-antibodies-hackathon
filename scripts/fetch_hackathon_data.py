@@ -251,12 +251,27 @@ def sync_one(sub: dict, dest_root: str, *, bucket: str, dryrun: bool, quiet: boo
 # inventory and verification
 # --------------------------------------------------------------------------
 
+MAX_INLINE_COUNT_BYTES = 2_000_000_000
+
+
 def count_rows(path: str) -> dict:
     """Row count for a file we can read without a dependency.
 
-    Counts lines and subtracts one for a header if the first line looks like
-    one. Returns an explicit `unverified` for formats that need pandas/pyarrow,
-    rather than a zero that would read as an empty table.
+    Returns one of three shapes, and the distinction matters:
+      {"rows": N}                 counted
+      {"rows": None, "unverified": r}   a table we COULD NOT count (needs
+                                  pyarrow, is an archive, is oversized,
+                                  unreadable). verify() treats these as
+                                  "a real count may be hiding here".
+      {"rows": None, "not_tabular": r}  not a table at all (a README, an
+                                  image). These must NEVER mask a count
+                                  mismatch, which is why they are a
+                                  separate key rather than `unverified`.
+
+    Counting goes through the csv module, not a newline count: a quoted
+    embedded newline, a CRLF file or a blank trailing line each shift a raw
+    line count by one, and a one-off artefact exactly cancels one missing data
+    row - turning an incomplete table into an exact `rows_exact` match.
     """
     ext = os.path.splitext(path)[1].lower()
     if ext in ROW_ARCHIVE:
@@ -266,38 +281,58 @@ def count_rows(path: str) -> dict:
         return {"rows": None, "unverified": "{0} needs a reader (pandas/pyarrow); "
                                             "count it separately".format(ext)}
     if ext not in ROW_READABLE:
-        return {"rows": None, "unverified": "not a row format"}
+        return {"rows": None, "not_tabular": "{0} is not a row format".format(ext or "no suffix")}
     try:
-        with open(path, "rb") as fh:
-            first = fh.readline()
-            n = 1 if first else 0
-            for _ in fh:
-                n += 1
+        size = os.path.getsize(path)
     except OSError as exc:
-        return {"rows": None, "unverified": "unreadable: {0}".format(exc)}
-    # Header detection: a header is a first line in which NO field parses as a
-    # number. Do not test for digits in the column name - these tables have
-    # columns called `cdrh3` and `iptm`, and a digit in the name would make
-    # every count off by one on exactly the tables that matter most.
-    header = False
+        return {"rows": None, "unverified": "cannot stat: {0}".format(exc)}
+    if size == 0:
+        # An empty file is present but carries nothing. Reporting rows=0 would
+        # let it satisfy "files_at_least" while disproving nothing.
+        return {"rows": None, "unverified": "empty file (0 bytes)"}
+    if size > MAX_INLINE_COUNT_BYTES:
+        return {"rows": None,
+                "unverified": "{0} bytes is over the {1}-byte inline-count guard; count it "
+                              "with pyarrow/pandas".format(size, MAX_INLINE_COUNT_BYTES)}
+
+    import csv as _csv
+    delim = "\t" if ext == ".tsv" else ","
     try:
-        txt = first.decode("utf-8", "replace").strip()
-        delim = "\t" if ext == ".tsv" else ","
-        fields = [f.strip().strip('"').strip("'") for f in txt.split(delim)]
-        fields = [f for f in fields if f]
+        with open(path, newline="", encoding="utf-8", errors="replace") as fh:
+            reader = _csv.reader(fh, delimiter=delim)
+            records = 0
+            first = None
+            widths = set()
+            for row in reader:
+                if not row or (len(row) == 1 and not row[0].strip()):
+                    continue                     # blank or trailing empty line
+                if first is None:
+                    first = row
+                widths.add(len(row))
+                records += 1
+    except (OSError, UnicodeError, _csv.Error) as exc:
+        return {"rows": None, "unverified": "unreadable as csv: {0}".format(exc)}
 
-        def numeric(s: str) -> bool:
-            try:
-                float(s)
-                return True
-            except ValueError:
-                return False
+    if first is None:
+        return {"rows": None, "unverified": "no non-blank records"}
 
-        header = bool(fields) and not any(numeric(f) for f in fields)
-    except Exception:
-        pass
-    return {"rows": max(0, n - (1 if header else 0)), "lines": n,
-            "header_assumed": header}
+    # Header: a first record in which NO field parses as a number. Do not test
+    # for digits in the column name - these tables have columns called `cdrh3`
+    # and `iptm`, and a digit in the name would put every count off by one on
+    # exactly the tables that matter most.
+    def numeric(x: str) -> bool:
+        try:
+            float(x.strip().strip(chr(34)).strip("'"))
+            return True
+        except ValueError:
+            return False
+
+    fields = [f for f in first if f.strip()]
+    header = bool(fields) and not any(numeric(f) for f in fields)
+    return {"rows": max(0, records - (1 if header else 0)),
+            "records_incl_header": records,
+            "header_assumed": header,
+            "ragged_widths": sorted(widths) if len(widths) > 1 else None}
 
 
 def inventory(root: str) -> dict:
@@ -314,8 +349,10 @@ def inventory(root: str) -> dict:
                 continue
             total += size
             rec = {"path": os.path.relpath(fp, root), "bytes": size}
-            if size and size < 2_000_000_000:
-                rec.update(count_rows(fp))
+            # Always ask: count_rows() itself reports 0-byte and oversized files
+            # with a reason. Skipping them here left them with no row key and no
+            # explanation, so an empty file passed as merely "present".
+            rec.update(count_rows(fp))
             files.append(rec)
     return {"exists": True, "files": files, "n_files": len(files), "bytes": total}
 
@@ -364,6 +401,9 @@ def verify(sub: dict, inv: dict) -> dict:
     # Row-count expectations. The file holding a given table is not named in any
     # source, so a count matches if ANY synced file has exactly that many rows.
     counted = [f for f in inv["files"] if f.get("rows") is not None]
+    # ONLY files that might be hiding a real count. A README is `not_tabular`
+    # and must never send a disproved count down the UNVERIFIED branch, which
+    # exits 0, instead of FAIL, which exits 1.
     unreadable = [f for f in inv["files"] if f.get("unverified") and f.get("rows") is None]
     for label, want in (exp.get("rows_exact") or {}).items():
         hit = [f["path"] for f in counted if f["rows"] == want]
@@ -445,14 +485,28 @@ def main(argv=None) -> int:
             entry["sync"] = sync_one(sub, dest, bucket=args.bucket,
                                      dryrun=args.dryrun, quiet=args.quiet)
             if not entry["sync"]["ok"]:
-                common.say(args.quiet, "  FAILED: {0}".format(
-                    entry["sync"].get("stderr") or entry["sync"].get("error")))
+                # stderr, not common.say: -q must not be able to hide a failed sync.
+                print("[{0}] SYNC FAILED: {1}".format(sub["key"],
+                      entry["sync"].get("stderr") or entry["sync"].get("error") or
+                      "exit {0}".format(entry["sync"].get("returncode"))), file=sys.stderr)
         inv = inventory(os.path.join(dest, sub["local"]))
         entry["inventory"] = {"n_files": inv["n_files"], "bytes": inv["bytes"],
                               "files": inv["files"][:200]}
         entry["verify"] = ({"status": "skipped", "checks": [],
                             "reason": "--dryrun moves nothing, so there is nothing to verify"}
                            if args.dryrun and not args.verify_only else verify(sub, inv))
+        # A sync that aborted part-way must not be able to report "ok" because
+        # the files that DID arrive happen to satisfy the expectations. Its
+        # failure was previously only printed, never folded into the status or
+        # the exit code - and -q swallowed the print entirely.
+        syn = entry.get("sync")
+        if syn and not syn.get("ok"):
+            entry["verify"]["status"] = "FAIL"
+            entry["verify"].setdefault("checks", []).insert(0, {
+                "check": "sync", "result": "FAIL",
+                "detail": "aws s3 sync failed: {0}".format(
+                    (syn.get("stderr") or syn.get("error") or
+                     "exit {0}".format(syn.get("returncode"))))[:600]})
         results.append(entry)
 
     manifest_path = args.manifest or os.path.join(dest, "fetch_manifest.json")

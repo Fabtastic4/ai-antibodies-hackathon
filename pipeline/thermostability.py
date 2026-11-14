@@ -256,9 +256,22 @@ def verify_spans(parent: dict) -> None:
     """
     problems = []
     for label in ("H", "L"):
-        seq = (parent.get(label) or {}).get("sequence") or ""
+        dom = parent.get(label) or {}
+        seq = dom.get("sequence") or ""
+        # Read the spans actually in use, not the module default - otherwise a
+        # --cdr-spans-json override is never checked at all, which is exactly
+        # backwards: an override is the case most in need of checking.
+        spans = dom.get("cdr_spans") or CDR_SPANS[label]
+        for cdr, (lo, hi) in sorted(spans.items()):
+            if not isinstance(lo, int) or not isinstance(hi, int) or lo < 1 or hi < lo:
+                problems.append("{0} {1}: span {2}-{3} is not a valid 1-based range".format(
+                    label, cdr, lo, hi))
         for cdr, expected in SPAN_SELF_CHECK.get(label, {}).items():
-            lo, hi = CDR_SPANS[label][cdr]
+            if cdr not in spans:
+                problems.append("{0} {1}: no span defined, so its residues cannot be "
+                                "excluded from the framework".format(label, cdr))
+                continue
+            lo, hi = spans[cdr]
             for pos, aa in expected.items():
                 if not (lo <= pos <= hi):
                     problems.append("{0} {1}: position {2} is outside span {3}-{4}".format(
@@ -295,15 +308,26 @@ def framework_mutations(design_seq: str, parent_seq: str, spans: dict,
 
     Aligns the two (Needleman-Wunsch from common.align_global), walks the
     alignment, and classifies every differing column by where it sits in the
-    PARENT: inside a CDR span or in the framework. Gap columns count as
-    differences, as common.mutation_count does, and are reported separately so a
-    length change is never silently read as a point substitution.
+    PARENT: inside a CDR span or in the framework.
 
-    `boundary_sensitive` counts framework differences lying within
-    `boundary_window` of a span edge. Those are the ones whose classification
-    would flip if the span definition - which is ours, not an organiser's - is
-    off by a residue or two. Reporting it is how this number stays honest about
-    the one assumption underneath it.
+    Substitutions, deletions AND insertions all count, and each is reported
+    separately so a length change is never read as a point substitution. An
+    insertion column has no parent position of its own, so it is attributed to
+    the parent position it sits against. Counting insertions is not optional:
+    while they were excluded, a design with a 20-residue framework insertion
+    scored framework_mutations=0 and framework_identity=1.0 - a perfect score
+    for the largest framework liability available - and ranked above a design
+    with a single point substitution. Deletions were charged and insertions were
+    free, so the term was not the distance from the reference that
+    05_filter_rank.py relies on it being.
+
+    `boundary_sensitive` counts FRAMEWORK-side differences lying within
+    `boundary_window` of a span edge: positions just outside a span, which would
+    be reclassified as CDR - and so stop counting - if the span definition
+    (ours, not an organiser's) is off by a residue or two. It does NOT count
+    CDR-side differences that would become framework, so it is a one-directional
+    indicator of how much of this number rests on that assumption, not a
+    symmetric error bar.
     """
     if not design_seq or not parent_seq:
         return {"framework_mutations": None,
@@ -317,56 +341,100 @@ def framework_mutations(design_seq: str, parent_seq: str, spans: dict,
             edges.update(range(max(1, e - boundary_window), e + boundary_window + 1))
 
     ppos = 0
-    fw_sub = fw_gap = cdr_sub = cdr_gap = 0
+    fw_sub = fw_gap = fw_ins = cdr_sub = cdr_gap = cdr_ins = 0
     fw_len = 0
     boundary = 0
-    fw_detail, cdr_detail = [], []
+    fw_detail, cdr_detail, ins_detail = [], [], []
+    pending_ins = []                       # insertion run waiting for its class
     for x, y in zip(aq, ar):
-        if y != "-":
-            ppos += 1                      # a real parent position
-            is_cdr = ppos in in_cdr
-            if not is_cdr:
-                fw_len += 1
-            if x == y:
-                continue
-            if x == "-":                   # deletion relative to the parent
-                if is_cdr:
-                    cdr_gap += 1
-                else:
-                    fw_gap += 1
-                    if ppos in edges:
-                        boundary += 1
-                continue
+        if y == "-":
+            # Insertion relative to the parent: the column has no parent
+            # position of its own, so it is classified by the parent position it
+            # sits against. It MUST still be counted - an uncounted insertion
+            # makes this term non-monotone, and a design with a 20-residue
+            # framework insertion would otherwise score a perfect 0.
+            if x != "-":
+                pending_ins.append(x)
+            continue
+
+        ppos += 1                          # a real parent position
+        is_cdr = ppos in in_cdr
+        if not is_cdr:
+            fw_len += 1
+
+        if pending_ins:
+            # Attribute the run to this parent position's class. At the very
+            # start of the alignment this is the first parent position, which is
+            # the only sensible anchor available.
+            n = len(pending_ins)
             if is_cdr:
-                cdr_sub += 1
-                cdr_detail.append("{0}{1}{2}".format(y, ppos, x))
+                cdr_ins += n
             else:
-                fw_sub += 1
-                fw_detail.append("{0}{1}{2}".format(y, ppos, x))
+                fw_ins += n
+                if ppos in edges:
+                    boundary += n
+            ins_detail.append("ins_before_{0}_{1}".format(ppos, "".join(pending_ins)))
+            pending_ins = []
+
+        if x == y:
+            continue
+        if x == "-":                       # deletion relative to the parent
+            if is_cdr:
+                cdr_gap += 1
+            else:
+                fw_gap += 1
                 if ppos in edges:
                     boundary += 1
+            continue
+        if is_cdr:
+            cdr_sub += 1
+            cdr_detail.append("{0}{1}{2}".format(y, ppos, x))
         else:
-            # insertion relative to the parent: it has no parent position, so it
-            # cannot be classified as framework or CDR. Counted, never placed.
-            fw_gap += 0
-            cdr_gap += 0
+            fw_sub += 1
+            fw_detail.append("{0}{1}{2}".format(y, ppos, x))
+            if ppos in edges:
+                boundary += 1
 
-    insertions = sum(1 for x, y in zip(aq, ar) if y == "-" and x != "-")
-    fw_total = fw_sub + fw_gap
+    if pending_ins:
+        # A C-terminal insertion has no following parent position. The last
+        # parent position seen is its anchor; if the parent ends in framework,
+        # that is framework.
+        n = len(pending_ins)
+        if ppos in in_cdr:
+            cdr_ins += n
+        else:
+            fw_ins += n
+        ins_detail.append("ins_after_{0}_{1}".format(ppos, "".join(pending_ins)))
+
+    insertions = fw_ins + cdr_ins
+    fw_total = fw_sub + fw_gap + fw_ins
+    # Identity can only be read as a fraction while the numerator is bounded by
+    # the framework length. A design whose insertions exceed it is reported at 0
+    # with the clamp named, rather than as a negative "identity".
+    ident, clamped = None, False
+    if fw_len:
+        raw_ident = 1.0 - fw_total / fw_len
+        clamped = raw_ident < 0.0
+        ident = round(max(0.0, raw_ident), 4)
     return {
         "framework_mutations": fw_total,
         "framework_substitutions": fw_sub,
         "framework_gap_columns": fw_gap,
+        "framework_insertions": fw_ins,
         "framework_length": fw_len,
-        "framework_identity": (round(1.0 - fw_total / fw_len, 4) if fw_len else None),
+        "framework_identity": ident,
+        "framework_identity_clamped_at_zero": clamped,
         "cdr_substitutions": cdr_sub,
         "cdr_gap_columns": cdr_gap,
-        "insertions_unplaceable": insertions,
+        "cdr_insertions": cdr_ins,
+        "insertions": insertions,
+        "insertion_detail": ins_detail,
         "boundary_sensitive": boundary,
         "framework_detail": fw_detail,
         "cdr_detail": cdr_detail,
-        "definition": "substitutions and gap columns at parent positions outside "
-                      "the CDR spans; " + CDR_SPAN_DEFINITION,
+        "definition": "substitutions, deletions and insertions at parent positions "
+                      "outside the CDR spans; an insertion run is attributed to the "
+                      "parent position it sits against; " + CDR_SPAN_DEFINITION,
     }
 
 
@@ -394,36 +462,66 @@ def germline_likeness(rec: dict, parent: dict, *, germline_panel: dict | None = 
                     "note": "no trastuzumab parent available: "
                             "data/reference/epitope/1n8z_epitope_report.json is missing or "
                             "has no usable domain boundary"}
-        per_chain, total, fw_len, boundary, partial = {}, 0, 0, 0, []
+        # Which parent domains this format is REQUIRED to account for. Without
+        # this, a Fab that lost its L chain is simply summed over H and comes
+        # out with a LOWER count - and the term is lower-is-better, so dropping
+        # a chain was rewarded. A count over a different set of chains is not
+        # comparable with a complete one, so it is null with a reason instead
+        # (the house rule), never a smaller number.
+        fmt = rec.get("format")
+        required = {"H"} if fmt == "VHH" else {"H", "L"}
+        required &= {k for k in ("H", "L") if parent.get(k)}
+
+        per_chain, total, fw_len, boundary, insertions = {}, 0, 0, 0, 0
+        unusable = []
         for label, seq in chains.items():
             pl = parent.get(label)
             if not pl:
-                partial.append(label)
+                unusable.append("{0} (no parent domain)".format(label))
                 continue
             res = framework_mutations(seq, pl["sequence"], pl["cdr_spans"])
             per_chain[label] = res
             if res.get("framework_mutations") is None:
-                partial.append(label)
+                unusable.append("{0} ({1})".format(label, res.get("note") or "not computable"))
                 continue
             total += res["framework_mutations"]
             fw_len += res.get("framework_length") or 0
             boundary += res.get("boundary_sensitive") or 0
-        if not per_chain or partial:
-            return {"value": (total if per_chain else None),
+            insertions += res.get("insertions") or 0
+
+        covered = {k for k in per_chain if per_chain[k].get("framework_mutations") is not None}
+        missing = sorted(required - covered)
+        if missing or unusable:
+            return {"value": None,
                     "per_chain": per_chain,
-                    "note": "no parent domain for chain(s) {0}, so this is a PARTIAL count - "
-                            "not comparable with a complete one".format(",".join(partial))
-                            if partial else None,
-                    "partial": bool(partial),
+                    "partial": True,
+                    "note": "INCOMPLETE, so no count is reported: format {0} requires parent "
+                            "domain(s) {1} and {2} was not accounted for.{3} A count over a "
+                            "different set of chains is lower than a complete one and this term "
+                            "is lower-is-better, so a partial total would rank the design "
+                            "better for being incomplete.".format(
+                                fmt, ",".join(sorted(required)) or "none",
+                                ",".join(missing) or "nothing",
+                                " Unusable: " + "; ".join(unusable) + "." if unusable else ""),
+                    "chains_required": sorted(required),
+                    "chains_covered": sorted(covered),
                     "reference": "trastuzumab 1N8Z variable domains"}
+
+        ident = (round(max(0.0, 1.0 - total / fw_len), 4) if fw_len else None)
         return {"value": total,
-                "framework_identity": (round(1.0 - total / fw_len, 4) if fw_len else None),
+                "framework_identity": ident,
+                "framework_identity_clamped_at_zero": bool(fw_len and (1.0 - total / fw_len) < 0.0),
                 "framework_length": fw_len,
                 "boundary_sensitive": boundary,
+                "insertions": insertions,
                 "per_chain": per_chain,
                 "partial": False,
+                "chains_required": sorted(required),
+                "chains_covered": sorted(covered),
                 "reference": "trastuzumab 1N8Z variable domains "
-                             "(data/reference/epitope/1n8z_epitope_report.json)"}
+                             "(data/reference/epitope/1n8z_epitope_report.json); VH/VL "
+                             "independently confirmed byte-identical to the organisers' own "
+                             "construct in trastuzumab_her2_spr_all_768.csv"}
 
     # de novo, or a track we were not told
     if not germline_panel:
@@ -667,8 +765,6 @@ def stability_terms(rec: dict, parent: dict, *, germline_panel=None,
             note="optimisation uses the parent-relative score-variants call, not an absolute PLL",
             higher_is_better=STABILITY_SCORES["esm2_pll_per_residue"]["higher_is_better"])
     else:
-        seqs = common.candidate_sequences(rec)
-        n = sum(len(s) for s in seqs.values()) or None
         if raw.get("esm2_pll") is None:
             # Nothing was supplied. That is different from a reply we could not
             # read, and the note has to say which, or a missing run looks like a
@@ -678,7 +774,12 @@ def stability_terms(rec: dict, parent: dict, *, germline_panel=None,
                 note="no value supplied; run score-sequences and pass --esm2-scores",
                 higher_is_better=STABILITY_SCORES["esm2_pll_per_residue"]["higher_is_better"])
         else:
-            red = pll_per_residue_mean(raw.get("esm2_pll"), length=raw.get("length") or n)
+            # Only a length the REPLY stated. Falling back to the candidate's
+            # own chain length made the documented refusal unreachable and then
+            # labelled the result "summed PLL divided by stated length" when no
+            # length had been stated - a guessed denominator wearing the label
+            # of a read one.
+            red = pll_per_residue_mean(raw.get("esm2_pll"), length=raw.get("length"))
             entries["esm2_pll_per_residue"] = common.score_entry(
                 red.get("value"), model=ESM2["model"], version=ESM2["operation_denovo"],
                 note=red.get("note") or red.get("reduction"),
@@ -715,7 +816,10 @@ def stability_terms(rec: dict, parent: dict, *, germline_panel=None,
             "normalises within the whole candidate set, so weighting this term in a MIXED-track "
             "run gives every de novo design rank_score=None and sorts them all last - not "
             "because they are worse, but because the term does not exist for them. Rank within "
-            "track, or supply --germline-json, or weight it only in an optimisation-only run.",
+            "track, or weight it only in an optimisation-only run. NOTE --germline-json does NOT "
+            "fix this: it adds a nearest-germline whole-domain identity as a diagnostic, but "
+            "framework_mutations stays null for de novo because a germline V gene has no CDR3, "
+            "so the framework/CDR split used for optimisation does not apply.",
         "refused_models": REFUSED_MODELS,
         # Only the terms that actually CARRY a value can corroborate each other.
         # Warning off the term names would fire on every candidate, including
@@ -815,8 +919,11 @@ def main(argv=None) -> int:
     p.add_argument("--cdr-spans-json", default=None,
                    help='override CDR spans: {"H": {"CDRH3": [99, 109], ...}, "L": {...}}')
     p.add_argument("--germline-json", default=None,
-                   help='germline panel for de novo framework comparison: '
-                        '{"IGHV3-23": "<seq>", ...}. Without it the de novo term is null.')
+                   help='germline panel for de novo: {"IGHV3-23": "<seq>", ...}. Reports '
+                        'nearest-germline WHOLE-DOMAIN identity as a diagnostic. It does not '
+                        'populate framework_mutations, which stays null for de novo either way '
+                        '(a germline V gene has no CDR3, so the optimisation framework/CDR '
+                        'split does not apply).')
     p.add_argument("--stab-ddg-scores", default=None,
                    help="JSON/CSV of stab-ddg replies (vh_vl_interface_ddg per candidate)")
     p.add_argument("--esm2-scores", default=None,
@@ -839,6 +946,10 @@ def main(argv=None) -> int:
                 parent[label]["cdr_spans"] = {k: tuple(v) for k, v in override[label].items()}
         parent.setdefault("source", {})["cdr_span_definition"] = \
             "overridden from {0}".format(os.path.abspath(args.cdr_spans_json))
+        # Re-check AFTER the override. load_parent() already verified the
+        # defaults; the override is the case that most needs checking, and it
+        # was previously applied after the only check and so never verified.
+        verify_spans(parent)
 
     germline = common.read_json(args.germline_json) if args.germline_json else None
     stab = parse_model_scores(args.stab_ddg_scores) if args.stab_ddg_scores else None

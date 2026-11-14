@@ -1,65 +1,124 @@
 # Fab4 — AI × Antibodies Hackathon (Oslo, 14 Nov 2026)
 
-One-day hackathon at BI Startup Village. Task released 09:30, **pitch + repo due 18:00**.
+Team **fab-tastic-four** / `team-4`, 6 people. Task dropped 09:30. **Design list + pitch due 18:00.**
 
-> The official task is released on the day and lives in the event Slack. Once we have it,
-> it goes in [`docs/task.md`](docs/task.md) verbatim and this README gets the one-paragraph
-> version. Everything below is pre-read distilled from the organizers' participant guide.
+Source of truth: the organisers' task PDF (`ai-antibodies-hackathon-apheris.pdf`, in the Slack folder).
+This README is the 60-second version. Deeper docs are linked, not duplicated.
 
-## How we are judged
+## The task
 
-| Criterion | Weight | What it means |
-|---|---|---|
-| **Judgment** | 40% | Clear reasoning behind the molecules we chose |
-| Execution | 20% | A reproducible pipeline in this repo |
-| User fit | 20% | What the design is for, and who needs it |
-| Path to value | 20% | A credible route to real use — molecule or method |
+Improve **trastuzumab** against its target **HER2**. Submissions are **VHH, scFv or Fab** — not whole IgG.
+Two tracks: **de novo design** (new antibody, original epitope preserved) and **optimisation**
+(point mutations on trastuzumab). **The track is decided for us by `abguard`, not chosen** — a design
+that misses its track's criteria is rejected, never reclassified.
 
-Two extra notes from the guide: a judge runs our skill/pipeline on a **case we have not seen**,
-and every team must hand in **score tables saying where each score came from**.
+| Track | Criteria (all must hold) |
+|---|---|
+| De novo | < 70% sequence identity to any known antibody in known databases **and** ≥ 2 CDRH3 mutations away from trastuzumab |
+| Optimisation | everything else; valid only if < 70% **CDRH3** identity to trastuzumab **and** > 2 point mutations from any provided antibody |
 
-Prize conditions worth knowing: the monetary prize (Apheris + OpenFold, 3,000 USD) requires
-**Apheris' version of OpenFold in our pipeline**. AMASS gives 100 USD credits for the most
-creative use of AMASS. Adaptyv tests ~5 designs per team (VHH, Fab or scFv — not whole IgG);
-results are published on Proteinbase under ODC-BY.
+Identity comparison is type-aware: a VHH is compared against known VHHs and heavy chains; scFv and Fab
+are split into paired chains and compared as paired antibodies. Tags and linkers are stripped first
+(`immunum`).
 
-## The work, in four steps
+## How we are scored
 
-1. **Generate** — hundreds of VHH / scFv / Fab candidates, de novo or by editing a known binder.
-2. **Score** — structure, interface, affinity and physics-flavoured models.
-3. **Filter** — pick **≤ 10** to submit, on more than one score; developability is a real filter here.
-4. **Test** — Adaptyv does this after the event, not us.
+Adaptyv measures every design and compares it to the **measured** trastuzumab baseline:
 
-Start wide: every step throws candidates away. Confidence scores (pLDDT, ipTM, PAE, ipSAE) rank
-candidates; none of them is an affinity. Re-score binding after any liability fix.
+| Judged property | Measurement |
+|---|---|
+| Binding to HER2 | SPR |
+| Epitope preservation | competitive binding against trastuzumab |
+| Thermostability | direct measurement |
 
-## Repo layout
+Tier = how many of the three beat the baseline. **S = 3/3, A = 2/3, B = 1/3, 0/3 = unsuccessful.**
+Ties and regressions do not count as improvements.
+
+**Teams are ranked on S-tier count first**, then A-tier, then B-tier. Ten designs that each improve one
+property lose to two designs that improve all three. So: do not optimise for volume. Optimise for
+designs that plausibly move all three axes at once.
+
+## Hard filters — `abguard` checklist
+
+Run before anything goes on the submission list. A failing design is not submitted.
+
+- [ ] Format is **VHH, scFv or Fab**
+- [ ] **No unpaired cysteines**
+- [ ] `immunum` numbering confidence **≥ 0.1** ("is it an antibody?")
+- [ ] Total length **≤ 250 aa** (whole single scFv or VHH; VH + VL combined for Fab)
+- [ ] Novelty: de novo → < 70% identity to any known antibody. Optimisation → < 70% CDRH3 identity to
+      trastuzumab **and** strictly > 2 point mutations from any provided data point
+- [ ] Soft, no filter but it decides whether we get measured at all: expression. Prior Adaptyv rounds
+      improved once teams scored candidates with **Aggrescan 3D, SoluProt, NetSolP, ProteinMPNN
+      (soluble weights)**
+
+`abguard` is pre-installed on the team VM. Organisers provide it as a CLI.
+
+## Submission shape
+
+- Ranked list of **up to 20 designs**, any mix of de novo and optimisation (the two tracks are evaluated
+  independently). 20 = 16 assuming we win, + 4 spare in case of duplication between teams.
+- Only the **top N** of that list gets tested. N depends on pitch day:
+
+| | Designs tested |
+|---|---|
+| Every team, whatever happens | 4 |
+| 1st place | +12 → 16 |
+| 2nd place | +8 → 12 |
+| 3rd place | +4 → 8 |
+| Each of the 6 judges nominates one favourite team | +2 each |
+
+Rank order matters more than list length: design #1 is tested in every scenario, #17 almost never.
+
+## Pitch criteria
+
+| Weight | Criterion |
+|---|---|
+| 40% | **Judgment** — clear reasoning behind the molecules we chose |
+| 20% | Execution — reproducible pipeline in this GitHub repo |
+| 20% | User fit — what the design is for, and who needs it |
+| 20% | Path to value — credible route to real use, for the molecule or the method |
+
+## Prizes
+
+- **€3000 total, split equally between the two tracks.** Per track: **€800 / €500 / €200** for 1st / 2nd / 3rd.
+  So a track can be diversified across or bet on.
+- **Best Pitch: extra $500** on the day.
+- **AMASS** picks the team with the best use of their platform → one month free. Each team also gets
+  $100 in AMASS API credits; one person per team claims them at platform.amass.tech.
+
+## Start here
+
+1. **[`docs/SETUP.md`](docs/SETUP.md)** — VM access, Nebius, JapanFold, credentials. Do this first.
+2. **[`docs/workplan.md`](docs/workplan.md)** — who is doing what, and the run order.
+3. Long jobs queue (first call to a model can wait 15 min; `mosaic` and `esmfold2` ~22 min). Start those
+   before the short folds. 16 teams share the platform.
+
+Credentials live only in the Slack folder (`credentials.private.json`, JapanFold codes txt). `*.private.json`
+is gitignored. **Never commit a key or paste one into a chat** — point tools at `$NEBIUS_CREDS`.
+
+## Repo map
 
 ```
-docs/        task.md (the official brief), hackathon-brief.md (pre-read), decision-log.md
-pipeline/    the reproducible run: generate -> score -> filter
-scripts/     one-off tools and glue
-data/        inputs: target structures, reference sequences (large files stay out of git)
-designs/     candidate sets + submission.csv (the ≤10 we put forward)
-reports/     score tables, figures, pitch material
-notebooks/   exploration
+docs/      task.md (Slack paste: VM, mentor pipeline), hackathon-brief.md (pre-read:
+           molecule + model primer), SETUP.md, workplan.md, decision-log.md
+pipeline/  the reproducible run: generate -> score -> filter
+scripts/   one-off tools and glue
+data/      inputs; data/task/ holds task attachments (large files stay out of git)
+designs/   candidate sets + submission.csv (the ranked ≤20)
+reports/   score tables (where every score came from), figures, pitch material
+notebooks/ exploration
+Files from slack/   organiser handouts + credentials. Not for committing secrets.
 ```
 
-## Tools we have access to
+## Open questions / contradictions in the sources
 
-- **JapanFold** — structure prediction + binder design workbench (RFD4-Proteina et al.), https://japanfold.aiand.com/
-- **Nebius** — model catalog / GPUs, https://forge.nebius.cloud/models/
-- **Apheris Foundry** — incl. their OpenFold build (**required for the cash prize**)
-- **AMASS** — literature search and verification, https://amass.tech/oslo-ai-antibodies-hackathon
-- **Claude Max credits** — agent glue across all of the above
-
-## Ground rules
-
-All outputs and this repository must be created during the hackathon. Pre-existing startup or
-business ideas must be disclosed to the organizers. Team max 5.
-
-## Links
-
-- Event site: https://oslo-ai-antibodies-hackathon.vercel.app/
-- Participant guide: https://oslo-ai-antibodies-hackathon.vercel.app/participant_guide
-- Competition terms: https://proteinbase.com/competitions/anthropic-adaptyv-2026/terms
+- The task PDF says optimisation needs "at least 2 mutations from any provided antibody" on p2 but
+  "strictly more than 2 point mutations" in the hard-filter list and the `abguard` flowchart. Treat
+  **> 2** as the bar. TODO: confirm with a mentor.
+- Optimisation requiring **< 70% CDRH3 identity to trastuzumab** is a large change for a "point
+  mutation" track. TODO: confirm with a mentor before committing the optimisation list.
+- The pre-read guide's numbers (≤10 designs, ~5 tested, team max 5, 3000 USD tied to Apheris OpenFold)
+  are superseded by the task PDF everywhere they disagree. Use the PDF.
+- Links: event site https://oslo-ai-antibodies-hackathon.vercel.app/ ·
+  terms https://proteinbase.com/competitions/anthropic-adaptyv-2026/terms

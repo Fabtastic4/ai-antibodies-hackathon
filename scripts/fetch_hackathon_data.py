@@ -99,6 +99,7 @@ SUBSETS = [
                "train a ranker on measured binders.",
         "expect": {"rows_exact": {"facs_variants": 524346, "spr_rows": 768},
                    "bytes_at_least": 5_000_000,
+                   "must_contain_names": ["trastuzumab_her2_spr_all_768.csv"],
                    "derived": {"spr_with_measurable_kd":
                                "190 of the 768 SPR rows carry a real KD, spanning 0.023-13863 nM "
                                "- 5.8 orders of magnitude, so fit on log KD or the numbers will "
@@ -133,11 +134,17 @@ SUBSETS = [
         "s3": "data/sigma2-ab-ag-champloo/",
         "local": "data/sigma2-ab-ag-champloo",
         "priority": 4,
-        "why": "per-sample ipTM, pLDDT and PAE for the predicted complexes, with measured SPR "
-               "for some pairs in spr-supplementary/. This is PAE as DATA, which probe-findings "
-               "§1 established no reachable Nebius model will return. Paired with SPR it is a "
-               "calibration set for which confidence score actually predicts binding, instead "
-               "of assuming one does.",
+        "why": "per-replica AF3/Chai-1 confidence archives plus a 29-pair SPR supplement in "
+               "spr-supplementary/. NARROWER THAN THE BUCKET README CLAIMS: the README says this "
+               "folder holds ipTM, pLDDT and PAE, but that is true only for the AF3 REAL pairs - "
+               "pLDDT exists locally only in af3_real_per_replica_confidence_metrics.tar.zst, as "
+               "123 systems x 50 samples = 6150 confidences.json with per-ATOM atom_plddts. The "
+               "AF3 shuffled pairs (152 GB) and the Boltz-2 per-replica archive (1.7 TB) are in "
+               "the table of contents but were NOT downloaded, so pLDDT cannot be compared "
+               "between real and shuffled pairs - which is the dataset's central question. Use "
+               "ipTM (both classes) or Chai-1 ptm/iptm for that instead. Whether a PAE matrix is "
+               "in those same files is UNVERIFIED - open one and look before any ipSAE plan "
+               "depends on it. See docs/vm-data.md §2.",
         "expect": {"files_at_least": 1,
                    "must_contain_dirs": ["spr-supplementary"],
                    "bytes_at_least": 1_500_000_000,
@@ -153,7 +160,11 @@ SUBSETS = [
         "why": "scores for 1.8M predicted nanobody-antigen complexes, and the source of the "
                "VHH-antigen true negatives: 454 pairs with no measurable binding, 21 of which "
                "still score AF3 ipTM >= 0.7. Those 21 are the reason to calibrate a confidence "
-               "filter before trusting it to rank. LARGEST subset - fetch it last.",
+               "filter before trusting it to rank. 106 cognate + 11342 shuffled pairs. Note the "
+               "Chai-1 archive here (735172 npz over 14722 systems) carries ptm/iptm/per-chain "
+               "variants and clash flags but NO pLDDT, so this is the subset that supports a "
+               "real-vs-shuffled confidence comparison (see docs/vm-data.md §2). LARGEST subset "
+               "- fetch it last.",
         "expect": {"rows_approx": {"predicted_complexes": 1800000},
                    "rows_exact": {"true_negative_pairs": 454},
                    "bytes_at_least": 500_000_000,
